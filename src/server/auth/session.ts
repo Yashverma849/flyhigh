@@ -1,0 +1,14 @@
+import "server-only";
+import { auth } from "@/auth";
+
+export async function requireSession() {
+  const session = await auth();
+  if (!session?.user) {
+    throw new Error("Unauthorized");
+  }
+  return session;
+}
+
+export async function getSession() {
+  return auth();
+}

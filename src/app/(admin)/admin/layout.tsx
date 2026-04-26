@@ -1,15 +1,13 @@
-import { redirect } from "next/navigation";
-import { auth } from "@/auth";
 import { AdminSidebar } from "@/components/admin/sidebar";
 import { AdminTopbar } from "@/components/admin/topbar";
 
-export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-  const session = await auth();
-  if (!session?.user) redirect("/login?callbackUrl=/admin");
+// Auth temporarily disabled — admin pages are open. Re-add the `auth()` /
+// `redirect("/login")` gate when auth is restored.
 
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen" style={{ background: "var(--ink)" }}>
-      <AdminSidebar user={session.user} />
+      <AdminSidebar user={null} />
       <main className="flex min-w-0 flex-1 flex-col">
         <AdminTopbar />
         <div className="flex-1 px-8 py-8">{children}</div>

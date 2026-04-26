@@ -1,7 +1,7 @@
 "use server";
 
 import { headers } from "next/headers";
-import { db } from "@/server/db/client";
+import { db, isDbConfigured } from "@/server/db/client";
 import { contactSubmissions } from "@/server/db/schema";
 import { ContactSchema } from "@/lib/validations";
 import { consumePublicLimit } from "@/server/ratelimit";
@@ -32,6 +32,14 @@ export async function submitContact(
       status: "error",
       message: "Please check the form for errors.",
       fieldErrors: parsed.error.flatten().fieldErrors,
+    };
+  }
+
+  if (!isDbConfigured) {
+    return {
+      status: "error",
+      message:
+        "Contact submissions are temporarily unavailable. Please email concierge@flyhigh.in directly.",
     };
   }
 

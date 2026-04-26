@@ -1,9 +1,10 @@
 import "server-only";
 import { eq, desc } from "drizzle-orm";
-import { db } from "@/server/db/client";
+import { db, isDbConfigured } from "@/server/db/client";
 import { shipmentEvents, shipments } from "@/server/db/schema";
 
 export async function getShipmentById(id: string) {
+  if (!isDbConfigured) return null;
   const result = await db
     .select()
     .from(shipments)
@@ -13,6 +14,7 @@ export async function getShipmentById(id: string) {
 }
 
 export async function getShipmentEvents(shipmentId: string) {
+  if (!isDbConfigured) return [];
   return db
     .select()
     .from(shipmentEvents)
@@ -21,5 +23,6 @@ export async function getShipmentEvents(shipmentId: string) {
 }
 
 export async function getRecentShipments(limit = 25) {
+  if (!isDbConfigured) return [];
   return db.select().from(shipments).orderBy(desc(shipments.createdAt)).limit(limit);
 }

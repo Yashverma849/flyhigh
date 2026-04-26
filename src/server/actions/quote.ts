@@ -1,7 +1,7 @@
 "use server";
 
 import { headers } from "next/headers";
-import { db } from "@/server/db/client";
+import { db, isDbConfigured } from "@/server/db/client";
 import { quotes } from "@/server/db/schema";
 import { QuoteSchema } from "@/lib/validations";
 import { consumePublicLimit } from "@/server/ratelimit";
@@ -33,6 +33,14 @@ export async function createQuote(_prev: ActionState, formData: FormData): Promi
       status: "error",
       message: "Please check the form for errors.",
       fieldErrors: parsed.error.flatten().fieldErrors,
+    };
+  }
+
+  if (!isDbConfigured) {
+    return {
+      status: "error",
+      message:
+        "Quote requests are temporarily unavailable. Please email concierge@flyhigh.in directly.",
     };
   }
 

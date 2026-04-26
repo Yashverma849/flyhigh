@@ -5,17 +5,19 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
 
-    DATABASE_URL: z.url(),
+    // Database temporarily disabled — optional until DB is reconnected.
+    DATABASE_URL: z.url().optional(),
 
-    AUTH_SECRET: z.string().min(32),
+    // Auth temporarily disabled — these are optional until auth is re-enabled.
+    AUTH_SECRET: z.string().min(32).optional(),
     AUTH_URL: z.url().optional(),
     AUTH_TRUST_HOST: z
       .string()
       .optional()
       .transform((v) => v === "true"),
 
-    AUTH_RESEND_KEY: z.string().min(1),
-    AUTH_RESEND_FROM: z.string().min(1),
+    AUTH_RESEND_KEY: z.string().min(1).optional(),
+    AUTH_RESEND_FROM: z.string().min(1).optional(),
 
     UPSTASH_REDIS_REST_URL: z.url().optional(),
     UPSTASH_REDIS_REST_TOKEN: z.string().optional(),

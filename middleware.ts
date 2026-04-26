@@ -1,12 +1,8 @@
-import NextAuth from "next-auth";
-import { authConfig } from "@/auth.config";
+// Auth temporarily disabled — middleware is a no-op until auth is restored.
+import { NextResponse } from "next/server";
 
-// The `authorized` callback in authConfig handles the gate; we just export
-// the bound middleware so Next.js picks it up.
-export const { auth: middleware } = NextAuth(authConfig);
+export default function middleware() {
+  return NextResponse.next();
+}
 
-export default middleware;
-
-export const config = {
-  matcher: ["/admin/:path*"],
-};
+export const config = { matcher: [] };

@@ -4,10 +4,10 @@ import { SectionLabel } from "@/components/shared/section-label";
 import { Pill } from "@/components/shared/pill";
 import { Marquee } from "@/components/shared/marquee";
 import { CompassSvg, Horizon, RouteMap } from "@/components/shared/svg";
+import { QuietTrust } from "@/components/marketing/quiet-trust";
 import { SERVICES } from "@/server/db/seed/services";
 import { STATS } from "@/server/db/seed/stats";
 import { ROUTES } from "@/server/db/seed/routes";
-import { CLIENTS } from "@/server/db/seed/clients";
 import { TESTIMONIALS } from "@/server/db/seed/testimonials";
 import { formatINR } from "@/lib/utils";
 
@@ -119,32 +119,7 @@ export default function HomePage() {
       </section>
 
       {/* TRUST / CLIENTS */}
-      <section className="border-y py-20" style={{ borderColor: "var(--line)" }}>
-        <div className="mx-auto mb-12 max-w-[1440px] px-6 md:px-8">
-          <SectionLabel num="06">QUIET TRUST</SectionLabel>
-          <p className="f-display mt-4 max-w-3xl text-2xl md:text-3xl">
-            Trusted by India&apos;s most demanding shippers — energy, pharma, fashion, jewelry,
-            defense subcontracting.{" "}
-            <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-              Names we cannot always print.
-            </span>
-          </p>
-        </div>
-        <Marquee speed={60}>
-          {CLIENTS.map((c, i) => (
-            <span
-              key={i}
-              className="f-display text-3xl md:text-5xl"
-              style={{ color: "var(--brass)", letterSpacing: "0.05em" }}
-            >
-              {c}{" "}
-              <span style={{ color: "var(--cargo)" }} className="mx-8">
-                ✦
-              </span>
-            </span>
-          ))}
-        </Marquee>
-      </section>
+      <QuietTrust />
 
       {/* MANIFESTO */}
       <section className="relative py-32" style={{ background: "var(--ink-2)" }}>

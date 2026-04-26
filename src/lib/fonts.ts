@@ -1,4 +1,4 @@
-import { Fraunces, Manrope, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
 
 export const fontDisplay = Fraunces({
   subsets: ["latin"],
@@ -7,18 +7,18 @@ export const fontDisplay = Fraunces({
   axes: ["SOFT", "WONK", "opsz"],
 });
 
-export const fontBody = Manrope({
+export const fontBody = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-body",
-  weight: ["300", "400", "500", "600", "700"],
+  axes: ["opsz"],
 });
 
-export const fontMono = JetBrains_Mono({
+export const fontMono = IBM_Plex_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-mono",
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
 });
 
 export const fontVariables = `${fontDisplay.variable} ${fontBody.variable} ${fontMono.variable}`;

@@ -145,36 +145,43 @@ body {
   color: var(--bone);
 }
 body {
-  font-family: var(--font-body), system-ui, sans-serif;
-  font-feature-settings: "ss01", "ss02", "cv11";
+  font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-feature-settings: "cv11", "ss01", "ss03";
+  letter-spacing: -0.005em;
 }
 
 /* ────────────────────────────────────────────────────────────────────────
    TYPE SYSTEM
+   Fraunces (display): SOFT 0 / WONK 0 — sharper, architectural, corporate.
+   Inter (body): premium-corporate workhorse with subtle character via cv11.
+   IBM Plex Mono (mono): institutional pedigree, refined detailing.
    ──────────────────────────────────────────────────────────────────────── */
 .f-display {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-display), "Times New Roman", Georgia, serif;
   font-optical-sizing: auto;
   font-variation-settings:
-    "SOFT" 50,
+    "SOFT" 0,
     "WONK" 0,
     "opsz" 144;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
+  font-feature-settings: "ss01", "ss02";
 }
 .f-display-it {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-display), "Times New Roman", Georgia, serif;
   font-style: italic;
   font-variation-settings:
-    "SOFT" 100,
+    "SOFT" 30,
+    "WONK" 0,
     "opsz" 144;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.028em;
 }
 .f-mono {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-feature-settings: "ss01", "cv02";
+  font-family: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-feature-settings: "zero", "ss01";
+  letter-spacing: 0.01em;
 }
 .f-body {
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -252,6 +259,101 @@ body {
 @keyframes lineDraw {
   from { stroke-dashoffset: 1000; }
   to { stroke-dashoffset: 0; }
+}
+@keyframes modalBackdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes modalZoomIn {
+  from { opacity: 0; transform: scale(0.94) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* True darkening backdrop in BOTH themes — page recedes regardless of theme.
+   The light-mode page is cream, so a navy dimmer is what creates depth. */
+.modal-backdrop {
+  background: rgba(8, 14, 26, 0.62);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  animation: modalBackdropIn 0.28s ease both;
+}
+
+/* Modal surface: elevation logic flips per-theme so the panel always reads
+   as ABOVE the page (brighter than page bg in dark, true paper-white in light). */
+.modal-surface {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 30px 90px -20px rgba(0, 0, 0, 0.55),
+    0 8px 24px -8px rgba(0, 0, 0, 0.35);
+  animation: modalZoomIn 0.4s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+  transform-origin: center;
+}
+[data-theme="light"] .modal-surface {
+  background: #ffffff;
+  border-color: rgba(11, 18, 32, 0.08);
+  box-shadow:
+    0 30px 90px -20px rgba(11, 18, 32, 0.22),
+    0 8px 24px -8px rgba(11, 18, 32, 0.10),
+    0 0 0 1px rgba(11, 18, 32, 0.03);
+}
+
+/* Hairline rule used inside the modal between sector header and company list */
+.modal-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--brass-border-40) 0%,
+    var(--line) 60%,
+    transparent 100%
+  );
+}
+
+/* Sector card hover (subtle cargo accent emerging from the corner) */
+.sector-card {
+  position: relative;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.65, 0.3, 1),
+    border-color 0.4s;
+}
+.sector-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--cargo);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.sector-card:hover::after { transform: scaleX(1); }
+
+/* Discoverability cue on the trust trigger — pulses softly to read as clickable */
+.trust-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--brass-border-20);
+  border-radius: 999px;
+  background: var(--brass-tint-4);
+  color: var(--brass);
+  transition: all 0.35s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.quiet-trust-section:hover .trust-cue {
+  border-color: var(--cargo-border-40);
+  background: var(--cargo-tint-6);
+  color: var(--cargo);
+  transform: translateX(2px);
+}
+.quiet-trust-section:hover {
+  background: var(--surface-tint-6);
+}
+[data-theme="light"] .quiet-trust-section:hover {
+  background: rgba(11, 18, 32, 0.025);
 }
 
 .fade-up { animation: fadeUp 0.9s cubic-bezier(0.2, 0.65, 0.3, 1) both; }

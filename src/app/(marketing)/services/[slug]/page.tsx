@@ -84,7 +84,7 @@ export default async function ServiceDetailPage({
                 <div
                   className="rounded-2xl p-4"
                   style={{
-                    background: "rgba(210, 105, 30, 0.08)",
+                    background: "var(--cargo-tint-10)",
                     border: "1px solid var(--cargo)",
                   }}
                 >
@@ -147,12 +147,12 @@ export default async function ServiceDetailPage({
                     className="lift flex items-start gap-4 rounded-xl p-4"
                     style={{
                       border: "1px solid var(--line)",
-                      background: "rgba(239,231,214,0.02)",
+                      background: "var(--surface-tint-2)",
                     }}
                   >
                     <div
                       className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
-                      style={{ background: "rgba(210, 105, 30, 0.1)" }}
+                      style={{ background: "var(--cargo-tint-10)" }}
                     >
                       <span className="f-mono text-xs" style={{ color: "var(--cargo)" }}>
                         {(i + 1).toString().padStart(2, "0")}

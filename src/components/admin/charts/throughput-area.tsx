@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useThemePalette } from "@/lib/use-theme-palette";
 
 type Datum = { month: string; sea: number; air: number };
 
@@ -22,42 +23,43 @@ const DEFAULT_DATA: Datum[] = [
 ];
 
 export function ThroughputArea({ data = DEFAULT_DATA }: { data?: Datum[] }) {
+  const p = useThemePalette();
   return (
     <ResponsiveContainer width="100%" height={280}>
       <AreaChart data={data} margin={{ top: 10, right: 12, left: -16, bottom: 0 }}>
         <defs>
           <linearGradient id="g-sea" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#C9A876" stopOpacity={0.4} />
-            <stop offset="100%" stopColor="#C9A876" stopOpacity={0} />
+            <stop offset="0%" stopColor={p.brass} stopOpacity={0.4} />
+            <stop offset="100%" stopColor={p.brass} stopOpacity={0} />
           </linearGradient>
           <linearGradient id="g-air" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#D2691E" stopOpacity={0.45} />
-            <stop offset="100%" stopColor="#D2691E" stopOpacity={0} />
+            <stop offset="0%" stopColor={p.cargo} stopOpacity={0.45} />
+            <stop offset="100%" stopColor={p.cargo} stopOpacity={0} />
           </linearGradient>
         </defs>
-        <CartesianGrid strokeDasharray="2 4" stroke="rgba(239,231,214,0.08)" />
-        <XAxis dataKey="month" stroke="rgba(239,231,214,0.4)" fontSize={11} tickLine={false} />
-        <YAxis stroke="rgba(239,231,214,0.4)" fontSize={11} tickLine={false} />
+        <CartesianGrid strokeDasharray="2 4" stroke={p.gridStroke} />
+        <XAxis dataKey="month" stroke={p.axisStroke} fontSize={11} tickLine={false} />
+        <YAxis stroke={p.axisStroke} fontSize={11} tickLine={false} />
         <Tooltip
           contentStyle={{
-            background: "#131C2E",
-            border: "1px solid rgba(239,231,214,0.14)",
+            background: p.ink2,
+            border: `1px solid ${p.line}`,
             borderRadius: 8,
-            color: "#EFE7D6",
+            color: p.bone,
           }}
-          labelStyle={{ color: "#C9A876" }}
+          labelStyle={{ color: p.brass }}
         />
         <Area
           type="monotone"
           dataKey="sea"
-          stroke="#C9A876"
+          stroke={p.brass}
           strokeWidth={1.5}
           fill="url(#g-sea)"
         />
         <Area
           type="monotone"
           dataKey="air"
-          stroke="#D2691E"
+          stroke={p.cargo}
           strokeWidth={1.5}
           fill="url(#g-air)"
         />

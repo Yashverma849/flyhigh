@@ -27,7 +27,7 @@ export default function AdminAnalyticsPage() {
           delta="+11.2%"
           deltaPositive
           icon={Boxes}
-          accent="rgba(210, 105, 30, 0.2)"
+          accent="var(--cargo-border-20)"
         />
         <KPICard
           label="Revenue MTD"
@@ -35,7 +35,7 @@ export default function AdminAnalyticsPage() {
           delta="+13.1%"
           deltaPositive
           icon={Wallet}
-          accent="rgba(201, 168, 118, 0.2)"
+          accent="var(--brass-border-20)"
         />
         <KPICard
           label="On-time"
@@ -43,7 +43,7 @@ export default function AdminAnalyticsPage() {
           delta="+0.2%"
           deltaPositive
           icon={ShieldCheck}
-          accent="rgba(111, 129, 112, 0.2)"
+          accent="var(--sage-border-20)"
         />
         <KPICard
           label="Avg transit"
@@ -51,7 +51,7 @@ export default function AdminAnalyticsPage() {
           delta="-0.8d"
           deltaPositive
           icon={Activity}
-          accent="rgba(139, 58, 28, 0.2)"
+          accent="var(--rust-border-20)"
         />
       </section>
 

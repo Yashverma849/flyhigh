@@ -94,7 +94,7 @@ export default function ServicesPage() {
                       <div
                         className="flex h-5 w-5 items-center justify-center rounded-full"
                         style={{
-                          background: "rgba(210, 105, 30, 0.1)",
+                          background: "var(--cargo-tint-10)",
                           border: "1px solid var(--cargo)",
                         }}
                       >

@@ -33,8 +33,8 @@ export function ContactForm() {
         <div
           className="rounded-xl p-4 text-sm"
           style={{
-            background: "rgba(139, 58, 28, 0.1)",
-            border: "1px solid rgba(139, 58, 28, 0.4)",
+            background: "var(--rust-tint-10)",
+            border: "1px solid var(--rust-border-40)",
           }}
         >
           {state.message}

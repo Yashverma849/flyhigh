@@ -5,6 +5,10 @@
    These power both Tailwind utilities (bg-ink, text-bone, border-line)
    AND the short --ink/--bone/--cargo aliases used by the prototype's
    inline style={{}} usage during migration.
+
+   Light theme overrides further down keep the same token names but
+   re-map their semantic role: --ink stays "primary surface", --bone
+   stays "primary text", regardless of which is dark or light.
    ──────────────────────────────────────────────────────────────────────── */
 @theme {
   --color-ink: #0b1220;
@@ -23,7 +27,8 @@
   --color-line-2: rgba(239, 231, 214, 0.06);
 }
 
-/* Short-name aliases — preserve compatibility with style={{ background: "var(--ink)" }} */
+/* Short-name aliases — preserve compatibility with style={{ background: "var(--ink)" }}.
+   Helper tokens for opacity overlays so inline rgba() literals can be themed. */
 :root {
   --ink: var(--color-ink);
   --ink-2: var(--color-ink-2);
@@ -39,6 +44,92 @@
   --sage: var(--color-sage);
   --line: var(--color-line);
   --line-2: var(--color-line-2);
+
+  /* Semantic helper tokens — dark defaults */
+  --surface-translucent: rgba(11, 18, 32, 0.85);
+  --surface-tint-2: rgba(239, 231, 214, 0.02);
+  --surface-tint-6: rgba(239, 231, 214, 0.06);
+  --bone-border-20: rgba(239, 231, 214, 0.2);
+  --cargo-tint-4: rgba(210, 105, 30, 0.04);
+  --cargo-tint-6: rgba(210, 105, 30, 0.06);
+  --cargo-tint-10: rgba(210, 105, 30, 0.1);
+  --cargo-border-20: rgba(210, 105, 30, 0.2);
+  --cargo-border-40: rgba(210, 105, 30, 0.4);
+  --cargo-shadow-32: rgba(210, 105, 30, 0.32);
+  --cargo-pulse-50: rgba(210, 105, 30, 0.5);
+  --cargo-pulse-0: rgba(210, 105, 30, 0);
+  --brass-tint-4: rgba(201, 168, 118, 0.04);
+  --brass-tint-6: rgba(201, 168, 118, 0.06);
+  --brass-border-20: rgba(201, 168, 118, 0.2);
+  --brass-border-40: rgba(201, 168, 118, 0.4);
+  --sage-tint-6: rgba(111, 129, 112, 0.06);
+  --sage-border-20: rgba(111, 129, 112, 0.2);
+  --sage-border-40: rgba(111, 129, 112, 0.4);
+  --rust-tint-10: rgba(139, 58, 28, 0.1);
+  --rust-border-20: rgba(139, 58, 28, 0.2);
+  --rust-border-40: rgba(139, 58, 28, 0.4);
+  --rust-border-50: rgba(139, 58, 28, 0.5);
+  --dot-pattern: rgba(239, 231, 214, 0.08);
+  --cine-frame-stop: rgba(11, 18, 32, 0.85);
+  --hero-glow-cargo: rgba(210, 105, 30, 0.18);
+  --hero-glow-brass: rgba(201, 168, 118, 0.12);
+  --topo-cargo: rgba(210, 105, 30, 0.06);
+  --topo-brass: rgba(201, 168, 118, 0.04);
+  --topo-line: rgba(239, 231, 214, 0.02);
+  --grain-blend: overlay;
+  --grain-opacity: 0.06;
+}
+
+/* Light theme — paper/bone surfaces, ink text, deepened cargo/brass for AA contrast.
+   Variable names retain semantic role; the "ink" token still means primary surface. */
+[data-theme="light"] {
+  --color-ink: #f7f3ea;
+  --color-ink-2: #efe7d6;
+  --color-ink-3: #dad0b8;
+  --color-bone: #0b1220;
+  --color-paper: #131c2e;
+  --color-cargo: #a04714;
+  --color-cargo-2: #7a340f;
+  --color-brass: #7a5f33;
+  --color-brass-2: #5f4924;
+  --color-ash: #4a5468;
+  --color-rust: #8b3a1c;
+  --color-sage: #4a5c4b;
+  --color-line: rgba(11, 18, 32, 0.1);
+  --color-line-2: rgba(11, 18, 32, 0.05);
+
+  --surface-translucent: rgba(247, 243, 234, 0.85);
+  --surface-tint-2: rgba(11, 18, 32, 0.025);
+  --surface-tint-6: rgba(11, 18, 32, 0.06);
+  --bone-border-20: rgba(11, 18, 32, 0.25);
+  --cargo-tint-4: rgba(160, 71, 20, 0.06);
+  --cargo-tint-6: rgba(160, 71, 20, 0.08);
+  --cargo-tint-10: rgba(160, 71, 20, 0.12);
+  --cargo-border-20: rgba(160, 71, 20, 0.3);
+  --cargo-border-40: rgba(160, 71, 20, 0.45);
+  --cargo-shadow-32: rgba(160, 71, 20, 0.2);
+  --cargo-pulse-50: rgba(160, 71, 20, 0.4);
+  --cargo-pulse-0: rgba(160, 71, 20, 0);
+  --brass-tint-4: rgba(122, 95, 51, 0.06);
+  --brass-tint-6: rgba(122, 95, 51, 0.08);
+  --brass-border-20: rgba(122, 95, 51, 0.25);
+  --brass-border-40: rgba(122, 95, 51, 0.45);
+  --sage-tint-6: rgba(74, 92, 75, 0.08);
+  --sage-border-20: rgba(74, 92, 75, 0.25);
+  --sage-border-40: rgba(74, 92, 75, 0.45);
+  --rust-tint-10: rgba(139, 58, 28, 0.1);
+  --rust-border-20: rgba(139, 58, 28, 0.25);
+  --rust-border-40: rgba(139, 58, 28, 0.45);
+  --rust-border-50: rgba(139, 58, 28, 0.5);
+  --dot-pattern: rgba(11, 18, 32, 0.08);
+  --cine-frame-stop: rgba(247, 243, 234, 0.85);
+  --hero-glow-cargo: rgba(160, 71, 20, 0.1);
+  --hero-glow-brass: rgba(122, 95, 51, 0.07);
+  --topo-cargo: rgba(160, 71, 20, 0.07);
+  --topo-brass: rgba(122, 95, 51, 0.06);
+  --topo-line: rgba(11, 18, 32, 0.025);
+  --grain-blend: multiply;
+  --grain-opacity: 0.04;
 }
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -96,15 +187,15 @@ body {
   pointer-events: none;
   z-index: 100;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.93 0 0 0 0 0.91 0 0 0 0 0.84 0 0 0 0.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  opacity: 0.06;
-  mix-blend-mode: overlay;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
 }
 
 .topo {
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(201, 168, 118, 0.04) 0, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(210, 105, 30, 0.06) 0, transparent 50%),
-    repeating-linear-gradient(45deg, transparent 0 60px, rgba(239, 231, 214, 0.02) 60px 61px);
+    radial-gradient(circle at 20% 30%, var(--topo-brass) 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, var(--topo-cargo) 0, transparent 50%),
+    repeating-linear-gradient(45deg, transparent 0 60px, var(--topo-line) 60px 61px);
 }
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -139,8 +230,8 @@ body {
   100% { transform: translateX(100vw); }
 }
 @keyframes pulseRing {
-  0% { box-shadow: 0 0 0 0 rgba(210, 105, 30, 0.5); }
-  100% { box-shadow: 0 0 0 24px rgba(210, 105, 30, 0); }
+  0% { box-shadow: 0 0 0 0 var(--cargo-pulse-50); }
+  100% { box-shadow: 0 0 0 24px var(--cargo-pulse-0); }
 }
 @keyframes sweep {
   0% { transform: translateX(-100%); }
@@ -222,8 +313,13 @@ body {
 .btn-primary:hover::before { transform: translateY(0); }
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 28px rgba(210, 105, 30, 0.32);
+  box-shadow: 0 8px 28px var(--cargo-shadow-32);
 }
+
+/* Primary button copy: in dark mode `--bone` is the cream text we want; after
+   the token swap `--bone` becomes ink (dark text), which would disappear on
+   the cargo fill. Force the on-cargo label color to the dark-mode bone always. */
+[data-theme="light"] .btn-primary { color: #efe7d6; }
 
 .btn-ghost {
   display: inline-flex;
@@ -233,13 +329,13 @@ body {
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--bone);
-  background: rgba(239, 231, 214, 0.02);
+  background: var(--surface-tint-2);
   transition: all 0.4s cubic-bezier(0.2, 0.65, 0.3, 1);
   font-weight: 500;
 }
 .btn-ghost:hover {
   border-color: var(--brass);
-  background: rgba(201, 168, 118, 0.06);
+  background: var(--brass-tint-6);
   transform: translateY(-1px);
 }
 
@@ -288,7 +384,7 @@ body {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  background: linear-gradient(180deg, rgba(239, 231, 214, 0.02) 0%, rgba(239, 231, 214, 0.005) 100%);
+  background: linear-gradient(180deg, var(--surface-tint-2) 0%, transparent 100%);
 }
 .tile::before {
   content: "";
@@ -301,13 +397,19 @@ body {
 }
 .tile:hover::before { opacity: 0.08; }
 
-/* Image cinematic frame */
+[data-theme="light"] .tile::before {
+  background: linear-gradient(135deg, var(--cargo) 0%, var(--brass) 100%);
+}
+[data-theme="light"] .tile:hover::before { opacity: 0.12; }
+
+/* Image cinematic frame — dark gradient endpoint flips to paper in light mode
+   so the editorial fade-into-surface effect works regardless of theme. */
 .cine-frame { position: relative; overflow: hidden; }
 .cine-frame::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(11, 18, 32, 0.85) 100%);
+  background: linear-gradient(180deg, transparent 40%, var(--cine-frame-stop) 100%);
   pointer-events: none;
 }
 
@@ -317,8 +419,8 @@ body {
 /* Hero glow */
 .hero-glow {
   background:
-    radial-gradient(ellipse at 50% 80%, rgba(210, 105, 30, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse at 20% 30%, rgba(201, 168, 118, 0.12) 0%, transparent 50%);
+    radial-gradient(ellipse at 50% 80%, var(--hero-glow-cargo) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 30%, var(--hero-glow-brass) 0%, transparent 50%);
 }
 
 /* Number ticker bg */
@@ -333,7 +435,7 @@ body {
 
 /* Custom scrollbar (within scrollables) */
 .scrl::-webkit-scrollbar { width: 6px; height: 6px; }
-.scrl::-webkit-scrollbar-track { background: rgba(239, 231, 214, 0.04); }
+.scrl::-webkit-scrollbar-track { background: var(--surface-tint-2); }
 .scrl::-webkit-scrollbar-thumb { background: var(--brass-2); border-radius: 3px; }
 
 /* Form inputs */
@@ -351,7 +453,7 @@ body {
 }
 .input:focus {
   border-color: var(--cargo);
-  background: rgba(210, 105, 30, 0.04);
+  background: var(--cargo-tint-4);
 }
 .input::placeholder { color: var(--ash); }
 
@@ -367,22 +469,32 @@ body {
   text-transform: uppercase;
   font-weight: 600;
   border: 1px solid var(--line);
-  background: rgba(239, 231, 214, 0.02);
+  background: var(--surface-tint-2);
 }
 .chip-cargo {
   color: var(--cargo);
-  border-color: rgba(210, 105, 30, 0.4);
-  background: rgba(210, 105, 30, 0.06);
+  border-color: var(--cargo-border-40);
+  background: var(--cargo-tint-6);
 }
 .chip-brass {
   color: var(--brass);
-  border-color: rgba(201, 168, 118, 0.4);
-  background: rgba(201, 168, 118, 0.06);
+  border-color: var(--brass-border-40);
+  background: var(--brass-tint-6);
 }
 .chip-sage {
   color: var(--sage);
-  border-color: rgba(111, 129, 112, 0.4);
-  background: rgba(111, 129, 112, 0.06);
+  border-color: var(--sage-border-40);
+  background: var(--sage-tint-6);
+}
+.chip-rust {
+  color: var(--rust);
+  border-color: var(--rust-border-50);
+  background: var(--rust-tint-10);
+}
+.chip-bone {
+  color: var(--bone);
+  border-color: var(--bone-border-20);
+  background: var(--surface-tint-6);
 }
 
 /* Numeric tabular */
@@ -425,7 +537,7 @@ body {
 
 /* Dotted bg */
 .dotted-bg {
-  background-image: radial-gradient(circle, rgba(239, 231, 214, 0.08) 1px, transparent 1px);
+  background-image: radial-gradient(circle, var(--dot-pattern) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -439,7 +551,7 @@ body {
   background: linear-gradient(
     135deg,
     transparent 30%,
-    rgba(210, 105, 30, 0.4) 50%,
+    var(--cargo-border-40) 50%,
     transparent 70%
   );
   opacity: 0;

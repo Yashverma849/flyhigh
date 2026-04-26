@@ -10,19 +10,19 @@ export function RouteMap({ className }: { className?: string }) {
 
       <path
         d="M120 180 Q160 140 220 160 T320 180 Q340 200 320 230 T240 250 Q180 240 140 220 Z"
-        fill="rgba(201,168,118,0.06)"
+        fill="var(--brass-tint-6)"
         stroke="var(--brass)"
         strokeWidth="0.6"
       />
       <path
         d="M420 120 Q500 100 580 130 Q640 160 620 220 Q580 260 480 240 Q420 200 420 160 Z"
-        fill="rgba(201,168,118,0.06)"
+        fill="var(--brass-tint-6)"
         stroke="var(--brass)"
         strokeWidth="0.6"
       />
       <path
         d="M520 280 Q580 270 620 290 Q650 310 620 340 Q570 350 520 330 Z"
-        fill="rgba(201,168,118,0.06)"
+        fill="var(--brass-tint-6)"
         stroke="var(--brass)"
         strokeWidth="0.6"
       />

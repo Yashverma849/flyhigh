@@ -147,7 +147,7 @@ export default function HomePage() {
       </section>
 
       {/* MANIFESTO */}
-      <section className="relative py-32">
+      <section className="relative py-32" style={{ background: "var(--ink-2)" }}>
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">
           <div className="grid gap-8 lg:grid-cols-12">
             <div className="self-start lg:sticky lg:top-32 lg:col-span-3">
@@ -212,8 +212,8 @@ export default function HomePage() {
                     <div
                       className="rounded-xl p-3"
                       style={{
-                        background: "rgba(210, 105, 30, 0.08)",
-                        border: "1px solid rgba(210, 105, 30, 0.2)",
+                        background: "var(--cargo-tint-10)",
+                        border: "1px solid var(--cargo-border-20)",
                       }}
                     >
                       <Icon size={22} style={{ color: "var(--cargo)" }} />
@@ -344,7 +344,7 @@ export default function HomePage() {
             {ROUTES.map((r, i) => (
               <div
                 key={i}
-                className="group grid grid-cols-12 items-center gap-4 border-b p-5 transition-colors last:border-b-0 hover:bg-white/[0.02]"
+                className="group grid grid-cols-12 items-center gap-4 border-b p-5 transition-colors last:border-b-0 hover:bg-[var(--surface-tint-2)]"
                 style={{ borderColor: "var(--line-2)" }}
               >
                 <div className="col-span-4 flex items-center gap-2 text-sm">

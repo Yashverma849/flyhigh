@@ -16,6 +16,7 @@ import {
   X,
 } from "lucide-react";
 import { Logo } from "@/components/shared/svg";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { SERVICES } from "@/server/db/seed/services";
 
 const links = [
@@ -77,7 +78,7 @@ export function Navbar() {
       <header
         className={`sticky top-9 z-40 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}
         style={{
-          background: scrolled ? "rgba(11, 18, 32, 0.85)" : "transparent",
+          background: scrolled ? "var(--surface-translucent)" : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           borderBottom: scrolled ? "1px solid var(--line-2)" : "1px solid transparent",
         }}
@@ -135,7 +136,7 @@ export function Navbar() {
                             <div className="flex items-start gap-3">
                               <div
                                 className="rounded-lg p-2"
-                                style={{ background: "rgba(210, 105, 30, 0.1)" }}
+                                style={{ background: "var(--cargo-tint-10)" }}
                               >
                                 <Icon size={16} style={{ color: "var(--cargo)" }} />
                               </div>
@@ -166,6 +167,7 @@ export function Navbar() {
             <Link href="/track" className="btn-ghost hidden text-sm sm:flex" data-cursor="TRACK">
               <Search size={14} /> Track
             </Link>
+            <ThemeToggle className="hidden sm:inline-flex" />
             <Link href="/quote" className="btn-primary text-sm" data-cursor="QUOTE">
               Get a quote <ArrowRight size={14} />
             </Link>
@@ -209,6 +211,12 @@ export function Navbar() {
                   {s.name}
                 </Link>
               ))}
+            </div>
+            <div className="mt-4 flex items-center justify-between">
+              <span className="caption" style={{ color: "var(--ash)" }}>
+                THEME
+              </span>
+              <ThemeToggle />
             </div>
           </div>
         )}

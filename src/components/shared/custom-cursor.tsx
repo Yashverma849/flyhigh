@@ -1,10 +1,14 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 
 export function CustomCursor() {
   const ref = useRef<HTMLDivElement>(null);
   const [label, setLabel] = useState("");
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const move = (e: MouseEvent) => {
@@ -30,6 +34,8 @@ export function CustomCursor() {
     };
   }, []);
 
+  const isLight = mounted && resolvedTheme === "light";
+
   return (
     <div
       ref={ref}
@@ -50,7 +56,12 @@ export function CustomCursor() {
       </div>
       <div
         className={`absolute top-5 left-5 rounded-full transition-all duration-300 ${label ? "opacity-0" : "opacity-100"}`}
-        style={{ width: 8, height: 8, background: "var(--bone)", mixBlendMode: "difference" }}
+        style={{
+          width: 8,
+          height: 8,
+          background: "var(--bone)",
+          mixBlendMode: isLight ? "normal" : "difference",
+        }}
       />
     </div>
   );

@@ -108,7 +108,7 @@ export function ShipmentsTable({ shipments }: Props) {
               {filtered.map((s) => (
                 <tr
                   key={s.id}
-                  className="border-t transition-colors hover:bg-white/[0.02]"
+                  className="border-t transition-colors hover:bg-[var(--surface-tint-2)]"
                   style={{ borderColor: "var(--line)" }}
                 >
                   <td className="f-mono px-6 py-4 text-xs" style={{ color: "var(--cargo)" }}>
@@ -135,21 +135,21 @@ export function ShipmentsTable({ shipments }: Props) {
                     <div className="flex items-center gap-2">
                       <Link
                         href={`/admin/shipments/${s.id}`}
-                        className="rounded p-1.5 hover:bg-white/5"
+                        className="rounded p-1.5 hover:bg-[var(--surface-tint-6)]"
                         aria-label="View"
                       >
                         <Eye size={13} />
                       </Link>
                       <button
                         type="button"
-                        className="rounded p-1.5 hover:bg-white/5"
+                        className="rounded p-1.5 hover:bg-[var(--surface-tint-6)]"
                         aria-label="Edit"
                       >
                         <Edit3 size={13} />
                       </button>
                       <button
                         type="button"
-                        className="rounded p-1.5 hover:bg-white/5"
+                        className="rounded p-1.5 hover:bg-[var(--surface-tint-6)]"
                         aria-label="More"
                       >
                         <MoreHorizontal size={13} />
@@ -183,7 +183,7 @@ export function ShipmentsTable({ shipments }: Props) {
           <div className="flex items-center gap-2">
             <button
               type="button"
-              className="rounded border px-3 py-1 hover:bg-white/5"
+              className="rounded border px-3 py-1 hover:bg-[var(--surface-tint-6)]"
               style={{ borderColor: "var(--line)" }}
               aria-label="Previous page"
             >
@@ -192,7 +192,7 @@ export function ShipmentsTable({ shipments }: Props) {
             <span>Page 1</span>
             <button
               type="button"
-              className="rounded border px-3 py-1 hover:bg-white/5"
+              className="rounded border px-3 py-1 hover:bg-[var(--surface-tint-6)]"
               style={{ borderColor: "var(--line)" }}
               aria-label="Next page"
             >

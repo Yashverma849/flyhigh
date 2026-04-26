@@ -2,6 +2,7 @@
 
 import { Bell, ChevronRight, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 
 const labels: Record<string, string> = {
   "": "dashboard",
@@ -22,7 +23,7 @@ export function AdminTopbar() {
       className="sticky top-0 z-20 border-b"
       style={{
         borderColor: "var(--line)",
-        background: "rgba(11,18,32,0.85)",
+        background: "var(--surface-translucent)",
         backdropFilter: "blur(12px)",
       }}
     >
@@ -46,7 +47,7 @@ export function AdminTopbar() {
           </div>
           <button
             type="button"
-            className="relative flex h-9 w-9 items-center justify-center rounded-md hover:bg-white/5"
+            className="relative flex h-9 w-9 items-center justify-center rounded-md hover:bg-[var(--surface-tint-6)]"
             aria-label="Notifications"
           >
             <Bell size={15} />
@@ -55,6 +56,7 @@ export function AdminTopbar() {
               style={{ background: "var(--cargo)" }}
             />
           </button>
+          <ThemeToggle />
           <div className="caption" style={{ color: "var(--ash)" }}>
             v3.4.1
           </div>

@@ -38,7 +38,7 @@ export default async function AdminDashboard() {
           delta="+12.4%"
           deltaPositive
           icon={Package}
-          accent="rgba(210, 105, 30, 0.2)"
+          accent="var(--cargo-border-20)"
         />
         <KPICard
           label="Revenue MTD"
@@ -46,7 +46,7 @@ export default async function AdminDashboard() {
           delta="+8.1%"
           deltaPositive
           icon={Wallet}
-          accent="rgba(201, 168, 118, 0.2)"
+          accent="var(--brass-border-20)"
         />
         <KPICard
           label="On-time delivery"
@@ -54,7 +54,7 @@ export default async function AdminDashboard() {
           delta="+0.2%"
           deltaPositive
           icon={ShieldCheck}
-          accent="rgba(111, 129, 112, 0.2)"
+          accent="var(--sage-border-20)"
         />
         <KPICard
           label="In customs"
@@ -62,7 +62,7 @@ export default async function AdminDashboard() {
           delta="-3.0%"
           deltaPositive={false}
           icon={Box}
-          accent="rgba(139, 58, 28, 0.2)"
+          accent="var(--rust-border-20)"
         />
       </section>
 
@@ -124,7 +124,7 @@ export default async function AdminDashboard() {
               <Link
                 key={s.id}
                 href={`/admin/shipments/${s.id}`}
-                className="grid grid-cols-12 items-center gap-4 p-4 transition-colors hover:bg-white/[0.02]"
+                className="grid grid-cols-12 items-center gap-4 p-4 transition-colors hover:bg-[var(--surface-tint-2)]"
               >
                 <div className="f-mono col-span-3 text-xs">{s.id}</div>
                 <div className="col-span-3 text-sm">{s.customerName ?? "—"}</div>

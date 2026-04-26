@@ -20,22 +20,22 @@ export function Horizon({ className }: { className?: string }) {
     >
       <defs>
         <linearGradient id="hz-sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#0B1220" />
-          <stop offset="55%" stopColor="#1B2842" />
+          <stop offset="0%" stopColor="var(--ink)" />
+          <stop offset="55%" stopColor="var(--ink-3)" />
           <stop offset="80%" stopColor="#3D2918" />
-          <stop offset="100%" stopColor="#0B1220" />
+          <stop offset="100%" stopColor="var(--ink)" />
         </linearGradient>
         <linearGradient id="hz-sun" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#D2691E" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#8B3A1C" stopOpacity="0.6" />
+          <stop offset="0%" stopColor="var(--cargo)" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="var(--rust)" stopOpacity="0.6" />
         </linearGradient>
         <linearGradient id="hz-sea" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#1B2842" />
-          <stop offset="100%" stopColor="#0B1220" />
+          <stop offset="0%" stopColor="var(--ink-3)" />
+          <stop offset="100%" stopColor="var(--ink)" />
         </linearGradient>
         <radialGradient id="hz-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#D2691E" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="#D2691E" stopOpacity="0" />
+          <stop offset="0%" stopColor="var(--cargo)" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="var(--cargo)" stopOpacity="0" />
         </radialGradient>
       </defs>
 
@@ -47,7 +47,8 @@ export function Horizon({ className }: { className?: string }) {
         y1="450"
         x2="1440"
         y2="450"
-        stroke="rgba(201,168,118,0.35)"
+        stroke="var(--brass)"
+        strokeOpacity="0.45"
         strokeWidth="0.5"
       />
       <rect y="450" width="1440" height="270" fill="url(#hz-sea)" />
@@ -59,39 +60,39 @@ export function Horizon({ className }: { className?: string }) {
           cy={460 + i * 18}
           rx={120 - i * 8}
           ry={3 - i * 0.2}
-          fill="#D2691E"
+          fill="var(--cargo)"
           opacity={0.4 - i * 0.04}
         />
       ))}
 
       {/* Container ship */}
       <g transform="translate(620, 410)">
-        <rect x="0" y="0" width="280" height="34" fill="#0B1220" />
-        <rect x="240" y="-10" width="40" height="44" fill="#0B1220" />
-        <rect x="265" y="-22" width="10" height="14" fill="#0B1220" />
+        <rect x="0" y="0" width="280" height="34" fill="var(--ink)" />
+        <rect x="240" y="-10" width="40" height="44" fill="var(--ink)" />
+        <rect x="265" y="-22" width="10" height="14" fill="var(--ink)" />
         {Array.from({ length: 11 }, (_, i) => i).map((i) => (
           <g key={i} transform={`translate(${5 + i * 22}, -16)`}>
-            <rect width="20" height="16" fill="#0B1220" stroke="#1B2842" strokeWidth="0.5" />
+            <rect width="20" height="16" fill="var(--ink)" stroke="var(--ink-3)" strokeWidth="0.5" />
           </g>
         ))}
-        <line x1="0" y1="2" x2="280" y2="2" stroke="#C9A876" strokeWidth="0.5" opacity="0.4" />
+        <line x1="0" y1="2" x2="280" y2="2" stroke="var(--brass)" strokeWidth="0.5" opacity="0.4" />
       </g>
 
       {/* Distant ship */}
       <g transform="translate(180, 442)" opacity="0.5">
-        <rect x="0" y="0" width="80" height="10" fill="#0B1220" />
-        <rect x="65" y="-4" width="14" height="14" fill="#0B1220" />
+        <rect x="0" y="0" width="80" height="10" fill="var(--ink)" />
+        <rect x="65" y="-4" width="14" height="14" fill="var(--ink)" />
       </g>
 
       {/* Plane */}
       <g transform="translate(220, 180)" opacity="0.7">
-        <path d="M0 0 L60 6 L72 4 L80 8 L72 10 L60 8 L0 14 Z" fill="#C9A876" />
+        <path d="M0 0 L60 6 L72 4 L80 8 L72 10 L60 8 L0 14 Z" fill="var(--brass)" />
         <line
           x1="0"
           y1="7"
           x2="-30"
           y2="2"
-          stroke="#C9A876"
+          stroke="var(--brass)"
           strokeWidth="0.5"
           opacity="0.5"
           strokeDasharray="2 3"
@@ -100,7 +101,7 @@ export function Horizon({ className }: { className?: string }) {
 
       {/* Stars (deterministic seeded positions for SSR) */}
       {STARS.map((s, i) => (
-        <circle key={i} cx={s.cx} cy={s.cy} r={s.r} fill="#EFE7D6" opacity={s.opacity} />
+        <circle key={i} cx={s.cx} cy={s.cy} r={s.r} fill="var(--bone)" opacity={s.opacity} />
       ))}
     </svg>
   );

@@ -102,7 +102,7 @@ export default async function AdminContentPage() {
                 posts.map((p) => (
                   <tr
                     key={p.id}
-                    className="border-t transition-colors hover:bg-white/[0.02]"
+                    className="border-t transition-colors hover:bg-[var(--surface-tint-2)]"
                     style={{ borderColor: "var(--line)" }}
                   >
                     <td className="px-6 py-4">
@@ -126,14 +126,14 @@ export default async function AdminContentPage() {
                         <Link
                           href={`/insights/${p.slug}`}
                           target="_blank"
-                          className="rounded p-1.5 hover:bg-white/5"
+                          className="rounded p-1.5 hover:bg-[var(--surface-tint-6)]"
                           aria-label="Preview"
                         >
                           <Eye size={13} />
                         </Link>
                         <button
                           type="button"
-                          className="rounded p-1.5 hover:bg-white/5"
+                          className="rounded p-1.5 hover:bg-[var(--surface-tint-6)]"
                           aria-label="Edit"
                         >
                           <Edit3 size={13} />

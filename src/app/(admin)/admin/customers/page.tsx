@@ -115,7 +115,7 @@ export default function AdminCustomersPage() {
               {customers.map((c) => (
                 <tr
                   key={c.name}
-                  className="border-t transition-colors hover:bg-white/[0.02]"
+                  className="border-t transition-colors hover:bg-[var(--surface-tint-2)]"
                   style={{ borderColor: "var(--line)" }}
                 >
                   <td className="px-6 py-4">

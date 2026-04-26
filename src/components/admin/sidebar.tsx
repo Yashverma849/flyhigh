@@ -109,7 +109,7 @@ export function AdminSidebar({ user }: Props) {
       <div className="border-t p-3" style={{ borderColor: "var(--line)" }}>
         <div
           className={`flex items-center gap-3 rounded-md p-3 ${collapsed ? "justify-center" : ""}`}
-          style={{ background: "rgba(239,231,214,0.03)" }}
+          style={{ background: "var(--surface-tint-2)" }}
         >
           <div
             className="f-mono flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-xs"

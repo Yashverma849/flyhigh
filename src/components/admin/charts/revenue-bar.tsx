@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useThemePalette } from "@/lib/use-theme-palette";
 
 const DATA = [
   { month: "Oct", revenue: 720 },
@@ -20,23 +21,24 @@ const DATA = [
 ];
 
 export function RevenueBar() {
+  const p = useThemePalette();
   return (
     <ResponsiveContainer width="100%" height={260}>
       <BarChart data={DATA} margin={{ top: 10, right: 12, left: -16, bottom: 0 }}>
-        <CartesianGrid strokeDasharray="2 4" stroke="rgba(239,231,214,0.08)" />
-        <XAxis dataKey="month" stroke="rgba(239,231,214,0.4)" fontSize={11} tickLine={false} />
-        <YAxis stroke="rgba(239,231,214,0.4)" fontSize={11} tickLine={false} />
+        <CartesianGrid strokeDasharray="2 4" stroke={p.gridStroke} />
+        <XAxis dataKey="month" stroke={p.axisStroke} fontSize={11} tickLine={false} />
+        <YAxis stroke={p.axisStroke} fontSize={11} tickLine={false} />
         <Tooltip
           contentStyle={{
-            background: "#131C2E",
-            border: "1px solid rgba(239,231,214,0.14)",
+            background: p.ink2,
+            border: `1px solid ${p.line}`,
             borderRadius: 8,
-            color: "#EFE7D6",
+            color: p.bone,
           }}
-          labelStyle={{ color: "#C9A876" }}
+          labelStyle={{ color: p.brass }}
           formatter={(v) => [`₹${v}L`, "Revenue"]}
         />
-        <Bar dataKey="revenue" fill="#D2691E" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="revenue" fill={p.cargo} radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );

@@ -118,21 +118,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TICKER */}
-      <section
-        className="border-y py-10"
-        style={{ borderColor: "var(--line)", background: "var(--ink-2)" }}
-      >
-        <Marquee speed={50}>
-          {tickerRoutes.map(([from, to, days], i) => (
-            <span key={i} className="flex items-center gap-12">
-              <span className="f-display text-3xl md:text-4xl">{from}</span>
-              <ArrowRight size={20} style={{ color: "var(--cargo)" }} />
-              <span className="f-display text-3xl md:text-4xl">{to}</span>
-              <span className="f-mono text-sm" style={{ color: "var(--brass)" }}>
-                {days}
+      {/* TRUST / CLIENTS */}
+      <section className="border-y py-20" style={{ borderColor: "var(--line)" }}>
+        <div className="mx-auto mb-12 max-w-[1440px] px-6 md:px-8">
+          <SectionLabel num="06">QUIET TRUST</SectionLabel>
+          <p className="f-display mt-4 max-w-3xl text-2xl md:text-3xl">
+            Trusted by India&apos;s most demanding shippers — energy, pharma, fashion, jewelry,
+            defense subcontracting.{" "}
+            <span className="f-display-it" style={{ color: "var(--cargo)" }}>
+              Names we cannot always print.
+            </span>
+          </p>
+        </div>
+        <Marquee speed={60}>
+          {CLIENTS.map((c, i) => (
+            <span
+              key={i}
+              className="f-display text-3xl md:text-5xl"
+              style={{ color: "var(--brass)", letterSpacing: "0.05em" }}
+            >
+              {c}{" "}
+              <span style={{ color: "var(--cargo)" }} className="mx-8">
+                ✦
               </span>
-              <span style={{ color: "var(--cargo)" }}>✦</span>
             </span>
           ))}
         </Marquee>
@@ -372,29 +380,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TRUST / CLIENTS */}
-      <section className="border-y py-20" style={{ borderColor: "var(--line)" }}>
-        <div className="mx-auto mb-12 max-w-[1440px] px-6 md:px-8">
-          <SectionLabel num="06">QUIET TRUST</SectionLabel>
-          <p className="f-display mt-4 max-w-3xl text-2xl md:text-3xl">
-            Trusted by India&apos;s most demanding shippers — energy, pharma, fashion, jewelry,
-            defense subcontracting.{" "}
-            <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-              Names we cannot always print.
-            </span>
-          </p>
-        </div>
-        <Marquee speed={60}>
-          {CLIENTS.map((c, i) => (
-            <span
-              key={i}
-              className="f-display text-3xl md:text-5xl"
-              style={{ color: "var(--brass)", letterSpacing: "0.05em" }}
-            >
-              {c}{" "}
-              <span style={{ color: "var(--cargo)" }} className="mx-8">
-                ✦
+      {/* TICKER */}
+      <section
+        className="border-y py-10"
+        style={{ borderColor: "var(--line)", background: "var(--ink-2)" }}
+      >
+        <Marquee speed={50}>
+          {tickerRoutes.map(([from, to, days], i) => (
+            <span key={i} className="flex items-center gap-12">
+              <span className="f-display text-3xl md:text-4xl">{from}</span>
+              <ArrowRight size={20} style={{ color: "var(--cargo)" }} />
+              <span className="f-display text-3xl md:text-4xl">{to}</span>
+              <span className="f-mono text-sm" style={{ color: "var(--brass)" }}>
+                {days}
               </span>
+              <span style={{ color: "var(--cargo)" }}>✦</span>
             </span>
           ))}
         </Marquee>

@@ -4,13 +4,25 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
 import { Pill } from "@/components/shared/pill";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { INSIGHTS } from "@/server/db/seed/insights";
+import { formatDate } from "@/lib/utils";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Insights",
+export const metadata: Metadata = pageMetadata({
+  title: "Insights & journal",
   description:
-    "Trade-route bulletins from Flyhigh's editorial desk — shipping geopolitics, customs, cool-chain, and freight craft.",
-};
+    "Trade-route bulletins from Flyhigh's editorial desk — Red Sea routing, pharma cool-chain, lithium-battery air corridors, Incoterms 2020, and the math behind 99.4% on-time.",
+  path: "/insights",
+  keywords: [
+    "freight forwarding insights",
+    "shipping news India",
+    "Red Sea routing",
+    "Incoterms 2020 India",
+    "pharma cool chain",
+    "lithium battery air freight",
+  ],
+});
 
 export default function InsightsPage() {
   const [featured, ...rest] = INSIGHTS;
@@ -20,6 +32,13 @@ export default function InsightsPage() {
     <>
       <section className="pt-32 pb-12">
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+          <Breadcrumbs
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Insights", href: "/insights" },
+            ]}
+            className="mb-8"
+          />
           <SectionLabel num="01">INSIGHTS</SectionLabel>
           <h1 className="f-display mt-6 max-w-4xl text-[64px] leading-[0.88] tracking-tighter md:text-[110px]">
             Trade-route
@@ -88,7 +107,7 @@ export default function InsightsPage() {
             </div>
             <div className="lg:col-span-5 lg:flex lg:flex-col lg:justify-center">
               <div className="caption mb-4" style={{ color: "var(--brass)" }}>
-                {featured.date} · {featured.read} read
+                {formatDate(featured.date)} · {featured.read} read
               </div>
               <Link href={`/insights/${featured.slug}`} className="block">
                 <h2 className="f-display mb-6 text-[36px] leading-tight transition-opacity hover:opacity-80 md:text-5xl">
@@ -136,7 +155,7 @@ export default function InsightsPage() {
                   {p.excerpt}
                 </p>
                 <div className="caption mt-4" style={{ color: "var(--brass)" }}>
-                  {p.date}
+                  {formatDate(p.date)}
                 </div>
               </Link>
             ))}

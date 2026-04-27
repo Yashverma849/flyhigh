@@ -1,9 +1,25 @@
 export const SITE = {
   name: "Flyhigh",
+  legalName: "Flyhigh Logistics Pvt. Ltd.",
   tagline: "Worldwide Freight, Refined.",
   origin: "Mumbai, India",
-  email: "concierge@flyhigh.example",
-  phone: "+91 22 4000 1100",
+  email: "concierge@flyhigh.in",
+  phone: "+91 22 4000 5500",
+  founded: 2017,
+  cin: "U63090MH2017PTC290114",
+  iec: "0317XXXXXX",
+  address: {
+    street: "Flyhigh House, 14 Marine Lines",
+    city: "Mumbai",
+    region: "Maharashtra",
+    postal: "400020",
+    country: "IN",
+  },
+  social: {
+    linkedin: "https://www.linkedin.com/company/flyhigh-logistics",
+    twitter: "https://twitter.com/flyhighfreight",
+    instagram: "https://www.instagram.com/flyhigh.freight",
+  },
 } as const;
 
 export const NAV_ITEMS = [

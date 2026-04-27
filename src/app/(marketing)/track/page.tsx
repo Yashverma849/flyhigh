@@ -1,13 +1,28 @@
 import type { Metadata } from "next";
 import { SectionLabel } from "@/components/shared/section-label";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { TrackForm } from "@/components/marketing/track-form";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Track shipment" };
+export const metadata: Metadata = pageMetadata({
+  title: "Track shipment",
+  description:
+    "Track any Flyhigh shipment in real time — sea, air, road. Enter your FH- ID for live status, ETA, and cool-chain temperature where applicable.",
+  path: "/track",
+  keywords: ["track shipment", "freight tracking India", "shipment status Mumbai"],
+});
 
 export default function TrackPage() {
   return (
     <section className="topo py-32">
       <div className="mx-auto max-w-[720px] px-6 md:px-8">
+        <Breadcrumbs
+          items={[
+            { name: "Home", href: "/" },
+            { name: "Track", href: "/track" },
+          ]}
+          className="mb-8"
+        />
         <SectionLabel num="00">TRACK</SectionLabel>
         <h1 className="f-display mt-4 mb-6 text-[56px] leading-[0.95] tracking-tight md:text-[80px]">
           Where is

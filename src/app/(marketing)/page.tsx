@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUpRight, Quote as QuoteIcon, Star } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
@@ -8,8 +9,26 @@ import { QuietTrust } from "@/components/marketing/quiet-trust";
 import { SERVICES } from "@/server/db/seed/services";
 import { STATS } from "@/server/db/seed/stats";
 import { ROUTES } from "@/server/db/seed/routes";
+import { INDUSTRIES } from "@/server/db/seed/industries";
 import { TESTIMONIALS } from "@/server/db/seed/testimonials";
 import { formatINR } from "@/lib/utils";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Flyhigh — Worldwide Freight, Refined.",
+  description:
+    "Mumbai-based freight forwarding maison serving 92 countries and 180 ports. Sea, air, customs, warehousing, road, and project cargo — handled with editorial precision.",
+  path: "/",
+  keywords: [
+    "freight forwarding India",
+    "Mumbai freight forwarder",
+    "ocean freight India",
+    "air freight India",
+    "customs broker Mumbai",
+    "project cargo India",
+    "international shipping India",
+  ],
+});
 
 const tickerRoutes = [
   ["MUMBAI", "ROTTERDAM", "21D"],
@@ -31,43 +50,92 @@ const coverage = [
   { n: "OCEANIA", v: "9 ports" },
 ] as const;
 
+function CompassBadge({
+  size,
+  compassSize,
+  fontSize,
+}: {
+  size: number;
+  compassSize: number;
+  fontSize: number;
+}) {
+  return (
+    <div className="relative" style={{ width: size, height: size }}>
+      <svg
+        viewBox="0 0 200 200"
+        className="h-full w-full"
+        style={{ animation: "orbit 30s linear infinite" }}
+        aria-hidden="true"
+      >
+        <defs>
+          <path
+            id={`compass-circle-${size}`}
+            d="M 100,100 m -85,0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0"
+          />
+        </defs>
+        <text
+          className="f-mono uppercase"
+          style={{ fontSize, letterSpacing: "0.3em" }}
+          fill="var(--brass)"
+        >
+          <textPath href={`#compass-circle-${size}`}>
+            — refined freight · since 2017 · refined freight · since 2017{" "}
+          </textPath>
+        </text>
+      </svg>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <CompassSvg size={compassSize} />
+      </div>
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="hero-glow relative overflow-hidden" style={{ minHeight: "100vh" }}>
-        <div className="absolute inset-0 opacity-60">
+      <section className="hero-glow relative overflow-hidden min-h-[100svh]">
+        {/* Backgrounds — desktop centered, mobile anchored to bottom */}
+        <div className="absolute inset-0 hidden opacity-60 md:block">
           <Horizon />
         </div>
+        <div className="absolute inset-0 opacity-60 md:hidden">
+          <Horizon preserveAspectRatio="xMidYEnd slice" />
+        </div>
         <div className="topo absolute inset-0 opacity-40" />
-        <div
-          className="relative mx-auto max-w-[1440px] px-6 pt-16 pb-24 md:px-8"
-          style={{ minHeight: "100vh" }}
-        >
-          <div className="flex h-full flex-col" style={{ minHeight: "calc(100vh - 200px)" }}>
-            <div className="fade-up s1 mb-8">
-              <SectionLabel num="01">A FREIGHT MAISON · SINCE 2017</SectionLabel>
-            </div>
 
-            <h1 className="f-display fade-up s2 mb-6 text-[64px] leading-[0.88] tracking-tighter md:text-[120px] lg:text-[160px]">
-              Worldwide
-              <br />
-              <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-                freight
-              </span>
-              ,
-              <br />
-              <span style={{ color: "var(--bone)" }}>refined.</span>
-            </h1>
+        <div className="relative mx-auto flex min-h-[100svh] max-w-[1440px] flex-col px-6 pt-20 pb-20 md:px-8 lg:pt-16 lg:pb-24">
+          {/* Mobile-only badge crown */}
+          <div className="fade-up s1 mb-8 flex justify-center lg:hidden">
+            <CompassBadge size={140} compassSize={56} fontSize={11} />
+          </div>
 
-            <div className="mt-auto flex flex-col justify-between gap-8 pt-12 md:flex-row md:items-end">
+          {/* Main grid */}
+          <div className="grid flex-1 grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
+            {/* LEFT: text */}
+            <div className="lg:col-span-8">
+              <div className="fade-up s1 mb-10">
+                <SectionLabel num="01">A FREIGHT MAISON · SINCE 2017</SectionLabel>
+              </div>
+
+              <h1 className="f-display fade-up s2 mb-10 text-[52px] leading-[0.88] tracking-tighter md:text-[120px] lg:text-[160px]">
+                Worldwide
+                <br />
+                <span className="f-display-it" style={{ color: "var(--cargo)" }}>
+                  freight,
+                </span>
+                <br />
+                <span style={{ color: "var(--bone)" }}>refined.</span>
+              </h1>
+
               <p
-                className="f-body fade-up s3 max-w-xl text-lg leading-relaxed md:text-xl"
+                className="f-body fade-up s3 mb-8 max-w-xl text-lg leading-relaxed md:text-xl"
                 style={{ color: "var(--bone)" }}
               >
                 A Mumbai house quietly moving cargo for India&apos;s most demanding clients —
                 across 92 countries, 180 ports, and one ocean of impossible-on-paper shipments.
               </p>
+
               <div className="fade-up s4 flex flex-col gap-3 sm:flex-row">
                 <Link href="/quote" className="btn-primary" data-cursor="GET QUOTE">
                   Request a quote <ArrowUpRight size={16} />
@@ -78,42 +146,21 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Hero floating badge */}
-            <div className="absolute top-32 right-8 hidden xl:block">
-              <div className="relative" style={{ width: 180, height: 180 }}>
-                <svg
-                  viewBox="0 0 200 200"
-                  className="h-full w-full"
-                  style={{ animation: "orbit 30s linear infinite" }}
-                  aria-hidden="true"
-                >
-                  <defs>
-                    <path
-                      id="circle"
-                      d="M 100,100 m -75,0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"
-                    />
-                  </defs>
-                  <text
-                    className="f-mono uppercase"
-                    style={{ fontSize: 11, letterSpacing: "0.3em" }}
-                    fill="var(--brass)"
-                  >
-                    <textPath href="#circle">
-                      — refined freight · since 2017 · refined freight · since 2017{" "}
-                    </textPath>
-                  </text>
-                </svg>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <CompassSvg size={64} />
-                </div>
-              </div>
+            {/* RIGHT: large in-grid badge (lg+ only) */}
+            <div className="hidden justify-center lg:col-span-4 lg:flex">
+              <CompassBadge size={320} compassSize={120} fontSize={15} />
             </div>
+          </div>
 
-            {/* Scroll cue */}
-            <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 opacity-60">
-              <span className="caption text-[10px]">SCROLL</span>
-              <ArrowDown size={14} className="float-y" style={{ color: "var(--cargo)" }} />
-            </div>
+          {/* md-only floating badge (768–1023) */}
+          <div className="absolute top-24 right-8 hidden md:block lg:hidden">
+            <CompassBadge size={240} compassSize={90} fontSize={13} />
+          </div>
+
+          {/* Scroll cue */}
+          <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 opacity-60">
+            <span className="caption text-[10px]">SCROLL</span>
+            <ArrowDown size={14} className="float-y" style={{ color: "var(--cargo)" }} />
           </div>
         </div>
       </section>
@@ -316,9 +363,11 @@ export default function HomePage() {
               <div className="col-span-3 text-right">FROM</div>
               <div className="col-span-1" />
             </div>
-            {ROUTES.map((r, i) => (
-              <div
-                key={i}
+            {ROUTES.slice(0, 8).map((r) => (
+              <Link
+                key={r.slug}
+                href={`/routes/${r.slug}`}
+                aria-label={`${r.from} to ${r.to} freight details`}
                 className="group grid grid-cols-12 items-center gap-4 border-b p-5 transition-colors last:border-b-0 hover:bg-[var(--surface-tint-2)]"
                 style={{ borderColor: "var(--line-2)" }}
               >
@@ -338,20 +387,71 @@ export default function HomePage() {
                   {formatINR(r.rate)}
                 </div>
                 <div className="col-span-1 text-right">
-                  <Link
-                    href="/quote"
-                    aria-label={`Quote ${r.from} to ${r.to}`}
+                  <ArrowUpRight
+                    size={16}
                     className="opacity-0 transition-opacity group-hover:opacity-100"
-                  >
-                    <ArrowUpRight size={16} />
-                  </Link>
+                  />
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <p className="caption mt-4" style={{ color: "var(--ash)" }}>
-            INDICATIVE · 1 × 20&apos; DRY CONTAINER · EX-WORKS · EXCLUDES TAXES &amp; SURCHARGES
+            INDICATIVE · 1 × 20&apos; DRY CONTAINER · EX-WORKS · EXCLUDES TAXES &amp; SURCHARGES ·{" "}
+            <Link href="/routes" className="u-link">
+              ALL FIFTEEN LANES →
+            </Link>
           </p>
+        </div>
+      </section>
+
+      {/* INDUSTRIES SURFACE */}
+      <section className="py-32" style={{ background: "var(--ink-2)" }}>
+        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+          <div className="mb-12 grid gap-8 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <SectionLabel num="—">INDUSTRIES</SectionLabel>
+              <h2 className="f-display mt-4 text-[44px] leading-[0.95] tracking-tight md:text-[72px]">
+                Eight desks,
+                <br />
+                <span className="f-display-it" style={{ color: "var(--cargo)" }}>
+                  one
+                </span>{" "}
+                house.
+              </h2>
+            </div>
+            <div className="lg:col-span-5 lg:pt-12">
+              <p className="text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
+                Pharma cool-chain and lithium-battery air corridors are not the same craft. We
+                run dedicated desks for each.
+              </p>
+              <Link href="/industries" className="btn-link mt-4">
+                Explore industries <ArrowRight size={14} />
+              </Link>
+            </div>
+          </div>
+          <div
+            className="grid gap-px md:grid-cols-2 lg:grid-cols-4"
+            style={{ background: "var(--line)" }}
+          >
+            {INDUSTRIES.slice(0, 8).map((ind) => {
+              const Icon = ind.icon;
+              return (
+                <Link
+                  key={ind.id}
+                  href={`/industries/${ind.slug}`}
+                  className="group lift block p-6 text-left"
+                  style={{ background: "var(--ink-2)" }}
+                  data-cursor="OPEN"
+                >
+                  <Icon size={22} style={{ color: "var(--cargo)" }} className="mb-3" />
+                  <div className="font-semibold">{ind.name}</div>
+                  <div className="mt-1 text-xs" style={{ color: "var(--ash)" }}>
+                    {ind.tag}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
 

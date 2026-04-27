@@ -4,19 +4,37 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
 import { Pill } from "@/components/shared/pill";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { SERVICES } from "@/server/db/seed/services";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services",
+export const metadata: Metadata = pageMetadata({
+  title: "Freight services",
   description:
-    "Six freight disciplines under one Mumbai roof — sea, air, customs, warehousing, road, and project cargo.",
-};
+    "Six freight disciplines under one Mumbai roof — sea, air, customs, warehousing, road, and project cargo. Each desk led by a quarter-century of craft.",
+  path: "/services",
+  keywords: [
+    "freight forwarding services",
+    "ocean freight India",
+    "air freight India",
+    "customs clearance India",
+    "warehousing Mumbai",
+    "project cargo India",
+  ],
+});
 
 export default function ServicesPage() {
   return (
     <>
       <section className="pt-32 pb-16">
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+          <Breadcrumbs
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Services", href: "/services" },
+            ]}
+            className="mb-8"
+          />
           <div className="grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <SectionLabel num="01">DISCIPLINES</SectionLabel>

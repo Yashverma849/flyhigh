@@ -5,7 +5,13 @@ import { notFound } from "next/navigation";
 import { ArrowRight, ArrowUpRight, ChevronLeft } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
 import { Pill } from "@/components/shared/pill";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { JsonLd } from "@/components/shared/json-ld";
+import { RelatedLinks } from "@/components/shared/related-links";
 import { getServiceBySlug, SERVICES } from "@/server/db/seed/services";
+import { INDUSTRIES } from "@/server/db/seed/industries";
+import { CASE_STUDIES } from "@/server/db/seed/case-studies";
+import { pageMetadata, serviceJsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));
@@ -18,7 +24,20 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const service = getServiceBySlug(slug);
-  return service ? { title: service.name, description: service.short } : {};
+  if (!service) return {};
+  return pageMetadata({
+    title: service.name,
+    description: `${service.short}. ${service.desc}`,
+    path: `/services/${service.slug}`,
+    image: service.image,
+    keywords: [
+      service.name.toLowerCase(),
+      `${service.name.toLowerCase()} India`,
+      service.tag.toLowerCase(),
+      "freight forwarder",
+      "Mumbai",
+    ],
+  });
 }
 
 const PROCESS = [
@@ -68,10 +87,32 @@ export default async function ServiceDetailPage({
     { l: "AVAILABILITY", v: "24/7" },
   ];
 
+  const relatedIndustries = INDUSTRIES.filter((ind) =>
+    ind.relatedServices.includes(s.id),
+  ).slice(0, 4);
+  const relatedCases = CASE_STUDIES.filter((c) => c.serviceSlug === s.slug).slice(0, 3);
+
   return (
     <>
+      <JsonLd
+        data={serviceJsonLd({
+          name: s.name,
+          description: `${s.short}. ${s.desc}`,
+          slug: `/services/${s.slug}`,
+          category: s.tag,
+        })}
+      />
+
       <section className="relative pt-32 pb-12">
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+          <Breadcrumbs
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Services", href: "/services" },
+              { name: s.name, href: `/services/${s.slug}` },
+            ]}
+            className="mb-6"
+          />
           <Link
             href="/services"
             className="caption u-link mb-8 flex items-center gap-2"
@@ -219,6 +260,53 @@ export default async function ServiceDetailPage({
           </div>
         </div>
       </section>
+
+      {relatedIndustries.length > 0 && (
+        <section className="py-20" style={{ background: "var(--ink-2)" }}>
+          <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+            <SectionLabel num="—">USED BY</SectionLabel>
+            <h2 className="f-display mt-4 mb-10 text-4xl">
+              Industries that lean on this desk.
+            </h2>
+            <div
+              className="grid gap-px md:grid-cols-2 lg:grid-cols-4"
+              style={{ background: "var(--line)" }}
+            >
+              {relatedIndustries.map((ind) => {
+                const IIcon = ind.icon;
+                return (
+                  <Link
+                    key={ind.id}
+                    href={`/industries/${ind.slug}`}
+                    className="group lift block p-8 text-left"
+                    style={{ background: "var(--ink-2)" }}
+                  >
+                    <IIcon size={22} style={{ color: "var(--cargo)" }} className="mb-4" />
+                    <div className="font-semibold">{ind.name}</div>
+                    <div className="mt-1 text-xs" style={{ color: "var(--ash)" }}>
+                      {ind.short}
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {relatedCases.length > 0 && (
+        <RelatedLinks
+          num="—"
+          label="CASE STUDIES"
+          heading={`${s.name} in the wild`}
+          items={relatedCases.map((c) => ({
+            href: `/case-studies/${c.slug}`,
+            title: c.title,
+            blurb: c.excerpt,
+            tag: c.industry.toUpperCase(),
+          }))}
+        />
+      )}
 
       <section className="py-24">
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">

@@ -1,13 +1,13 @@
 import type { MetadataRoute } from "next";
-
-const baseUrl = process.env.AUTH_URL ?? "http://localhost:3000";
+import { SITE_URL } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
+  const base = SITE_URL.replace(/\/$/, "");
   return {
     rules: [
       { userAgent: "*", allow: "/", disallow: ["/admin", "/api/", "/login"] },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
+    sitemap: `${base}/sitemap.xml`,
+    host: base,
   };
 }

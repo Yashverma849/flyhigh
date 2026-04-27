@@ -1,14 +1,29 @@
 import type { Metadata } from "next";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { ContactForm } from "@/components/marketing/contact-form";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Contact" };
+export const metadata: Metadata = pageMetadata({
+  title: "Contact our concierge",
+  description:
+    "Speak with a Flyhigh planner — Mumbai HQ, 24/7 operations, average 27-minute response. Phone, email, or in-person.",
+  path: "/contact",
+  keywords: ["contact freight forwarder", "Mumbai logistics company contact", "Flyhigh contact"],
+});
 
 export default function ContactPage() {
   return (
     <section className="py-32">
       <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <Breadcrumbs
+          items={[
+            { name: "Home", href: "/" },
+            { name: "Contact", href: "/contact" },
+          ]}
+          className="mb-8"
+        />
         <SectionLabel num="00">CONCIERGE</SectionLabel>
         <h1 className="f-display mt-4 mb-12 text-[64px] leading-[0.95] tracking-tight md:text-[96px]">
           Speak with

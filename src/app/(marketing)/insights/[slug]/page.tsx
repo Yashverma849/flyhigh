@@ -4,7 +4,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { Pill } from "@/components/shared/pill";
-import { getInsightBySlug, INSIGHTS } from "@/server/db/seed/insights";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { JsonLd } from "@/components/shared/json-ld";
+import { RelatedLinks } from "@/components/shared/related-links";
+import { getInsightBySlug, getRelatedInsights, INSIGHTS } from "@/server/db/seed/insights";
+import { formatDate } from "@/lib/utils";
+import { articleJsonLd, pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return INSIGHTS.map((i) => ({ slug: i.slug }));
@@ -17,13 +22,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const insight = getInsightBySlug(slug);
-  return insight
-    ? {
-        title: insight.title,
-        description: insight.excerpt,
-        openGraph: { images: [insight.image] },
-      }
-    : {};
+  if (!insight) return {};
+  return pageMetadata({
+    title: insight.title,
+    description: insight.excerpt,
+    path: `/insights/${insight.slug}`,
+    image: insight.image,
+    type: "article",
+    publishedTime: insight.date,
+    keywords: insight.tags,
+  });
 }
 
 const PLACEHOLDER_BODY = [
@@ -42,12 +50,30 @@ export default async function InsightDetailPage({
   const post = getInsightBySlug(slug);
   if (!post) notFound();
 
-  const others = INSIGHTS.filter((i) => i.slug !== slug).slice(0, 3);
+  const others = getRelatedInsights(slug, 3);
 
   return (
     <>
+      <JsonLd
+        data={articleJsonLd({
+          title: post.title,
+          description: post.excerpt,
+          slug: `/insights/${post.slug}`,
+          image: post.image,
+          datePublished: post.date,
+          category: post.category,
+        })}
+      />
+
       <article className="pt-32 pb-20">
         <div className="mx-auto max-w-3xl px-6 md:px-8">
+          <Breadcrumbs
+            items={[
+              { name: "Insights", href: "/insights" },
+              { name: post.title, href: `/insights/${post.slug}` },
+            ]}
+            className="mb-6"
+          />
           <Link href="/insights" className="caption u-link mb-8 flex items-center gap-1">
             <ChevronLeft size={12} /> ALL INSIGHTS
           </Link>
@@ -59,7 +85,7 @@ export default async function InsightDetailPage({
             className="caption mb-12 flex items-center gap-4"
             style={{ color: "var(--ash)" }}
           >
-            <span>{post.date}</span>
+            <time dateTime={post.date}>{formatDate(post.date)}</time>
             <span>·</span>
             <span>{post.read} read</span>
             <span>·</span>
@@ -113,32 +139,30 @@ export default async function InsightDetailPage({
             critical lane in the event of disruption, you are not paying for freight forwarding.
             You are paying for hope.
           </p>
+
+          {post.tags && post.tags.length > 0 && (
+            <div className="mt-12 flex flex-wrap gap-2">
+              {post.tags.map((t) => (
+                <span key={t} className="chip f-mono text-[10px]">
+                  #{t}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </article>
 
-      <section className="mt-20 border-t py-20" style={{ borderColor: "var(--line)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
-          <h3 className="f-display mb-8 text-3xl">More from the desk</h3>
-          <div className="grid gap-px md:grid-cols-3" style={{ background: "var(--line)" }}>
-            {others.map((p) => (
-              <Link
-                key={p.id}
-                href={`/insights/${p.slug}`}
-                className="group block p-6"
-                style={{ background: "var(--ink)" }}
-              >
-                <Pill kind="brass">{p.category}</Pill>
-                <h4 className="f-display mt-4 mb-2 text-xl transition-colors group-hover:text-[var(--cargo)]">
-                  {p.title}
-                </h4>
-                <div className="caption" style={{ color: "var(--ash)" }}>
-                  {p.date}
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <RelatedLinks
+        num="—"
+        label="MORE FROM THE DESK"
+        heading="Keep reading"
+        items={others.map((p) => ({
+          href: `/insights/${p.slug}`,
+          title: p.title,
+          blurb: p.excerpt,
+          tag: `${p.category} · ${formatDate(p.date)}`,
+        }))}
+      />
     </>
   );
 }

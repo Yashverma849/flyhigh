@@ -4,13 +4,17 @@ import { ArrowRight, Award, Compass, ShieldCheck } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
 import { Pill } from "@/components/shared/pill";
 import { CompassSvg } from "@/components/shared/svg";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { TIMELINE } from "@/server/db/seed/timeline";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About",
+export const metadata: Metadata = pageMetadata({
+  title: "About the house",
   description:
-    "Flyhigh, founded in Mumbai in 2017 — a freight forwarding maison built like an atelier.",
-};
+    "Flyhigh, founded in Mumbai in 2017 — a freight forwarding maison built like an atelier. Eight industry desks, seven gateways, and 184 staff.",
+  path: "/about",
+  keywords: ["about Flyhigh", "Mumbai freight forwarder", "logistics company India", "freight forwarder founded 2017"],
+});
 
 const values = [
   {
@@ -46,6 +50,13 @@ export default function AboutPage() {
     <>
       <section className="relative pt-32 pb-20">
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+          <Breadcrumbs
+            items={[
+              { name: "Home", href: "/" },
+              { name: "About", href: "/about" },
+            ]}
+            className="mb-8"
+          />
           <div className="grid gap-8 lg:grid-cols-12">
             <div className="fade-up s1 lg:col-span-5">
               <SectionLabel num="01">THE HOUSE</SectionLabel>

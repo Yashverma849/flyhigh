@@ -1,33 +1,72 @@
 import type { Metadata, Viewport } from "next";
 import { fontVariables } from "@/lib/fonts";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { JsonLd } from "@/components/shared/json-ld";
+import {
+  SITE_URL,
+  organizationJsonLd,
+  websiteJsonLd,
+  localBusinessJsonLd,
+} from "@/lib/seo";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.AUTH_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Flyhigh — Worldwide Freight, Refined.",
     template: "%s — Flyhigh",
   },
   description:
-    "A premium freight forwarding maison from Mumbai. Sea, air, customs, warehousing, road, and project cargo — handled with editorial precision.",
+    "A premium freight forwarding maison from Mumbai. Sea, air, customs, warehousing, road, and project cargo across 92 countries — handled with editorial precision.",
   keywords: [
-    "freight forwarding",
-    "Mumbai logistics",
-    "ocean freight",
-    "air freight",
-    "customs clearance",
-    "ATA Carnet",
-    "project cargo",
+    "freight forwarding India",
+    "Mumbai freight forwarder",
+    "ocean freight India",
+    "air freight India",
+    "customs clearance India",
+    "ATA Carnet India",
+    "project cargo India",
+    "pharma cool chain logistics",
+    "EV battery freight",
+    "Mumbai to Rotterdam shipping",
+    "India to Europe freight",
+    "India to Africa freight",
   ],
-  authors: [{ name: "Flyhigh" }],
+  authors: [{ name: "Flyhigh Logistics Pvt. Ltd." }],
+  creator: "Flyhigh",
+  publisher: "Flyhigh Logistics Pvt. Ltd.",
+  alternates: { canonical: SITE_URL },
   openGraph: {
     type: "website",
     locale: "en_IN",
     siteName: "Flyhigh",
+    url: SITE_URL,
+    title: "Flyhigh — Worldwide Freight, Refined.",
+    description:
+      "A premium freight forwarding maison from Mumbai. Sea, air, customs, warehousing, road, and project cargo across 92 countries.",
   },
-  twitter: { card: "summary_large_image" },
-  robots: { index: true, follow: true },
+  twitter: {
+    card: "summary_large_image",
+    site: "@flyhighfreight",
+    creator: "@flyhighfreight",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  category: "Logistics",
+  formatDetection: {
+    telephone: true,
+    address: true,
+    email: true,
+  },
 };
 
 export const viewport: Viewport = {
@@ -44,6 +83,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
       <body className="grain f-body">
+        <JsonLd
+          id="ld-org"
+          data={[organizationJsonLd(), websiteJsonLd(), localBusinessJsonLd()]}
+        />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

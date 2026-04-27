@@ -10,12 +10,18 @@ const STARS = Array.from({ length: STAR_COUNT }, (_, i) => {
   return { cx: a, cy: b, r, opacity: o };
 });
 
-export function Horizon({ className }: { className?: string }) {
+export function Horizon({
+  className,
+  preserveAspectRatio = "xMidYMid slice",
+}: {
+  className?: string;
+  preserveAspectRatio?: string;
+}) {
   return (
     <svg
       viewBox="0 0 1440 720"
       className={className ?? "w-full h-full"}
-      preserveAspectRatio="xMidYMid slice"
+      preserveAspectRatio={preserveAspectRatio}
       aria-hidden="true"
     >
       <defs>

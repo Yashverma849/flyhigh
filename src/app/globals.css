@@ -449,10 +449,10 @@ body {
   50%      { opacity: 0.8; transform: scale(1); }
 }
 @keyframes hzPlaneCross {
-  0%        { transform: translateX(1700px) translateY(0)    scaleX(-1); }
-  8%        { transform: translateX(1700px) translateY(0)    scaleX(-1); }
-  50%       { transform: translateX(720px)  translateY(-6px) scaleX(-1); }
-  92%, 100% { transform: translateX(-220px) translateY(0)    scaleX(-1); }
+  0%        { transform: translateX(1700px) translateY(0); }
+  8%        { transform: translateX(1700px) translateY(0); }
+  50%       { transform: translateX(720px)  translateY(-6px); }
+  92%, 100% { transform: translateX(-220px) translateY(0); }
 }
 @keyframes hzContrailFade {
   0%, 8%   { opacity: 0; }
@@ -460,23 +460,39 @@ body {
   85%      { opacity: 0.45; }
   100%     { opacity: 0; }
 }
+@keyframes hzTideDrift {
+  0%, 100% { transform: translateX(0)    translateY(0); }
+  50%      { transform: translateX(-3px) translateY(0.5px); }
+}
+@keyframes hzSunBreath {
+  0%, 100% { transform: scale(1);     opacity: 1; }
+  50%      { transform: scale(1.035); opacity: 0.92; }
+}
+@keyframes hzReflectionShimmer {
+  0%, 100% { opacity: 0.18; }
+  50%      { opacity: 0.12; }
+}
 
 .hz-star         { animation: hzStarTwinkle 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-.hz-starfield    { animation: hzStarDrift 480s linear infinite; transform-origin: 720px 1200px; transform-box: view-box; }
+.hz-starfield    { animation: hzStarDrift 720s linear infinite; transform-origin: -400px -800px; transform-box: view-box; }
+.hz-starfield-bg { animation: hzStarDrift 900s linear infinite; transform-origin: -400px -800px; transform-box: view-box; }
 .hz-ship-bob     { animation: hzShipBob 6.4s ease-in-out infinite; transform-box: fill-box; transform-origin: 140px 17px; }
 .hz-ship-distant { animation: hzShipBobDistant 8.8s ease-in-out infinite; transform-box: fill-box; transform-origin: 40px 5px; animation-delay: -2.3s; }
 .hz-steam        { animation: hzSteam 5.5s ease-out infinite; transform-box: fill-box; transform-origin: 270px -22px; }
 .hz-porthole     { animation: hzPorthole 7s ease-in-out infinite; }
-.hz-ripple       { animation: hzRippleRow 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.hz-ripple       { animation: hzRippleRow 9s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 .hz-glint        { animation: hzGlint 4.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 .hz-plane        { animation: hzPlaneCross 75s linear infinite; transform-box: fill-box; }
 .hz-contrail     { animation: hzContrailFade 75s linear infinite; }
+.hz-tide         { animation: hzTideDrift 18.5s ease-in-out infinite; transform-box: fill-box; transform-origin: 950px 500px; }
+.hz-sun-halo     { animation: hzSunBreath 13s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.hz-reflection   { animation: hzReflectionShimmer 14s ease-in-out infinite; }
 
 /* In reduced-motion mode the global rule above zeros all durations.
    Park the cargo plane / contrail / steam fully off-screen so they don't
    appear frozen mid-sky on first paint. */
 @media (prefers-reduced-motion: reduce) {
-  .hz-plane    { transform: translateX(1800px) scaleX(-1) !important; animation: none !important; }
+  .hz-plane    { transform: translateX(1800px) !important; animation: none !important; }
   .hz-contrail { opacity: 0 !important; animation: none !important; }
   .hz-steam    { opacity: 0 !important; }
 }

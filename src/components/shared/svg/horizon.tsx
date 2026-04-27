@@ -15,6 +15,21 @@ const STARS = Array.from({ length: STAR_COUNT }, (_, i) => {
   return { cx: a, cy: b, r, opacity: o, dur, delay };
 });
 
+// Background parallax layer — fainter, smaller, slower rotation around the
+// same celestial pivot. Different seed prefix avoids position collisions
+// with the main starfield.
+const BG_STAR_COUNT = 18;
+const BG_STARS = Array.from({ length: BG_STAR_COUNT }, (_, i) => {
+  const seed = (i + 1) * 7919 + 4001;
+  const a = (seed % 1440) / 1;
+  const b = ((seed * 49297) % 380) / 1;
+  const r = ((seed % 30) / 100) * 0.2 + 0.2;
+  const o = ((seed % 14) / 100) + 0.15;
+  const dur = 6 + ((seed * 7) % 60) / 10;
+  const delay = -((seed * 13) % 90) / 10;
+  return { cx: a, cy: b, r, opacity: o, dur, delay };
+});
+
 export function Horizon({
   className,
   preserveAspectRatio = "xMidYMid slice",
@@ -51,7 +66,7 @@ export function Horizon({
       </defs>
 
       <rect width="1440" height="720" fill="url(#hz-sky)" />
-      <circle cx="950" cy="430" r="240" fill="url(#hz-glow)" />
+      <circle cx="950" cy="430" r="240" fill="url(#hz-glow)" className="hz-sun-halo" />
       <circle cx="950" cy="430" r="58" fill="url(#hz-sun)" />
       <line
         x1="0"
@@ -64,64 +79,68 @@ export function Horizon({
       />
       <rect y="450" width="1440" height="270" fill="url(#hz-sea)" />
 
-      {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
-        const baseOpacity = 0.4 - i * 0.04;
-        return (
-          <ellipse
-            key={i}
-            cx="950"
-            cy={460 + i * 18}
-            rx={120 - i * 8}
-            ry={3 - i * 0.2}
-            fill="var(--cargo)"
-            opacity={baseOpacity}
-            className="hz-ripple"
-            style={
-              {
-                "--row-o": baseOpacity,
-                animationDelay: `${i * 0.45}s`,
-              } as CSSProperties
-            }
-          />
-        );
-      })}
-      {/* Sun-glint sparkles — hardcoded bone color so they read as bright in both themes */}
-      <ellipse
-        cx="938"
-        cy="468"
-        rx="6"
-        ry="0.8"
-        fill="#efe7d6"
-        opacity="0"
-        className="hz-glint"
-        style={{ animationDelay: "0s" }}
-      />
-      <ellipse
-        cx="966"
-        cy="486"
-        rx="4"
-        ry="0.6"
-        fill="#efe7d6"
-        opacity="0"
-        className="hz-glint"
-        style={{ animationDelay: "1.8s" }}
-      />
-      <ellipse
-        cx="945"
-        cy="510"
-        rx="3"
-        ry="0.5"
-        fill="#efe7d6"
-        opacity="0"
-        className="hz-glint"
-        style={{ animationDelay: "3.2s" }}
-      />
+      {/* Sun-reflection patch (ripples + glints). The wrapping <g> applies a
+          slow tide drift so the whole reflection breathes laterally. */}
+      <g className="hz-tide">
+        {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
+          const baseOpacity = 0.4 - i * 0.04;
+          return (
+            <ellipse
+              key={i}
+              cx="950"
+              cy={460 + i * 18}
+              rx={120 - i * 8}
+              ry={3 - i * 0.2}
+              fill="var(--cargo)"
+              opacity={baseOpacity}
+              className="hz-ripple"
+              style={
+                {
+                  "--row-o": baseOpacity,
+                  animationDelay: `${i * 0.45}s`,
+                } as CSSProperties
+              }
+            />
+          );
+        })}
+        {/* Sun-glint sparkles — hardcoded bone color so they read as bright in both themes */}
+        <ellipse
+          cx="938"
+          cy="468"
+          rx="6"
+          ry="0.8"
+          fill="#efe7d6"
+          opacity="0"
+          className="hz-glint"
+          style={{ animationDelay: "0s" }}
+        />
+        <ellipse
+          cx="966"
+          cy="486"
+          rx="4"
+          ry="0.6"
+          fill="#efe7d6"
+          opacity="0"
+          className="hz-glint"
+          style={{ animationDelay: "1.8s" }}
+        />
+        <ellipse
+          cx="945"
+          cy="510"
+          rx="3"
+          ry="0.5"
+          fill="#efe7d6"
+          opacity="0"
+          className="hz-glint"
+          style={{ animationDelay: "3.2s" }}
+        />
+      </g>
 
       {/* Container ship */}
       <g transform="translate(620, 410)">
         <g className="hz-ship-bob">
           {/* Mirrored hull reflection in water (faint) */}
-          <g transform="translate(0, 68) scale(1, -1)" opacity="0.18">
+          <g transform="translate(0, 68) scale(1, -1)" opacity="0.18" className="hz-reflection">
             <rect x="0" y="0" width="280" height="34" fill="var(--ink)" />
             <rect x="240" y="-10" width="40" height="44" fill="var(--ink)" />
           </g>
@@ -180,18 +199,18 @@ export function Horizon({
       </g>
 
       {/* Cargo plane — slow right-to-left transit (~75s cycle, ~63s on-screen).
-          Outer <g> positions the start; inner <g> receives the CSS translateX
-          keyframe with scaleX(-1) to mirror the silhouette so it faces left
-          (transform-box: fill-box keeps the local origin sane). */}
+          Silhouette is drawn nose-right and rendered un-mirrored, so the plane
+          appears to track tail-first across the sky. The contrail is placed to
+          the right of the body so it still trails behind the leftward motion. */}
       <g transform="translate(0, 120)" opacity="0.55">
         <g className="hz-plane">
-          {/* Trailing contrail */}
+          {/* Trailing contrail (right of body — behind the leftward motion) */}
           <line
             className="hz-contrail"
-            x1="-2"
+            x1="120"
             y1="6"
-            x2="-160"
-            y2="2"
+            x2="278"
+            y2="4"
             stroke="var(--brass)"
             strokeWidth="0.6"
             strokeOpacity="0.55"
@@ -223,6 +242,29 @@ export function Horizon({
           opacity="0.5"
           strokeDasharray="2 3"
         />
+      </g>
+
+      {/* Background star layer — fainter, smaller, slower-rotating parallax.
+          Paints first so the main starfield sits visually on top. */}
+      <g className="hz-starfield-bg">
+        {BG_STARS.map((s, i) => (
+          <circle
+            key={i}
+            cx={s.cx}
+            cy={s.cy}
+            r={s.r}
+            fill="var(--bone)"
+            opacity={s.opacity}
+            className="hz-star"
+            style={
+              {
+                "--star-o": s.opacity,
+                animationDuration: `${s.dur}s`,
+                animationDelay: `${s.delay}s`,
+              } as CSSProperties
+            }
+          />
+        ))}
       </g>
 
       {/* Stars (deterministic seeded positions for SSR) — drift slowly as a

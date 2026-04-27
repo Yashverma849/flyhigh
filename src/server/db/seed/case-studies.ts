@@ -101,7 +101,7 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     client: "Foundry capacity expansion programme",
     industry: "Electronics & Semiconductors",
     industrySlug: "electronics-semiconductors",
-    serviceSlug: "project",
+    serviceSlug: "air",
     region: "Asia-Pacific",
     excerpt: "Vibration-controlled charter with on-site engineers. Tool was running production in five days.",
     challenge:
@@ -127,7 +127,7 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     client: "Renewable energy EPC",
     industry: "Project Cargo",
     industrySlug: "automotive",
-    serviceSlug: "project",
+    serviceSlug: "sea",
     region: "Asia-Pacific",
     excerpt: "Heavy-lift breakbulk with route survey and police escort, then port-to-site multimodal.",
     challenge:

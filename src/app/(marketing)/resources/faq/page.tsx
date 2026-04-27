@@ -11,7 +11,7 @@ import { breadcrumbJsonLd, faqJsonLd, pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Frequently asked questions",
   description:
-    "Eighteen questions our desk hears every week — quoting, customs, cool chain, project cargo, pricing — answered candidly.",
+    "Eighteen questions our desk hears every week — quoting, customs, cool chain, ATA Carnet, pricing — answered candidly.",
   path: "/resources/faq",
   keywords: [
     "freight forwarder FAQ",

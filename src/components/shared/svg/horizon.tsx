@@ -179,9 +179,10 @@ export function Horizon({
         </g>
       </g>
 
-      {/* Cargo plane — slow left-to-right transit (~75s cycle, ~63s on-screen).
+      {/* Cargo plane — slow right-to-left transit (~75s cycle, ~63s on-screen).
           Outer <g> positions the start; inner <g> receives the CSS translateX
-          keyframe (transform-box: fill-box keeps the local origin sane). */}
+          keyframe with scaleX(-1) to mirror the silhouette so it faces left
+          (transform-box: fill-box keeps the local origin sane). */}
       <g transform="translate(0, 120)" opacity="0.55">
         <g className="hz-plane">
           {/* Trailing contrail */}

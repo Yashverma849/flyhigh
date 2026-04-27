@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s — Flyhigh",
   },
   description:
-    "A premium freight forwarding maison from Mumbai. Sea, air, customs, warehousing, road, and project cargo across 92 countries — handled with editorial precision.",
+    "A premium freight forwarding maison from Mumbai. Sea, air, customs, warehousing, road, and ATA Carnet — handled with editorial precision.",
   keywords: [
     "freight forwarding India",
     "Mumbai freight forwarder",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "air freight India",
     "customs clearance India",
     "ATA Carnet India",
-    "project cargo India",
+    "FICCI Carnet panel India",
     "pharma cool chain logistics",
     "EV battery freight",
     "Mumbai to Rotterdam shipping",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: "Flyhigh — Worldwide Freight, Refined.",
     description:
-      "A premium freight forwarding maison from Mumbai. Sea, air, customs, warehousing, road, and project cargo across 92 countries.",
+      "A premium freight forwarding maison from Mumbai. Sea, air, customs, warehousing, road, and ATA Carnet.",
   },
   twitter: {
     card: "summary_large_image",

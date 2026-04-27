@@ -1,8 +1,9 @@
 export type Stat = { value: string; label: string };
 
+// Placeholder values pending real numbers from the business.
 export const STATS: ReadonlyArray<Stat> = [
-  { value: "47k+", label: "Shipments cleared" },
-  { value: "92", label: "Countries served" },
-  { value: "180+", label: "Ports & airports" },
-  { value: "99.4%", label: "On-time delivery" },
+  { value: "—", label: "Shipments cleared" },
+  { value: "—", label: "Countries served" },
+  { value: "—", label: "Ports & airports" },
+  { value: "—", label: "On-time delivery" },
 ];

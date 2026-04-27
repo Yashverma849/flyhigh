@@ -17,7 +17,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Flyhigh — Worldwide Freight, Refined.",
   description:
-    "Mumbai-based freight forwarding maison serving 92 countries and 180 ports. Sea, air, customs, warehousing, road, and project cargo — handled with editorial precision.",
+    "Mumbai-based freight forwarding maison with worldwide reach. Sea, air, customs, warehousing, road, and ATA Carnet — handled with editorial precision.",
   path: "/",
   keywords: [
     "freight forwarding India",
@@ -25,7 +25,7 @@ export const metadata: Metadata = pageMetadata({
     "ocean freight India",
     "air freight India",
     "customs broker Mumbai",
-    "project cargo India",
+    "ATA Carnet India",
     "international shipping India",
   ],
 });
@@ -41,13 +41,14 @@ const tickerRoutes = [
   ["PUNE", "DUBAI", "1D"],
 ] as const;
 
+// Port counts placeholder pending real numbers from the business.
 const coverage = [
-  { n: "EUROPE", v: "32 ports" },
-  { n: "AFRICA", v: "21 ports" },
-  { n: "GULF", v: "18 ports" },
-  { n: "AMERICAS", v: "24 ports" },
-  { n: "ASIA-PAC", v: "47 ports" },
-  { n: "OCEANIA", v: "9 ports" },
+  { n: "EUROPE", v: "—" },
+  { n: "AFRICA", v: "—" },
+  { n: "GULF", v: "—" },
+  { n: "AMERICAS", v: "—" },
+  { n: "ASIA-PAC", v: "—" },
+  { n: "OCEANIA", v: "—" },
 ] as const;
 
 function CompassBadge({
@@ -133,7 +134,7 @@ export default function HomePage() {
                 style={{ color: "var(--bone)" }}
               >
                 A Mumbai house quietly moving cargo for India&apos;s most demanding clients —
-                across 92 countries, 180 ports, and one ocean of impossible-on-paper shipments.
+                across continents, ports, and one ocean of impossible-on-paper shipments.
               </p>
 
               <div className="fade-up s4 flex flex-col gap-3 sm:flex-row">

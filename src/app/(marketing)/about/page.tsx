@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "About the house",
   description:
-    "Flyhigh, founded in Mumbai in 2017 — a freight forwarding maison built like an atelier. Eight industry desks, seven gateways, and 184 staff.",
+    "Flyhigh, founded in Mumbai in 2017 — a freight forwarding maison built like an atelier. Nine industry desks, seven gateways, and 184 staff.",
   path: "/about",
   keywords: ["about Flyhigh", "Mumbai freight forwarder", "logistics company India", "freight forwarder founded 2017"],
 });
@@ -82,9 +82,9 @@ export default function AboutPage() {
                 like their own. So we built one.
               </p>
               <p className="mt-6 text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
-                Today, we operate across 92 countries through agents we have personally met. We
-                have desks in cities most forwarders cannot pronounce. And we still close every
-                quarter with a paper ledger.
+                Today, we operate worldwide through agents we have personally met. We have desks
+                in cities most forwarders cannot pronounce. And we still close every quarter with
+                a paper ledger.
               </p>
             </div>
           </div>
@@ -157,7 +157,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">
           <SectionLabel num="03">LEADERSHIP</SectionLabel>
           <h2 className="f-display mt-4 mb-16 text-[56px] leading-[0.95] tracking-tight md:text-[80px]">
-            Twelve seniors.
+            Eight seniors.
             <br />
             <span className="f-display-it" style={{ color: "var(--cargo)" }}>
               One desk each.

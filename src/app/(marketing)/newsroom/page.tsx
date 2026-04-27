@@ -10,7 +10,7 @@ import { formatDate } from "@/lib/utils";
 export const metadata: Metadata = pageMetadata({
   title: "Newsroom & press",
   description:
-    "Press releases, leadership announcements, and partnership news from Flyhigh. For media enquiries: press@flyhigh.in.",
+    "Press releases, leadership announcements, and partnership news from Flyhigh. For media enquiries: flyhighfreightservices@gmail.com.",
   path: "/newsroom",
   keywords: ["Flyhigh news", "freight industry press", "logistics announcements"],
 });
@@ -111,7 +111,7 @@ export default function NewsroomPage() {
                 {a.blurb}
               </p>
               <a
-                href={`mailto:press@flyhigh.in?subject=${encodeURIComponent("Press enquiry — " + a.title)}`}
+                href={`mailto:flyhighfreightservices@gmail.com?subject=${encodeURIComponent("Press enquiry — " + a.title)}`}
                 className="caption mt-6 inline-flex items-center gap-2 transition-colors group-hover:text-[var(--cargo)]"
                 style={{ color: "var(--brass)" }}
               >
@@ -134,11 +134,11 @@ export default function NewsroomPage() {
               For interviews, commentary on freight, and image library access:
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <a href="mailto:press@flyhigh.in" className="btn-primary">
-                press@flyhigh.in
+              <a href="mailto:flyhighfreightservices@gmail.com" className="btn-primary">
+                flyhighfreightservices@gmail.com
               </a>
-              <a href="tel:+912240005500" className="btn-ghost">
-                +91 22 4000 5500
+              <a href="tel:+919322627766" className="btn-ghost">
+                +91 9322627766
               </a>
             </div>
           </div>

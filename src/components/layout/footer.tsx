@@ -85,19 +85,19 @@ export function Footer() {
             <div className="space-y-2 text-sm" style={{ color: "var(--ash)" }}>
               <p className="flex items-start gap-2">
                 <MapPin size={14} className="mt-0.5 shrink-0" />
-                Flyhigh House, 14 Marine Lines, Mumbai 400020, India
+                Arjun House, Sahar Cargo, Andheri East, Mumbai 400099, India
               </p>
               <p className="flex items-center gap-2">
                 <Phone size={14} />
-                <a href="tel:+912240005500" className="u-link">
-                  +91 22 4000 5500
+                <a href="tel:+919322627766" className="u-link">
+                  +91 9322627766
                 </a>{" "}
                 · <span className="f-mono">24/7 ops</span>
               </p>
               <p className="flex items-center gap-2">
                 <Mail size={14} />{" "}
-                <a href="mailto:concierge@flyhigh.in" className="u-link">
-                  concierge@flyhigh.in
+                <a href="mailto:flyhighfreightservices@gmail.com" className="u-link">
+                  flyhighfreightservices@gmail.com
                 </a>
               </p>
             </div>

@@ -39,7 +39,7 @@ export async function submitContact(
     return {
       status: "error",
       message:
-        "Contact submissions are temporarily unavailable. Please email concierge@flyhigh.in directly.",
+        "Contact submissions are temporarily unavailable. Please email flyhighfreightservices@gmail.com directly.",
     };
   }
 

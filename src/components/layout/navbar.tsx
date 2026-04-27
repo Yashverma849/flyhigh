@@ -87,7 +87,7 @@ export function Navbar() {
               <Clock size={11} /> Operations 24/7
             </span>
             <span className="hidden items-center gap-2 lg:flex">
-              <Globe size={11} /> 92 country desk
+              <Globe size={11} /> Worldwide network
             </span>
           </div>
           <div className="flex items-center gap-6">
@@ -97,7 +97,7 @@ export function Navbar() {
             <Link href="/admin" className="u-link flex items-center gap-1.5">
               <Lock size={11} /> Client console
             </Link>
-            <span className="f-mono">+91 22 4000 5500</span>
+            <span className="f-mono">+91 9322627766</span>
           </div>
         </div>
       </div>

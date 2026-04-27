@@ -299,6 +299,26 @@ body {
     0 0 0 1px rgba(11, 18, 32, 0.03);
 }
 
+/* Always-visible scrollbar for modal scroll regions (overrides macOS auto-hide). */
+.modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brass-border-40) transparent;
+}
+.modal-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal-scroll::-webkit-scrollbar-thumb {
+  background: var(--brass-border-40);
+  border-radius: 4px;
+}
+.modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--brass);
+}
+
 /* Hairline rule used inside the modal between sector header and company list */
 .modal-rule {
   height: 1px;
@@ -429,10 +449,10 @@ body {
   50%      { opacity: 0.8; transform: scale(1); }
 }
 @keyframes hzPlaneCross {
-  0%        { transform: translateX(-220px) translateY(0); }
-  8%        { transform: translateX(-220px) translateY(0); }
-  50%       { transform: translateX(720px)  translateY(-6px); }
-  92%, 100% { transform: translateX(1700px) translateY(0); }
+  0%        { transform: translateX(1700px) translateY(0)    scaleX(-1); }
+  8%        { transform: translateX(1700px) translateY(0)    scaleX(-1); }
+  50%       { transform: translateX(720px)  translateY(-6px) scaleX(-1); }
+  92%, 100% { transform: translateX(-220px) translateY(0)    scaleX(-1); }
 }
 @keyframes hzContrailFade {
   0%, 8%   { opacity: 0; }
@@ -456,7 +476,7 @@ body {
    Park the cargo plane / contrail / steam fully off-screen so they don't
    appear frozen mid-sky on first paint. */
 @media (prefers-reduced-motion: reduce) {
-  .hz-plane    { transform: translateX(-300px) !important; animation: none !important; }
+  .hz-plane    { transform: translateX(1800px) scaleX(-1) !important; animation: none !important; }
   .hz-contrail { opacity: 0 !important; animation: none !important; }
   .hz-steam    { opacity: 0 !important; }
 }

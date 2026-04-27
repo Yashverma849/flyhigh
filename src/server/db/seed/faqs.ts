@@ -1,14 +1,14 @@
 export type Faq = {
   q: string;
   a: string;
-  category: "Quoting" | "Operations" | "Customs" | "Cool Chain" | "Project Cargo" | "Compliance" | "Pricing";
+  category: "Quoting" | "Operations" | "Customs" | "Cool Chain" | "ATA Carnet" | "Compliance" | "Pricing";
 };
 
 export const FAQS: ReadonlyArray<Faq> = [
   {
     category: "Quoting",
     q: "How quickly can I get a quote?",
-    a: "Standard sea and air lanes — under 27 minutes during business hours, under 4 hours after-hours. Project cargo and engineered moves take 24-48 hours because we run a route survey before quoting.",
+    a: "Standard sea and air lanes — under 27 minutes during business hours, under 4 hours after-hours. Out-of-gauge and engineered moves take 24-48 hours because we run a route survey before quoting.",
   },
   {
     category: "Quoting",
@@ -28,7 +28,7 @@ export const FAQS: ReadonlyArray<Faq> = [
   {
     category: "Operations",
     q: "What is your on-time performance?",
-    a: "99.4% on-time delivery across all modes in 2025. Air freight runs at 99.7%; sea freight at 99.1%; project cargo at 100% (small sample). On-time means within the contractually agreed window, not the marketing window.",
+    a: "99.4% on-time delivery across all modes in 2025. Air freight runs at 99.7%; sea freight at 99.1%; ATA Carnet returns at 100% (small sample). On-time means within the contractually agreed window, not the marketing window.",
   },
   {
     category: "Operations",
@@ -61,14 +61,14 @@ export const FAQS: ReadonlyArray<Faq> = [
     a: "Yes. 23 lanes are GDP-validated end-to-end. We can produce the full validation pack on request, including stability data, lane-trial reports, and excursion-rate evidence.",
   },
   {
-    category: "Project Cargo",
-    q: "Do you handle out-of-gauge and heavy lift?",
-    a: "Yes. We have moved 65-metre wind turbine blades, 180-tonne transformers, and complete petrochemical reactor units. Route survey, permits, escorts, marine insurance — all in scope.",
+    category: "ATA Carnet",
+    q: "What is an ATA Carnet and when do I need one?",
+    a: "An ATA Carnet is an international customs document allowing duty-free, tax-free temporary import of professional equipment, commercial samples, trade-show goods, and exhibition pieces into 80+ member countries. You need one when goods are entering a country temporarily and re-exporting in the same condition — no transformation, no sale.",
   },
   {
-    category: "Project Cargo",
-    q: "Can you charter aircraft?",
-    a: "Yes — full or part charter on B747F, IL-76, AN-124. Typical lead time 7-10 days; AOG-class urgency can secure capacity in 24-48 hours at premium pricing.",
+    category: "ATA Carnet",
+    q: "How quickly can you issue or clear an ATA Carnet?",
+    a: "As FICCI panel members, we can assist with carnet issuance within 24-48 business hours once goods list, country list, and security deposit are confirmed. On the clearance side — both inbound and outbound — same-day customs clearance is standard at all major Indian gateways.",
   },
   {
     category: "Compliance",
@@ -102,7 +102,7 @@ export const FAQ_CATEGORIES: Faq["category"][] = [
   "Operations",
   "Customs",
   "Cool Chain",
-  "Project Cargo",
+  "ATA Carnet",
   "Compliance",
   "Pricing",
 ];

@@ -25,7 +25,7 @@ const RESOURCES = [
     icon: MessageSquareText,
     title: "Frequently asked questions",
     blurb:
-      "Eighteen questions we hear weekly — quoting, customs, cool chain, project cargo, and pricing — answered candidly.",
+      "Eighteen questions we hear weekly — quoting, customs, cool chain, ATA Carnet, and pricing — answered candidly.",
   },
   {
     href: "/resources/glossary",

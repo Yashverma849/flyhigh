@@ -21,7 +21,7 @@ const SECTIONS = [
   {
     h: "Who we are",
     body: [
-      "Flyhigh Logistics Pvt. Ltd. (CIN U63090MH2017PTC290114) — registered at Flyhigh House, 14 Marine Lines, Mumbai 400020, India. References to 'Flyhigh', 'we', 'us', or 'our' mean this company.",
+      "Flyhigh Logistics Pvt. Ltd. (CIN U63090MH2017PTC290114) — registered at Arjun House, Sahar Cargo, Andheri East, Mumbai 400099, India. References to 'Flyhigh', 'we', 'us', or 'our' mean this company.",
     ],
   },
   {
@@ -86,7 +86,7 @@ const SECTIONS = [
   {
     h: "Contact our DPO",
     body: [
-      "Data Protection Officer · privacy@flyhigh.in · Flyhigh House, 14 Marine Lines, Mumbai 400020, India.",
+      "Data Protection Officer · flyhighfreightservices@gmail.com · Arjun House, Sahar Cargo, Andheri East, Mumbai 400099, India.",
       "We acknowledge requests within seven calendar days and respond substantively within thirty.",
     ],
   },

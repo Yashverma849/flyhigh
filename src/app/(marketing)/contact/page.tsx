@@ -41,27 +41,15 @@ export default function ContactPage() {
             <div className="space-y-3 text-sm" style={{ color: "var(--ash)" }}>
               <p className="flex items-start gap-2">
                 <MapPin size={14} className="mt-0.5 shrink-0" />
-                Flyhigh House, 14 Marine Lines, Mumbai 400020, India
+                Arjun House, Sahar Cargo, Andheri East, Mumbai 400099, India
               </p>
               <p className="flex items-center gap-2">
-                <Phone size={14} /> +91 22 4000 5500 ·{" "}
+                <Phone size={14} /> +91 9322627766 ·{" "}
                 <span className="f-mono">24/7 ops</span>
               </p>
               <p className="flex items-center gap-2">
-                <Mail size={14} /> concierge@flyhigh.in
+                <Mail size={14} /> flyhighfreightservices@gmail.com
               </p>
-            </div>
-
-            <div className="mt-12">
-              <div className="caption mb-3" style={{ color: "var(--brass)" }}>
-                DESKS
-              </div>
-              <ul className="space-y-2 text-sm" style={{ color: "var(--bone)" }}>
-                <li>Pharma cool-chain · pharma@flyhigh.in</li>
-                <li>Project cargo · projects@flyhigh.in</li>
-                <li>Carnet · carnet@flyhigh.in</li>
-                <li>Press · press@flyhigh.in</li>
-              </ul>
             </div>
           </div>
 

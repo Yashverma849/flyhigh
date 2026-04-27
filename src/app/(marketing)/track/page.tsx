@@ -38,7 +38,7 @@ export default function TrackPage() {
         <TrackForm />
         <p className="caption mt-10" style={{ color: "var(--ash)" }}>
           Tracking IDs sit on every booking confirmation. Lost yours? Email
-          concierge@flyhigh.in — we&apos;ll find it.
+          flyhighfreightservices@gmail.com — we&apos;ll find it.
         </p>
       </div>
     </section>

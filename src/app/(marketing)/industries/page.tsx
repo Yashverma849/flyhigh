@@ -12,7 +12,7 @@ import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Industries we serve",
   description:
-    "Pharma to defence, EVs to luxury wine — eight industry desks built around the cargo our clients actually move. Each with its own playbook, paperwork, and SLA.",
+    "Pharma to defence, films to luxury wine — nine industry desks built around the cargo our clients actually move. Each with its own playbook, paperwork, and SLA.",
   path: "/industries",
   keywords: [
     "freight forwarder by industry",
@@ -42,7 +42,7 @@ export default function IndustriesIndexPage() {
             <div className="lg:col-span-7">
               <SectionLabel num="01">INDUSTRIES</SectionLabel>
               <h1 className="f-display mt-6 text-[64px] leading-[0.88] tracking-tighter md:text-[110px]">
-                Eight desks,
+                Nine desks,
                 <br />
                 <span className="f-display-it" style={{ color: "var(--cargo)" }}>
                   one
@@ -53,7 +53,7 @@ export default function IndustriesIndexPage() {
             <div className="lg:col-span-5 lg:pt-32">
               <p className="text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
                 We don&apos;t pretend that pharma cool-chain and lithium-battery air corridors are
-                the same craft. Eight industry desks, each led by someone who reads the trade
+                the same craft. Nine industry desks, each led by someone who reads the trade
                 press in their sector, not just ours.
               </p>
             </div>

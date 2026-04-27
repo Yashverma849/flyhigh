@@ -66,7 +66,7 @@ export default async function AdminSettingsPage() {
             <div className="grid gap-6 md:grid-cols-2">
               <Field label="Name" defaultValue={user?.name ?? ""} />
               <Field label="Email" defaultValue={user?.email ?? ""} type="email" disabled />
-              <Field label="Phone" placeholder="+91 22 4000 5500" />
+              <Field label="Phone" placeholder="+91 9322627766" />
               <Field label="Role" defaultValue="Operations" disabled />
             </div>
 

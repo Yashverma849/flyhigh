@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
-import { Pill } from "@/components/shared/pill";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { JsonLd } from "@/components/shared/json-ld";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
@@ -10,14 +9,14 @@ import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Offices & gateways",
   description:
-    "Seven Indian gateways and one global desk. Flyhigh's office, warehouse, and partner footprint at a glance.",
+    "Flyhigh's Mumbai office and worldwide partner network at a glance.",
   path: "/offices",
   keywords: [
     "freight forwarder offices India",
     "Mumbai freight office",
-    "Delhi customs broker",
-    "Chennai freight forwarder",
-    "Mundra warehouse",
+    "Andheri freight forwarder",
+    "Sahar Cargo logistics",
+    "Mumbai customs broker",
   ],
 });
 
@@ -30,74 +29,10 @@ const OFFICES = [
   {
     city: "Mumbai",
     role: "HQ · Operations · Customs",
-    address: "Flyhigh House, 14 Marine Lines, Mumbai 400020",
-    phone: "+91 22 4000 5500",
-    email: "mumbai@flyhigh.in",
+    address: "Arjun House, Sahar Cargo, Andheri East, Mumbai 400099",
+    phone: "+91 9322627766",
+    email: "flyhighfreightservices@gmail.com",
     gateways: "BOM (Sahar Air), JNPT, Mumbai Port",
-    headcount: 84,
-  },
-  {
-    city: "Delhi",
-    role: "North India desk · Customs",
-    address: "B-7 Connaught Circus, New Delhi 110001",
-    phone: "+91 11 4000 5500",
-    email: "delhi@flyhigh.in",
-    gateways: "DEL (IGI Air), ICD Tughlakabad",
-    headcount: 32,
-  },
-  {
-    city: "Chennai",
-    role: "South India desk · Project Cargo",
-    address: "212 Anna Salai, Chennai 600002",
-    phone: "+91 44 4000 5500",
-    email: "chennai@flyhigh.in",
-    gateways: "MAA (Air), Chennai Port, Kattupalli",
-    headcount: 28,
-  },
-  {
-    city: "Bangalore",
-    role: "Tech corridor desk",
-    address: "5th floor, Prestige Atrium, MG Road, Bengaluru 560001",
-    phone: "+91 80 4000 5500",
-    email: "bangalore@flyhigh.in",
-    gateways: "BLR (Kempegowda Air)",
-    headcount: 16,
-  },
-  {
-    city: "Hyderabad",
-    role: "Pharma corridor desk",
-    address: "Plot 32, HITEC City, Hyderabad 500081",
-    phone: "+91 40 4000 5500",
-    email: "hyderabad@flyhigh.in",
-    gateways: "HYD (Rajiv Gandhi Air)",
-    headcount: 14,
-  },
-  {
-    city: "Mundra",
-    role: "Bonded warehousing · DG",
-    address: "Plot 14, Bonded Zone, Mundra 370421",
-    phone: "+91 28 3829 5500",
-    email: "mundra@flyhigh.in",
-    gateways: "Mundra Port",
-    headcount: 6,
-  },
-  {
-    city: "Kolkata",
-    role: "East India desk",
-    address: "Camac Street, Kolkata 700017",
-    phone: "+91 33 4000 5500",
-    email: "kolkata@flyhigh.in",
-    gateways: "CCU (Air), Kolkata Port, Haldia",
-    headcount: 4,
-  },
-  {
-    city: "Dubai",
-    role: "Global desk · GCC, Africa, Levant",
-    address: "Office 1402, Jumeirah Bay X3 Tower, Cluster X, JLT, Dubai",
-    phone: "+971 4 245 8800",
-    email: "dubai@flyhigh.in",
-    gateways: "DXB (Air), Jebel Ali Port",
-    headcount: 8,
   },
 ];
 
@@ -124,7 +59,7 @@ export default function OfficesPage() {
             <div className="lg:col-span-7">
               <SectionLabel num="01">OFFICES & GATEWAYS</SectionLabel>
               <h1 className="f-display mt-6 text-[64px] leading-[0.88] tracking-tighter md:text-[110px]">
-                Seven gateways,
+                A Mumbai gateway,
                 <br />
                 <span className="f-display-it" style={{ color: "var(--cargo)" }}>
                   one
@@ -134,8 +69,8 @@ export default function OfficesPage() {
             </div>
             <div className="lg:col-span-5 lg:pt-32">
               <p className="text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
-                Eight Flyhigh offices across India and Dubai, plus 194 vetted partner offices
-                worldwide via WCA. The same case manager, regardless of which desk handles the leg.
+                One Mumbai office, with vetted partner offices worldwide via World Cargo
+                Alliance. The same case manager, every step.
               </p>
             </div>
           </div>
@@ -145,7 +80,7 @@ export default function OfficesPage() {
       <section className="py-12">
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">
           <div
-            className="grid gap-px md:grid-cols-2"
+            className="grid gap-px"
             style={{ background: "var(--line)" }}
           >
             {OFFICES.map((o) => (
@@ -161,7 +96,6 @@ export default function OfficesPage() {
                   >
                     {o.city}
                   </h2>
-                  <Pill kind="brass">{o.headcount} STAFF</Pill>
                 </div>
                 <div className="caption mb-5" style={{ color: "var(--ash)" }}>
                   {o.role}
@@ -201,8 +135,8 @@ export default function OfficesPage() {
           <SectionLabel num="02">GLOBAL PARTNERS</SectionLabel>
           <h2 className="f-display mt-4 mb-8 text-3xl">Vetted partner network.</h2>
           <p className="mb-10 max-w-3xl text-base" style={{ color: "var(--ash)" }}>
-            Through World Cargo Alliance, we have direct routing access into 192 countries via
-            partners we have either visited or vetted in writing.
+            Through World Cargo Alliance, we have direct routing access worldwide via partners
+            we have either visited or vetted in writing.
           </p>
           <div
             className="grid gap-px md:grid-cols-2 lg:grid-cols-4"
@@ -236,8 +170,8 @@ export default function OfficesPage() {
                   Visit the desk.
                 </h2>
                 <p className="text-lg" style={{ color: "var(--ash)" }}>
-                  Walk-in welcome at every Indian office, by appointment in Dubai. Best to call
-                  first — the desk is usually on a shipment.
+                  Walk-in welcome at the Mumbai office. Best to call first — the desk is usually
+                  on a shipment.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">

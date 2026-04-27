@@ -74,8 +74,8 @@ export const organizationJsonLd = () => ({
   foundingDate: "2017",
   description:
     "A premium freight forwarding maison from Mumbai. Sea, air, customs, warehousing, road, and project cargo — handled with editorial precision.",
-  email: "concierge@flyhigh.in",
-  telephone: "+91-22-4000-5500",
+  email: "flyhighfreightservices@gmail.com",
+  telephone: "+91-9322627766",
   sameAs: [
     "https://www.linkedin.com/company/flyhigh-logistics",
     "https://twitter.com/flyhighfreight",
@@ -83,9 +83,9 @@ export const organizationJsonLd = () => ({
   ],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Flyhigh House, 14 Marine Lines",
+    streetAddress: "Arjun House, Sahar Cargo, Andheri East",
     addressLocality: "Mumbai",
-    postalCode: "400020",
+    postalCode: "400099",
     addressRegion: "Maharashtra",
     addressCountry: "IN",
   },
@@ -96,7 +96,7 @@ export const organizationJsonLd = () => ({
   contactPoint: [
     {
       "@type": "ContactPoint",
-      telephone: "+91-22-4000-5500",
+      telephone: "+91-9322627766",
       contactType: "customer service",
       areaServed: ["IN", "AE", "SG", "GB", "US", "DE", "NL"],
       availableLanguage: ["English", "Hindi"],
@@ -112,12 +112,12 @@ export const localBusinessJsonLd = () => ({
   image: absoluteUrl("/opengraph-image"),
   priceRange: "$$$",
   url: SITE_URL,
-  telephone: "+91-22-4000-5500",
+  telephone: "+91-9322627766",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Flyhigh House, 14 Marine Lines",
+    streetAddress: "Arjun House, Sahar Cargo, Andheri East",
     addressLocality: "Mumbai",
-    postalCode: "400020",
+    postalCode: "400099",
     addressRegion: "Maharashtra",
     addressCountry: "IN",
   },

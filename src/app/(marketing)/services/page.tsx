@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Freight services",
   description:
-    "Six freight disciplines under one Mumbai roof — sea, air, customs, warehousing, road, and project cargo. Each desk led by a quarter-century of craft.",
+    "Six freight disciplines under one Mumbai roof — sea, air, customs, warehousing, road, and ATA Carnet. Each desk led by a quarter-century of craft.",
   path: "/services",
   keywords: [
     "freight forwarding services",
@@ -19,7 +19,8 @@ export const metadata: Metadata = pageMetadata({
     "air freight India",
     "customs clearance India",
     "warehousing Mumbai",
-    "project cargo India",
+    "ATA Carnet India",
+    "FICCI Carnet panel",
   ],
 });
 

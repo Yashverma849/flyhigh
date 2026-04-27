@@ -120,7 +120,7 @@ export default function CookiesPage() {
           <div>
             <h2 className="f-display mb-4 text-2xl tracking-tight md:text-3xl">04. Contact</h2>
             <p className="text-base leading-relaxed" style={{ color: "var(--bone)" }}>
-              Questions: privacy@flyhigh.in.
+              Questions: flyhighfreightservices@gmail.com.
             </p>
           </div>
         </div>

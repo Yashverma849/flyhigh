@@ -7,6 +7,7 @@ import {
   FlaskConical,
   Shield,
   Wine,
+  Film,
   type LucideIcon,
 } from "lucide-react";
 
@@ -83,7 +84,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
       "Reverse-flow management with quality holds",
       "Spare-parts kitting and labelling",
     ],
-    relatedServices: ["sea", "road", "warehouse", "project"],
+    relatedServices: ["sea", "road", "warehouse"],
     image:
       "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1600&q=80&auto=format&fit=crop",
     stats: [
@@ -114,7 +115,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
       "Hanger-loaded GOH containers",
       "Pre-shipment QC inspection coordination",
       "Returns reverse-logistics with credit notes",
-      "EXW to DDP terms across 92 countries",
+      "EXW to DDP terms worldwide",
     ],
     relatedServices: ["air", "sea", "customs"],
     image:
@@ -248,7 +249,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
       "Bonded MRO warehousing",
       "Discreet handling and named couriers",
     ],
-    relatedServices: ["air", "project", "customs"],
+    relatedServices: ["air", "carnet", "customs"],
     image:
       "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1600&q=80&auto=format&fit=crop",
     stats: [
@@ -289,6 +290,39 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
       { l: "BONDED PALLETS", v: "1,800" },
       { l: "PRIVATE CELLARS", v: "120" },
       { l: "RARE-LOT MOVES", v: "Monthly" },
+    ],
+  },
+  {
+    id: "entertainment",
+    slug: "films-entertainment",
+    name: "Films & Entertainment",
+    tag: "MEDIA",
+    icon: Film,
+    short: "Production gear · Carnet shoots · Wardrobe & set freight",
+    desc:
+      "From Mumbai studios to international shoot locations — cameras, lighting rigs, costumes, props, and set pieces moved on tight production schedules with carnet paperwork that doesn't slip.",
+    challenges: [
+      "Carnet timing aligned with shoot windows",
+      "Production-grade equipment under temperature & shock controls",
+      "Customs valuation on production gear and props",
+      "Wardrobe and prop returns within carnet validity",
+    ],
+    capabilities: [
+      "ATA Carnet for production equipment",
+      "Air freight for shoot-day calls",
+      "Sea consolidation for set builds",
+      "Insulated transport for sensitive optics",
+      "Pre-cleared returns to home studio",
+      "Discreet handling for talent travel cargo",
+    ],
+    relatedServices: ["air", "carnet", "road"],
+    image:
+      "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1600&q=80&auto=format&fit=crop",
+    stats: [
+      { l: "PRODUCTIONS / YR", v: "—" },
+      { l: "CARNET SHOOTS", v: "—" },
+      { l: "STUDIO ACCOUNTS", v: "—" },
+      { l: "REGIONS COVERED", v: "—" },
     ],
   },
 ];

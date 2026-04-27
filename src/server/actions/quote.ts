@@ -40,7 +40,7 @@ export async function createQuote(_prev: ActionState, formData: FormData): Promi
     return {
       status: "error",
       message:
-        "Quote requests are temporarily unavailable. Please email concierge@flyhigh.in directly.",
+        "Quote requests are temporarily unavailable. Please email flyhighfreightservices@gmail.com directly.",
     };
   }
 
@@ -69,7 +69,7 @@ export async function createQuote(_prev: ActionState, formData: FormData): Promi
     return {
       status: "error",
       message:
-        "We couldn't record your request. Please email concierge@flyhigh.in directly while we look at this.",
+        "We couldn't record your request. Please email flyhighfreightservices@gmail.com directly while we look at this.",
     };
   }
 }

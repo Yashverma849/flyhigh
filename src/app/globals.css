@@ -386,6 +386,82 @@ body {
 }
 
 /* ────────────────────────────────────────────────────────────────────────
+   HERO HORIZON — premium ambient animation layer
+   Subtle long-period motion layered onto the static SVG composition.
+   Every animated element lives inside an inner <g> wrapper with
+   transform-box: fill-box so CSS transforms don't conflict with the SVG
+   attribute transforms used for positioning. See horizon.tsx.
+   ──────────────────────────────────────────────────────────────────────── */
+@keyframes hzStarTwinkle {
+  0%, 100% { opacity: var(--star-o, 0.4); }
+  50%      { opacity: calc(var(--star-o, 0.4) * 0.35); }
+}
+@keyframes hzStarDrift {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes hzShipBob {
+  0%, 100% { transform: translateY(0)    rotate(0deg); }
+  25%      { transform: translateY(-2px) rotate(0.35deg); }
+  50%      { transform: translateY(0)    rotate(0deg); }
+  75%      { transform: translateY(2px)  rotate(-0.35deg); }
+}
+@keyframes hzShipBobDistant {
+  0%, 100% { transform: translateY(0)      rotate(0deg); }
+  50%      { transform: translateY(-1.2px) rotate(0.18deg); }
+}
+@keyframes hzSteam {
+  0%   { opacity: 0;    transform: translate(0, 0)        scale(0.6); }
+  35%  { opacity: 0.18; }
+  100% { opacity: 0;    transform: translate(-6px, -28px) scale(1.6); }
+}
+@keyframes hzPorthole {
+  0%, 92%, 100% { opacity: 0.85; }
+  94%           { opacity: 0.55; }
+  96%           { opacity: 0.9; }
+}
+@keyframes hzRippleRow {
+  0%, 100% { transform: translateX(0)     scaleX(1);    opacity: var(--row-o, 0.3); }
+  50%      { transform: translateX(2.5px) scaleX(1.04); opacity: calc(var(--row-o, 0.3) * 1.4); }
+}
+@keyframes hzGlint {
+  0%, 100% { opacity: 0;   transform: scale(0.6); }
+  50%      { opacity: 0.8; transform: scale(1); }
+}
+@keyframes hzPlaneCross {
+  0%        { transform: translateX(-220px) translateY(0); }
+  8%        { transform: translateX(-220px) translateY(0); }
+  50%       { transform: translateX(720px)  translateY(-6px); }
+  92%, 100% { transform: translateX(1700px) translateY(0); }
+}
+@keyframes hzContrailFade {
+  0%, 8%   { opacity: 0; }
+  20%      { opacity: 0.45; }
+  85%      { opacity: 0.45; }
+  100%     { opacity: 0; }
+}
+
+.hz-star         { animation: hzStarTwinkle 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.hz-starfield    { animation: hzStarDrift 480s linear infinite; transform-origin: 720px 1200px; transform-box: view-box; }
+.hz-ship-bob     { animation: hzShipBob 6.4s ease-in-out infinite; transform-box: fill-box; transform-origin: 140px 17px; }
+.hz-ship-distant { animation: hzShipBobDistant 8.8s ease-in-out infinite; transform-box: fill-box; transform-origin: 40px 5px; animation-delay: -2.3s; }
+.hz-steam        { animation: hzSteam 5.5s ease-out infinite; transform-box: fill-box; transform-origin: 270px -22px; }
+.hz-porthole     { animation: hzPorthole 7s ease-in-out infinite; }
+.hz-ripple       { animation: hzRippleRow 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.hz-glint        { animation: hzGlint 4.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.hz-plane        { animation: hzPlaneCross 75s linear infinite; transform-box: fill-box; }
+.hz-contrail     { animation: hzContrailFade 75s linear infinite; }
+
+/* In reduced-motion mode the global rule above zeros all durations.
+   Park the cargo plane / contrail / steam fully off-screen so they don't
+   appear frozen mid-sky on first paint. */
+@media (prefers-reduced-motion: reduce) {
+  .hz-plane    { transform: translateX(-300px) !important; animation: none !important; }
+  .hz-contrail { opacity: 0 !important; animation: none !important; }
+  .hz-steam    { opacity: 0 !important; }
+}
+
+/* ────────────────────────────────────────────────────────────────────────
    BUTTONS
    ──────────────────────────────────────────────────────────────────────── */
 .btn-primary {

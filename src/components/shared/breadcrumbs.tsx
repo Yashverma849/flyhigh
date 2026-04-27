@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { JsonLd } from "@/components/shared/json-ld";
@@ -10,7 +11,9 @@ type Props = {
 
 export function Breadcrumbs({ items, className }: Props) {
   if (items.length === 0) return null;
-  const crumbs: Crumb[] = items[0].href === "/" ? items : [{ name: "Home", href: "/" }, ...items];
+  const first = items[0];
+  const crumbs: Crumb[] =
+    first && first.href === "/" ? items : [{ name: "Home", href: "/" }, ...items];
 
   return (
     <>
@@ -28,7 +31,11 @@ export function Breadcrumbs({ items, className }: Props) {
                   {c.name}
                 </span>
               ) : (
-                <Link href={c.href} className="u-link" style={{ color: "var(--ash)" }}>
+                <Link
+                  href={c.href as Route}
+                  className="u-link"
+                  style={{ color: "var(--ash)" }}
+                >
                   {c.name}
                 </Link>
               )}

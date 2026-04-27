@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Clock, FileText, Hash, FileCheck2 } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
@@ -85,7 +85,7 @@ export default function ToolsIndexPage() {
               return (
                 <Link
                   key={t.href}
-                  href={t.href}
+                  href={t.href as Route}
                   className="group lift block p-12"
                   style={{ background: "var(--ink)" }}
                   data-cursor="OPEN"

@@ -1,5 +1,6 @@
 "use client";
 
+import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -284,7 +285,7 @@ export function Navbar() {
                     {TOOL_LINKS.map((t) => (
                       <Link
                         key={t.href}
-                        href={t.href}
+                        href={t.href as Route}
                         className="group rounded-xl p-3 text-left transition-colors hover:bg-[var(--ink-3)]"
                       >
                         <div className="flex items-center gap-2 text-sm font-semibold">

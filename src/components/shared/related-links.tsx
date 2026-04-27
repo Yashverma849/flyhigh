@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
@@ -35,7 +36,7 @@ export function RelatedLinks({
           {items.map((it) => (
             <Link
               key={it.href}
-              href={it.href}
+              href={it.href as Route}
               className="group lift block p-8 text-left"
               style={{ background: "var(--ink)" }}
               data-cursor="OPEN"

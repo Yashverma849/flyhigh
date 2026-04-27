@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import Link from "next/link";
 import { ArrowUpRight, BookOpen, MessageSquareText } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
@@ -71,7 +71,7 @@ export default function ResourcesIndexPage() {
               return (
                 <Link
                   key={r.href}
-                  href={r.href}
+                  href={r.href as Route}
                   className="group lift block p-12"
                   style={{ background: "var(--ink)" }}
                   data-cursor="OPEN"

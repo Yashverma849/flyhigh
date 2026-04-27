@@ -29,11 +29,11 @@ const breadcrumbs = [
 
 export default function GlossaryPage() {
   const sorted = [...GLOSSARY].sort((a, b) => a.term.localeCompare(b.term));
-  const grouped = sorted.reduce<Record<string, typeof sorted>>((acc, e) => {
-    const letter = e.term[0].toUpperCase();
-    (acc[letter] ??= []).push(e);
-    return acc;
-  }, {});
+  const grouped: Record<string, typeof sorted> = {};
+  for (const e of sorted) {
+    const letter = (e.term.charAt(0) || "#").toUpperCase();
+    (grouped[letter] ??= []).push(e);
+  }
   const letters = Object.keys(grouped).sort();
 
   return (
@@ -103,7 +103,7 @@ export default function GlossaryPage() {
                 className="grid gap-px md:grid-cols-2"
                 style={{ background: "var(--line)" }}
               >
-                {grouped[l].map((e) => (
+                {(grouped[l] ?? []).map((e) => (
                   <article
                     key={e.term}
                     id={e.term.toLowerCase().replace(/[^a-z0-9]/g, "-")}

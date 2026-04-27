@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
 import { Pill } from "@/components/shared/pill";
@@ -111,13 +110,13 @@ export default function NewsroomPage() {
               <p className="text-base leading-relaxed" style={{ color: "var(--ash)" }}>
                 {a.blurb}
               </p>
-              <Link
+              <a
                 href={`mailto:press@flyhigh.in?subject=${encodeURIComponent("Press enquiry — " + a.title)}`}
                 className="caption mt-6 inline-flex items-center gap-2 transition-colors group-hover:text-[var(--cargo)]"
                 style={{ color: "var(--brass)" }}
               >
                 PRESS ENQUIRY <ArrowUpRight size={12} />
-              </Link>
+              </a>
             </article>
           ))}
         </div>

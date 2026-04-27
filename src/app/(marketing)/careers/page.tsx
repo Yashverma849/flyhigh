@@ -154,7 +154,7 @@ export default function CareersPage() {
             style={{ borderColor: "var(--line)", background: "var(--ink-2)" }}
           >
             {ROLES.map((r) => (
-              <Link
+              <a
                 key={r.slug}
                 href={`mailto:careers@flyhigh.in?subject=${encodeURIComponent("Application — " + r.title)}`}
                 className="group grid grid-cols-1 items-center gap-3 border-b p-6 transition-colors last:border-b-0 hover:bg-[var(--surface-tint-2)] md:grid-cols-12"
@@ -182,7 +182,7 @@ export default function CareersPage() {
                     Apply <ArrowUpRight size={12} />
                   </span>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
           <p className="caption mt-4" style={{ color: "var(--ash)" }}>

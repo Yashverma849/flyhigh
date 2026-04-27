@@ -37,6 +37,8 @@ export const insightCategory = pgEnum("insight_category", [
   "AIR",
   "CUSTOMS",
   "OPERATIONS",
+  "POLICY",
+  "INDUSTRY",
 ]);
 
 // ────────────────────────────────────────────────────────────────────────

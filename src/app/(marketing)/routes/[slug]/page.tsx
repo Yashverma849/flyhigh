@@ -67,7 +67,7 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
       />
 
       <section className="pt-32 pb-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
 
           <div className="mb-6 flex flex-wrap items-center gap-3">
@@ -92,7 +92,7 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
       </section>
 
       <section className="py-12" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="grid grid-cols-2 gap-px lg:grid-cols-4"
             style={{ background: "var(--line)" }}
@@ -128,7 +128,7 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
       </section>
 
       <section className="py-24">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div className="grid gap-16 lg:grid-cols-2">
             <div>
               <SectionLabel num="02">CARRIERS</SectionLabel>
@@ -193,7 +193,7 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
 
       {otherModes.length > 0 && (
         <section className="py-20" style={{ background: "var(--ink-2)" }}>
-          <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+          <div className="site-gutter">
             <SectionLabel num="04">SAME LANE, DIFFERENT MODE</SectionLabel>
             <h2 className="f-display mt-4 mb-8 text-3xl">
               {r.fromCity} → {r.toCity} alternatives.
@@ -222,7 +222,7 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
       )}
 
       <section className="py-24">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
             style={{ border: "1px solid var(--line)" }}

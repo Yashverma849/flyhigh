@@ -36,7 +36,7 @@ export default async function TrackDetailPage({ params }: { params: Promise<{ id
 
   return (
     <section className="py-24">
-      <div className="mx-auto max-w-[960px] px-6 md:px-8">
+      <div className="site-gutter">
         <Link href="/track" className="caption u-link mb-6 inline-flex items-center gap-2">
           ← All tracking
         </Link>

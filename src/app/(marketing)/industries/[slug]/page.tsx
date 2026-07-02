@@ -71,7 +71,7 @@ export default async function IndustryDetailPage({
       />
 
       <section className="relative pt-32 pb-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
@@ -111,7 +111,7 @@ export default async function IndustryDetailPage({
       </section>
 
       <section className="py-20" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="grid grid-cols-2 gap-px lg:grid-cols-4"
             style={{ background: "var(--line)" }}
@@ -129,7 +129,7 @@ export default async function IndustryDetailPage({
       </section>
 
       <section className="py-24">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div className="grid gap-16 lg:grid-cols-2">
             <div>
               <SectionLabel num="02">CHALLENGES</SectionLabel>
@@ -185,7 +185,7 @@ export default async function IndustryDetailPage({
 
       {services.length > 0 && (
         <section className="py-20" style={{ background: "var(--ink-2)" }}>
-          <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+          <div className="site-gutter">
             <SectionLabel num="04">SERVICES INVOLVED</SectionLabel>
             <h2 className="f-display mt-4 mb-10 text-4xl">
               How {ind.name.toLowerCase()} ships through us.
@@ -218,7 +218,7 @@ export default async function IndustryDetailPage({
 
       {cases.length > 0 && (
         <section className="py-24">
-          <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+          <div className="site-gutter">
             <SectionLabel num="05">CASE STUDIES</SectionLabel>
             <h2 className="f-display mt-4 mb-10 text-4xl">From this desk.</h2>
             <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
@@ -246,7 +246,7 @@ export default async function IndustryDetailPage({
       )}
 
       <section className="py-24" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
             style={{ border: "1px solid var(--line)" }}

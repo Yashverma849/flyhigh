@@ -16,7 +16,7 @@ export const metadata: Metadata = pageMetadata({
 export default function ContactPage() {
   return (
     <section className="py-32">
-      <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+      <div className="site-gutter">
         <Breadcrumbs
           items={[
             { name: "Home", href: "/" },

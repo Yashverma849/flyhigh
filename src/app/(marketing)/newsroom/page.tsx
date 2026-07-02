@@ -71,7 +71,7 @@ export default function NewsroomPage() {
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <SectionLabel num="01">NEWSROOM</SectionLabel>
           <h1 className="f-display mt-6 max-w-4xl text-[64px] leading-[0.88] tracking-tighter md:text-[110px]">
@@ -89,7 +89,7 @@ export default function NewsroomPage() {
       </section>
 
       <section className="py-12">
-        <div className="mx-auto max-w-3xl px-6 md:px-8">
+        <div className="site-gutter">
           {ANNOUNCEMENTS.map((a) => (
             <article
               key={a.title}
@@ -119,7 +119,7 @@ export default function NewsroomPage() {
       </section>
 
       <section className="py-24" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="rounded-3xl p-12 md:p-16"
             style={{ border: "1px solid var(--line)", background: "var(--ink)" }}

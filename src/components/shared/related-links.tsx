@@ -26,7 +26,7 @@ export function RelatedLinks({
   if (items.length === 0) return null;
   return (
     <section className="py-24">
-      <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+      <div className="site-gutter">
         <SectionLabel num={num}>{label}</SectionLabel>
         <h2 className="f-display mt-4 mb-10 text-4xl tracking-tight md:text-5xl">{heading}</h2>
         <div

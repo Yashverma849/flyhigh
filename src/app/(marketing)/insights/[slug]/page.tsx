@@ -62,7 +62,7 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
       />
 
       <article className="pt-32 pb-20">
-        <div className="mx-auto max-w-3xl px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs
             items={[
               { name: "Insights", href: "/insights" },
@@ -86,7 +86,7 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
           </div>
         </div>
 
-        <div className="mx-auto mb-12 max-w-5xl px-6 md:px-8">
+        <div className="site-gutter mb-12">
           <div className="cine-frame relative aspect-[21/9] overflow-hidden rounded-2xl">
             <Image
               src={post.image}
@@ -99,7 +99,7 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
           </div>
         </div>
 
-        <div className="mx-auto max-w-3xl px-6 md:px-8">
+        <div className="site-gutter">
           <p
             className="f-display mb-12 text-2xl leading-relaxed md:text-3xl"
             style={{ color: "var(--bone)" }}

@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata({
 export default function TrackPage() {
   return (
     <section className="topo py-32">
-      <div className="mx-auto max-w-[720px] px-6 md:px-8">
+      <div className="site-gutter">
         <Breadcrumbs
           items={[
             { name: "Home", href: "/" },

@@ -54,7 +54,7 @@ export default function AboutPage() {
   return (
     <>
       <section className="relative pt-32 pb-20">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
@@ -95,7 +95,7 @@ export default function AboutPage() {
 
       <section className="py-20" style={{ background: "var(--ink-2)" }}>
         <div
-          className="mx-auto grid max-w-[1440px] gap-px px-6 md:px-8 lg:grid-cols-3"
+          className="site-gutter grid gap-px lg:grid-cols-3"
           style={{ background: "var(--line)" }}
         >
           {values.map(({ t, b, icon: Icon }) => (
@@ -111,7 +111,7 @@ export default function AboutPage() {
       </section>
 
       <section className="py-32">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <SectionLabel num="02">CHRONOLOGY</SectionLabel>
           <h2 className="f-display mt-4 mb-16 text-[56px] leading-[0.95] tracking-tight md:text-[80px]">
             Nine years,
@@ -156,7 +156,7 @@ export default function AboutPage() {
       </section>
 
       <section className="border-t py-32" style={{ borderColor: "var(--line)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <SectionLabel num="03">LEADERSHIP</SectionLabel>
           <h2 className="f-display mt-4 mb-16 text-[56px] leading-[0.95] tracking-tight md:text-[80px]">
             Eight seniors.
@@ -204,7 +204,7 @@ export default function AboutPage() {
       </section>
 
       <section className="py-32 text-center">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <h2 className="f-display text-[64px] leading-[0.9] tracking-tighter md:text-[100px]">
             Want to{" "}
             <span className="f-display-it" style={{ color: "var(--cargo)" }}>

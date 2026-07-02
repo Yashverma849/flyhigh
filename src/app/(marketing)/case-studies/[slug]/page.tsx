@@ -64,7 +64,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       />
 
       <article className="pt-32 pb-20">
-        <div className="mx-auto max-w-3xl px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-6" />
           <Link href="/case-studies" className="caption u-link mb-8 flex items-center gap-1">
             <ChevronLeft size={12} /> ALL CASE STUDIES
@@ -85,7 +85,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </div>
         </div>
 
-        <div className="mx-auto mb-12 max-w-5xl px-6 md:px-8">
+        <div className="site-gutter mb-12">
           <div className="cine-frame relative aspect-[21/9] overflow-hidden rounded-2xl">
             <Image
               src={c.image}
@@ -98,7 +98,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </div>
         </div>
 
-        <div className="mx-auto max-w-5xl px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="mb-16 grid grid-cols-2 gap-px lg:grid-cols-4"
             style={{ background: "var(--line)" }}
@@ -114,7 +114,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </div>
         </div>
 
-        <div className="mx-auto max-w-3xl px-6 md:px-8">
+        <div className="site-gutter">
           <p
             className="f-display mb-12 text-2xl leading-relaxed md:text-3xl"
             style={{ color: "var(--bone)" }}
@@ -179,7 +179,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       </article>
 
       <section className="py-24" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
             style={{ border: "1px solid var(--line)" }}

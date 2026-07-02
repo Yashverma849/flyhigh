@@ -47,7 +47,7 @@ export default function ResourcesIndexPage() {
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-16">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <SectionLabel num="01">RESOURCES</SectionLabel>
           <h1 className="f-display mt-6 max-w-4xl text-[64px] leading-[0.88] tracking-tighter md:text-[110px]">
@@ -66,7 +66,7 @@ export default function ResourcesIndexPage() {
       </section>
 
       <section className="py-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
             {RESOURCES.map((r) => {
               const Icon = r.icon;

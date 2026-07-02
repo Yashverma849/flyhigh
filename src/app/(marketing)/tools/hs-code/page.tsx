@@ -125,7 +125,7 @@ export default function HsCodePage() {
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <SectionLabel num="01">HS CODE LOOKUP</SectionLabel>
           <h1 className="f-display mt-6 text-[56px] leading-[0.88] tracking-tighter md:text-[88px]">
@@ -145,7 +145,7 @@ export default function HsCodePage() {
       </section>
 
       <section className="py-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           {HS_GROUPS.map((g) => (
             <div key={g.chapter} className="mb-12">
               <div className="mb-4 flex items-baseline gap-3">
@@ -200,7 +200,7 @@ export default function HsCodePage() {
       </section>
 
       <section className="py-24" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
             style={{ border: "1px solid var(--line)" }}

@@ -257,7 +257,7 @@ export function Navbar() {
             key={mega.kind}
             className="fade-in absolute top-full right-0 left-0 z-50 hidden lg:block"
           >
-            <div className="w-full px-6 md:px-12 lg:px-24">
+            <div className="site-gutter w-full">
               <div
                 className="animate-slide-down mt-1 rounded-2xl p-6 shadow-2xl"
                 style={{

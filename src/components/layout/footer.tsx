@@ -50,7 +50,7 @@ export function Footer() {
       <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <CompassSvg size={160} />
       </div>
-      <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+      <div className="site-gutter">
         {/* Top row: brand block + sitelink columns */}
         <div className="mb-16 grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">

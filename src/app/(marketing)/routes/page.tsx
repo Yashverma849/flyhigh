@@ -35,7 +35,7 @@ export default function RoutesIndexPage() {
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-16">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <div className="grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">
@@ -62,7 +62,7 @@ export default function RoutesIndexPage() {
       </section>
 
       <section className="py-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="grid grid-cols-2 gap-px md:grid-cols-3 lg:grid-cols-6"
             style={{ background: "var(--line)" }}
@@ -100,7 +100,7 @@ export default function RoutesIndexPage() {
             className="py-20"
             style={{ background: ri % 2 === 0 ? "transparent" : "var(--ink-2)" }}
           >
-            <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+            <div className="site-gutter">
               <div className="mb-8 flex items-end justify-between">
                 <div>
                   <div className="caption mb-2 text-[10px]" style={{ color: "var(--cargo)" }}>
@@ -170,7 +170,7 @@ export default function RoutesIndexPage() {
       })}
 
       <section className="py-24" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
             style={{ border: "1px solid var(--line)" }}

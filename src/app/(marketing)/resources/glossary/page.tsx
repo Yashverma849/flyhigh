@@ -58,7 +58,7 @@ export default function GlossaryPage() {
       />
 
       <section className="pt-32 pb-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <SectionLabel num="01">GLOSSARY</SectionLabel>
           <h1 className="f-display mt-6 text-[56px] leading-[0.88] tracking-tighter md:text-[88px]">
@@ -93,7 +93,7 @@ export default function GlossaryPage() {
       </section>
 
       <section className="py-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           {letters.map((l) => (
             <div key={l} id={`letter-${l}`} className="mb-12">
               <div className="caption mb-4" style={{ color: "var(--cargo)" }}>
@@ -146,7 +146,7 @@ export default function GlossaryPage() {
       </section>
 
       <section className="py-24" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
             style={{ border: "1px solid var(--line)" }}

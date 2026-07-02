@@ -194,7 +194,7 @@ export default function DocumentsPage() {
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <SectionLabel num="01">DOCUMENTS</SectionLabel>
           <h1 className="f-display mt-6 text-[56px] leading-[0.88] tracking-tighter md:text-[88px]">
@@ -220,7 +220,7 @@ export default function DocumentsPage() {
           className="py-16"
           style={{ background: i % 2 === 1 ? "var(--ink-2)" : "transparent" }}
         >
-          <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+          <div className="site-gutter">
             <h2 className="f-display mb-8 text-3xl tracking-tight md:text-4xl">{s.title}</h2>
             <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
               {s.docs.map((d) => (
@@ -249,7 +249,7 @@ export default function DocumentsPage() {
       ))}
 
       <section className="py-16">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <h2 className="f-display mb-8 text-3xl tracking-tight md:text-4xl">
             Quick reference: by destination
           </h2>
@@ -273,7 +273,7 @@ export default function DocumentsPage() {
       </section>
 
       <section className="py-24" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
             style={{ border: "1px solid var(--line)" }}

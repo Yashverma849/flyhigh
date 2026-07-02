@@ -7,7 +7,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
     <>
       <CustomCursor />
       <Navbar />
-      <main>{children}</main>
+      <main className="w-full min-w-0 overflow-x-clip">{children}</main>
       <Footer />
     </>
   );

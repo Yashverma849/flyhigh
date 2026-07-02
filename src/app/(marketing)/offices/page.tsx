@@ -52,7 +52,7 @@ export default function OfficesPage() {
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <div className="grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">
@@ -77,7 +77,7 @@ export default function OfficesPage() {
       </section>
 
       <section className="py-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div className="grid gap-px" style={{ background: "var(--line)" }}>
             {OFFICES.map((o) => (
               <article key={o.city} className="p-8" style={{ background: "var(--ink)" }}>
@@ -127,7 +127,7 @@ export default function OfficesPage() {
       </section>
 
       <section className="py-16" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <SectionLabel num="02">GLOBAL PARTNERS</SectionLabel>
           <h2 className="f-display mt-4 mb-8 text-3xl">Vetted partner network.</h2>
           <p className="mb-10 max-w-3xl text-base" style={{ color: "var(--ash)" }}>
@@ -151,7 +151,7 @@ export default function OfficesPage() {
       </section>
 
       <section className="py-24">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
             style={{ border: "1px solid var(--line)" }}

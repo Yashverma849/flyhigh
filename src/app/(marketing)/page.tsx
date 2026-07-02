@@ -108,7 +108,7 @@ export default function HomePage() {
           <source src="/herosection.mp4" type="video/mp4" />
         </video>
 
-        <div className="relative mx-auto flex min-h-[100svh] max-w-[1440px] flex-col px-6 pt-32 pb-20 md:px-8 lg:pt-40 lg:pb-24">
+        <div className="site-gutter relative flex min-h-[100svh] flex-col pt-32 pb-20 lg:pt-40 lg:pb-24">
           {/* Main grid */}
           <div className="grid flex-1 grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
             {/* LEFT: text */}
@@ -163,7 +163,7 @@ export default function HomePage() {
 
       {/* MANIFESTO */}
       <section className="relative py-32" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div className="grid gap-8 lg:grid-cols-12">
             <div className="self-start lg:sticky lg:top-32 lg:col-span-3">
               <SectionLabel num="02">MANIFESTO</SectionLabel>
@@ -191,7 +191,7 @@ export default function HomePage() {
 
       {/* SERVICES */}
       <section className="border-t py-24" style={{ borderColor: "var(--line)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <SectionLabel num="03">SERVICES</SectionLabel>
@@ -276,7 +276,7 @@ export default function HomePage() {
       {/* STATS */}
       <section className="relative py-32" style={{ background: "var(--ink-2)" }}>
         <div className="dotted-bg absolute inset-0 opacity-30" />
-        <div className="relative mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter relative">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <div>
               <SectionLabel num="04">BY THE NUMBERS</SectionLabel>
@@ -321,7 +321,7 @@ export default function HomePage() {
 
       {/* ROUTE PRICING */}
       <section className="py-32">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <SectionLabel num="05">RATES</SectionLabel>
@@ -395,7 +395,7 @@ export default function HomePage() {
 
       {/* INDUSTRIES SURFACE */}
       <section className="py-32" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div className="mb-12 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <SectionLabel num="—">INDUSTRIES</SectionLabel>
@@ -446,7 +446,7 @@ export default function HomePage() {
 
       {/* TICKER */}
       <section
-        className="border-y py-10"
+        className="w-full min-w-0 overflow-x-clip border-y py-10"
         style={{ borderColor: "var(--line)", background: "var(--ink-2)" }}
       >
         <Marquee speed={50}>
@@ -466,7 +466,7 @@ export default function HomePage() {
 
       {/* TESTIMONIALS */}
       <section className="py-32">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <SectionLabel num="07">VOICES</SectionLabel>
           <div className="mt-8 grid gap-px lg:grid-cols-3" style={{ background: "var(--line)" }}>
             {TESTIMONIALS.map((t, i) => (
@@ -499,7 +499,7 @@ export default function HomePage() {
 
       {/* COVERAGE MAP */}
       <section className="relative py-32" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <div
               className="aspect-[4/3] overflow-hidden rounded-2xl"
@@ -539,7 +539,7 @@ export default function HomePage() {
       {/* CTA */}
       <section className="relative overflow-hidden py-32">
         <div className="hero-glow absolute inset-0" />
-        <div className="relative mx-auto max-w-[1440px] px-6 text-center md:px-8">
+        <div className="site-gutter relative text-center">
           <SectionLabel num="09">
             <span className="mx-auto block">START</span>
           </SectionLabel>

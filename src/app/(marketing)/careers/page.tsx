@@ -98,7 +98,7 @@ export default function CareersPage() {
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <div className="grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">
@@ -124,7 +124,7 @@ export default function CareersPage() {
       </section>
 
       <section className="py-16">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <SectionLabel num="02">VALUES</SectionLabel>
           <div className="mt-8 grid gap-px md:grid-cols-3" style={{ background: "var(--line)" }}>
             {VALUES.map((v, i) => (
@@ -143,7 +143,7 @@ export default function CareersPage() {
       </section>
 
       <section className="py-16" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <SectionLabel num="03">OPEN ROLES</SectionLabel>
           <h2 className="f-display mt-4 mb-10 text-4xl">Currently hiring.</h2>
           <div
@@ -193,7 +193,7 @@ export default function CareersPage() {
       </section>
 
       <section className="py-24">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
             style={{ border: "1px solid var(--line)" }}

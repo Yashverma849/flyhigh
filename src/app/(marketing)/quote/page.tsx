@@ -21,7 +21,7 @@ export const metadata: Metadata = pageMetadata({
 export default function QuotePage() {
   return (
     <section className="relative py-32">
-      <div className="mx-auto max-w-[960px] px-6 md:px-8">
+      <div className="site-gutter">
         <Breadcrumbs
           items={[
             { name: "Home", href: "/" },

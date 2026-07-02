@@ -31,7 +31,7 @@ export default function InsightsPage() {
   return (
     <>
       <section className="pt-32 pb-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
@@ -58,7 +58,7 @@ export default function InsightsPage() {
       </section>
 
       <section className="py-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div className="mb-12 flex flex-wrap items-center gap-2">
             <span className="caption mr-2" style={{ color: "var(--brass)" }}>
               FILTER:

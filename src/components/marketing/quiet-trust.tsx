@@ -26,7 +26,7 @@ export function QuietTrust() {
   return (
     <>
       <section
-        className="border-y py-12 flex flex-col items-center gap-8"
+        className="flex w-full min-w-0 flex-col items-center gap-8 overflow-x-clip border-y py-12"
         style={{ borderColor: "var(--line)" }}
       >
         {CLIENTS.length > 0 ? (

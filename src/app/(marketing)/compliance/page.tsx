@@ -117,7 +117,7 @@ export default function CompliancePage() {
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <SectionLabel num="01">COMPLIANCE</SectionLabel>
           <h1 className="f-display mt-6 max-w-4xl text-[64px] leading-[0.88] tracking-tighter md:text-[110px]">
@@ -136,7 +136,7 @@ export default function CompliancePage() {
       </section>
 
       <section className="py-16">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <h2 className="f-display mb-8 text-3xl tracking-tight md:text-4xl">Credentials</h2>
           <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
             {CREDENTIALS.map((c) => {
@@ -173,7 +173,7 @@ export default function CompliancePage() {
       </section>
 
       <section className="py-16" style={{ background: "var(--ink-2)" }}>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <h2 className="f-display mb-8 text-3xl tracking-tight md:text-4xl">Policies</h2>
           <div className="space-y-4">
             {POLICIES.map((p) => (
@@ -193,7 +193,7 @@ export default function CompliancePage() {
       </section>
 
       <section className="py-24">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
             style={{ border: "1px solid var(--line)" }}

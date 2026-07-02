@@ -28,7 +28,7 @@ export default function ServicesPage() {
   return (
     <>
       <section className="pt-32 pb-16">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
@@ -65,7 +65,7 @@ export default function ServicesPage() {
           className="py-24"
           style={{ background: i % 2 === 0 ? "transparent" : "var(--ink-2)" }}
         >
-          <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+          <div className="site-gutter">
             <div
               className={`grid items-center gap-12 lg:grid-cols-12 ${
                 i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""

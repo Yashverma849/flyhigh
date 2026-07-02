@@ -36,7 +36,7 @@ export default function IndustriesIndexPage() {
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-16">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <div className="grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">
@@ -62,7 +62,7 @@ export default function IndustriesIndexPage() {
       </section>
 
       <section className="py-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+        <div className="site-gutter">
           <div
             className="grid gap-px md:grid-cols-2 lg:grid-cols-4"
             style={{ background: "var(--line)" }}
@@ -103,7 +103,7 @@ export default function IndustriesIndexPage() {
             className="py-24"
             style={{ background: i % 2 === 0 ? "transparent" : "var(--ink-2)" }}
           >
-            <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+            <div className="site-gutter">
               <div
                 className={`grid items-center gap-12 lg:grid-cols-12 ${
                   i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""

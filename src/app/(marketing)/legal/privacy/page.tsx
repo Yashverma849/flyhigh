@@ -98,7 +98,7 @@ export default function PrivacyPage() {
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-12">
-        <div className="mx-auto max-w-3xl px-6 md:px-8">
+        <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <SectionLabel num="—">PRIVACY</SectionLabel>
           <h1 className="f-display mt-6 text-[48px] leading-[0.9] tracking-tight md:text-[72px]">
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
       </section>
 
       <section className="pb-24">
-        <div className="mx-auto max-w-3xl px-6 md:px-8">
+        <div className="site-gutter">
           {SECTIONS.map((s, i) => (
             <div key={s.h} className="mb-12">
               <h2 className="f-display mb-4 text-2xl tracking-tight md:text-3xl">

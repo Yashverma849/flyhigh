@@ -144,3 +144,5 @@ All of these are referenced by the prototype's `style={{ ... }}` blocks; keeping
 ## Deploy
 
 This app is built for Vercel. The middleware runs on the Edge runtime; the auth handlers and DB queries run on Node. Set the env vars above in the Vercel dashboard. Neon's pooled connection string is the right one to use here.
+#   f l y h i g h  
+ 

@@ -11,20 +11,20 @@
    stays "primary text", regardless of which is dark or light.
    ──────────────────────────────────────────────────────────────────────── */
 @theme {
-  --color-ink: #0b1220;
-  --color-ink-2: #131c2e;
-  --color-ink-3: #1b2842;
-  --color-bone: #efe7d6;
-  --color-paper: #f7f3ea;
+  --color-ink: #050a14;
+  --color-ink-2: #0a1c36;
+  --color-ink-3: #133d6b;
+  --color-bone: #f8fafc;
+  --color-paper: #0f172a;
   --color-cargo: #d2691e;
   --color-cargo-2: #b8541a;
   --color-brass: #c9a876;
   --color-brass-2: #a6885a;
-  --color-ash: #8b95a7;
+  --color-ash: #94a3b8;
   --color-rust: #8b3a1c;
   --color-sage: #6f8170;
-  --color-line: rgba(239, 231, 214, 0.14);
-  --color-line-2: rgba(239, 231, 214, 0.06);
+  --color-line: rgba(19, 61, 107, 0.4);
+  --color-line-2: rgba(19, 61, 107, 0.2);
 }
 
 /* Short-name aliases — preserve compatibility with style={{ background: "var(--ink)" }}.
@@ -45,11 +45,11 @@
   --line: var(--color-line);
   --line-2: var(--color-line-2);
 
-  /* Semantic helper tokens — dark defaults */
-  --surface-translucent: rgba(11, 18, 32, 0.85);
-  --surface-tint-2: rgba(239, 231, 214, 0.02);
-  --surface-tint-6: rgba(239, 231, 214, 0.06);
-  --bone-border-20: rgba(239, 231, 214, 0.2);
+  /* Semantic helper tokens — dark theme (Midnight Ocean View) defaults */
+  --surface-translucent: rgba(5, 10, 20, 0.8);
+  --surface-tint-2: rgba(255, 255, 255, 0.02);
+  --surface-tint-6: rgba(255, 255, 255, 0.06);
+  --bone-border-20: rgba(255, 255, 255, 0.2);
   --cargo-tint-4: rgba(210, 105, 30, 0.04);
   --cargo-tint-6: rgba(210, 105, 30, 0.06);
   --cargo-tint-10: rgba(210, 105, 30, 0.1);
@@ -69,23 +69,24 @@
   --rust-border-20: rgba(139, 58, 28, 0.2);
   --rust-border-40: rgba(139, 58, 28, 0.4);
   --rust-border-50: rgba(139, 58, 28, 0.5);
-  --dot-pattern: rgba(239, 231, 214, 0.08);
-  --cine-frame-stop: rgba(11, 18, 32, 0.85);
+  --dot-pattern: rgba(19, 61, 107, 0.2);
+  --cine-frame-stop: rgba(5, 10, 20, 0.85);
   --hero-glow-cargo: rgba(210, 105, 30, 0.18);
   --hero-glow-brass: rgba(201, 168, 118, 0.12);
   --topo-cargo: rgba(210, 105, 30, 0.06);
   --topo-brass: rgba(201, 168, 118, 0.04);
-  --topo-line: rgba(239, 231, 214, 0.02);
+  --topo-line: rgba(19, 61, 107, 0.05);
   --grain-blend: overlay;
   --grain-opacity: 0.06;
+  --nav-bg: rgba(5, 10, 20, 0.45);
+  --nav-panel-bg: rgba(5, 10, 20, 0.95);
 }
 
-/* Light theme — paper/bone surfaces, ink text, deepened cargo/brass for AA contrast.
-   Variable names retain semantic role; the "ink" token still means primary surface. */
+/* Light theme — White and lightest blue color palette */
 [data-theme="light"] {
-  --color-ink: #f7f3ea;
-  --color-ink-2: #efe7d6;
-  --color-ink-3: #dad0b8;
+  --color-ink: #ffffff;
+  --color-ink-2: #f4f8fd;
+  --color-ink-3: #e2e8f0;
   --color-bone: #0b1220;
   --color-paper: #131c2e;
   --color-cargo: #a04714;
@@ -98,7 +99,7 @@
   --color-line: rgba(11, 18, 32, 0.1);
   --color-line-2: rgba(11, 18, 32, 0.05);
 
-  --surface-translucent: rgba(247, 243, 234, 0.85);
+  --surface-translucent: rgba(255, 255, 255, 0.85);
   --surface-tint-2: rgba(11, 18, 32, 0.025);
   --surface-tint-6: rgba(11, 18, 32, 0.06);
   --bone-border-20: rgba(11, 18, 32, 0.25);
@@ -122,7 +123,7 @@
   --rust-border-40: rgba(139, 58, 28, 0.45);
   --rust-border-50: rgba(139, 58, 28, 0.5);
   --dot-pattern: rgba(11, 18, 32, 0.08);
-  --cine-frame-stop: rgba(247, 243, 234, 0.85);
+  --cine-frame-stop: rgba(255, 255, 255, 0.85);
   --hero-glow-cargo: rgba(160, 71, 20, 0.1);
   --hero-glow-brass: rgba(122, 95, 51, 0.07);
   --topo-cargo: rgba(160, 71, 20, 0.07);
@@ -130,7 +131,44 @@
   --topo-line: rgba(11, 18, 32, 0.025);
   --grain-blend: multiply;
   --grain-opacity: 0.04;
+  --nav-bg: rgba(255, 255, 255, 0.45);
+  --nav-panel-bg: rgba(255, 255, 255, 0.97);
 }
+
+/* Force dark theme style variables for the hero section even in light theme */
+[data-theme="light"] .hero-section {
+  --color-bone: #f8fafc;
+  --color-cargo: #d2691e;
+  --color-cargo-2: #b8541a;
+  --color-brass: #c9a876;
+  --color-brass-2: #a6885a;
+  --color-ash: #94a3b8;
+  --color-line: rgba(19, 61, 107, 0.4);
+  --color-line-2: rgba(19, 61, 107, 0.2);
+
+  --bone: var(--color-bone);
+  --cargo: var(--color-cargo);
+  --cargo-2: var(--color-cargo-2);
+  --brass: var(--color-brass);
+  --brass-2: var(--color-brass-2);
+  --ash: var(--color-ash);
+  --line: var(--color-line);
+  --line-2: var(--color-line-2);
+
+  --surface-tint-2: rgba(255, 255, 255, 0.02);
+  --surface-tint-6: rgba(255, 255, 255, 0.06);
+  --bone-border-20: rgba(255, 255, 255, 0.2);
+}
+
+/* Also ensure the primary button's text color matches dark mode in the hero section */
+[data-theme="light"] .hero-section .btn-primary {
+  color: #efe7d6;
+}
+
+.hero-section {
+  color: var(--bone);
+}
+
 
 /* ────────────────────────────────────────────────────────────────────────
    BASE
@@ -145,7 +183,12 @@ body {
   color: var(--bone);
 }
 body {
-  font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family:
+    var(--font-body),
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
   font-feature-settings: "cv11", "ss01", "ss03";
   letter-spacing: -0.005em;
 }
@@ -181,7 +224,12 @@ body {
   letter-spacing: 0.01em;
 }
 .f-body {
-  font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family:
+    var(--font-body),
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
 }
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -209,64 +257,133 @@ body {
    ANIMATIONS
    ──────────────────────────────────────────────────────────────────────── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.96); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 @keyframes drift {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100vw); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
 }
 @keyframes pulseRing {
-  0% { box-shadow: 0 0 0 0 var(--cargo-pulse-50); }
-  100% { box-shadow: 0 0 0 24px var(--cargo-pulse-0); }
+  0% {
+    box-shadow: 0 0 0 0 var(--cargo-pulse-50);
+  }
+  100% {
+    box-shadow: 0 0 0 24px var(--cargo-pulse-0);
+  }
 }
 @keyframes sweep {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(200%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
 }
 @keyframes orbit {
-  from { transform: rotate(0); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 @keyframes typewriter {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 @keyframes counterIn {
-  from { opacity: 0; transform: translateY(8px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 @keyframes lineDraw {
-  from { stroke-dashoffset: 1000; }
-  to { stroke-dashoffset: 0; }
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 @keyframes modalBackdropIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes modalZoomIn {
-  from { opacity: 0; transform: scale(0.94) translateY(8px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 /* True darkening backdrop in BOTH themes — page recedes regardless of theme.
@@ -295,7 +412,7 @@ body {
   border-color: rgba(11, 18, 32, 0.08);
   box-shadow:
     0 30px 90px -20px rgba(11, 18, 32, 0.22),
-    0 8px 24px -8px rgba(11, 18, 32, 0.10),
+    0 8px 24px -8px rgba(11, 18, 32, 0.1),
     0 0 0 1px rgba(11, 18, 32, 0.03);
 }
 
@@ -322,12 +439,7 @@ body {
 /* Hairline rule used inside the modal between sector header and company list */
 .modal-rule {
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    var(--brass-border-40) 0%,
-    var(--line) 60%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg, var(--brass-border-40) 0%, var(--line) 60%, transparent 100%);
 }
 
 /* Sector card hover (subtle cargo accent emerging from the corner) */
@@ -349,7 +461,9 @@ body {
   transform-origin: left;
   transition: transform 0.5s cubic-bezier(0.2, 0.65, 0.3, 1);
 }
-.sector-card:hover::after { transform: scaleX(1); }
+.sector-card:hover::after {
+  transform: scaleX(1);
+}
 
 /* Discoverability cue on the trust trigger — pulses softly to read as clickable */
 .trust-cue {
@@ -376,22 +490,50 @@ body {
   background: rgba(11, 18, 32, 0.025);
 }
 
-.fade-up { animation: fadeUp 0.9s cubic-bezier(0.2, 0.65, 0.3, 1) both; }
-.fade-in { animation: fadeIn 0.7s ease both; }
-.scale-in { animation: scaleIn 0.7s cubic-bezier(0.2, 0.65, 0.3, 1) both; }
-.marquee-track { animation: marquee 40s linear infinite; }
-.marquee-slow { animation: marquee 80s linear infinite; }
-.float-y { animation: float 6s ease-in-out infinite; }
+.fade-up {
+  animation: fadeUp 0.9s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+}
+.fade-in {
+  animation: fadeIn 0.7s ease both;
+}
+.scale-in {
+  animation: scaleIn 0.7s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee-slow {
+  animation: marquee 80s linear infinite;
+}
+.float-y {
+  animation: float 6s ease-in-out infinite;
+}
 
 /* Stagger helpers */
-.s1 { animation-delay: 0.05s; }
-.s2 { animation-delay: 0.15s; }
-.s3 { animation-delay: 0.25s; }
-.s4 { animation-delay: 0.35s; }
-.s5 { animation-delay: 0.45s; }
-.s6 { animation-delay: 0.55s; }
-.s7 { animation-delay: 0.65s; }
-.s8 { animation-delay: 0.75s; }
+.s1 {
+  animation-delay: 0.05s;
+}
+.s2 {
+  animation-delay: 0.15s;
+}
+.s3 {
+  animation-delay: 0.25s;
+}
+.s4 {
+  animation-delay: 0.35s;
+}
+.s5 {
+  animation-delay: 0.45s;
+}
+.s6 {
+  animation-delay: 0.55s;
+}
+.s7 {
+  animation-delay: 0.65s;
+}
+.s8 {
+  animation-delay: 0.75s;
+}
 
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
@@ -413,88 +555,234 @@ body {
    attribute transforms used for positioning. See horizon.tsx.
    ──────────────────────────────────────────────────────────────────────── */
 @keyframes hzStarTwinkle {
-  0%, 100% { opacity: var(--star-o, 0.4); }
-  50%      { opacity: calc(var(--star-o, 0.4) * 0.35); }
+  0%,
+  100% {
+    opacity: var(--star-o, 0.4);
+  }
+  50% {
+    opacity: calc(var(--star-o, 0.4) * 0.35);
+  }
 }
 @keyframes hzStarDrift {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 @keyframes hzShipBob {
-  0%, 100% { transform: translateY(0)    rotate(0deg); }
-  25%      { transform: translateY(-2px) rotate(0.35deg); }
-  50%      { transform: translateY(0)    rotate(0deg); }
-  75%      { transform: translateY(2px)  rotate(-0.35deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-2px) rotate(0.35deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(2px) rotate(-0.35deg);
+  }
 }
 @keyframes hzShipBobDistant {
-  0%, 100% { transform: translateY(0)      rotate(0deg); }
-  50%      { transform: translateY(-1.2px) rotate(0.18deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-1.2px) rotate(0.18deg);
+  }
 }
 @keyframes hzSteam {
-  0%   { opacity: 0;    transform: translate(0, 0)        scale(0.6); }
-  35%  { opacity: 0.18; }
-  100% { opacity: 0;    transform: translate(-6px, -28px) scale(1.6); }
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  35% {
+    opacity: 0.18;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-6px, -28px) scale(1.6);
+  }
 }
 @keyframes hzPorthole {
-  0%, 92%, 100% { opacity: 0.85; }
-  94%           { opacity: 0.55; }
-  96%           { opacity: 0.9; }
+  0%,
+  92%,
+  100% {
+    opacity: 0.85;
+  }
+  94% {
+    opacity: 0.55;
+  }
+  96% {
+    opacity: 0.9;
+  }
 }
 @keyframes hzRippleRow {
-  0%, 100% { transform: translateX(0)     scaleX(1);    opacity: var(--row-o, 0.3); }
-  50%      { transform: translateX(2.5px) scaleX(1.04); opacity: calc(var(--row-o, 0.3) * 1.4); }
+  0%,
+  100% {
+    transform: translateX(0) scaleX(1);
+    opacity: var(--row-o, 0.3);
+  }
+  50% {
+    transform: translateX(2.5px) scaleX(1.04);
+    opacity: calc(var(--row-o, 0.3) * 1.4);
+  }
 }
 @keyframes hzGlint {
-  0%, 100% { opacity: 0;   transform: scale(0.6); }
-  50%      { opacity: 0.8; transform: scale(1); }
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
 }
 @keyframes hzPlaneCross {
-  0%        { transform: translateX(1700px) translateY(0); }
-  8%        { transform: translateX(1700px) translateY(0); }
-  50%       { transform: translateX(720px)  translateY(-6px); }
-  92%, 100% { transform: translateX(-220px) translateY(0); }
+  0% {
+    transform: translateX(1700px) translateY(0);
+  }
+  8% {
+    transform: translateX(1700px) translateY(0);
+  }
+  50% {
+    transform: translateX(720px) translateY(-6px);
+  }
+  92%,
+  100% {
+    transform: translateX(-220px) translateY(0);
+  }
 }
 @keyframes hzContrailFade {
-  0%, 8%   { opacity: 0; }
-  20%      { opacity: 0.45; }
-  85%      { opacity: 0.45; }
-  100%     { opacity: 0; }
+  0%,
+  8% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.45;
+  }
+  85% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 @keyframes hzTideDrift {
-  0%, 100% { transform: translateX(0)    translateY(0); }
-  50%      { transform: translateX(-3px) translateY(0.5px); }
+  0%,
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-3px) translateY(0.5px);
+  }
 }
 @keyframes hzSunBreath {
-  0%, 100% { transform: scale(1);     opacity: 1; }
-  50%      { transform: scale(1.035); opacity: 0.92; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.035);
+    opacity: 0.92;
+  }
 }
 @keyframes hzReflectionShimmer {
-  0%, 100% { opacity: 0.18; }
-  50%      { opacity: 0.12; }
+  0%,
+  100% {
+    opacity: 0.18;
+  }
+  50% {
+    opacity: 0.12;
+  }
 }
 
-.hz-star         { animation: hzStarTwinkle 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-.hz-starfield    { animation: hzStarDrift 720s linear infinite; transform-origin: -400px -800px; transform-box: view-box; }
-.hz-starfield-bg { animation: hzStarDrift 900s linear infinite; transform-origin: -400px -800px; transform-box: view-box; }
-.hz-ship-bob     { animation: hzShipBob 6.4s ease-in-out infinite; transform-box: fill-box; transform-origin: 140px 17px; }
-.hz-ship-distant { animation: hzShipBobDistant 8.8s ease-in-out infinite; transform-box: fill-box; transform-origin: 40px 5px; animation-delay: -2.3s; }
-.hz-steam        { animation: hzSteam 5.5s ease-out infinite; transform-box: fill-box; transform-origin: 270px -22px; }
-.hz-porthole     { animation: hzPorthole 7s ease-in-out infinite; }
-.hz-ripple       { animation: hzRippleRow 9s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-.hz-glint        { animation: hzGlint 4.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-.hz-plane        { animation: hzPlaneCross 75s linear infinite; transform-box: fill-box; }
-.hz-contrail     { animation: hzContrailFade 75s linear infinite; }
-.hz-tide         { animation: hzTideDrift 18.5s ease-in-out infinite; transform-box: fill-box; transform-origin: 950px 500px; }
-.hz-sun-halo     { animation: hzSunBreath 13s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-.hz-reflection   { animation: hzReflectionShimmer 14s ease-in-out infinite; }
+.hz-star {
+  animation: hzStarTwinkle 6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.hz-starfield {
+  animation: hzStarDrift 720s linear infinite;
+  transform-origin: -400px -800px;
+  transform-box: view-box;
+}
+.hz-starfield-bg {
+  animation: hzStarDrift 900s linear infinite;
+  transform-origin: -400px -800px;
+  transform-box: view-box;
+}
+.hz-ship-bob {
+  animation: hzShipBob 6.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: 140px 17px;
+}
+.hz-ship-distant {
+  animation: hzShipBobDistant 8.8s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: 40px 5px;
+  animation-delay: -2.3s;
+}
+.hz-steam {
+  animation: hzSteam 5.5s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: 270px -22px;
+}
+.hz-porthole {
+  animation: hzPorthole 7s ease-in-out infinite;
+}
+.hz-ripple {
+  animation: hzRippleRow 9s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.hz-glint {
+  animation: hzGlint 4.5s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.hz-plane {
+  animation: hzPlaneCross 75s linear infinite;
+  transform-box: fill-box;
+}
+.hz-contrail {
+  animation: hzContrailFade 75s linear infinite;
+}
+.hz-tide {
+  animation: hzTideDrift 18.5s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: 950px 500px;
+}
+.hz-sun-halo {
+  animation: hzSunBreath 13s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.hz-reflection {
+  animation: hzReflectionShimmer 14s ease-in-out infinite;
+}
 
 /* In reduced-motion mode the global rule above zeros all durations.
    Park the cargo plane / contrail / steam fully off-screen so they don't
    appear frozen mid-sky on first paint. */
 @media (prefers-reduced-motion: reduce) {
-  .hz-plane    { transform: translateX(1800px) !important; animation: none !important; }
-  .hz-contrail { opacity: 0 !important; animation: none !important; }
-  .hz-steam    { opacity: 0 !important; }
+  .hz-plane {
+    transform: translateX(1800px) !important;
+    animation: none !important;
+  }
+  .hz-contrail {
+    opacity: 0 !important;
+    animation: none !important;
+  }
+  .hz-steam {
+    opacity: 0 !important;
+  }
 }
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -524,7 +812,9 @@ body {
   transition: transform 0.4s cubic-bezier(0.2, 0.65, 0.3, 1);
   z-index: -1;
 }
-.btn-primary:hover::before { transform: translateY(0); }
+.btn-primary:hover::before {
+  transform: translateY(0);
+}
 .btn-primary:hover {
   transform: translateY(-1px);
   box-shadow: 0 8px 28px var(--cargo-shadow-32);
@@ -533,7 +823,9 @@ body {
 /* Primary button copy: in dark mode `--bone` is the cream text we want; after
    the token swap `--bone` becomes ink (dark text), which would disappear on
    the cargo fill. Force the on-cargo label color to the dark-mode bone always. */
-[data-theme="light"] .btn-primary { color: #efe7d6; }
+[data-theme="light"] .btn-primary {
+  color: #efe7d6;
+}
 
 .btn-ghost {
   display: inline-flex;
@@ -563,10 +855,15 @@ body {
   padding-bottom: 4px;
   transition: all 0.3s;
 }
-.btn-link:hover { border-color: var(--cargo); color: var(--cargo); }
+.btn-link:hover {
+  border-color: var(--cargo);
+  color: var(--cargo);
+}
 
 /* Underline reveal link */
-.u-link { position: relative; }
+.u-link {
+  position: relative;
+}
 .u-link::after {
   content: "";
   position: absolute;
@@ -591,7 +888,9 @@ body {
     box-shadow 0.5s,
     border-color 0.5s;
 }
-.lift:hover { transform: translateY(-4px); }
+.lift:hover {
+  transform: translateY(-4px);
+}
 
 /* Service tile */
 .tile {
@@ -609,16 +908,23 @@ body {
   transition: opacity 0.6s;
   z-index: -1;
 }
-.tile:hover::before { opacity: 0.08; }
+.tile:hover::before {
+  opacity: 0.08;
+}
 
 [data-theme="light"] .tile::before {
   background: linear-gradient(135deg, var(--cargo) 0%, var(--brass) 100%);
 }
-[data-theme="light"] .tile:hover::before { opacity: 0.12; }
+[data-theme="light"] .tile:hover::before {
+  opacity: 0.12;
+}
 
 /* Image cinematic frame — dark gradient endpoint flips to paper in light mode
    so the editorial fade-into-surface effect works regardless of theme. */
-.cine-frame { position: relative; overflow: hidden; }
+.cine-frame {
+  position: relative;
+  overflow: hidden;
+}
 .cine-frame::after {
   content: "";
   position: absolute;
@@ -628,7 +934,9 @@ body {
 }
 
 /* Ticker pause on hover */
-.ticker:hover .marquee-track { animation-play-state: paused; }
+.ticker:hover .marquee-track {
+  animation-play-state: paused;
+}
 
 /* Hero glow */
 .hero-glow {
@@ -648,9 +956,17 @@ body {
 }
 
 /* Custom scrollbar (within scrollables) */
-.scrl::-webkit-scrollbar { width: 6px; height: 6px; }
-.scrl::-webkit-scrollbar-track { background: var(--surface-tint-2); }
-.scrl::-webkit-scrollbar-thumb { background: var(--brass-2); border-radius: 3px; }
+.scrl::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrl::-webkit-scrollbar-track {
+  background: var(--surface-tint-2);
+}
+.scrl::-webkit-scrollbar-thumb {
+  background: var(--brass-2);
+  border-radius: 3px;
+}
 
 /* Form inputs */
 .input {
@@ -669,7 +985,9 @@ body {
   border-color: var(--cargo);
   background: var(--cargo-tint-4);
 }
-.input::placeholder { color: var(--ash); }
+.input::placeholder {
+  color: var(--ash);
+}
 
 /* Chip */
 .chip {
@@ -712,10 +1030,15 @@ body {
 }
 
 /* Numeric tabular */
-.tabular { font-variant-numeric: tabular-nums; }
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
 
 /* Hero word reveal */
-.word-reveal { display: inline-block; overflow: hidden; }
+.word-reveal {
+  display: inline-block;
+  overflow: hidden;
+}
 .word-reveal > span {
   display: inline-block;
   transform: translateY(110%);
@@ -756,18 +1079,15 @@ body {
 }
 
 /* Magnetic-feeling card glow */
-.glow-card { position: relative; }
+.glow-card {
+  position: relative;
+}
 .glow-card::before {
   content: "";
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(
-    135deg,
-    transparent 30%,
-    var(--cargo-border-40) 50%,
-    transparent 70%
-  );
+  background: linear-gradient(135deg, transparent 30%, var(--cargo-border-40) 50%, transparent 70%);
   opacity: 0;
   transition: opacity 0.4s;
   z-index: -1;
@@ -778,7 +1098,9 @@ body {
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
-.glow-card:hover::before { opacity: 1; }
+.glow-card:hover::before {
+  opacity: 1;
+}
 
 /* Editorial caption */
 .caption {
@@ -797,5 +1119,58 @@ body {
 
 /* Mobile fixes */
 @media (max-width: 768px) {
-  .hide-mb { display: none; }
+  .hide-mb {
+    display: none;
+  }
+}
+
+/* Fluid container layout overrides (no-overlap / edge-to-edge styling) */
+.max-w-\[1440px\] {
+  max-width: 100% !important;
+  padding-left: 1.5rem !important; /* px-6 (24px) */
+  padding-right: 1.5rem !important;
+}
+
+@media (min-width: 768px) {
+  .max-w-\[1440px\] {
+    padding-left: 3rem !important; /* md:px-12 (48px) */
+    padding-right: 3rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .max-w-\[1440px\] {
+    padding-left: 6rem !important; /* lg:px-24 (96px) */
+    padding-right: 6rem !important;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Hide default system cursor so only the custom airplane cursor is active */
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  [role="button"],
+  [data-cursor] {
+    cursor: none !important;
+  }
 }

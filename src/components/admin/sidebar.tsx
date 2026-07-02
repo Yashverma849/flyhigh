@@ -98,9 +98,7 @@ export function AdminSidebar({ user }: Props) {
             >
               <Icon size={16} />
               {!collapsed && <span>{item.label}</span>}
-              {!collapsed && active && (
-                <ChevronRight size={14} className="ml-auto opacity-50" />
-              )}
+              {!collapsed && active && <ChevronRight size={14} className="ml-auto opacity-50" />}
             </Link>
           );
         })}

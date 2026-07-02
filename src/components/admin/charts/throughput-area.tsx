@@ -49,20 +49,8 @@ export function ThroughputArea({ data = DEFAULT_DATA }: { data?: Datum[] }) {
           }}
           labelStyle={{ color: p.brass }}
         />
-        <Area
-          type="monotone"
-          dataKey="sea"
-          stroke={p.brass}
-          strokeWidth={1.5}
-          fill="url(#g-sea)"
-        />
-        <Area
-          type="monotone"
-          dataKey="air"
-          stroke={p.cargo}
-          strokeWidth={1.5}
-          fill="url(#g-air)"
-        />
+        <Area type="monotone" dataKey="sea" stroke={p.brass} strokeWidth={1.5} fill="url(#g-sea)" />
+        <Area type="monotone" dataKey="air" stroke={p.cargo} strokeWidth={1.5} fill="url(#g-air)" />
       </AreaChart>
     </ResponsiveContainer>
   );

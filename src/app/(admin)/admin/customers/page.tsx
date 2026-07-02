@@ -20,16 +20,96 @@ const customers: Array<{
   contact: string;
   health: number;
 }> = [
-  { name: "TATA Steel Global", tier: "Platinum", since: "2018", shipments: 412, revenue: "₹4.8 Cr", contact: "Anil Mehrotra", health: 96 },
-  { name: "Reliance Petrochem", tier: "Platinum", since: "2019", shipments: 380, revenue: "₹4.2 Cr", contact: "Priya Bhanushali", health: 94 },
-  { name: "Lumin Pharma", tier: "Gold", since: "2021", shipments: 184, revenue: "₹1.9 Cr", contact: "Dr. Kavita Iyer", health: 88 },
-  { name: "Aurelle Couture", tier: "Gold", since: "2022", shipments: 96, revenue: "₹1.4 Cr", contact: "Mira Saraf", health: 92 },
-  { name: "Helix Energy", tier: "Gold", since: "2020", shipments: 142, revenue: "₹2.1 Cr", contact: "Rajesh Khanna", health: 78 },
-  { name: "Saraf Diamonds", tier: "Silver", since: "2023", shipments: 64, revenue: "₹0.8 Cr", contact: "Hiren Saraf", health: 82 },
-  { name: "Godrej Locks", tier: "Gold", since: "2019", shipments: 218, revenue: "₹2.4 Cr", contact: "Sandeep Naik", health: 90 },
-  { name: "ITC Hotels", tier: "Silver", since: "2022", shipments: 78, revenue: "₹0.9 Cr", contact: "Vivek Subramaniam", health: 85 },
-  { name: "Cyient Aerospace", tier: "Gold", since: "2020", shipments: 156, revenue: "₹1.7 Cr", contact: "Lakshmi Rao", health: 91 },
-  { name: "Tanishq", tier: "Platinum", since: "2018", shipments: 304, revenue: "₹3.6 Cr", contact: "Jyotiraditya Singh", health: 97 },
+  {
+    name: "TATA Steel Global",
+    tier: "Platinum",
+    since: "2018",
+    shipments: 412,
+    revenue: "₹4.8 Cr",
+    contact: "Anil Mehrotra",
+    health: 96,
+  },
+  {
+    name: "Reliance Petrochem",
+    tier: "Platinum",
+    since: "2019",
+    shipments: 380,
+    revenue: "₹4.2 Cr",
+    contact: "Priya Bhanushali",
+    health: 94,
+  },
+  {
+    name: "Lumin Pharma",
+    tier: "Gold",
+    since: "2021",
+    shipments: 184,
+    revenue: "₹1.9 Cr",
+    contact: "Dr. Kavita Iyer",
+    health: 88,
+  },
+  {
+    name: "Aurelle Couture",
+    tier: "Gold",
+    since: "2022",
+    shipments: 96,
+    revenue: "₹1.4 Cr",
+    contact: "Mira Saraf",
+    health: 92,
+  },
+  {
+    name: "Helix Energy",
+    tier: "Gold",
+    since: "2020",
+    shipments: 142,
+    revenue: "₹2.1 Cr",
+    contact: "Rajesh Khanna",
+    health: 78,
+  },
+  {
+    name: "Saraf Diamonds",
+    tier: "Silver",
+    since: "2023",
+    shipments: 64,
+    revenue: "₹0.8 Cr",
+    contact: "Hiren Saraf",
+    health: 82,
+  },
+  {
+    name: "Godrej Locks",
+    tier: "Gold",
+    since: "2019",
+    shipments: 218,
+    revenue: "₹2.4 Cr",
+    contact: "Sandeep Naik",
+    health: 90,
+  },
+  {
+    name: "ITC Hotels",
+    tier: "Silver",
+    since: "2022",
+    shipments: 78,
+    revenue: "₹0.9 Cr",
+    contact: "Vivek Subramaniam",
+    health: 85,
+  },
+  {
+    name: "Cyient Aerospace",
+    tier: "Gold",
+    since: "2020",
+    shipments: 156,
+    revenue: "₹1.7 Cr",
+    contact: "Lakshmi Rao",
+    health: 91,
+  },
+  {
+    name: "Tanishq",
+    tier: "Platinum",
+    since: "2018",
+    shipments: 304,
+    revenue: "₹3.6 Cr",
+    contact: "Jyotiraditya Singh",
+    health: 97,
+  },
 ];
 
 export default function AdminCustomersPage() {
@@ -59,9 +139,24 @@ export default function AdminCustomersPage() {
       <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
         {(
           [
-            { tier: "PLATINUM", count: 12, revenue: "₹38.4 Cr · 56% of revenue", color: "var(--bone)" },
-            { tier: "GOLD", count: 41, revenue: "₹22.8 Cr · 33% of revenue", color: "var(--brass)" },
-            { tier: "SILVER", count: 231, revenue: "₹7.6 Cr · 11% of revenue", color: "var(--ash)" },
+            {
+              tier: "PLATINUM",
+              count: 12,
+              revenue: "₹38.4 Cr · 56% of revenue",
+              color: "var(--bone)",
+            },
+            {
+              tier: "GOLD",
+              count: 41,
+              revenue: "₹22.8 Cr · 33% of revenue",
+              color: "var(--brass)",
+            },
+            {
+              tier: "SILVER",
+              count: 231,
+              revenue: "₹7.6 Cr · 11% of revenue",
+              color: "var(--ash)",
+            },
           ] as const
         ).map((t) => (
           <div
@@ -134,10 +229,7 @@ export default function AdminCustomersPage() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span
-                      className="caption tracking-wider"
-                      style={{ color: TIER_COLOR[c.tier] }}
-                    >
+                    <span className="caption tracking-wider" style={{ color: TIER_COLOR[c.tier] }}>
                       ● {c.tier.toUpperCase()}
                     </span>
                   </td>

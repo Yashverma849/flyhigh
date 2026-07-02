@@ -11,7 +11,12 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Glossary of freight terms, FAQs from the desk, and the working references we share with clients.",
   path: "/resources",
-  keywords: ["freight forwarding glossary", "shipping FAQ", "freight terms", "logistics dictionary"],
+  keywords: [
+    "freight forwarding glossary",
+    "shipping FAQ",
+    "freight terms",
+    "logistics dictionary",
+  ],
 });
 
 const breadcrumbs = [
@@ -62,10 +67,7 @@ export default function ResourcesIndexPage() {
 
       <section className="py-12">
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">
-          <div
-            className="grid gap-px md:grid-cols-2"
-            style={{ background: "var(--line)" }}
-          >
+          <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
             {RESOURCES.map((r) => {
               const Icon = r.icon;
               return (

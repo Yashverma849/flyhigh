@@ -16,11 +16,7 @@ export async function generateMetadata({
   return { title: `Shipment ${id}` };
 }
 
-export default async function TrackDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function TrackDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const shipment = await getShipmentById(id);
   if (!shipment) notFound();
@@ -53,11 +49,7 @@ export default async function TrackDetailPage({
             </div>
             <h1 className="f-display flex items-center gap-4 text-[56px] leading-[0.95] tracking-tight md:text-[72px]">
               {shipment.origin}
-              <ArrowRight
-                size={40}
-                style={{ color: "var(--cargo)" }}
-                className="hidden md:block"
-              />
+              <ArrowRight size={40} style={{ color: "var(--cargo)" }} className="hidden md:block" />
               <br className="md:hidden" />
               {shipment.destination}
             </h1>
@@ -98,7 +90,7 @@ export default async function TrackDetailPage({
           {events.map((e) => (
             <li key={e.id} className="relative">
               <span
-                className="absolute -left-[31px] top-1.5 flex h-3 w-3 items-center justify-center rounded-full"
+                className="absolute top-1.5 -left-[31px] flex h-3 w-3 items-center justify-center rounded-full"
                 style={{ background: "var(--cargo)" }}
               >
                 <Package size={8} className="opacity-0" />
@@ -107,7 +99,10 @@ export default async function TrackDetailPage({
                 <div>
                   <div className="text-sm font-medium">{e.status}</div>
                   {e.location && (
-                    <div className="caption mt-1 flex items-center gap-1" style={{ color: "var(--ash)" }}>
+                    <div
+                      className="caption mt-1 flex items-center gap-1"
+                      style={{ color: "var(--ash)" }}
+                    >
                       <MapPin size={10} /> {e.location}
                     </div>
                   )}

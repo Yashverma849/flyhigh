@@ -13,11 +13,7 @@ export type ActionState =
 
 async function clientIdentifier() {
   const h = await headers();
-  return (
-    h.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    h.get("x-real-ip") ??
-    "anonymous"
-  );
+  return h.get("x-forwarded-for")?.split(",")[0]?.trim() ?? h.get("x-real-ip") ?? "anonymous";
 }
 
 export async function createQuote(_prev: ActionState, formData: FormData): Promise<ActionState> {

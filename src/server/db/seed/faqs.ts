@@ -1,7 +1,8 @@
 export type Faq = {
   q: string;
   a: string;
-  category: "Quoting" | "Operations" | "Customs" | "Cool Chain" | "ATA Carnet" | "Compliance" | "Pricing";
+  category:
+    "Quoting" | "Operations" | "Customs" | "Cool Chain" | "ATA Carnet" | "Compliance" | "Pricing";
 };
 
 export const FAQS: ReadonlyArray<Faq> = [

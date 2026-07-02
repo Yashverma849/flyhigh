@@ -59,9 +59,7 @@ export default function CookiesPage() {
       <section className="pb-24">
         <div className="mx-auto max-w-3xl px-6 md:px-8">
           <div className="mb-12">
-            <h2 className="f-display mb-4 text-2xl tracking-tight md:text-3xl">
-              01. What we use
-            </h2>
+            <h2 className="f-display mb-4 text-2xl tracking-tight md:text-3xl">01. What we use</h2>
             <p className="mb-3 text-base leading-relaxed" style={{ color: "var(--bone)" }}>
               We use cookies and similar technologies (local storage, session storage) for three
               purposes only — keeping the site functional, remembering your preferences, and
@@ -105,7 +103,9 @@ export default function CookiesPage() {
           </div>
 
           <div className="mb-12">
-            <h2 className="f-display mb-4 text-2xl tracking-tight md:text-3xl">03. How to control</h2>
+            <h2 className="f-display mb-4 text-2xl tracking-tight md:text-3xl">
+              03. How to control
+            </h2>
             <p className="mb-3 text-base leading-relaxed" style={{ color: "var(--bone)" }}>
               Most browsers let you block or delete cookies via their settings menu. Disabling
               strictly-necessary cookies will affect the site&apos;s functionality (form state,

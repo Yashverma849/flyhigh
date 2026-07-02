@@ -29,7 +29,7 @@ const breadcrumbs = [
 ];
 
 export default function TransitTimePage() {
-  const grouped = ROUTES.reduce<Record<string, typeof ROUTES[number][]>>((acc, r) => {
+  const grouped = ROUTES.reduce<Record<string, (typeof ROUTES)[number][]>>((acc, r) => {
     (acc[r.region] ??= []).push(r);
     return acc;
   }, {});
@@ -58,11 +58,7 @@ export default function TransitTimePage() {
       </section>
 
       {Object.entries(grouped).map(([region, lanes]) => (
-        <section
-          key={region}
-          className="py-16"
-          style={{ background: "transparent" }}
-        >
+        <section key={region} className="py-16" style={{ background: "transparent" }}>
           <div className="mx-auto max-w-[1440px] px-6 md:px-8">
             <h2 className="f-display mb-8 text-3xl">{region}</h2>
             <div
@@ -80,10 +76,7 @@ export default function TransitTimePage() {
                     <span className="font-medium">
                       {r.fromCity} → {r.toCity}
                     </span>
-                    <div
-                      className="caption mt-1 text-[10px]"
-                      style={{ color: "var(--ash)" }}
-                    >
+                    <div className="caption mt-1 text-[10px]" style={{ color: "var(--ash)" }}>
                       {r.fromCode} → {r.toCode}
                     </div>
                   </div>
@@ -91,10 +84,7 @@ export default function TransitTimePage() {
                     <Pill kind={r.mode === "Air" ? "cargo" : "brass"}>{r.mode}</Pill>
                   </div>
                   <div className="f-mono text-sm md:col-span-2">{r.days} days</div>
-                  <div
-                    className="f-mono text-sm md:col-span-2"
-                    style={{ color: "var(--ash)" }}
-                  >
+                  <div className="f-mono text-sm md:col-span-2" style={{ color: "var(--ash)" }}>
                     {r.freqWeekly}× / wk
                   </div>
                   <div

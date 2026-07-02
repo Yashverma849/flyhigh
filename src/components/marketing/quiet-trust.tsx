@@ -26,38 +26,9 @@ export function QuietTrust() {
   return (
     <>
       <section
-        className="quiet-trust-section cursor-pointer border-y py-20 transition-colors"
+        className="border-y py-12 flex flex-col items-center gap-8"
         style={{ borderColor: "var(--line)" }}
-        onClick={() => setOpen(true)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            setOpen(true);
-          }
-        }}
-        role="button"
-        tabIndex={0}
-        aria-haspopup="dialog"
-        aria-expanded={open}
-        data-cursor="EXPLORE"
       >
-        <div className="mx-auto mb-12 max-w-[1440px] px-6 md:px-8">
-          <div className="flex flex-wrap items-start justify-between gap-6">
-            <div className="max-w-3xl">
-              <SectionLabel num="06">QUIET TRUST</SectionLabel>
-              <p className="f-display mt-4 text-2xl md:text-3xl">
-                Trusted by India&apos;s most demanding shippers —{" "}
-                <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-                  across screen, sea, and sky.
-                </span>
-              </p>
-            </div>
-            <span className="trust-cue caption">
-              EXPLORE BY SECTOR
-              <ArrowUpRight size={12} strokeWidth={2.25} />
-            </span>
-          </div>
-        </div>
         {CLIENTS.length > 0 ? (
           <Marquee speed={60}>
             {CLIENTS.map((c, i) => (
@@ -76,6 +47,15 @@ export function QuietTrust() {
         ) : (
           <div className="h-16" aria-hidden="true" />
         )}
+
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="btn-primary"
+          data-cursor="EXPLORE"
+        >
+          Read more <ArrowUpRight size={16} />
+        </button>
       </section>
 
       {open && <QuietTrustModal onClose={() => setOpen(false)} />}
@@ -157,10 +137,7 @@ function QuietTrustModal({ onClose }: { onClose: () => void }) {
                   <span className="caption" style={{ color: "var(--cargo)" }}>
                     {sector.label}
                   </span>
-                  <span
-                    className="f-mono tabular text-xs"
-                    style={{ color: "var(--brass)" }}
-                  >
+                  <span className="f-mono tabular text-xs" style={{ color: "var(--brass)" }}>
                     {String(sector.companies.length).padStart(2, "0")} CLIENTS
                   </span>
                 </div>

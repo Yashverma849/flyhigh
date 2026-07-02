@@ -25,13 +25,7 @@ export const shipmentStatus = pgEnum("shipment_status", [
   "Delivered",
   "Exception",
 ]);
-export const quoteStatus = pgEnum("quote_status", [
-  "new",
-  "contacted",
-  "quoted",
-  "won",
-  "lost",
-]);
+export const quoteStatus = pgEnum("quote_status", ["new", "contacted", "quoted", "won", "lost"]);
 export const insightCategory = pgEnum("insight_category", [
   "OCEAN",
   "AIR",

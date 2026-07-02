@@ -2,12 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { fontVariables } from "@/lib/fonts";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { JsonLd } from "@/components/shared/json-ld";
-import {
-  SITE_URL,
-  organizationJsonLd,
-  websiteJsonLd,
-  localBusinessJsonLd,
-} from "@/lib/seo";
+import { SITE_URL, organizationJsonLd, websiteJsonLd, localBusinessJsonLd } from "@/lib/seo";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -71,8 +66,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f3ea" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b1220" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#050a14" },
   ],
   colorScheme: "light dark",
   width: "device-width",
@@ -83,10 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
       <body className="grain f-body">
-        <JsonLd
-          id="ld-org"
-          data={[organizationJsonLd(), websiteJsonLd(), localBusinessJsonLd()]}
-        />
+        <JsonLd id="ld-org" data={[organizationJsonLd(), websiteJsonLd(), localBusinessJsonLd()]} />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

@@ -49,8 +49,8 @@ export default function CaseStudiesIndexPage() {
             .
           </h1>
           <p className="mt-8 max-w-2xl text-lg" style={{ color: "var(--ash)" }}>
-            We don&apos;t talk about clients we don&apos;t serve well. These are the moves where
-            the math, the cargo, and the calendar all worked. With the metrics to prove it.
+            We don&apos;t talk about clients we don&apos;t serve well. These are the moves where the
+            math, the cargo, and the calendar all worked. With the metrics to prove it.
           </p>
         </div>
       </section>
@@ -139,7 +139,10 @@ export default function CaseStudiesIndexPage() {
                 <p className="text-sm" style={{ color: "var(--ash)" }}>
                   {c.excerpt}
                 </p>
-                <div className="caption mt-4 flex items-center gap-2" style={{ color: "var(--brass)" }}>
+                <div
+                  className="caption mt-4 flex items-center gap-2"
+                  style={{ color: "var(--brass)" }}
+                >
                   {formatDate(c.date)}
                   <ArrowUpRight
                     size={14}

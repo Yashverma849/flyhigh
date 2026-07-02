@@ -32,10 +32,7 @@ export default function FaqPage() {
   return (
     <>
       <JsonLd
-        data={[
-          breadcrumbJsonLd(breadcrumbs),
-          faqJsonLd(FAQS.map((f) => ({ q: f.q, a: f.a }))),
-        ]}
+        data={[breadcrumbJsonLd(breadcrumbs), faqJsonLd(FAQS.map((f) => ({ q: f.q, a: f.a })))]}
       />
 
       <section className="pt-32 pb-12">
@@ -66,10 +63,7 @@ export default function FaqPage() {
               <div key={cat} className="mb-12">
                 <div className="mb-6 flex items-center gap-3">
                   <Pill kind="brass">{cat.toUpperCase()}</Pill>
-                  <span
-                    className="caption"
-                    style={{ color: "var(--ash)" }}
-                  >
+                  <span className="caption" style={{ color: "var(--ash)" }}>
                     {items.length} questions
                   </span>
                 </div>
@@ -81,10 +75,7 @@ export default function FaqPage() {
                       style={{ border: "1px solid var(--line)", background: "var(--ink)" }}
                     >
                       <summary className="cursor-pointer pr-6 font-semibold">{f.q}</summary>
-                      <p
-                        className="mt-3 text-sm leading-relaxed"
-                        style={{ color: "var(--bone)" }}
-                      >
+                      <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--bone)" }}>
                         {f.a}
                       </p>
                     </details>

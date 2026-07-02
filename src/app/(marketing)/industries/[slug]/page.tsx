@@ -30,7 +30,13 @@ export async function generateMetadata({
     description: ind.desc,
     path: `/industries/${ind.slug}`,
     image: ind.image,
-    keywords: [ind.name.toLowerCase(), "freight forwarder", "India", "logistics", ind.tag.toLowerCase()],
+    keywords: [
+      ind.name.toLowerCase(),
+      "freight forwarder",
+      "India",
+      "logistics",
+      ind.tag.toLowerCase(),
+    ],
   });
 }
 
@@ -215,10 +221,7 @@ export default async function IndustryDetailPage({
           <div className="mx-auto max-w-[1440px] px-6 md:px-8">
             <SectionLabel num="05">CASE STUDIES</SectionLabel>
             <h2 className="f-display mt-4 mb-10 text-4xl">From this desk.</h2>
-            <div
-              className="grid gap-px md:grid-cols-2"
-              style={{ background: "var(--line)" }}
-            >
+            <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
               {cases.map((c) => (
                 <Link
                   key={c.slug}

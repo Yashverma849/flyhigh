@@ -114,8 +114,8 @@ export default function CareersPage() {
             </div>
             <div className="lg:col-span-5 lg:pt-32">
               <p className="text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
-                We hire for taste as well as competence — for the operator who reads the trade
-                press for fun, the broker who can recite the IMDG amendment cycle from memory, the
+                We hire for taste as well as competence — for the operator who reads the trade press
+                for fun, the broker who can recite the IMDG amendment cycle from memory, the
                 engineer who treats a shipment like a state machine.
               </p>
             </div>
@@ -129,10 +129,7 @@ export default function CareersPage() {
           <div className="mt-8 grid gap-px md:grid-cols-3" style={{ background: "var(--line)" }}>
             {VALUES.map((v, i) => (
               <div key={v.title} className="p-8" style={{ background: "var(--ink)" }}>
-                <div
-                  className="caption mb-3"
-                  style={{ color: "var(--cargo)" }}
-                >
+                <div className="caption mb-3" style={{ color: "var(--cargo)" }}>
                   0{i + 1}
                 </div>
                 <div className="f-display mb-3 text-2xl tracking-tight">{v.title}</div>
@@ -212,10 +209,7 @@ export default function CareersPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <a
-                  href="mailto:apprentice@flyhigh.in"
-                  className="btn-primary"
-                >
+                <a href="mailto:apprentice@flyhigh.in" className="btn-primary">
                   Apprenticeship enquiries <ArrowRight size={14} />
                 </a>
                 <Link href="/about" className="btn-ghost">

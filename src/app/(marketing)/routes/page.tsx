@@ -103,10 +103,7 @@ export default function RoutesIndexPage() {
             <div className="mx-auto max-w-[1440px] px-6 md:px-8">
               <div className="mb-8 flex items-end justify-between">
                 <div>
-                  <div
-                    className="caption mb-2 text-[10px]"
-                    style={{ color: "var(--cargo)" }}
-                  >
+                  <div className="caption mb-2 text-[10px]" style={{ color: "var(--cargo)" }}>
                     REGION · 0{ri + 1}
                   </div>
                   <h2 className="f-display text-4xl tracking-tight md:text-5xl">{region}</h2>

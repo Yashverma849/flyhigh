@@ -41,8 +41,7 @@ export const INSIGHTS: ReadonlyArray<Insight> = [
     id: 3,
     slug: "ata-carnet-for-fashion",
     title: "ATA Carnet for fashion: the case for temporary admission",
-    excerpt:
-      "Runways, art fairs, and trade shows — when carnet beats outright export by a margin.",
+    excerpt: "Runways, art fairs, and trade shows — when carnet beats outright export by a margin.",
     category: "CUSTOMS",
     date: "2026-02-24",
     read: "5 min",

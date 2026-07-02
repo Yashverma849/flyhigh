@@ -14,7 +14,6 @@ export const CLIENT_SECTORS: ClientSector[] = [
     label: "Movies",
     pinned: true,
     companies: [
-      "ROHIT SHETTY PICTUREZ",
       "STAR INDIA",
       "VIACOM 18",
       "SALMAN KHAN FILMS",
@@ -25,9 +24,9 @@ export const CLIENT_SECTORS: ClientSector[] = [
     ],
   },
   { id: "energy-heavy", label: "Energy & Heavy Industry", companies: [] },
-  { id: "automotive",   label: "Automotive",              companies: [] },
-  { id: "consumer",     label: "Consumer & FMCG",         companies: [] },
-  { id: "technology",   label: "Technology",              companies: [] },
+  { id: "automotive", label: "Automotive", companies: [] },
+  { id: "consumer", label: "Consumer & FMCG", companies: [] },
+  { id: "technology", label: "Technology", companies: [] },
 ];
 
 export const ORDERED_SECTORS: ClientSector[] = [...CLIENT_SECTORS].sort((a, b) => {

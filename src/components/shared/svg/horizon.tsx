@@ -24,7 +24,7 @@ const BG_STARS = Array.from({ length: BG_STAR_COUNT }, (_, i) => {
   const a = (seed % 1440) / 1;
   const b = ((seed * 49297) % 380) / 1;
   const r = ((seed % 30) / 100) * 0.2 + 0.2;
-  const o = ((seed % 14) / 100) + 0.15;
+  const o = (seed % 14) / 100 + 0.15;
   const dur = 6 + ((seed * 7) % 60) / 10;
   const delay = -((seed * 13) % 90) / 10;
   return { cx: a, cy: b, r, opacity: o, dur, delay };
@@ -40,7 +40,7 @@ export function Horizon({
   return (
     <svg
       viewBox="0 0 1440 720"
-      className={className ?? "w-full h-full"}
+      className={className ?? "h-full w-full"}
       preserveAspectRatio={preserveAspectRatio}
       aria-hidden="true"
     >
@@ -149,17 +149,78 @@ export function Horizon({
           <rect x="265" y="-22" width="10" height="14" fill="var(--ink)" />
           {Array.from({ length: 11 }, (_, i) => i).map((i) => (
             <g key={i} transform={`translate(${5 + i * 22}, -16)`}>
-              <rect width="20" height="16" fill="var(--ink)" stroke="var(--ink-3)" strokeWidth="0.5" />
+              <rect
+                width="20"
+                height="16"
+                fill="var(--ink)"
+                stroke="var(--ink-3)"
+                strokeWidth="0.5"
+              />
             </g>
           ))}
-          <line x1="0" y1="2" x2="280" y2="2" stroke="var(--brass)" strokeWidth="0.5" opacity="0.4" />
+          <line
+            x1="0"
+            y1="2"
+            x2="280"
+            y2="2"
+            stroke="var(--brass)"
+            strokeWidth="0.5"
+            opacity="0.4"
+          />
           {/* Lit portholes (warm cargo glow with subtle flicker) */}
-          <rect className="hz-porthole" x="244" y="-4" width="2.5" height="2.5" fill="var(--cargo)" />
-          <rect className="hz-porthole" x="250" y="-4" width="2.5" height="2.5" fill="var(--cargo)" style={{ animationDelay: "-2s" }} />
-          <rect className="hz-porthole" x="256" y="-4" width="2.5" height="2.5" fill="var(--cargo)" style={{ animationDelay: "-4s" }} />
-          <rect className="hz-porthole" x="244" y="2" width="2.5" height="2.5" fill="var(--cargo)" style={{ animationDelay: "-1s" }} />
-          <rect className="hz-porthole" x="250" y="2" width="2.5" height="2.5" fill="var(--cargo)" style={{ animationDelay: "-3s" }} />
-          <rect className="hz-porthole" x="256" y="2" width="2.5" height="2.5" fill="var(--cargo)" style={{ animationDelay: "-5s" }} />
+          <rect
+            className="hz-porthole"
+            x="244"
+            y="-4"
+            width="2.5"
+            height="2.5"
+            fill="var(--cargo)"
+          />
+          <rect
+            className="hz-porthole"
+            x="250"
+            y="-4"
+            width="2.5"
+            height="2.5"
+            fill="var(--cargo)"
+            style={{ animationDelay: "-2s" }}
+          />
+          <rect
+            className="hz-porthole"
+            x="256"
+            y="-4"
+            width="2.5"
+            height="2.5"
+            fill="var(--cargo)"
+            style={{ animationDelay: "-4s" }}
+          />
+          <rect
+            className="hz-porthole"
+            x="244"
+            y="2"
+            width="2.5"
+            height="2.5"
+            fill="var(--cargo)"
+            style={{ animationDelay: "-1s" }}
+          />
+          <rect
+            className="hz-porthole"
+            x="250"
+            y="2"
+            width="2.5"
+            height="2.5"
+            fill="var(--cargo)"
+            style={{ animationDelay: "-3s" }}
+          />
+          <rect
+            className="hz-porthole"
+            x="256"
+            y="2"
+            width="2.5"
+            height="2.5"
+            fill="var(--cargo)"
+            style={{ animationDelay: "-5s" }}
+          />
           {/* Bow wave / foam */}
           <path
             d="M -6 30 Q 6 26 18 30 Q 30 34 42 30"
@@ -176,7 +237,15 @@ export function Horizon({
             fill="none"
           />
           {/* Funnel steam — hardcoded bone so it reads as light vapor in both themes */}
-          <ellipse className="hz-steam" cx="270" cy="-22" rx="3" ry="2" fill="#efe7d6" opacity="0" />
+          <ellipse
+            className="hz-steam"
+            cx="270"
+            cy="-22"
+            rx="3"
+            ry="2"
+            fill="#efe7d6"
+            opacity="0"
+          />
           <ellipse
             className="hz-steam"
             cx="270"

@@ -44,8 +44,7 @@ export default function ContactPage() {
                 Arjun House, Sahar Cargo, Andheri East, Mumbai 400099, India
               </p>
               <p className="flex items-center gap-2">
-                <Phone size={14} /> +91 9322627766 ·{" "}
-                <span className="f-mono">24/7 ops</span>
+                <Phone size={14} /> +91 9322627766 · <span className="f-mono">24/7 ops</span>
               </p>
               <p className="flex items-center gap-2">
                 <Mail size={14} /> flyhighfreightservices@gmail.com

@@ -31,11 +31,7 @@ export function Breadcrumbs({ items, className }: Props) {
                   {c.name}
                 </span>
               ) : (
-                <Link
-                  href={c.href as Route}
-                  className="u-link"
-                  style={{ color: "var(--ash)" }}
-                >
+                <Link href={c.href as Route} className="u-link" style={{ color: "var(--ash)" }}>
                   {c.name}
                 </Link>
               )}

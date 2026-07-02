@@ -68,11 +68,7 @@ const PROCESS = [
   },
 ];
 
-export default async function ServiceDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const s = getServiceBySlug(slug);
   if (!s) notFound();
@@ -87,9 +83,10 @@ export default async function ServiceDetailPage({
     { l: "AVAILABILITY", v: "24/7" },
   ];
 
-  const relatedIndustries = INDUSTRIES.filter((ind) =>
-    ind.relatedServices.includes(s.id),
-  ).slice(0, 4);
+  const relatedIndustries = INDUSTRIES.filter((ind) => ind.relatedServices.includes(s.id)).slice(
+    0,
+    4,
+  );
   const relatedCases = CASE_STUDIES.filter((c) => c.serviceSlug === s.slug).slice(0, 3);
 
   return (
@@ -113,10 +110,7 @@ export default async function ServiceDetailPage({
             ]}
             className="mb-6"
           />
-          <Link
-            href="/services"
-            className="caption u-link mb-8 flex items-center gap-2"
-          >
+          <Link href="/services" className="caption u-link mb-8 flex items-center gap-2">
             <ChevronLeft size={12} /> ALL SERVICES
           </Link>
           <div className="grid gap-12 lg:grid-cols-12">
@@ -211,11 +205,7 @@ export default async function ServiceDetailPage({
               </h2>
               <div className="space-y-px" style={{ background: "var(--line)" }}>
                 {PROCESS.map((p) => (
-                  <div
-                    key={p.n}
-                    className="flex gap-6 p-6"
-                    style={{ background: "var(--ink)" }}
-                  >
+                  <div key={p.n} className="flex gap-6 p-6" style={{ background: "var(--ink)" }}>
                     <div className="f-mono text-xs" style={{ color: "var(--cargo)" }}>
                       {p.n}
                     </div>
@@ -265,9 +255,7 @@ export default async function ServiceDetailPage({
         <section className="py-20" style={{ background: "var(--ink-2)" }}>
           <div className="mx-auto max-w-[1440px] px-6 md:px-8">
             <SectionLabel num="—">USED BY</SectionLabel>
-            <h2 className="f-display mt-4 mb-10 text-4xl">
-              Industries that lean on this desk.
-            </h2>
+            <h2 className="f-display mt-4 mb-10 text-4xl">Industries that lean on this desk.</h2>
             <div
               className="grid gap-px md:grid-cols-2 lg:grid-cols-4"
               style={{ background: "var(--line)" }}

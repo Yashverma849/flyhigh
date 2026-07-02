@@ -53,8 +53,8 @@ export default function IndustriesIndexPage() {
             <div className="lg:col-span-5 lg:pt-32">
               <p className="text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
                 We don&apos;t pretend that pharma cool-chain and lithium-battery air corridors are
-                the same craft. Nine industry desks, each led by someone who reads the trade
-                press in their sector, not just ours.
+                the same craft. Nine industry desks, each led by someone who reads the trade press
+                in their sector, not just ours.
               </p>
             </div>
           </div>
@@ -148,11 +148,7 @@ export default function IndustriesIndexPage() {
                     {ind.desc}
                   </p>
                   <div className="flex gap-3">
-                    <Link
-                      href={`/industries/${ind.slug}`}
-                      className="btn-ghost"
-                      data-cursor="OPEN"
-                    >
+                    <Link href={`/industries/${ind.slug}`} className="btn-ghost" data-cursor="OPEN">
                       Industry detail <ArrowRight size={14} />
                     </Link>
                     <Link href="/quote" className="btn-primary" data-cursor="QUOTE">

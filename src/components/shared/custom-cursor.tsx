@@ -2,6 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
+import { Plane } from "lucide-react";
 
 export function CustomCursor() {
   const ref = useRef<HTMLDivElement>(null);
@@ -55,14 +56,14 @@ export function CustomCursor() {
         </div>
       </div>
       <div
-        className={`absolute top-5 left-5 rounded-full transition-all duration-300 ${label ? "opacity-0" : "opacity-100"}`}
+        className={`absolute top-3 left-3 transition-all duration-300 ${label ? "scale-50 opacity-0" : "scale-100 opacity-100"}`}
         style={{
-          width: 8,
-          height: 8,
-          background: "var(--bone)",
+          color: "var(--bone)",
           mixBlendMode: isLight ? "normal" : "difference",
         }}
-      />
+      >
+        <Plane size={16} className="-rotate-90" />
+      </div>
     </div>
   );
 }

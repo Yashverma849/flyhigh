@@ -108,19 +108,11 @@ export function Footer() {
               SERVICES
             </div>
             {SERVICES.map((s) => (
-              <Link
-                key={s.id}
-                href={`/services/${s.slug}`}
-                className="u-link block py-1.5 text-sm"
-              >
+              <Link key={s.id} href={`/services/${s.slug}`} className="u-link block py-1.5 text-sm">
                 {s.name}
               </Link>
             ))}
-            <Link
-              href="/services"
-              className="caption mt-3 block"
-              style={{ color: "var(--cargo)" }}
-            >
+            <Link href="/services" className="caption mt-3 block" style={{ color: "var(--cargo)" }}>
               ALL SERVICES →
             </Link>
           </div>
@@ -171,7 +163,10 @@ export function Footer() {
         </div>
 
         {/* Second row: tools, featured routes, newsletter */}
-        <div className="mb-16 grid gap-12 border-t pt-12 lg:grid-cols-12" style={{ borderColor: "var(--line-2)" }}>
+        <div
+          className="mb-16 grid gap-12 border-t pt-12 lg:grid-cols-12"
+          style={{ borderColor: "var(--line-2)" }}
+        >
           <div className="lg:col-span-3">
             <div className="caption mb-4" style={{ color: "var(--brass)" }}>
               TOOLS
@@ -189,20 +184,12 @@ export function Footer() {
             </div>
             <div className="grid gap-x-4 gap-y-1.5 sm:grid-cols-2">
               {featuredRoutes.map((r) => (
-                <Link
-                  key={r.slug}
-                  href={`/routes/${r.slug}`}
-                  className="u-link text-sm"
-                >
+                <Link key={r.slug} href={`/routes/${r.slug}`} className="u-link text-sm">
                   {r.fromCity} → {r.toCity}
                 </Link>
               ))}
             </div>
-            <Link
-              href="/routes"
-              className="caption mt-3 block"
-              style={{ color: "var(--cargo)" }}
-            >
+            <Link href="/routes" className="caption mt-3 block" style={{ color: "var(--cargo)" }}>
               ALL ROUTES →
             </Link>
           </div>
@@ -222,11 +209,7 @@ export function Footer() {
                 className="input text-sm"
                 placeholder="your@company.com"
               />
-              <button
-                type="submit"
-                className="btn-primary shrink-0 text-sm"
-                aria-label="Subscribe"
-              >
+              <button type="submit" className="btn-primary shrink-0 text-sm" aria-label="Subscribe">
                 <Send size={14} />
               </button>
             </form>
@@ -235,11 +218,7 @@ export function Footer() {
             </div>
             <div className="mt-3 flex flex-wrap gap-2">
               {certifications.map((c) => (
-                <Link
-                  key={c}
-                  href="/compliance"
-                  className="chip f-mono text-[10px]"
-                >
+                <Link key={c} href="/compliance" className="chip f-mono text-[10px]">
                   {c}
                 </Link>
               ))}

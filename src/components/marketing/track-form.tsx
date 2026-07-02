@@ -7,13 +7,10 @@ import { trackShipment } from "@/server/actions/track";
 const initial = { error: undefined as string | undefined };
 
 export function TrackForm() {
-  const [state, action, pending] = useActionState(
-    async (_prev: typeof initial, fd: FormData) => {
-      const result = await trackShipment(_prev, fd);
-      return result ?? initial;
-    },
-    initial,
-  );
+  const [state, action, pending] = useActionState(async (_prev: typeof initial, fd: FormData) => {
+    const result = await trackShipment(_prev, fd);
+    return result ?? initial;
+  }, initial);
 
   return (
     <form action={action} className="space-y-3">
@@ -28,7 +25,7 @@ export function TrackForm() {
             name="id"
             required
             placeholder="FH-2403-001892"
-            className="input pl-11 uppercase tracking-wider"
+            className="input pl-11 tracking-wider uppercase"
             autoComplete="off"
             aria-label="Tracking ID"
           />

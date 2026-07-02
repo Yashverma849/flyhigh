@@ -26,7 +26,11 @@ const breadcrumbs = [
   { name: "HS code lookup", href: "/tools/hs-code" },
 ];
 
-const HS_GROUPS: { chapter: string; title: string; codes: { hs: string; desc: string; bcd: string }[] }[] = [
+const HS_GROUPS: {
+  chapter: string;
+  title: string;
+  codes: { hs: string; desc: string; bcd: string }[];
+}[] = [
   {
     chapter: "Chapter 30",
     title: "Pharmaceutical products",
@@ -70,15 +74,27 @@ const HS_GROUPS: { chapter: string; title: string; codes: { hs: string; desc: st
     codes: [
       { hs: "8517.12.00", desc: "Telephones for cellular networks", bcd: "20%" },
       { hs: "8507.60.00", desc: "Lithium-ion accumulators", bcd: "15%" },
-      { hs: "8541.40.00", desc: "Photosensitive semiconductor devices, photovoltaic cells", bcd: "0%" },
-      { hs: "8542.31.00", desc: "Electronic integrated circuits — processors and controllers", bcd: "0%" },
+      {
+        hs: "8541.40.00",
+        desc: "Photosensitive semiconductor devices, photovoltaic cells",
+        bcd: "0%",
+      },
+      {
+        hs: "8542.31.00",
+        desc: "Electronic integrated circuits — processors and controllers",
+        bcd: "0%",
+      },
     ],
   },
   {
     chapter: "Chapter 87",
     title: "Vehicles and parts",
     codes: [
-      { hs: "8703.80.10", desc: "Motor cars with electric motor (BEV) — capacity ≤4 persons", bcd: "70-100%" },
+      {
+        hs: "8703.80.10",
+        desc: "Motor cars with electric motor (BEV) — capacity ≤4 persons",
+        bcd: "70-100%",
+      },
       { hs: "8708.40.00", desc: "Gear boxes and parts thereof", bcd: "10%" },
       { hs: "8714.91.00", desc: "Frames and forks of bicycles", bcd: "10%" },
     ],
@@ -195,8 +211,8 @@ export default function HsCodePage() {
                   Need a binding HS opinion?
                 </h2>
                 <p className="text-lg" style={{ color: "var(--ash)" }}>
-                  Our customs desk issues pre-shipment HS opinions on letterhead — useful for
-                  audit defence and duty exposure modelling.
+                  Our customs desk issues pre-shipment HS opinions on letterhead — useful for audit
+                  defence and duty exposure modelling.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">

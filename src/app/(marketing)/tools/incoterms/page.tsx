@@ -161,12 +161,7 @@ const FAQS = [
 export default function IncotermsPage() {
   return (
     <>
-      <JsonLd
-        data={[
-          breadcrumbJsonLd(breadcrumbs),
-          faqJsonLd(FAQS),
-        ]}
-      />
+      <JsonLd data={[breadcrumbJsonLd(breadcrumbs), faqJsonLd(FAQS)]} />
 
       <section className="pt-32 pb-12">
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">
@@ -190,10 +185,7 @@ export default function IncotermsPage() {
 
       <section className="py-12">
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">
-          <div
-            className="grid gap-px md:grid-cols-2"
-            style={{ background: "var(--line)" }}
-          >
+          <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
             {INCOTERMS.map((t) => (
               <article
                 key={t.code}
@@ -202,10 +194,7 @@ export default function IncotermsPage() {
                 style={{ background: "var(--ink)" }}
               >
                 <div className="mb-3 flex items-center gap-3">
-                  <span
-                    className="f-display text-3xl"
-                    style={{ color: "var(--cargo)" }}
-                  >
+                  <span className="f-display text-3xl" style={{ color: "var(--cargo)" }}>
                     {t.code}
                   </span>
                   <Pill kind={t.modes.includes("Sea") ? "brass" : "cargo"}>

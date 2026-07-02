@@ -5,11 +5,7 @@ import { shipmentEvents, shipments } from "@/server/db/schema";
 
 export async function getShipmentById(id: string) {
   if (!isDbConfigured) return null;
-  const result = await db
-    .select()
-    .from(shipments)
-    .where(eq(shipments.id, id))
-    .limit(1);
+  const result = await db.select().from(shipments).where(eq(shipments.id, id)).limit(1);
   return result[0] ?? null;
 }
 

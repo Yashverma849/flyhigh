@@ -98,11 +98,7 @@ export default function NewsroomPage() {
             >
               <div className="mb-4 flex items-center gap-3">
                 <Pill kind="cargo">{a.tag}</Pill>
-                <time
-                  className="caption"
-                  dateTime={a.date}
-                  style={{ color: "var(--brass)" }}
-                >
+                <time className="caption" dateTime={a.date} style={{ color: "var(--brass)" }}>
                   {formatDate(a.date)}
                 </time>
               </div>

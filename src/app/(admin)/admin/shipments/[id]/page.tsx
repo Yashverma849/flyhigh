@@ -29,10 +29,7 @@ export default async function AdminShipmentDetailPage({
 
   return (
     <div className="space-y-8">
-      <Link
-        href="/admin/shipments"
-        className="caption u-link flex items-center gap-1.5"
-      >
+      <Link href="/admin/shipments" className="caption u-link flex items-center gap-1.5">
         <ChevronLeft size={12} /> ALL SHIPMENTS
       </Link>
 
@@ -57,7 +54,8 @@ export default async function AdminShipmentDetailPage({
         </div>
       </header>
 
-      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-md md:grid-cols-4"
+      <div
+        className="grid grid-cols-2 gap-px overflow-hidden rounded-md md:grid-cols-4"
         style={{ background: "var(--line)" }}
       >
         {[
@@ -93,10 +91,7 @@ export default async function AdminShipmentDetailPage({
             Add event
           </button>
         </div>
-        <ol
-          className="relative space-y-6 border-l pl-6"
-          style={{ borderColor: "var(--line)" }}
-        >
+        <ol className="relative space-y-6 border-l pl-6" style={{ borderColor: "var(--line)" }}>
           {events.length === 0 && (
             <li className="caption" style={{ color: "var(--ash)" }}>
               No events recorded yet.
@@ -105,7 +100,7 @@ export default async function AdminShipmentDetailPage({
           {events.map((e) => (
             <li key={e.id} className="relative">
               <span
-                className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full"
+                className="absolute top-1.5 -left-[31px] h-3 w-3 rounded-full"
                 style={{ background: "var(--cargo)" }}
               />
               <div className="flex items-start justify-between gap-4">
@@ -125,10 +120,7 @@ export default async function AdminShipmentDetailPage({
                     </p>
                   )}
                 </div>
-                <div
-                  className="caption f-mono shrink-0"
-                  style={{ color: "var(--brass)" }}
-                >
+                <div className="caption f-mono shrink-0" style={{ color: "var(--brass)" }}>
                   {formatDate(e.occurredAt, { hour: "2-digit", minute: "2-digit" })}
                 </div>
               </div>

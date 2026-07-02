@@ -42,10 +42,7 @@ export function RelatedLinks({
               data-cursor="OPEN"
             >
               {it.tag && (
-                <div
-                  className="caption mb-3 text-[10px]"
-                  style={{ color: "var(--cargo)" }}
-                >
+                <div className="caption mb-3 text-[10px]" style={{ color: "var(--cargo)" }}>
                   {it.tag}
                 </div>
               )}

@@ -37,16 +37,14 @@ export async function generateMetadata({
   });
 }
 
-export default async function RouteDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function RouteDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const r = getRouteBySlug(slug);
   if (!r) notFound();
 
-  const sameRegion = getRoutesByRegion(r.region).filter((x) => x.slug !== r.slug).slice(0, 3);
+  const sameRegion = getRoutesByRegion(r.region)
+    .filter((x) => x.slug !== r.slug)
+    .slice(0, 3);
   const otherModes = ROUTES.filter(
     (x) => x.fromCity === r.fromCity && x.toCity === r.toCity && x.slug !== r.slug,
   );
@@ -103,10 +101,7 @@ export default async function RouteDetailPage({
               <div className="caption" style={{ color: "var(--brass)" }}>
                 INDICATIVE FROM
               </div>
-              <div
-                className="f-display mt-2 text-3xl"
-                style={{ color: "var(--cargo)" }}
-              >
+              <div className="f-display mt-2 text-3xl" style={{ color: "var(--cargo)" }}>
                 {formatINR(r.rate)}
               </div>
             </div>
@@ -172,10 +167,7 @@ export default async function RouteDetailPage({
               <ul className="space-y-2">
                 {r.documents.map((d, i) => (
                   <li key={d} className="flex items-center gap-3 text-sm">
-                    <span
-                      className="f-mono text-xs"
-                      style={{ color: "var(--cargo)" }}
-                    >
+                    <span className="f-mono text-xs" style={{ color: "var(--cargo)" }}>
                       {(i + 1).toString().padStart(2, "0")}
                     </span>
                     {d}
@@ -219,10 +211,7 @@ export default async function RouteDetailPage({
                 >
                   <Pill kind={o.mode === "Air" ? "cargo" : "brass"}>{o.mode}</Pill>
                   <div className="f-display mt-3 text-2xl">{o.days} days</div>
-                  <div
-                    className="f-display mt-1 text-lg"
-                    style={{ color: "var(--cargo)" }}
-                  >
+                  <div className="f-display mt-1 text-lg" style={{ color: "var(--cargo)" }}>
                     From {formatINR(o.rate)}
                   </div>
                 </Link>

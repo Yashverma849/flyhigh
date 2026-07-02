@@ -32,7 +32,8 @@ const CREDENTIALS = [
     icon: Award,
     code: "IATA",
     name: "International Air Transport Association",
-    detail: "Accredited cargo agent. Authorised to issue Air Waybills directly on every IATA carrier.",
+    detail:
+      "Accredited cargo agent. Authorised to issue Air Waybills directly on every IATA carrier.",
     since: "2018",
   },
   {
@@ -67,7 +68,8 @@ const CREDENTIALS = [
     icon: Shield,
     code: "C-TPAT-aware",
     name: "Customs-Trade Partnership Against Terrorism (US)",
-    detail: "Operating procedures aligned with C-TPAT minimum security criteria. We partner with C-TPAT-certified brokers in the US.",
+    detail:
+      "Operating procedures aligned with C-TPAT minimum security criteria. We partner with C-TPAT-certified brokers in the US.",
     since: "2023",
   },
   {
@@ -127,8 +129,8 @@ export default function CompliancePage() {
             .
           </h1>
           <p className="mt-8 max-w-3xl text-lg" style={{ color: "var(--ash)" }}>
-            Eight credentials, five policies, and a posture of transparency. We&apos;ll send you
-            the certificates on request — most freight forwarders won&apos;t.
+            Eight credentials, five policies, and a posture of transparency. We&apos;ll send you the
+            certificates on request — most freight forwarders won&apos;t.
           </p>
         </div>
       </section>
@@ -136,18 +138,11 @@ export default function CompliancePage() {
       <section className="py-16">
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">
           <h2 className="f-display mb-8 text-3xl tracking-tight md:text-4xl">Credentials</h2>
-          <div
-            className="grid gap-px md:grid-cols-2"
-            style={{ background: "var(--line)" }}
-          >
+          <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
             {CREDENTIALS.map((c) => {
               const Icon = c.icon;
               return (
-                <article
-                  key={c.code}
-                  className="p-8"
-                  style={{ background: "var(--ink)" }}
-                >
+                <article key={c.code} className="p-8" style={{ background: "var(--ink)" }}>
                   <div className="mb-4 flex items-center gap-3">
                     <div
                       className="rounded-xl p-3"
@@ -214,10 +209,7 @@ export default function CompliancePage() {
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <a
-                  href="mailto:compliance@flyhigh.in"
-                  className="btn-primary"
-                >
+                <a href="mailto:compliance@flyhigh.in" className="btn-primary">
                   Request certificates <ArrowRight size={14} />
                 </a>
                 <Link href="/about" className="btn-ghost">

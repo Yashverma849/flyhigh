@@ -30,8 +30,8 @@ export default async function AdminContentPage() {
           </div>
           <h1 className="f-display text-4xl">Content</h1>
           <p className="mt-2 text-sm" style={{ color: "var(--ash)" }}>
-            Insights articles, marketing pages, and case studies — all your published surfaces
-            in one ledger.
+            Insights articles, marketing pages, and case studies — all your published surfaces in
+            one ledger.
           </p>
         </div>
         <button type="button" className="btn-primary text-sm">
@@ -40,10 +40,7 @@ export default async function AdminContentPage() {
       </div>
 
       {/* Tabs (visual only — single posts pane is wired) */}
-      <div
-        className="mb-6 flex items-center gap-1 border-b"
-        style={{ borderColor: "var(--line)" }}
-      >
+      <div className="mb-6 flex items-center gap-1 border-b" style={{ borderColor: "var(--line)" }}>
         {TABS.map((t, i) => (
           <button
             key={t.id}
@@ -51,8 +48,7 @@ export default async function AdminContentPage() {
             className="px-4 py-3 text-sm transition-colors"
             style={{
               color: i === 0 ? "var(--bone)" : "var(--ash)",
-              borderBottom:
-                i === 0 ? "2px solid var(--cargo)" : "2px solid transparent",
+              borderBottom: i === 0 ? "2px solid var(--cargo)" : "2px solid transparent",
               marginBottom: -1,
             }}
           >

@@ -8,8 +8,7 @@ import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "Offices & gateways",
-  description:
-    "Flyhigh's Mumbai office and worldwide partner network at a glance.",
+  description: "Flyhigh's Mumbai office and worldwide partner network at a glance.",
   path: "/offices",
   keywords: [
     "freight forwarder offices India",
@@ -69,8 +68,8 @@ export default function OfficesPage() {
             </div>
             <div className="lg:col-span-5 lg:pt-32">
               <p className="text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
-                One Mumbai office, with vetted partner offices worldwide via World Cargo
-                Alliance. The same case manager, every step.
+                One Mumbai office, with vetted partner offices worldwide via World Cargo Alliance.
+                The same case manager, every step.
               </p>
             </div>
           </div>
@@ -79,16 +78,9 @@ export default function OfficesPage() {
 
       <section className="py-12">
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">
-          <div
-            className="grid gap-px"
-            style={{ background: "var(--line)" }}
-          >
+          <div className="grid gap-px" style={{ background: "var(--line)" }}>
             {OFFICES.map((o) => (
-              <article
-                key={o.city}
-                className="p-8"
-                style={{ background: "var(--ink)" }}
-              >
+              <article key={o.city} className="p-8" style={{ background: "var(--ink)" }}>
                 <div className="mb-3 flex items-center gap-3">
                   <h2
                     className="f-display text-3xl tracking-tight"
@@ -102,7 +94,11 @@ export default function OfficesPage() {
                 </div>
                 <div className="space-y-2 text-sm" style={{ color: "var(--bone)" }}>
                   <p className="flex items-start gap-2">
-                    <MapPin size={14} className="mt-0.5 shrink-0" style={{ color: "var(--brass)" }} />
+                    <MapPin
+                      size={14}
+                      className="mt-0.5 shrink-0"
+                      style={{ color: "var(--brass)" }}
+                    />
                     {o.address}
                   </p>
                   <p className="flex items-center gap-2">
@@ -135,19 +131,15 @@ export default function OfficesPage() {
           <SectionLabel num="02">GLOBAL PARTNERS</SectionLabel>
           <h2 className="f-display mt-4 mb-8 text-3xl">Vetted partner network.</h2>
           <p className="mb-10 max-w-3xl text-base" style={{ color: "var(--ash)" }}>
-            Through World Cargo Alliance, we have direct routing access worldwide via partners
-            we have either visited or vetted in writing.
+            Through World Cargo Alliance, we have direct routing access worldwide via partners we
+            have either visited or vetted in writing.
           </p>
           <div
             className="grid gap-px md:grid-cols-2 lg:grid-cols-4"
             style={{ background: "var(--line)" }}
           >
             {PARTNERS.map((p) => (
-              <div
-                key={p.region}
-                className="p-6"
-                style={{ background: "var(--ink-2)" }}
-              >
+              <div key={p.region} className="p-6" style={{ background: "var(--ink-2)" }}>
                 <div className="caption" style={{ color: "var(--brass)" }}>
                   {p.region.toUpperCase()}
                 </div>
@@ -170,8 +162,8 @@ export default function OfficesPage() {
                   Visit the desk.
                 </h2>
                 <p className="text-lg" style={{ color: "var(--ash)" }}>
-                  Walk-in welcome at the Mumbai office. Best to call first — the desk is usually
-                  on a shipment.
+                  Walk-in welcome at the Mumbai office. Best to call first — the desk is usually on
+                  a shipment.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">

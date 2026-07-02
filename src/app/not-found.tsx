@@ -18,10 +18,7 @@ export default function NotFound() {
             don&apos;t serve.
           </span>
         </h1>
-        <p
-          className="mx-auto mt-6 max-w-md text-lg"
-          style={{ color: "var(--ash)" }}
-        >
+        <p className="mx-auto mt-6 max-w-md text-lg" style={{ color: "var(--ash)" }}>
           That page is in transit, or never existed. Try the lobby.
         </p>
         <Link href="/" className="btn-primary mt-10 inline-flex">

@@ -20,8 +20,8 @@ export function QuoteForm() {
         <CheckCircle2 size={48} style={{ color: "var(--cargo)" }} className="mx-auto mb-4" />
         <h2 className="f-display text-3xl">Received.</h2>
         <p className="mt-3 text-sm" style={{ color: "var(--ash)" }}>
-          Reference {state.id.slice(0, 8)}. A planner, a customs broker, and the head of
-          operations have your request. You&apos;ll hear back within ninety minutes.
+          Reference {state.id.slice(0, 8)}. A planner, a customs broker, and the head of operations
+          have your request. You&apos;ll hear back within ninety minutes.
         </p>
       </div>
     );
@@ -64,7 +64,14 @@ export function QuoteForm() {
         <Field label="Origin (city or port)" name="origin" required errors={state} />
         <Field label="Destination" name="destination" required errors={state} />
         <Field label="Weight (kg)" name="weightKg" type="number" min={0} errors={state} />
-        <Field label="Volume (cbm)" name="volumeCbm" type="number" min={0} step="0.01" errors={state} />
+        <Field
+          label="Volume (cbm)"
+          name="volumeCbm"
+          type="number"
+          min={0}
+          step="0.01"
+          errors={state}
+        />
         <Select label="Incoterm" name="incoterm" errors={state}>
           <option value="">—</option>
           {incoterms.map((i) => (
@@ -87,12 +94,7 @@ export function QuoteForm() {
         />
       </div>
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="btn-primary"
-        data-cursor="SEND"
-      >
+      <button type="submit" disabled={pending} className="btn-primary" data-cursor="SEND">
         {pending ? "Sending…" : "Request quote"} <ArrowRight size={14} />
       </button>
     </form>
@@ -161,7 +163,12 @@ function Select({
         {label}
         {required && <span style={{ color: "var(--cargo)" }}> *</span>}
       </label>
-      <select name={name} required={required} className="input" aria-invalid={fieldErrors.length > 0}>
+      <select
+        name={name}
+        required={required}
+        className="input"
+        aria-invalid={fieldErrors.length > 0}
+      >
         {children}
       </select>
       {fieldErrors[0] && (

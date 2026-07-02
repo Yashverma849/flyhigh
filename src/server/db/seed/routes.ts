@@ -36,8 +36,15 @@ export const ROUTES: ReadonlyArray<Route> = [
     desc: "Our most-asked lane. Weekly sailings on three carrier alliances, with ECA-compliant fuel surcharges priced honestly. Cape of Good Hope routing default since the Red Sea reroute.",
     freqWeekly: 4,
     carriers: ["MSC", "Maersk", "CMA CGM", "Hapag-Lloyd"],
-    documents: ["Commercial invoice", "Packing list", "Bill of lading", "Certificate of origin", "EUR.1 movement"],
-    notes: "Cape routing adds 7-9 days vs Suez baseline. Premium for Suez where carrier risk-premium is paid.",
+    documents: [
+      "Commercial invoice",
+      "Packing list",
+      "Bill of lading",
+      "Certificate of origin",
+      "EUR.1 movement",
+    ],
+    notes:
+      "Cape routing adds 7-9 days vs Suez baseline. Premium for Suez where carrier risk-premium is paid.",
   },
   {
     slug: "mumbai-dubai",
@@ -74,7 +81,13 @@ export const ROUTES: ReadonlyArray<Route> = [
     desc: "Tea, textiles, and pharmaceuticals out; capital goods back. Direct fortnightly services with backhaul rates that surprise on the upside.",
     freqWeekly: 2,
     carriers: ["Pacific International Lines", "MSC", "ONE"],
-    documents: ["Commercial invoice", "Packing list", "Bill of lading", "Certificate of origin", "ICUMS pre-clearance"],
+    documents: [
+      "Commercial invoice",
+      "Packing list",
+      "Bill of lading",
+      "Certificate of origin",
+      "ICUMS pre-clearance",
+    ],
     notes: "Mombasa cargo dwell averages 4 days; we expedite via Single Window.",
   },
   {
@@ -93,7 +106,13 @@ export const ROUTES: ReadonlyArray<Route> = [
     desc: "Lufthansa Cargo's Frankfurt hub gives you onward European feed within 24 hours. CRT-15 and 2-8°C lanes validated end-to-end. Customs pre-clearance via ATLAS.",
     freqWeekly: 12,
     carriers: ["Lufthansa Cargo", "Air India", "Vistara Cargo"],
-    documents: ["Commercial invoice", "Packing list", "Air waybill", "EUR.1 movement", "GMP certificate (pharma)"],
+    documents: [
+      "Commercial invoice",
+      "Packing list",
+      "Air waybill",
+      "EUR.1 movement",
+      "GMP certificate (pharma)",
+    ],
     notes: "ATLAS pre-arrival lodgement supported. EU MDR documentation handled at origin.",
   },
   {
@@ -131,7 +150,12 @@ export const ROUTES: ReadonlyArray<Route> = [
     desc: "Short, dependable lane for jute, leather, and engineering goods. ASEAN trade preference handled at origin via SAFTA / RCEP filings where applicable.",
     freqWeekly: 3,
     carriers: ["ONE", "Wan Hai", "Evergreen"],
-    documents: ["Commercial invoice", "Packing list", "Bill of lading", "RCEP CO Form (where qualifying)"],
+    documents: [
+      "Commercial invoice",
+      "Packing list",
+      "Bill of lading",
+      "RCEP CO Form (where qualifying)",
+    ],
     notes: "Singapore TradeNet permits filed pre-arrival; FTZ delivery in 6 hours.",
   },
   {
@@ -188,7 +212,13 @@ export const ROUTES: ReadonlyArray<Route> = [
     desc: "Direct widebody capacity on Air India and United, with ACE pre-arrival processing for FDA-regulated and TSA-screened freight.",
     freqWeekly: 10,
     carriers: ["Air India", "United Cargo", "Lufthansa Cargo via FRA"],
-    documents: ["Commercial invoice", "Packing list", "Air waybill", "FDA prior notice", "ACAS data set"],
+    documents: [
+      "Commercial invoice",
+      "Packing list",
+      "Air waybill",
+      "FDA prior notice",
+      "ACAS data set",
+    ],
     notes: "TSA-screened cargo only; CCSF-certified packing at origin available.",
   },
   {
@@ -226,7 +256,13 @@ export const ROUTES: ReadonlyArray<Route> = [
     desc: "Singapore Airlines and Qantas via SIN. Biosecurity-aware packing and AQIS-compliant documentation handled at origin.",
     freqWeekly: 6,
     carriers: ["Qantas Freight", "Singapore Airlines Cargo", "Cathay Pacific Cargo"],
-    documents: ["Commercial invoice", "Packing list", "Air waybill", "AQIS biosecurity declaration", "ICS / ICS2 data"],
+    documents: [
+      "Commercial invoice",
+      "Packing list",
+      "Air waybill",
+      "AQIS biosecurity declaration",
+      "ICS / ICS2 data",
+    ],
     notes: "ICS2 ENS data filed at origin; biosecurity holds reduced via pre-clearance.",
   },
   {
@@ -245,7 +281,13 @@ export const ROUTES: ReadonlyArray<Route> = [
     desc: "Automotive, leather, and chemicals to North Europe. Post-Brexit Hamburg has become the preferred discharge for onward EU distribution.",
     freqWeekly: 3,
     carriers: ["Maersk", "Hapag-Lloyd", "MSC"],
-    documents: ["Commercial invoice", "Packing list", "Bill of lading", "EUR.1 movement", "ATLAS data"],
+    documents: [
+      "Commercial invoice",
+      "Packing list",
+      "Bill of lading",
+      "EUR.1 movement",
+      "ATLAS data",
+    ],
     notes: "Hamburg dwell typically 3-4 days; bonded onward to Benelux and Nordics.",
   },
   {

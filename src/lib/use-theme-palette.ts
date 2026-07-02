@@ -20,25 +20,25 @@ export type ThemePalette = {
 };
 
 const dark: ThemePalette = {
-  ink: "#0b1220",
-  ink2: "#131c2e",
-  ink3: "#1b2842",
-  bone: "#efe7d6",
+  ink: "#050a14",
+  ink2: "#0a1c36",
+  ink3: "#133d6b",
+  bone: "#f8fafc",
   cargo: "#d2691e",
   brass: "#c9a876",
-  ash: "#8b95a7",
+  ash: "#94a3b8",
   rust: "#8b3a1c",
   sage: "#6f8170",
-  line: "rgba(239,231,214,0.14)",
-  lineSubtle: "rgba(239,231,214,0.06)",
-  axisStroke: "rgba(239,231,214,0.4)",
-  gridStroke: "rgba(239,231,214,0.08)",
+  line: "rgba(19,61,107,0.4)",
+  lineSubtle: "rgba(19,61,107,0.2)",
+  axisStroke: "rgba(19,61,107,0.6)",
+  gridStroke: "rgba(19,61,107,0.15)",
 };
 
 const light: ThemePalette = {
-  ink: "#f7f3ea",
-  ink2: "#efe7d6",
-  ink3: "#dad0b8",
+  ink: "#ffffff",
+  ink2: "#f4f8fd",
+  ink3: "#e2e8f0",
   bone: "#0b1220",
   cargo: "#a04714",
   brass: "#7a5f33",

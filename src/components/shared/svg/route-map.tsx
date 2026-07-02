@@ -1,6 +1,6 @@
 export function RouteMap({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 800 400" className={className ?? "w-full h-full"} aria-hidden="true">
+    <svg viewBox="0 0 800 400" className={className ?? "h-full w-full"} aria-hidden="true">
       <defs>
         <pattern id="rm-grid" width="20" height="20" patternUnits="userSpaceOnUse">
           <path d="M 20 0 L 0 0 0 20" fill="none" stroke="var(--line)" strokeWidth="0.5" />

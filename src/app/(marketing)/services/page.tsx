@@ -50,9 +50,9 @@ export default function ServicesPage() {
             </div>
             <div className="lg:col-span-5 lg:pt-32">
               <p className="text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
-                We resisted the urge to specialize in only the easy services. Instead we built
-                six separate desks — each led by someone with a quarter-century in their craft —
-                and we let them quietly become the best in the country at what they do.
+                We resisted the urge to specialize in only the easy services. Instead we built six
+                separate desks — each led by someone with a quarter-century in their craft — and we
+                let them quietly become the best in the country at what they do.
               </p>
             </div>
           </div>
@@ -124,11 +124,7 @@ export default function ServicesPage() {
                   ))}
                 </ul>
                 <div className="flex gap-3">
-                  <Link
-                    href={`/services/${s.slug}`}
-                    className="btn-ghost"
-                    data-cursor="DETAILS"
-                  >
+                  <Link href={`/services/${s.slug}`} className="btn-ghost" data-cursor="DETAILS">
                     Service details <ArrowRight size={14} />
                   </Link>
                   <Link href="/quote" className="btn-primary" data-cursor="QUOTE">

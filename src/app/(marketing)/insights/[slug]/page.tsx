@@ -41,11 +41,7 @@ const PLACEHOLDER_BODY = [
   "What follows is the playbook — what we have learned about routing, premiums, and the case for redundancy in supply chains that previously assumed only one possibility.",
 ];
 
-export default async function InsightDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function InsightDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getInsightBySlug(slug);
   if (!post) notFound();
@@ -81,10 +77,7 @@ export default async function InsightDetailPage({
           <h1 className="f-display mt-6 mb-8 text-[42px] leading-[0.95] tracking-tight md:text-[68px]">
             {post.title}
           </h1>
-          <div
-            className="caption mb-12 flex items-center gap-4"
-            style={{ color: "var(--ash)" }}
-          >
+          <div className="caption mb-12 flex items-center gap-4" style={{ color: "var(--ash)" }}>
             <time dateTime={post.date}>{formatDate(post.date)}</time>
             <span>·</span>
             <span>{post.read} read</span>
@@ -114,11 +107,7 @@ export default async function InsightDetailPage({
             {post.excerpt}
           </p>
           {PLACEHOLDER_BODY.slice(0, 4).map((p, i) => (
-            <p
-              key={i}
-              className="mb-6 text-lg leading-relaxed"
-              style={{ color: "var(--bone)" }}
-            >
+            <p key={i} className="mb-6 text-lg leading-relaxed" style={{ color: "var(--bone)" }}>
               {p}
             </p>
           ))}
@@ -131,13 +120,13 @@ export default async function InsightDetailPage({
           </blockquote>
           <p className="mb-6 text-lg leading-relaxed" style={{ color: "var(--bone)" }}>
             We have always told clients that on-time delivery is not a metric — it is a pact. The
-            forwarders who emerge stronger from disruption are the ones who already have two
-            routes for everything they sold.
+            forwarders who emerge stronger from disruption are the ones who already have two routes
+            for everything they sold.
           </p>
           <p className="mb-6 text-lg leading-relaxed" style={{ color: "var(--bone)" }}>
-            If your forwarder cannot tell you, in writing, what their plan is for your most
-            critical lane in the event of disruption, you are not paying for freight forwarding.
-            You are paying for hope.
+            If your forwarder cannot tell you, in writing, what their plan is for your most critical
+            lane in the event of disruption, you are not paying for freight forwarding. You are
+            paying for hope.
           </p>
 
           {post.tags && post.tags.length > 0 && (

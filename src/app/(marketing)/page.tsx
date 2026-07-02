@@ -4,8 +4,9 @@ import { ArrowDown, ArrowRight, ArrowUpRight, Quote as QuoteIcon, Star } from "l
 import { SectionLabel } from "@/components/shared/section-label";
 import { Pill } from "@/components/shared/pill";
 import { Marquee } from "@/components/shared/marquee";
-import { CompassSvg, Horizon, RouteMap } from "@/components/shared/svg";
+import { CompassSvg, RouteMap } from "@/components/shared/svg";
 import { QuietTrust } from "@/components/marketing/quiet-trust";
+import { SloganRotator } from "@/components/marketing/slogan-rotator";
 import { SERVICES } from "@/server/db/seed/services";
 import { STATS } from "@/server/db/seed/stats";
 import { ROUTES } from "@/server/db/seed/routes";
@@ -75,8 +76,8 @@ function CompassBadge({
           />
         </defs>
         <text
-          className="f-mono uppercase"
-          style={{ fontSize, letterSpacing: "0.3em" }}
+          className="f-mono font-bold uppercase"
+          style={{ fontSize, letterSpacing: "0.22em", fontWeight: "bold" }}
           fill="var(--brass)"
         >
           <textPath href={`#compass-circle-${size}`}>
@@ -95,37 +96,33 @@ export default function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="hero-glow relative overflow-hidden min-h-[100svh]">
-        {/* Backgrounds — desktop centered, mobile anchored to bottom */}
-        <div className="absolute inset-0 hidden opacity-60 md:block">
-          <Horizon />
-        </div>
-        <div className="absolute inset-0 opacity-60 md:hidden">
-          <Horizon preserveAspectRatio="xMidYEnd slice" />
-        </div>
-        <div className="topo absolute inset-0 opacity-40" />
+      <section className="hero-section relative overflow-hidden min-h-[100svh]">
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+        >
+          <source src="/herosection.mp4" type="video/mp4" />
+        </video>
 
-        <div className="relative mx-auto flex min-h-[100svh] max-w-[1440px] flex-col px-6 pt-20 pb-20 md:px-8 lg:pt-16 lg:pb-24">
-          {/* Mobile-only badge crown */}
-          <div className="fade-up s1 mb-8 flex justify-center lg:hidden">
-            <CompassBadge size={140} compassSize={56} fontSize={11} />
-          </div>
-
+        <div className="relative mx-auto flex min-h-[100svh] max-w-[1440px] flex-col px-6 pt-32 pb-20 md:px-8 lg:pt-40 lg:pb-24">
           {/* Main grid */}
           <div className="grid flex-1 grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
             {/* LEFT: text */}
-            <div className="lg:col-span-8">
-              <div className="fade-up s1 mb-10">
-                <SectionLabel num="01">A FREIGHT MAISON · SINCE 2017</SectionLabel>
-              </div>
-
-              <h1 className="f-display fade-up s2 mb-10 text-[52px] leading-[0.88] tracking-tighter md:text-[120px] lg:text-[160px]">
+            <div className="lg:col-span-12">
+              <SloganRotator />
+              <h1
+                className="f-display fade-up s2 mb-10 leading-[0.95] tracking-tighter"
+                style={{ fontSize: "clamp(2rem, 7vw, 5.5rem)", color: "var(--bone)" }}
+              >
                 Worldwide
                 <br />
                 <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-                  freight,
+                  freight,{" "}
                 </span>
-                <br />
                 <span style={{ color: "var(--bone)" }}>refined.</span>
               </h1>
 
@@ -133,8 +130,8 @@ export default function HomePage() {
                 className="f-body fade-up s3 mb-8 max-w-xl text-lg leading-relaxed md:text-xl"
                 style={{ color: "var(--bone)" }}
               >
-                A Mumbai house quietly moving cargo for India&apos;s most demanding clients —
-                across continents, ports, and one ocean of impossible-on-paper shipments.
+                A Mumbai house quietly moving cargo for India&apos;s most demanding clients — across
+                continents, ports, and one ocean of impossible-on-paper shipments.
               </p>
 
               <div className="fade-up s4 flex flex-col gap-3 sm:flex-row">
@@ -146,16 +143,11 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-
-            {/* RIGHT: large in-grid badge (lg+ only) */}
-            <div className="hidden justify-center lg:col-span-4 lg:flex">
-              <CompassBadge size={320} compassSize={120} fontSize={15} />
-            </div>
           </div>
 
-          {/* md-only floating badge (768–1023) */}
-          <div className="absolute top-24 right-8 hidden md:block lg:hidden">
-            <CompassBadge size={240} compassSize={90} fontSize={13} />
+          {/* Compass Badge in Bottom Right Corner */}
+          <div className="absolute right-6 bottom-8 md:right-8 lg:right-12">
+            <CompassBadge size={140} compassSize={56} fontSize={13} />
           </div>
 
           {/* Scroll cue */}
@@ -183,9 +175,8 @@ export default function HomePage() {
               <p className="f-display text-[28px] leading-[1.15] tracking-tight md:text-[44px] lg:text-[56px]">
                 Most freight forwarders ship boxes.{" "}
                 <span style={{ color: "var(--ash)" }}>
-                  We ship the things inside them — pharma that cannot warm by half a degree,
-                  turbine blades the length of a city block, fashion that must arrive before the
-                  runway.
+                  We ship the things inside them — pharma that cannot warm by half a degree, turbine
+                  blades the length of a city block, fashion that must arrive before the runway.
                 </span>{" "}
                 We made our peace with two facts:{" "}
                 <span className="f-display-it" style={{ color: "var(--cargo)" }}>
@@ -271,7 +262,7 @@ export default function HomePage() {
                     </div>
                     <ArrowUpRight
                       size={20}
-                      className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"
+                      className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
                       style={{ color: "var(--cargo)" }}
                     />
                   </div>
@@ -296,13 +287,10 @@ export default function HomePage() {
                   One ledger.
                 </span>
               </h2>
-              <p
-                className="mb-10 max-w-xl text-lg leading-relaxed"
-                style={{ color: "var(--ash)" }}
-              >
-                Every shipment we have ever cleared, lost, expedited, recovered, or refused lives
-                in a single ledger we still update by hand at quarter close. The numbers below are
-                from that ledger, not a marketing deck.
+              <p className="mb-10 max-w-xl text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
+                Every shipment we have ever cleared, lost, expedited, recovered, or refused lives in
+                a single ledger we still update by hand at quarter close. The numbers below are from
+                that ledger, not a marketing deck.
               </p>
               <Link href="/about" className="btn-link">
                 Read the company story <ArrowRight size={14} />
@@ -422,8 +410,8 @@ export default function HomePage() {
             </div>
             <div className="lg:col-span-5 lg:pt-12">
               <p className="text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
-                Pharma cool-chain and lithium-battery air corridors are not the same craft. We
-                run dedicated desks for each.
+                Pharma cool-chain and lithium-battery air corridors are not the same craft. We run
+                dedicated desks for each.
               </p>
               <Link href="/industries" className="btn-link mt-4">
                 Explore industries <ArrowRight size={14} />
@@ -528,10 +516,7 @@ export default function HomePage() {
                   most don&apos;t.
                 </span>
               </h2>
-              <p
-                className="mb-8 text-lg leading-relaxed"
-                style={{ color: "var(--ash)" }}
-              >
+              <p className="mb-8 text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
                 Our agent network was built backwards — starting with the impossible inland-Africa
                 lanes, the Persian Gulf hinterlands, and the niche European corridors that bigger
                 forwarders skip. The easy lanes were added later.
@@ -571,18 +556,10 @@ export default function HomePage() {
             operations. You will hear back within ninety minutes — usually under thirty.
           </p>
           <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
-            <Link
-              href="/quote"
-              className="btn-primary px-8 py-4 text-base"
-              data-cursor="QUOTE"
-            >
+            <Link href="/quote" className="btn-primary px-8 py-4 text-base" data-cursor="QUOTE">
               Request a quote <ArrowUpRight size={18} />
             </Link>
-            <Link
-              href="/contact"
-              className="btn-ghost px-8 py-4 text-base"
-              data-cursor="CONTACT"
-            >
+            <Link href="/contact" className="btn-ghost px-8 py-4 text-base" data-cursor="CONTACT">
               Speak with a planner
             </Link>
           </div>

@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { SITE } from "@/lib/constants";
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  process.env.AUTH_URL ??
-  "https://flyhigh-website.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? process.env.AUTH_URL ?? "https://flyhigh-website.vercel.app";
 
 export function absoluteUrl(path: string = "/") {
   if (path.startsWith("http")) return path;

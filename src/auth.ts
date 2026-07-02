@@ -3,8 +3,7 @@
 
 type Handler = (req: Request) => Response;
 
-const disabled: Handler = () =>
-  new Response("Auth disabled", { status: 404 });
+const disabled: Handler = () => new Response("Auth disabled", { status: 404 });
 
 export const handlers = { GET: disabled, POST: disabled };
 

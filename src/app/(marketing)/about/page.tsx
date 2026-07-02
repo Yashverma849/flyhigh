@@ -13,7 +13,12 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Flyhigh, founded in Mumbai in 2017 — a freight forwarding maison built like an atelier. Nine industry desks, seven gateways, and 184 staff.",
   path: "/about",
-  keywords: ["about Flyhigh", "Mumbai freight forwarder", "logistics company India", "freight forwarder founded 2017"],
+  keywords: [
+    "about Flyhigh",
+    "Mumbai freight forwarder",
+    "logistics company India",
+    "freight forwarder founded 2017",
+  ],
 });
 
 const values = [
@@ -71,20 +76,17 @@ export default function AboutPage() {
               </h1>
             </div>
             <div className="fade-up s2 lg:col-span-7 lg:pt-32">
-              <p
-                className="text-xl leading-relaxed md:text-2xl"
-                style={{ color: "var(--bone)" }}
-              >
-                Flyhigh was founded in Mumbai in 2017 with a small premise: that freight
-                forwarding deserves the care of a tailoring atelier. Our first consignment was
-                eighteen tonnes of textile machinery, Mumbai to Lagos. The hardest part wasn&apos;t
-                the ocean — it was finding a Lagos broker who would treat a stranger&apos;s cargo
-                like their own. So we built one.
+              <p className="text-xl leading-relaxed md:text-2xl" style={{ color: "var(--bone)" }}>
+                Flyhigh was founded in Mumbai in 2017 with a small premise: that freight forwarding
+                deserves the care of a tailoring atelier. Our first consignment was eighteen tonnes
+                of textile machinery, Mumbai to Lagos. The hardest part wasn&apos;t the ocean — it
+                was finding a Lagos broker who would treat a stranger&apos;s cargo like their own.
+                So we built one.
               </p>
               <p className="mt-6 text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
-                Today, we operate worldwide through agents we have personally met. We have desks
-                in cities most forwarders cannot pronounce. And we still close every quarter with
-                a paper ledger.
+                Today, we operate worldwide through agents we have personally met. We have desks in
+                cities most forwarders cannot pronounce. And we still close every quarter with a
+                paper ledger.
               </p>
             </div>
           </div>
@@ -211,11 +213,7 @@ export default function AboutPage() {
             with us?
           </h2>
           <div className="mt-12 flex justify-center gap-4">
-            <Link
-              href="/quote"
-              className="btn-primary px-8 py-4 text-base"
-              data-cursor="QUOTE"
-            >
+            <Link href="/quote" className="btn-primary px-8 py-4 text-base" data-cursor="QUOTE">
               Request a quote <ArrowRight size={16} />
             </Link>
             <Link href="/contact" className="btn-ghost px-8 py-4 text-base">

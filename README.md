@@ -4,21 +4,21 @@ Production codebase for [flyhigh.in](https://flyhigh.in) — a Mumbai-based frei
 
 ## Stack
 
-| Layer            | Choice                                                                |
-| ---------------- | --------------------------------------------------------------------- |
-| Framework        | Next.js 16 (App Router, Turbopack), React 19, TypeScript strict       |
-| Styling          | Tailwind v4 (CSS-first, `@theme` exposes design tokens) + custom CSS  |
-| UI primitives    | Lucide icons, Recharts                                                |
-| Database         | Neon Postgres + Drizzle ORM                                           |
-| Auth             | Auth.js v5 — Resend email magic-link only                             |
-| Forms            | React Hook Form-style native forms + Zod (server-side validated)      |
-| Mutations        | Server Actions (no tRPC)                                              |
-| Rate-limiting    | Upstash Redis Ratelimit (public Server Actions)                       |
-| Env validation   | `@t3-oss/env-nextjs`                                                  |
-| Lint / Format    | ESLint flat config + Prettier (`prettier-plugin-tailwindcss`)         |
-| Testing          | Vitest + Testing Library + Playwright                                 |
-| Package manager  | pnpm                                                                  |
-| Deploy target    | Vercel                                                                |
+| Layer           | Choice                                                               |
+| --------------- | -------------------------------------------------------------------- |
+| Framework       | Next.js 16 (App Router, Turbopack), React 19, TypeScript strict      |
+| Styling         | Tailwind v4 (CSS-first, `@theme` exposes design tokens) + custom CSS |
+| UI primitives   | Lucide icons, Recharts                                               |
+| Database        | Neon Postgres + Drizzle ORM                                          |
+| Auth            | Auth.js v5 — Resend email magic-link only                            |
+| Forms           | React Hook Form-style native forms + Zod (server-side validated)     |
+| Mutations       | Server Actions (no tRPC)                                             |
+| Rate-limiting   | Upstash Redis Ratelimit (public Server Actions)                      |
+| Env validation  | `@t3-oss/env-nextjs`                                                 |
+| Lint / Format   | ESLint flat config + Prettier (`prettier-plugin-tailwindcss`)        |
+| Testing         | Vitest + Testing Library + Playwright                                |
+| Package manager | pnpm                                                                 |
+| Deploy target   | Vercel                                                               |
 
 ## Folder structure
 
@@ -105,20 +105,20 @@ Without Upstash, public forms still work but skip rate-limiting (logged at the c
 
 ## Scripts
 
-| Command              | Action                                                |
-| -------------------- | ----------------------------------------------------- |
-| `pnpm dev`           | Dev server with Turbopack                             |
-| `pnpm build`         | Production build (`next build` with Turbopack)        |
-| `pnpm typecheck`     | `tsc --noEmit`                                        |
-| `pnpm lint`          | ESLint                                                |
-| `pnpm format`        | Prettier (writes)                                     |
-| `pnpm test`          | Vitest (unit/integration)                             |
-| `pnpm test:e2e`      | Playwright                                            |
-| `pnpm db:generate`   | Generate Drizzle migration from schema                |
-| `pnpm db:push`       | Push schema to DB (skip migrations)                   |
-| `pnpm db:migrate`    | Run pending migrations                                |
-| `pnpm db:seed`       | Seed insights + demo shipments                        |
-| `pnpm db:studio`     | Drizzle Studio                                        |
+| Command            | Action                                         |
+| ------------------ | ---------------------------------------------- |
+| `pnpm dev`         | Dev server with Turbopack                      |
+| `pnpm build`       | Production build (`next build` with Turbopack) |
+| `pnpm typecheck`   | `tsc --noEmit`                                 |
+| `pnpm lint`        | ESLint                                         |
+| `pnpm format`      | Prettier (writes)                              |
+| `pnpm test`        | Vitest (unit/integration)                      |
+| `pnpm test:e2e`    | Playwright                                     |
+| `pnpm db:generate` | Generate Drizzle migration from schema         |
+| `pnpm db:push`     | Push schema to DB (skip migrations)            |
+| `pnpm db:migrate`  | Run pending migrations                         |
+| `pnpm db:seed`     | Seed insights + demo shipments                 |
+| `pnpm db:studio`   | Drizzle Studio                                 |
 
 ## Key architectural decisions
 

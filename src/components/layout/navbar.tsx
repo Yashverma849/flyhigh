@@ -27,6 +27,7 @@ type Mega =
   | { kind: "industries" }
   | { kind: "routes" }
   | { kind: "tools" }
+  | { kind: "insights" }
   | null;
 
 const navLinks = [
@@ -36,13 +37,16 @@ const navLinks = [
   { href: "/industries" as const, label: "Industries", mega: "industries" as const },
   { href: "/routes" as const, label: "Routes", mega: "routes" as const },
   { href: "/tools" as const, label: "Tools", mega: "tools" as const },
-  { href: "/case-studies" as const, label: "Case studies" },
-  { href: "/insights" as const, label: "Insights" },
+  { href: "/insights" as const, label: "Insights", mega: "insights" as const },
   { href: "/contact" as const, label: "Contact" },
 ];
 
 const TOOL_LINKS = [
-  { href: "/tools/transit-time", title: "Transit-time estimator", desc: "Realistic transit days per lane." },
+  {
+    href: "/tools/transit-time",
+    title: "Transit-time estimator",
+    desc: "Realistic transit days per lane.",
+  },
   { href: "/tools/incoterms", title: "Incoterms 2020", desc: "Eleven terms, plain English." },
   { href: "/tools/hs-code", title: "HS code lookup", desc: "Indian ITC-HS classifications." },
   { href: "/tools/documents", title: "Documents required", desc: "Paperwork by mode and region." },
@@ -50,8 +54,89 @@ const TOOL_LINKS = [
   { href: "/resources/glossary", title: "Glossary", desc: "Twenty-seven freight terms." },
 ];
 
+function ScrambleText({ text, trigger = 0 }: { text: string; trigger?: number }) {
+  const [displayText, setDisplayText] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    const chars = text.split("");
+
+    // Initialize current character codes starting at 'A' (65) or 'a' (97)
+    let currentCodes = chars.map((char) => {
+      if (char === " " || /[^a-zA-Z]/.test(char)) {
+        return char.charCodeAt(0);
+      }
+      return char === char.toUpperCase() ? 65 : 97;
+    });
+
+    const targetCodes = chars.map((char) => char.charCodeAt(0));
+
+    const interval = setInterval(() => {
+      if (!active) return;
+
+      let done = true;
+      currentCodes = currentCodes.map((code, index) => {
+        const target = targetCodes[index];
+        if (target !== undefined && code < target) {
+          done = false;
+          return code + 1; // Increment code sequentially
+        }
+        return code;
+      });
+
+      setDisplayText(String.fromCharCode(...currentCodes));
+
+      if (done) {
+        clearInterval(interval);
+      }
+    }, 30);
+
+    return () => {
+      active = false;
+      clearInterval(interval);
+    };
+  }, [text, trigger]);
+
+  return <>{displayText}</>;
+}
+
+function NavLinkItem({
+  href,
+  label,
+  megaKind,
+  isActive,
+  onMouseEnterMega,
+}: {
+  href: Route;
+  label: string;
+  megaKind?: "services" | "industries" | "routes" | "tools" | "insights";
+  isActive: boolean;
+  onMouseEnterMega: () => void;
+}) {
+  const [trigger, setTrigger] = useState(0);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => {
+        setTrigger((t) => t + 1);
+        onMouseEnterMega();
+      }}
+    >
+      <Link
+        href={href}
+        className="relative inline-flex items-center gap-1 rounded-full border border-transparent px-2.5 py-1 text-[11px] font-semibold tracking-wider whitespace-nowrap uppercase opacity-75 transition-all duration-300 hover:border-black/[0.06] hover:bg-black/[0.04] hover:opacity-100 hover:shadow-md xl:px-3.5 xl:text-[12px] dark:hover:border-white/10 dark:hover:bg-white/5"
+      >
+        <ScrambleText text={label} trigger={trigger} />
+        {megaKind && <ChevronDown size={10} className="shrink-0 opacity-60" />}
+      </Link>
+    </div>
+  );
+}
+
 export function Navbar() {
   const pathname = usePathname();
+  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [mega, setMega] = useState<Mega>(null);
@@ -75,10 +160,18 @@ export function Navbar() {
     <>
       {/* Top utility bar */}
       <div
-        className="sticky top-0 z-40 hidden border-b md:block"
-        style={{ borderColor: "var(--line-2)", background: "var(--ink)" }}
+        className="fixed top-0 right-0 left-0 z-40 hidden border-b transition-all duration-500 md:block"
+        style={{
+          borderColor: (isHome && !scrolled) ? "rgba(255, 255, 255, 0.12)" : "var(--line-2)",
+          background: "transparent",
+          opacity: scrolled ? 0 : 1,
+          transform: scrolled ? "translateY(-100%)" : "translateY(0)",
+          pointerEvents: scrolled ? "none" : "auto",
+          color: (isHome && !scrolled) ? "#e2e8f0" : "var(--bone)",
+          "--ash": (isHome && !scrolled) ? "#e2e8f0" : "var(--ash)",
+        } as React.CSSProperties}
       >
-        <div className="caption mx-auto flex max-w-[1440px] items-center justify-between px-8 py-2">
+        <div className="caption flex w-full items-center justify-between px-4 py-2 md:px-6 lg:px-8 font-bold">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2">
               <MapPin size={11} /> Mumbai · India HQ
@@ -104,55 +197,45 @@ export function Navbar() {
 
       {/* Main nav */}
       <header
-        className={`sticky top-9 z-40 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}
+        className={`fixed right-0 left-0 z-40 transition-all duration-500 ${scrolled ? "top-0 py-3" : "top-0 py-5 md:top-9"}`}
         style={{
-          background: scrolled ? "var(--surface-translucent)" : "transparent",
+          background: scrolled ? "var(--nav-bg)" : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
-          borderBottom: scrolled ? "1px solid var(--line-2)" : "1px solid transparent",
-        }}
+          borderBottom: scrolled ? "1px solid var(--line)" : "1px solid transparent",
+          color: (scrolled || !isHome) ? "var(--bone)" : "#f8fafc",
+          ...(!scrolled && isHome ? {
+            "--line": "rgba(255, 255, 255, 0.15)",
+            "--surface-tint-2": "rgba(255, 255, 255, 0.02)",
+            "--cargo": "#d2691e",
+          } : {})
+        } as React.CSSProperties}
         onMouseLeave={() => setMega(null)}
       >
-        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 md:px-8">
+        <div className="flex w-full items-center justify-between px-4 md:px-6 lg:px-8">
           <Link href="/" className="group flex items-center gap-3" data-cursor="HOME">
             <Logo size={36} />
             <div className="leading-tight">
               <div className="f-display text-[22px] tracking-tight">FLYHIGH</div>
-              <div className="caption text-[9px]" style={{ color: "var(--brass)" }}>
+              <div className="caption text-[9px]" style={{ color: (scrolled || !isHome) ? "var(--brass)" : "#c9a876" }}>
                 EST. 2017 · MUMBAI
               </div>
             </div>
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex">
+          <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1.5">
             {navLinks.map(({ href, label, mega: megaKind }) => (
-              <div
+              <NavLinkItem
                 key={href}
-                className="relative"
-                onMouseEnter={() => megaKind && setMega({ kind: megaKind })}
-              >
-                <Link
-                  href={href}
-                  className={`relative px-3 py-2 text-sm font-medium transition-colors xl:px-4 ${
-                    isActive(href) ? "" : "opacity-70 hover:opacity-100"
-                  }`}
-                >
-                  {label}
-                  {megaKind && <ChevronDown size={12} className="ml-1 inline opacity-60" />}
-                  {isActive(href) && (
-                    <span
-                      className="absolute right-3 bottom-0 left-3 h-px xl:right-4 xl:left-4"
-                      style={{ background: "var(--cargo)" }}
-                    />
-                  )}
-                </Link>
-              </div>
+                href={href}
+                label={label}
+                megaKind={megaKind}
+                isActive={isActive(href)}
+                onMouseEnterMega={() => megaKind && setMega({ kind: megaKind })}
+              />
             ))}
           </nav>
 
           <div className="flex items-center gap-3">
-            <Link href="/track" className="btn-ghost hidden text-sm sm:flex" data-cursor="TRACK">
-              <Search size={14} /> Track
-            </Link>
             <ThemeToggle className="hidden sm:inline-flex" />
             <Link href="/quote" className="btn-primary text-sm" data-cursor="QUOTE">
               Get a quote <ArrowRight size={14} />
@@ -170,11 +253,19 @@ export function Navbar() {
 
         {/* Mega-menu panels */}
         {mega && (
-          <div className="fade-in absolute top-full right-0 left-0 z-50 hidden lg:block">
-            <div className="mx-auto max-w-[1440px] px-6 md:px-8">
+          <div
+            key={mega.kind}
+            className="fade-in absolute top-full right-0 left-0 z-50 hidden lg:block"
+          >
+            <div className="w-full px-6 md:px-12 lg:px-24">
               <div
-                className="mt-2 rounded-2xl p-8 shadow-2xl"
-                style={{ background: "var(--ink-2)", border: "1px solid var(--line)" }}
+                className="animate-slide-down mt-1 rounded-2xl p-6 shadow-2xl"
+                style={{
+                  background: "var(--nav-panel-bg)",
+                  backdropFilter: "blur(16px)",
+                  border: "1px solid var(--line)",
+                  boxShadow: "0 20px 50px rgba(0, 0, 0, 0.15)",
+                }}
               >
                 {mega.kind === "services" && (
                   <div className="grid gap-2 md:grid-cols-3">
@@ -249,10 +340,7 @@ export function Navbar() {
                       if (lanes.length === 0) return null;
                       return (
                         <div key={region}>
-                          <div
-                            className="caption mb-3"
-                            style={{ color: "var(--brass)" }}
-                          >
+                          <div className="caption mb-3" style={{ color: "var(--brass)" }}>
                             {region.toUpperCase()}
                           </div>
                           <div className="space-y-1">
@@ -270,8 +358,7 @@ export function Navbar() {
                               className="caption mt-2 inline-flex items-center gap-1 px-2"
                               style={{ color: "var(--cargo)" }}
                             >
-                              ALL {region.toUpperCase()} LANES{" "}
-                              <ArrowUpRight size={10} />
+                              ALL {region.toUpperCase()} LANES <ArrowUpRight size={10} />
                             </Link>
                           </div>
                         </div>
@@ -302,6 +389,41 @@ export function Navbar() {
                     ))}
                   </div>
                 )}
+
+                {mega.kind === "insights" && (
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <Link
+                      href="/case-studies"
+                      className="group rounded-xl p-3.5 text-left transition-colors hover:bg-[var(--ink-3)]"
+                    >
+                      <div className="flex items-center gap-2 text-sm font-semibold">
+                        Case Studies
+                        <ArrowUpRight
+                          size={12}
+                          className="opacity-0 transition-opacity group-hover:opacity-100"
+                        />
+                      </div>
+                      <div className="mt-0.5 text-xs" style={{ color: "var(--ash)" }}>
+                        Editorial deep-dives into our most challenging logistics operations.
+                      </div>
+                    </Link>
+                    <Link
+                      href="/insights"
+                      className="group rounded-xl p-3.5 text-left transition-colors hover:bg-[var(--ink-3)]"
+                    >
+                      <div className="flex items-center gap-2 text-sm font-semibold">
+                        Insights & News
+                        <ArrowUpRight
+                          size={12}
+                          className="opacity-0 transition-opacity group-hover:opacity-100"
+                        />
+                      </div>
+                      <div className="mt-0.5 text-xs" style={{ color: "var(--ash)" }}>
+                        Logistics briefings, industry news, and trade corridor advisories.
+                      </div>
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -310,8 +432,12 @@ export function Navbar() {
         {/* Mobile menu */}
         {open && (
           <div
-            className="fade-in mx-6 mt-4 max-h-[80vh] overflow-y-auto rounded-2xl p-4 lg:hidden"
-            style={{ background: "var(--ink-2)", border: "1px solid var(--line)" }}
+            className="fade-in mx-6 mt-4 max-h-[80vh] overflow-y-auto rounded-2xl p-4 shadow-2xl lg:hidden"
+            style={{
+              background: "var(--nav-panel-bg)",
+              backdropFilter: "blur(16px)",
+              border: "1px solid var(--line)",
+            }}
           >
             {navLinks.map(({ href, label }) => (
               <Link
@@ -324,10 +450,7 @@ export function Navbar() {
                 {label}
               </Link>
             ))}
-            <div
-              className="caption mt-4 mb-2"
-              style={{ color: "var(--brass)" }}
-            >
+            <div className="caption mt-4 mb-2" style={{ color: "var(--brass)" }}>
               SERVICES
             </div>
             <div className="grid grid-cols-2 gap-2">
@@ -343,10 +466,7 @@ export function Navbar() {
                 </Link>
               ))}
             </div>
-            <div
-              className="caption mt-4 mb-2"
-              style={{ color: "var(--brass)" }}
-            >
+            <div className="caption mt-4 mb-2" style={{ color: "var(--brass)" }}>
               INDUSTRIES
             </div>
             <div className="grid grid-cols-2 gap-2">

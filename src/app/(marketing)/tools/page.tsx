@@ -11,7 +11,13 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Practical tools for freight forwarders' clients — transit-time estimator, Incoterms 2020 reference, HS-code lookup, and shipping documents checklist.",
   path: "/tools",
-  keywords: ["freight calculator", "Incoterms", "HS code", "transit time India", "shipping documents"],
+  keywords: [
+    "freight calculator",
+    "Incoterms",
+    "HS code",
+    "transit time India",
+    "shipping documents",
+  ],
 });
 
 const breadcrumbs = [
@@ -76,10 +82,7 @@ export default function ToolsIndexPage() {
 
       <section className="py-12">
         <div className="mx-auto max-w-[1440px] px-6 md:px-8">
-          <div
-            className="grid gap-px md:grid-cols-2"
-            style={{ background: "var(--line)" }}
-          >
+          <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
             {TOOLS.map((t) => {
               const Icon = t.icon;
               return (

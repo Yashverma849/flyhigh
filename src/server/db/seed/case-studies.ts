@@ -25,7 +25,8 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     industrySlug: "perishables-cold-chain",
     serviceSlug: "air",
     region: "Asia-Pacific",
-    excerpt: "Pre-cooled belly-cargo with origin VHT chambers. Phytosanitary windows that landed every shipment within MAFF tolerance.",
+    excerpt:
+      "Pre-cooled belly-cargo with origin VHT chambers. Phytosanitary windows that landed every shipment within MAFF tolerance.",
     challenge:
       "Japan accepts Indian mangoes only after Vapour Heat Treatment certified by MAFF inspectors. The window from VHT to arrival is 72 hours — miss it, the consignment is destroyed, not just rejected.",
     approach:
@@ -51,7 +52,8 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     industrySlug: "automotive",
     serviceSlug: "air",
     region: "Europe",
-    excerpt: "UN3480 lithium-ion air corridor with line-side delivery. Production line never paused.",
+    excerpt:
+      "UN3480 lithium-ion air corridor with line-side delivery. Production line never paused.",
     challenge:
       "A European EV OEM had committed to a launch date with 90 days of buffer. A Pune-supplied battery pack hit a yield issue, eating the buffer. Air-only would breach UN3480 weight limits per consignment; sea-only would slip the launch.",
     approach:
@@ -77,7 +79,8 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     industrySlug: "apparel-textiles",
     serviceSlug: "customs",
     region: "Europe",
-    excerpt: "ATA carnets across 22 movements in seven days, with one back-up flight that paid for itself.",
+    excerpt:
+      "ATA carnets across 22 movements in seven days, with one back-up flight that paid for itself.",
     challenge:
       "A Mumbai couture house was invited to Paris Fashion Week with five collections. Each collection was a separate carnet; some pieces had to return mid-week for press. Standard freight would not survive the cadence.",
     approach:
@@ -103,7 +106,8 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     industrySlug: "electronics-semiconductors",
     serviceSlug: "air",
     region: "Asia-Pacific",
-    excerpt: "Vibration-controlled charter with on-site engineers. Tool was running production in five days.",
+    excerpt:
+      "Vibration-controlled charter with on-site engineers. Tool was running production in five days.",
     challenge:
       "A foundry expansion in Bangalore needed a metrology tool relocated from Singapore. Vendor support was contingent on factory-certified packing and a vibration-controlled lane — anything else voided the warranty.",
     approach:
@@ -129,7 +133,8 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     industrySlug: "automotive",
     serviceSlug: "sea",
     region: "Asia-Pacific",
-    excerpt: "Heavy-lift breakbulk with route survey and police escort, then port-to-site multimodal.",
+    excerpt:
+      "Heavy-lift breakbulk with route survey and police escort, then port-to-site multimodal.",
     challenge:
       "Twelve 65-metre wind turbine blades were destined for a project site in central Vietnam. No Indian carrier offered direct breakbulk; available capacity was on transhipment routings that would damage the blades.",
     approach:
@@ -155,7 +160,8 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     industrySlug: "pharmaceuticals",
     serviceSlug: "air",
     region: "Africa",
-    excerpt: "GDP-validated lanes from Hyderabad to nine African capitals, with last-mile reefer beyond.",
+    excerpt:
+      "GDP-validated lanes from Hyderabad to nine African capitals, with last-mile reefer beyond.",
     challenge:
       "A global health NGO needed a single freight forwarder for 18 vaccine lanes across East and Southern Africa. Many destinations had irregular cool-chain integrity beyond the airport.",
     approach:

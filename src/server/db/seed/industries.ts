@@ -35,8 +35,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
     tag: "PHARMA",
     icon: Pill,
     short: "GDP-validated cool chain · CRT-15 to deep-frozen · CDSCO clearance",
-    desc:
-      "From Mumbai's pharma corridor to forty-seven import gateways. Active-cool ULDs, validated lanes, and customs brokers who can read a CDSCO query at 2 a.m.",
+    desc: "From Mumbai's pharma corridor to forty-seven import gateways. Active-cool ULDs, validated lanes, and customs brokers who can read a CDSCO query at 2 a.m.",
     challenges: [
       "Sub-30°C maintenance across humid transhipment hubs",
       "Lane-level temperature excursions and live alarms",
@@ -68,8 +67,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
     tag: "AUTO",
     icon: Cog,
     short: "JIT inbound · Battery DG · After-market reverse flows",
-    desc:
-      "OEMs and tier-one suppliers move with us — engines, transmissions, EV battery packs (UN3480/3481), and the impossible aftermarket SKUs nobody else will touch.",
+    desc: "OEMs and tier-one suppliers move with us — engines, transmissions, EV battery packs (UN3480/3481), and the impossible aftermarket SKUs nobody else will touch.",
     challenges: [
       "Lithium battery (Class 9) air corridor compliance",
       "JIT alignment with assembly-line takt times",
@@ -101,8 +99,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
     tag: "FASHION",
     icon: Shirt,
     short: "Runway-grade carnet · Sample air · Container consolidation",
-    desc:
-      "From Tirupur knitwear consolidation to Milan runway carnets. We move samples by air at sample speed, and bulk by sea without surprises at the discharge port.",
+    desc: "From Tirupur knitwear consolidation to Milan runway carnets. We move samples by air at sample speed, and bulk by sea without surprises at the discharge port.",
     challenges: [
       "Compressed sample-to-shelf cycles",
       "Multi-vendor consolidation across Tamil Nadu and Gujarat",
@@ -134,8 +131,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
     tag: "TECH",
     icon: Cpu,
     short: "AOG-grade air · ESD-safe handling · Bonded MEIS warehousing",
-    desc:
-      "Wafers, capital equipment, and finished goods. ESD-safe handling, vibration-controlled lanes, and an AOG desk for the parts that stop production lines.",
+    desc: "Wafers, capital equipment, and finished goods. ESD-safe handling, vibration-controlled lanes, and an AOG desk for the parts that stop production lines.",
     challenges: [
       "ESD-sensitive cargo across humid transhipments",
       "Vibration tolerances on lithography and metrology tools",
@@ -167,8 +163,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
     tag: "COLD",
     icon: Snowflake,
     short: "Reefer ocean · Pre-cooled air · Phytosanitary speed",
-    desc:
-      "Mangoes to Tokyo, prawns to Brussels, flowers to Amsterdam. Pre-cooled cargo, validated reefer corridors, and customs brokers who treat phytosanitary windows like missile launches.",
+    desc: "Mangoes to Tokyo, prawns to Brussels, flowers to Amsterdam. Pre-cooled cargo, validated reefer corridors, and customs brokers who treat phytosanitary windows like missile launches.",
     challenges: [
       "Origin pre-cooling and farm-gate first-mile",
       "Phytosanitary documentation timing windows",
@@ -200,8 +195,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
     tag: "HAZMAT",
     icon: FlaskConical,
     short: "IMDG · IATA DGR · MSDS-driven routing",
-    desc:
-      "Class 3 to Class 9 — handled by people who can recite the IMDG amendment cycle from memory. We don't just move DG; we route around the gateways that can't.",
+    desc: "Class 3 to Class 9 — handled by people who can recite the IMDG amendment cycle from memory. We don't just move DG; we route around the gateways that can't.",
     challenges: [
       "Vessel cut-off and segregation rule complexity",
       "Airline DG embargoes and corridor changes",
@@ -233,8 +227,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
     tag: "DEFENCE",
     icon: Shield,
     short: "ITAR-aware · MoD logistics · AOG aerospace lifts",
-    desc:
-      "Strategic cargo for Indian and allied programmes — AOG lifts for civil aviation, controlled-goods movement under End-Use Certificates, and the discretion of a maison.",
+    desc: "Strategic cargo for Indian and allied programmes — AOG lifts for civil aviation, controlled-goods movement under End-Use Certificates, and the discretion of a maison.",
     challenges: [
       "Export control (DGFT, BIS, ITAR-aware) compliance",
       "End-Use Certificate and SCOMET licensing",
@@ -266,8 +259,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
     tag: "LUXURY",
     icon: Wine,
     short: "Temperature-stable lanes · Excise · White-glove last mile",
-    desc:
-      "Bordeaux to Bandra, single-malts to Singapore. Temperature-stable ocean lanes, excise paperwork that doesn't bottleneck dispatch, and last-mile that respects the bottle.",
+    desc: "Bordeaux to Bandra, single-malts to Singapore. Temperature-stable ocean lanes, excise paperwork that doesn't bottleneck dispatch, and last-mile that respects the bottle.",
     challenges: [
       "Wine-degradation risk in heat-stressed transit",
       "Origin and destination excise & duty complexity",
@@ -299,8 +291,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
     tag: "MEDIA",
     icon: Film,
     short: "Production gear · Carnet shoots · Wardrobe & set freight",
-    desc:
-      "From Mumbai studios to international shoot locations — cameras, lighting rigs, costumes, props, and set pieces moved on tight production schedules with carnet paperwork that doesn't slip.",
+    desc: "From Mumbai studios to international shoot locations — cameras, lighting rigs, costumes, props, and set pieces moved on tight production schedules with carnet paperwork that doesn't slip.",
     challenges: [
       "Carnet timing aligned with shoot windows",
       "Production-grade equipment under temperature & shock controls",

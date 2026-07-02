@@ -99,10 +99,7 @@ export default function GlossaryPage() {
               <div className="caption mb-4" style={{ color: "var(--cargo)" }}>
                 {l}
               </div>
-              <div
-                className="grid gap-px md:grid-cols-2"
-                style={{ background: "var(--line)" }}
-              >
+              <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
                 {(grouped[l] ?? []).map((e) => (
                   <article
                     key={e.term}
@@ -117,17 +114,11 @@ export default function GlossaryPage() {
                       >
                         {e.term}
                       </h2>
-                      <span
-                        className="caption"
-                        style={{ color: "var(--ash)" }}
-                      >
+                      <span className="caption" style={{ color: "var(--ash)" }}>
                         {e.short}
                       </span>
                     </div>
-                    <p
-                      className="mt-3 text-sm leading-relaxed"
-                      style={{ color: "var(--bone)" }}
-                    >
+                    <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--bone)" }}>
                       {e.long}
                     </p>
                     {e.see && e.see.length > 0 && (

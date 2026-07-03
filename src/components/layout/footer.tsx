@@ -44,7 +44,7 @@ export function Footer() {
 
   return (
     <footer
-      className="relative mt-32 overflow-hidden border-t pt-32 pb-10"
+      className="relative mt-0 overflow-hidden border-t pt-20 pb-10"
       style={{ borderColor: "var(--line)" }}
     >
       <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">

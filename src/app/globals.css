@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montenegrin+Gothic+One&display=swap');
 @import "tailwindcss";
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -11,25 +12,26 @@
    stays "primary text", regardless of which is dark or light.
    ──────────────────────────────────────────────────────────────────────── */
 @theme {
-  --color-ink: #050a14;
-  --color-ink-2: #0a1c36;
-  --color-ink-3: #133d6b;
-  --color-bone: #f8fafc;
-  --color-paper: #0f172a;
-  --color-cargo: #d2691e;
-  --color-cargo-2: #b8541a;
-  --color-brass: #c9a876;
-  --color-brass-2: #a6885a;
-  --color-ash: #94a3b8;
-  --color-rust: #8b3a1c;
-  --color-sage: #6f8170;
-  --color-line: rgba(19, 61, 107, 0.4);
-  --color-line-2: rgba(19, 61, 107, 0.2);
+  --color-ink: #FAF8F5; /* Premium warm linen/off-white */
+  --color-ink-2: #F5F2EC; /* Premium warm ivory/sand */
+  --color-ink-3: #EAE3D8; /* Refined beige-gray */
+  --color-bone: #1C1814; /* Deep warm espresso text */
+  --color-paper: #FDFBF7; /* Crisp paper */
+  --color-cargo: #C85A17; /* Rich burnt copper */
+  --color-cargo-2: #A0440F; /* Deep burnt copper */
+  --color-brass: #8E754C; /* Sophisticated warm brass */
+  --color-brass-2: #705C3B; /* Deep brass */
+  --color-ash: #665E54; /* Refined taupe/graphite */
+  --color-rust: #963E1B; /* Rust accent */
+  --color-sage: #566C57; /* Premium sage green */
+  --color-line: rgba(28, 24, 20, 0.08); /* Derived from bone */
+  --color-line-2: rgba(28, 24, 20, 0.04);
 }
 
 /* Short-name aliases — preserve compatibility with style={{ background: "var(--ink)" }}.
    Helper tokens for opacity overlays so inline rgba() literals can be themed. */
 :root {
+  --font-display: 'Montenegrin Gothic One', serif;
   --ink: var(--color-ink);
   --ink-2: var(--color-ink-2);
   --ink-3: var(--color-ink-3);
@@ -45,100 +47,47 @@
   --line: var(--color-line);
   --line-2: var(--color-line-2);
 
-  /* Semantic helper tokens — dark theme (Midnight Ocean View) defaults */
-  --surface-translucent: rgba(5, 10, 20, 0.8);
-  --surface-tint-2: rgba(255, 255, 255, 0.02);
-  --surface-tint-6: rgba(255, 255, 255, 0.06);
-  --bone-border-20: rgba(255, 255, 255, 0.2);
-  --cargo-tint-4: rgba(210, 105, 30, 0.04);
-  --cargo-tint-6: rgba(210, 105, 30, 0.06);
-  --cargo-tint-10: rgba(210, 105, 30, 0.1);
-  --cargo-border-20: rgba(210, 105, 30, 0.2);
-  --cargo-border-40: rgba(210, 105, 30, 0.4);
-  --cargo-shadow-32: rgba(210, 105, 30, 0.32);
-  --cargo-pulse-50: rgba(210, 105, 30, 0.5);
-  --cargo-pulse-0: rgba(210, 105, 30, 0);
-  --brass-tint-4: rgba(201, 168, 118, 0.04);
-  --brass-tint-6: rgba(201, 168, 118, 0.06);
-  --brass-border-20: rgba(201, 168, 118, 0.2);
-  --brass-border-40: rgba(201, 168, 118, 0.4);
-  --sage-tint-6: rgba(111, 129, 112, 0.06);
-  --sage-border-20: rgba(111, 129, 112, 0.2);
-  --sage-border-40: rgba(111, 129, 112, 0.4);
-  --rust-tint-10: rgba(139, 58, 28, 0.1);
-  --rust-border-20: rgba(139, 58, 28, 0.2);
-  --rust-border-40: rgba(139, 58, 28, 0.4);
-  --rust-border-50: rgba(139, 58, 28, 0.5);
-  --dot-pattern: rgba(19, 61, 107, 0.2);
-  --cine-frame-stop: rgba(5, 10, 20, 0.85);
-  --hero-glow-cargo: rgba(210, 105, 30, 0.18);
-  --hero-glow-brass: rgba(201, 168, 118, 0.12);
-  --topo-cargo: rgba(210, 105, 30, 0.06);
-  --topo-brass: rgba(201, 168, 118, 0.04);
-  --topo-line: rgba(19, 61, 107, 0.05);
-  --grain-blend: overlay;
-  --grain-opacity: 0.06;
-  --nav-bg: rgba(5, 10, 20, 0.45);
-  --nav-panel-bg: rgba(5, 10, 20, 0.95);
-}
-
-/* Light theme — White and lightest blue color palette */
-[data-theme="light"] {
-  --color-ink: #ffffff;
-  --color-ink-2: #f4f8fd;
-  --color-ink-3: #e2e8f0;
-  --color-bone: #0b1220;
-  --color-paper: #131c2e;
-  --color-cargo: #a04714;
-  --color-cargo-2: #7a340f;
-  --color-brass: #7a5f33;
-  --color-brass-2: #5f4924;
-  --color-ash: #4a5468;
-  --color-rust: #8b3a1c;
-  --color-sage: #4a5c4b;
-  --color-line: rgba(11, 18, 32, 0.1);
-  --color-line-2: rgba(11, 18, 32, 0.05);
-
-  --surface-translucent: rgba(255, 255, 255, 0.85);
-  --surface-tint-2: rgba(11, 18, 32, 0.025);
-  --surface-tint-6: rgba(11, 18, 32, 0.06);
-  --bone-border-20: rgba(11, 18, 32, 0.25);
-  --cargo-tint-4: rgba(160, 71, 20, 0.06);
-  --cargo-tint-6: rgba(160, 71, 20, 0.08);
-  --cargo-tint-10: rgba(160, 71, 20, 0.12);
-  --cargo-border-20: rgba(160, 71, 20, 0.3);
-  --cargo-border-40: rgba(160, 71, 20, 0.45);
-  --cargo-shadow-32: rgba(160, 71, 20, 0.2);
-  --cargo-pulse-50: rgba(160, 71, 20, 0.4);
-  --cargo-pulse-0: rgba(160, 71, 20, 0);
-  --brass-tint-4: rgba(122, 95, 51, 0.06);
-  --brass-tint-6: rgba(122, 95, 51, 0.08);
-  --brass-border-20: rgba(122, 95, 51, 0.25);
-  --brass-border-40: rgba(122, 95, 51, 0.45);
-  --sage-tint-6: rgba(74, 92, 75, 0.08);
-  --sage-border-20: rgba(74, 92, 75, 0.25);
-  --sage-border-40: rgba(74, 92, 75, 0.45);
-  --rust-tint-10: rgba(139, 58, 28, 0.1);
-  --rust-border-20: rgba(139, 58, 28, 0.25);
-  --rust-border-40: rgba(139, 58, 28, 0.45);
-  --rust-border-50: rgba(139, 58, 28, 0.5);
-  --dot-pattern: rgba(11, 18, 32, 0.08);
-  --cine-frame-stop: rgba(255, 255, 255, 0.85);
-  --hero-glow-cargo: rgba(160, 71, 20, 0.1);
-  --hero-glow-brass: rgba(122, 95, 51, 0.07);
-  --topo-cargo: rgba(160, 71, 20, 0.07);
-  --topo-brass: rgba(122, 95, 51, 0.06);
-  --topo-line: rgba(11, 18, 32, 0.025);
+  /* Semantic helper tokens — Clean, Warm Editorial Light Theme */
+  --surface-translucent: rgba(250, 248, 245, 0.85);
+  --surface-tint-2: rgba(28, 24, 20, 0.025);
+  --surface-tint-6: rgba(28, 24, 20, 0.06);
+  --bone-border-20: rgba(28, 24, 20, 0.25);
+  --cargo-tint-4: rgba(200, 90, 23, 0.04);
+  --cargo-tint-6: rgba(200, 90, 23, 0.06);
+  --cargo-tint-10: rgba(200, 90, 23, 0.1);
+  --cargo-border-20: rgba(200, 90, 23, 0.2);
+  --cargo-border-40: rgba(200, 90, 23, 0.4);
+  --cargo-shadow-32: rgba(200, 90, 23, 0.22);
+  --cargo-pulse-50: rgba(200, 90, 23, 0.5);
+  --cargo-pulse-0: rgba(200, 90, 23, 0);
+  --brass-tint-4: rgba(142, 117, 76, 0.06);
+  --brass-tint-6: rgba(142, 117, 76, 0.08);
+  --brass-border-20: rgba(142, 117, 76, 0.25);
+  --brass-border-40: rgba(142, 117, 76, 0.45);
+  --sage-tint-6: rgba(86, 108, 87, 0.08);
+  --sage-border-20: rgba(86, 108, 87, 0.25);
+  --sage-border-40: rgba(86, 108, 87, 0.45);
+  --rust-tint-10: rgba(150, 62, 27, 0.1);
+  --rust-border-20: rgba(150, 62, 27, 0.25);
+  --rust-border-40: rgba(150, 62, 27, 0.45);
+  --rust-border-50: rgba(150, 62, 27, 0.5);
+  --dot-pattern: rgba(28, 24, 20, 0.08);
+  --cine-frame-stop: rgba(250, 248, 245, 0.85);
+  --hero-glow-cargo: rgba(200, 90, 23, 0.14);
+  --hero-glow-brass: rgba(142, 117, 76, 0.08);
+  --topo-cargo: rgba(200, 90, 23, 0.04);
+  --topo-brass: rgba(142, 117, 76, 0.05);
+  --topo-line: rgba(28, 24, 20, 0.025);
   --grain-blend: multiply;
-  --grain-opacity: 0.04;
-  --nav-bg: rgba(255, 255, 255, 0.45);
-  --nav-panel-bg: rgba(255, 255, 255, 0.97);
+  --grain-opacity: 0.035;
+  --nav-bg: rgba(250, 248, 245, 0.45);
+  --nav-panel-bg: rgba(250, 248, 245, 0.97);
 }
 
 /* Force dark theme style variables for the hero section even in light theme */
-[data-theme="light"] .hero-section {
+.hero-section {
   --color-bone: #f8fafc;
-  --color-cargo: #d2691e;
+  --color-cargo: #BF5700;
   --color-cargo-2: #b8541a;
   --color-brass: #c9a876;
   --color-brass-2: #a6885a;
@@ -158,15 +107,13 @@
   --surface-tint-2: rgba(255, 255, 255, 0.02);
   --surface-tint-6: rgba(255, 255, 255, 0.06);
   --bone-border-20: rgba(255, 255, 255, 0.2);
+
+  color: var(--bone);
 }
 
 /* Also ensure the primary button's text color matches dark mode in the hero section */
-[data-theme="light"] .hero-section .btn-primary {
+.hero-section .btn-primary {
   color: #efe7d6;
-}
-
-.hero-section {
-  color: var(--bone);
 }
 
 
@@ -235,6 +182,9 @@ body {
     "Segoe UI",
     sans-serif;
 }
+.f-bebas {
+  font-family: var(--font-bebas), sans-serif;
+}
 
 /* ────────────────────────────────────────────────────────────────────────
    GRAIN OVERLAY + TOPOGRAPHIC BACKGROUND
@@ -245,7 +195,7 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 100;
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.93 0 0 0 0 0.91 0 0 0 0 0.84 0 0 0 0.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.93 0 0 0 0 0.88 0 0 0 0.25 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   opacity: var(--grain-opacity);
   mix-blend-mode: var(--grain-blend);
 }
@@ -269,6 +219,20 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 @keyframes fadeIn {
   from {
@@ -488,14 +452,52 @@ body {
   transform: translateX(2px);
 }
 .quiet-trust-section:hover {
-  background: var(--surface-tint-6);
-}
-[data-theme="light"] .quiet-trust-section:hover {
-  background: rgba(11, 18, 32, 0.025);
+  background: var(--surface-tint-2);
 }
 
 .fade-up {
   animation: fadeUp 0.9s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+}
+.fade-down {
+  animation: fadeDown 0.9s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hero slogan rotation animations (fade down) */
+.hero-slogan-container {
+  overflow: hidden;
+  position: relative;
+  display: block;
+}
+
+.hero-slogan-item {
+  display: block;
+  transition: opacity 0.6s ease-in-out, transform 0.6s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+.hero-slogan-item.state-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-slogan-item.state-exit {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.hero-slogan-item.state-enter {
+  opacity: 0;
+  transform: translateY(-24px);
+  transition: none;
+}
+.animate-cursor-blink {
+  animation: cursorBlink 0.8s step-end infinite;
 }
 .fade-in {
   animation: fadeIn 0.7s ease both;
@@ -798,7 +800,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   background: var(--cargo);
-  color: var(--bone);
+  color: #efe7d6; /* Always use premium light cream text on dark orange background */
   padding: 14px 22px;
   border-radius: 999px;
   font-weight: 600;
@@ -822,13 +824,6 @@ body {
 .btn-primary:hover {
   transform: translateY(-1px);
   box-shadow: 0 8px 28px var(--cargo-shadow-32);
-}
-
-/* Primary button copy: in dark mode `--bone` is the cream text we want; after
-   the token swap `--bone` becomes ink (dark text), which would disappear on
-   the cargo fill. Force the on-cargo label color to the dark-mode bone always. */
-[data-theme="light"] .btn-primary {
-  color: #efe7d6;
 }
 
 .btn-ghost {
@@ -907,19 +902,12 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--cargo) 0%, var(--rust) 100%);
+  background: linear-gradient(135deg, var(--cargo) 0%, var(--brass) 100%);
   opacity: 0;
   transition: opacity 0.6s;
   z-index: -1;
 }
 .tile:hover::before {
-  opacity: 0.08;
-}
-
-[data-theme="light"] .tile::before {
-  background: linear-gradient(135deg, var(--cargo) 0%, var(--brass) 100%);
-}
-[data-theme="light"] .tile:hover::before {
   opacity: 0.12;
 }
 

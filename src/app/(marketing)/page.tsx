@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUpRight, Quote as QuoteIcon, Star } from "lucide-react";
-import { SectionLabel } from "@/components/shared/section-label";
 import { Pill } from "@/components/shared/pill";
 import { Marquee } from "@/components/shared/marquee";
-import { CompassSvg, RouteMap } from "@/components/shared/svg";
+import { CompassSvg } from "@/components/shared/svg";
+import { CoverageSection } from "@/components/marketing/coverage-section";
 import { QuietTrust } from "@/components/marketing/quiet-trust";
-import { SloganRotator } from "@/components/marketing/slogan-rotator";
-import { SERVICES } from "@/server/db/seed/services";
+import { HeroSloganRotator } from "@/components/marketing/hero-slogan-rotator";
+import { ManifestoSection } from "@/components/marketing/manifesto-section";
+import { ServicesSlider } from "@/components/marketing/services-slider";
+import { RoutesTable } from "@/components/marketing/routes-table";
+import { IndustriesSlider } from "@/components/marketing/industries-slider";
 import { STATS } from "@/server/db/seed/stats";
-import { ROUTES } from "@/server/db/seed/routes";
-import { INDUSTRIES } from "@/server/db/seed/industries";
+import { CountUp } from "@/components/shared/count-up";
 import { TESTIMONIALS } from "@/server/db/seed/testimonials";
-import { formatINR } from "@/lib/utils";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -42,15 +43,6 @@ const tickerRoutes = [
   ["PUNE", "DUBAI", "1D"],
 ] as const;
 
-// Port counts placeholder pending real numbers from the business.
-const coverage = [
-  { n: "EUROPE", v: "—" },
-  { n: "AFRICA", v: "—" },
-  { n: "GULF", v: "—" },
-  { n: "AMERICAS", v: "—" },
-  { n: "ASIA-PAC", v: "—" },
-  { n: "OCEANIA", v: "—" },
-] as const;
 
 function CompassBadge({
   size,
@@ -113,17 +105,11 @@ export default function HomePage() {
           <div className="grid flex-1 grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
             {/* LEFT: text */}
             <div className="lg:col-span-12">
-              <SloganRotator />
               <h1
                 className="f-display fade-up s2 mb-10 leading-[0.95] tracking-tighter"
                 style={{ fontSize: "clamp(2rem, 7vw, 5.5rem)", color: "var(--bone)" }}
               >
-                Worldwide
-                <br />
-                <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-                  freight,{" "}
-                </span>
-                <span style={{ color: "var(--bone)" }}>refined.</span>
+                <HeroSloganRotator />
               </h1>
 
               <p
@@ -162,40 +148,14 @@ export default function HomePage() {
       <QuietTrust />
 
       {/* MANIFESTO */}
-      <section className="relative py-32" style={{ background: "var(--ink-2)" }}>
-        <div className="site-gutter">
-          <div className="grid gap-8 lg:grid-cols-12">
-            <div className="self-start lg:sticky lg:top-32 lg:col-span-3">
-              <SectionLabel num="02">MANIFESTO</SectionLabel>
-              <p className="caption mt-6 leading-relaxed" style={{ color: "var(--ash)" }}>
-                Why this house exists, in five sentences.
-              </p>
-            </div>
-            <div className="lg:col-span-9">
-              <p className="f-display text-[28px] leading-[1.15] tracking-tight md:text-[44px] lg:text-[56px]">
-                Most freight forwarders ship boxes.{" "}
-                <span style={{ color: "var(--ash)" }}>
-                  We ship the things inside them — pharma that cannot warm by half a degree, turbine
-                  blades the length of a city block, fashion that must arrive before the runway.
-                </span>{" "}
-                We made our peace with two facts:{" "}
-                <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-                  cargo is human, and time is unforgiving.
-                </span>{" "}
-                The rest is craft.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ManifestoSection />
 
       {/* SERVICES */}
-      <section className="border-t py-24" style={{ borderColor: "var(--line)" }}>
+      <section className="border-t py-16" style={{ borderColor: "var(--line)" }}>
         <div className="site-gutter">
-          <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <SectionLabel num="03">SERVICES</SectionLabel>
-              <h2 className="f-display mt-4 text-[56px] leading-[0.95] tracking-tight md:text-[80px]">
+              <h2 className="f-display text-[56px] leading-[0.95] tracking-tight md:text-[80px]">
                 Six disciplines.
                 <br />
                 <span className="f-display-it" style={{ color: "var(--brass)" }}>
@@ -208,79 +168,17 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div
-            className="grid gap-px md:grid-cols-2 lg:grid-cols-3"
-            style={{ background: "var(--line)" }}
-          >
-            {SERVICES.map((s, i) => {
-              const Icon = s.icon;
-              return (
-                <Link
-                  key={s.id}
-                  href={`/services/${s.slug}`}
-                  className="tile group lift block p-8 text-left"
-                  style={{ background: "var(--ink)" }}
-                  data-cursor={`OPEN ${s.tag}`}
-                >
-                  <div className="mb-12 flex items-start justify-between">
-                    <div
-                      className="rounded-xl p-3"
-                      style={{
-                        background: "var(--cargo-tint-10)",
-                        border: "1px solid var(--cargo-border-20)",
-                      }}
-                    >
-                      <Icon size={22} style={{ color: "var(--cargo)" }} />
-                    </div>
-                    <div className="caption text-[10px]" style={{ color: "var(--brass)" }}>
-                      0{i + 1}
-                    </div>
-                  </div>
-                  <div className="caption mb-3" style={{ color: "var(--cargo)" }}>
-                    {s.tag}
-                  </div>
-                  <h3 className="f-display mb-3 text-[34px] leading-tight">{s.name}</h3>
-                  <p className="mb-6 text-sm leading-relaxed" style={{ color: "var(--ash)" }}>
-                    {s.short}
-                  </p>
-                  <div
-                    className="flex items-center justify-between border-t pt-6"
-                    style={{ borderColor: "var(--line)" }}
-                  >
-                    <div className="flex items-center gap-4 text-xs">
-                      <span>
-                        <span className="f-mono" style={{ color: "var(--brass)" }}>
-                          {s.eta}
-                        </span>{" "}
-                        eta
-                      </span>
-                      <span>
-                        <span className="f-mono" style={{ color: "var(--brass)" }}>
-                          {s.coverage}
-                        </span>
-                      </span>
-                    </div>
-                    <ArrowUpRight
-                      size={20}
-                      className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-                      style={{ color: "var(--cargo)" }}
-                    />
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+          <ServicesSlider />
         </div>
       </section>
 
       {/* STATS */}
-      <section className="relative py-32" style={{ background: "var(--ink-2)" }}>
+      <section className="relative py-16" style={{ background: "var(--ink-2)" }}>
         <div className="dotted-bg absolute inset-0 opacity-30" />
         <div className="site-gutter relative">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <div>
-              <SectionLabel num="04">BY THE NUMBERS</SectionLabel>
-              <h2 className="f-display mt-6 mb-8 text-[56px] leading-[0.95] tracking-tight md:text-[80px]">
+              <h2 className="f-display mb-8 text-[56px] leading-[0.95] tracking-tight md:text-[80px]">
                 Nine years.
                 <br />
                 <span className="f-display-it" style={{ color: "var(--cargo)" }}>
@@ -307,7 +205,12 @@ export default function HomePage() {
                     className="f-display tabular mb-3 text-[64px] leading-none md:text-[88px]"
                     style={{ color: "var(--cargo)" }}
                   >
-                    {s.value}
+                    <CountUp
+                      target={s.target}
+                      suffix={s.suffix}
+                      decimals={s.decimals ?? 0}
+                      duration={2400}
+                    />
                   </div>
                   <div className="text-sm" style={{ color: "var(--bone)" }}>
                     {s.label}
@@ -320,11 +223,10 @@ export default function HomePage() {
       </section>
 
       {/* ROUTE PRICING */}
-      <section className="py-32">
+      <section className="py-16">
         <div className="site-gutter">
           <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <SectionLabel num="05">RATES</SectionLabel>
               <h2 className="f-display mt-4 text-[56px] leading-[0.95] tracking-tight md:text-[80px]">
                 Live trade lanes,
                 <br />
@@ -338,52 +240,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div
-            className="overflow-hidden rounded-2xl"
-            style={{ border: "1px solid var(--line)", background: "var(--ink-2)" }}
-          >
-            <div
-              className="caption grid grid-cols-12 gap-4 border-b p-5"
-              style={{ borderColor: "var(--line)" }}
-            >
-              <div className="col-span-4">ORIGIN → DESTINATION</div>
-              <div className="col-span-2">MODE</div>
-              <div className="col-span-2">TRANSIT</div>
-              <div className="col-span-3 text-right">FROM</div>
-              <div className="col-span-1" />
-            </div>
-            {ROUTES.slice(0, 8).map((r) => (
-              <Link
-                key={r.slug}
-                href={`/routes/${r.slug}`}
-                aria-label={`${r.from} to ${r.to} freight details`}
-                className="group grid grid-cols-12 items-center gap-4 border-b p-5 transition-colors last:border-b-0 hover:bg-[var(--surface-tint-2)]"
-                style={{ borderColor: "var(--line-2)" }}
-              >
-                <div className="col-span-4 flex items-center gap-2 text-sm">
-                  <span className="font-medium">{r.from}</span>
-                  <ArrowRight size={12} style={{ color: "var(--cargo)" }} />
-                  <span className="font-medium">{r.to}</span>
-                </div>
-                <div className="col-span-2">
-                  <Pill kind={r.mode === "Air" ? "cargo" : "brass"}>{r.mode}</Pill>
-                </div>
-                <div className="f-mono col-span-2 text-sm">{r.days} days</div>
-                <div
-                  className="f-display tabular col-span-3 text-right text-[24px]"
-                  style={{ color: "var(--cargo)" }}
-                >
-                  {formatINR(r.rate)}
-                </div>
-                <div className="col-span-1 text-right">
-                  <ArrowUpRight
-                    size={16}
-                    className="opacity-0 transition-opacity group-hover:opacity-100"
-                  />
-                </div>
-              </Link>
-            ))}
-          </div>
+          <RoutesTable />
           <p className="caption mt-4" style={{ color: "var(--ash)" }}>
             INDICATIVE · 1 × 20&apos; DRY CONTAINER · EX-WORKS · EXCLUDES TAXES &amp; SURCHARGES ·{" "}
             <Link href="/routes" className="u-link">
@@ -394,12 +251,11 @@ export default function HomePage() {
       </section>
 
       {/* INDUSTRIES SURFACE */}
-      <section className="py-32" style={{ background: "var(--ink-2)" }}>
+      <section className="py-16" style={{ background: "var(--ink-2)" }}>
         <div className="site-gutter">
           <div className="mb-12 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <SectionLabel num="—">INDUSTRIES</SectionLabel>
-              <h2 className="f-display mt-4 text-[44px] leading-[0.95] tracking-tight md:text-[72px]">
+              <h2 className="f-display text-[44px] leading-[0.95] tracking-tight md:text-[72px]">
                 Eight desks,
                 <br />
                 <span className="f-display-it" style={{ color: "var(--cargo)" }}>
@@ -418,29 +274,7 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div
-            className="grid gap-px md:grid-cols-2 lg:grid-cols-4"
-            style={{ background: "var(--line)" }}
-          >
-            {INDUSTRIES.slice(0, 8).map((ind) => {
-              const Icon = ind.icon;
-              return (
-                <Link
-                  key={ind.id}
-                  href={`/industries/${ind.slug}`}
-                  className="group lift block p-6 text-left"
-                  style={{ background: "var(--ink-2)" }}
-                  data-cursor="OPEN"
-                >
-                  <Icon size={22} style={{ color: "var(--cargo)" }} className="mb-3" />
-                  <div className="font-semibold">{ind.name}</div>
-                  <div className="mt-1 text-xs" style={{ color: "var(--ash)" }}>
-                    {ind.tag}
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+          <IndustriesSlider />
         </div>
       </section>
 
@@ -465,10 +299,9 @@ export default function HomePage() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="py-32">
+      <section className="py-16">
         <div className="site-gutter">
-          <SectionLabel num="07">VOICES</SectionLabel>
-          <div className="mt-8 grid gap-px lg:grid-cols-3" style={{ background: "var(--line)" }}>
+          <div className="grid gap-px lg:grid-cols-3" style={{ background: "var(--line)" }}>
             {TESTIMONIALS.map((t, i) => (
               <div key={i} className="p-8 lg:p-10" style={{ background: "var(--ink)" }}>
                 <QuoteIcon size={28} style={{ color: "var(--cargo)" }} className="mb-6" />
@@ -497,53 +330,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* COVERAGE MAP */}
-      <section className="relative py-32" style={{ background: "var(--ink-2)" }}>
-        <div className="site-gutter">
-          <div className="grid items-center gap-16 lg:grid-cols-2">
-            <div
-              className="aspect-[4/3] overflow-hidden rounded-2xl"
-              style={{ border: "1px solid var(--line)" }}
-            >
-              <RouteMap />
-            </div>
-            <div>
-              <SectionLabel num="08">COVERAGE</SectionLabel>
-              <h2 className="f-display mt-4 mb-6 text-[56px] leading-[0.95] tracking-tight md:text-[72px]">
-                Everywhere
-                <br />
-                <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-                  most don&apos;t.
-                </span>
-              </h2>
-              <p className="mb-8 text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
-                Our agent network was built backwards — starting with the impossible inland-Africa
-                lanes, the Persian Gulf hinterlands, and the niche European corridors that bigger
-                forwarders skip. The easy lanes were added later.
-              </p>
-              <div className="grid grid-cols-3 gap-px" style={{ background: "var(--line)" }}>
-                {coverage.map((r, i) => (
-                  <div key={i} className="p-5" style={{ background: "var(--ink-2)" }}>
-                    <div className="caption text-[10px]" style={{ color: "var(--brass)" }}>
-                      {r.n}
-                    </div>
-                    <div className="f-display mt-1 text-2xl">{r.v}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CoverageSection />
 
       {/* CTA */}
-      <section className="relative overflow-hidden py-32">
-        <div className="hero-glow absolute inset-0" />
-        <div className="site-gutter relative text-center">
-          <SectionLabel num="09">
-            <span className="mx-auto block">START</span>
-          </SectionLabel>
-          <h2 className="f-display mt-8 text-[80px] leading-[0.9] tracking-tighter md:text-[140px]">
+      <section className="relative overflow-hidden py-32 bg-black">
+        {/* Background Image Layer */}
+        <div className="absolute inset-0 z-0 opacity-40">
+          <img
+            src="/cta-bg.png"
+            alt="CTA Background Cargo Plane"
+            className="h-full w-full object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(to top, var(--ink) 0%, transparent 60%, var(--ink) 100%)",
+            }}
+          />
+        </div>
+        <div className="site-gutter relative z-10 text-center">
+          <h2 className="f-display text-[80px] leading-[0.9] tracking-tighter md:text-[140px] text-white">
             Tell us what
             <br />
             you need to{" "}
@@ -551,7 +357,7 @@ export default function HomePage() {
               move.
             </span>
           </h2>
-          <p className="mx-auto mt-8 max-w-2xl text-xl" style={{ color: "var(--ash)" }}>
+          <p className="mx-auto mt-8 max-w-2xl text-xl text-neutral-300">
             A single message reaches three people: a planner, a customs broker, and the head of
             operations. You will hear back within ninety minutes — usually under thirty.
           </p>
@@ -559,7 +365,7 @@ export default function HomePage() {
             <Link href="/quote" className="btn-primary px-8 py-4 text-base" data-cursor="QUOTE">
               Request a quote <ArrowUpRight size={18} />
             </Link>
-            <Link href="/contact" className="btn-ghost px-8 py-4 text-base" data-cursor="CONTACT">
+            <Link href="/contact" className="btn-ghost px-8 py-4 text-base" data-cursor="CONTACT" style={{ color: "white", borderColor: "rgba(255,255,255,0.2)" }}>
               Speak with a planner
             </Link>
           </div>

@@ -2,7 +2,6 @@
 
 import { Bell, ChevronRight, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { ThemeToggle } from "@/components/shared/theme-toggle";
 
 const labels: Record<string, string> = {
   "": "dashboard",
@@ -56,7 +55,6 @@ export function AdminTopbar() {
               style={{ background: "var(--cargo)" }}
             />
           </button>
-          <ThemeToggle />
           <div className="caption" style={{ color: "var(--ash)" }}>
             v3.4.1
           </div>

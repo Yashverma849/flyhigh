@@ -55,7 +55,7 @@ export default async function OG() {
           }}
         >
           <span>Worldwide</span>
-          <span style={{ color: "#D2691E", fontStyle: "italic" }}>freight,</span>
+          <span style={{ color: "#BF5700", fontStyle: "italic" }}>freight,</span>
           <span>refined.</span>
         </div>
         <div

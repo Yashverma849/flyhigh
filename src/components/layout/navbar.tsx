@@ -17,7 +17,6 @@ import {
   X,
 } from "lucide-react";
 import { Logo } from "@/components/shared/svg";
-import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { SERVICES } from "@/server/db/seed/services";
 import { INDUSTRIES } from "@/server/db/seed/industries";
 import { ROUTES, ROUTE_REGIONS } from "@/server/db/seed/routes";
@@ -206,7 +205,7 @@ export function Navbar() {
           ...(!scrolled && isHome ? {
             "--line": "rgba(255, 255, 255, 0.15)",
             "--surface-tint-2": "rgba(255, 255, 255, 0.02)",
-            "--cargo": "#d2691e",
+            "--cargo": "#BF5700",
           } : {})
         } as React.CSSProperties}
         onMouseLeave={() => setMega(null)}
@@ -236,7 +235,6 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <ThemeToggle className="hidden sm:inline-flex" />
             <Link href="/quote" className="btn-primary text-sm" data-cursor="QUOTE">
               Get a quote <ArrowRight size={14} />
             </Link>
@@ -265,7 +263,13 @@ export function Navbar() {
                   backdropFilter: "blur(16px)",
                   border: "1px solid var(--line)",
                   boxShadow: "0 20px 50px rgba(0, 0, 0, 0.15)",
-                }}
+                  color: "var(--cargo)",
+                  "--ash": "var(--ash)",
+                  "--brass": "var(--brass)",
+                  "--line": "var(--line)",
+                  "--line-2": "var(--line-2)",
+                  "--ink-3": "var(--ink-3)",
+                } as React.CSSProperties}
               >
                 {mega.kind === "services" && (
                   <div className="grid gap-2 md:grid-cols-3">
@@ -437,7 +441,13 @@ export function Navbar() {
               background: "var(--nav-panel-bg)",
               backdropFilter: "blur(16px)",
               border: "1px solid var(--line)",
-            }}
+              color: "var(--cargo)",
+              "--ash": "var(--ash)",
+              "--brass": "var(--brass)",
+              "--line": "var(--line)",
+              "--line-2": "var(--line-2)",
+              "--ink-3": "var(--ink-3)",
+            } as React.CSSProperties}
           >
             {navLinks.map(({ href, label }) => (
               <Link
@@ -482,12 +492,7 @@ export function Navbar() {
                 </Link>
               ))}
             </div>
-            <div className="mt-4 flex items-center justify-between">
-              <span className="caption" style={{ color: "var(--ash)" }}>
-                THEME
-              </span>
-              <ThemeToggle />
-            </div>
+
           </div>
         )}
       </header>

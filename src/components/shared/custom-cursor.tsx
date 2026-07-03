@@ -1,15 +1,11 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 import { Plane } from "lucide-react";
 
 export function CustomCursor() {
   const ref = useRef<HTMLDivElement>(null);
   const [label, setLabel] = useState("");
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const move = (e: MouseEvent) => {
@@ -35,8 +31,6 @@ export function CustomCursor() {
     };
   }, []);
 
-  const isLight = mounted && resolvedTheme === "light";
-
   return (
     <div
       ref={ref}
@@ -59,7 +53,7 @@ export function CustomCursor() {
         className={`absolute top-3 left-3 transition-all duration-300 ${label ? "scale-50 opacity-0" : "scale-100 opacity-100"}`}
         style={{
           color: "var(--bone)",
-          mixBlendMode: isLight ? "normal" : "difference",
+          mixBlendMode: "normal",
         }}
       >
         <Plane size={16} className="-rotate-90" />

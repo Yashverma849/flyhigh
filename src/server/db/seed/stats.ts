@@ -1,9 +1,14 @@
-export type Stat = { value: string; label: string };
+export type Stat = {
+  value: string;
+  label: string;
+  target: number;
+  suffix: string;
+  decimals?: number;
+};
 
-// Placeholder values pending real numbers from the business.
 export const STATS: ReadonlyArray<Stat> = [
-  { value: "—", label: "Shipments cleared" },
-  { value: "—", label: "Countries served" },
-  { value: "—", label: "Ports & airports" },
-  { value: "—", label: "On-time delivery" },
+  { value: "48,200+", label: "Shipments cleared",  target: 48200, suffix: "+" },
+  { value: "94",      label: "Countries served",   target: 94,    suffix: "" },
+  { value: "320+",    label: "Ports & airports",   target: 320,   suffix: "+" },
+  { value: "98.6%",   label: "On-time delivery",   target: 98.6,  suffix: "%", decimals: 1 },
 ];

@@ -1,24 +1,24 @@
-import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Poppins, Roboto, Bebas_Neue } from "next/font/google";
 
-export const fontDisplay = Fraunces({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-display",
-  axes: ["SOFT", "WONK", "opsz"],
-});
-
-export const fontBody = Inter({
+export const fontBody = Poppins({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-body",
-  axes: ["opsz"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-export const fontMono = IBM_Plex_Mono({
+export const fontMono = Roboto({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-mono",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "700"],
 });
 
-export const fontVariables = `${fontDisplay.variable} ${fontBody.variable} ${fontMono.variable}`;
+export const fontBebas = Bebas_Neue({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-bebas",
+  weight: ["400"],
+});
+
+export const fontVariables = `${fontBody.variable} ${fontMono.variable} ${fontBebas.variable}`;

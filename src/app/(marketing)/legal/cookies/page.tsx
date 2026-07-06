@@ -41,11 +41,10 @@ const COOKIES = [
 export default function CookiesPage() {
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-12">
         <div className="site-gutter">
-          <Breadcrumbs items={breadcrumbs} className="mb-8" />
+          <Breadcrumbs items={breadcrumbs} />
           <SectionLabel num="—">COOKIES</SectionLabel>
           <h1 className="f-display mt-6 text-[48px] leading-[0.9] tracking-tight md:text-[72px]">
             Cookie policy

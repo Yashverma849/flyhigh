@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ChevronLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Pill } from "@/components/shared/pill";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { JsonLd } from "@/components/shared/json-ld";
@@ -63,12 +63,10 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         })}
       />
 
+      <Breadcrumbs items={breadcrumbs} />
+
       <article className="pt-32 pb-20">
         <div className="site-gutter">
-          <Breadcrumbs items={breadcrumbs} className="mb-6" />
-          <Link href="/case-studies" className="caption u-link mb-8 flex items-center gap-1">
-            <ChevronLeft size={12} /> ALL CASE STUDIES
-          </Link>
           <Pill kind="cargo">CASE STUDY · {c.industry.toUpperCase()}</Pill>
           <h1 className="f-display mt-6 mb-8 text-[42px] leading-[0.95] tracking-tight md:text-[68px]">
             {c.title}

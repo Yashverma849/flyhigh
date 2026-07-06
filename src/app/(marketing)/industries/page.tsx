@@ -33,11 +33,10 @@ const breadcrumbs = [
 export default function IndustriesIndexPage() {
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-16">
         <div className="site-gutter">
-          <Breadcrumbs items={breadcrumbs} className="mb-8" />
+          <Breadcrumbs items={breadcrumbs} />
           <div className="grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <SectionLabel num="01">INDUSTRIES</SectionLabel>
@@ -77,7 +76,7 @@ export default function IndustriesIndexPage() {
                   style={{ background: "var(--ink)" }}
                   data-cursor="OPEN"
                 >
-                  <Icon size={28} style={{ color: "var(--cargo)" }} className="mb-6" />
+                  <Icon size={28} style={{ color: "var(--cargo)" }} />
                   <Pill kind="brass">{ind.tag}</Pill>
                   <div className="f-display mt-4 mb-2 text-2xl tracking-tight">{ind.name}</div>
                   <div className="text-sm" style={{ color: "var(--ash)" }}>

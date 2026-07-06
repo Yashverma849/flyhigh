@@ -74,7 +74,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
-      <body className="grain f-body">
+      <body className="grain f-body max-w-full overflow-x-hidden">
         <JsonLd id="ld-org" data={[organizationJsonLd(), websiteJsonLd(), localBusinessJsonLd()]} />
         <ThemeProvider>{children}</ThemeProvider>
       </body>

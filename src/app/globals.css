@@ -86,6 +86,11 @@
 
 /* Force dark theme style variables for the hero section even in light theme */
 .hero-section {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  isolation: isolate;
   --color-bone: #f8fafc;
   --color-cargo: #BF5700;
   --color-cargo-2: #b8541a;
@@ -125,15 +130,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 html {
-  overflow-x: clip;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 html,
 body {
   background: var(--ink);
   color: var(--bone);
+  max-width: 100%;
 }
 body {
-  overflow-x: clip;
+  overflow-x: hidden;
   font-family:
     var(--font-body),
     system-ui,
@@ -1112,16 +1119,24 @@ body {
 /* Full-width page gutter — modest side padding, no max-width cap */
 .site-gutter {
   width: 100%;
-  padding-inline: 1rem;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding-inline: 1.5rem;
 }
 @media (min-width: 768px) {
   .site-gutter {
-    padding-inline: 1.5rem;
+    padding-inline: 2.5rem;
   }
 }
 @media (min-width: 1024px) {
   .site-gutter {
-    padding-inline: 2rem;
+    padding-inline: 3.5rem;
+  }
+}
+@media (min-width: 1280px) {
+  .site-gutter {
+    padding-inline: 4.5rem;
   }
 }
 

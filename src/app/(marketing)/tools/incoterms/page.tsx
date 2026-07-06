@@ -161,11 +161,12 @@ const FAQS = [
 export default function IncotermsPage() {
   return (
     <>
-      <JsonLd data={[breadcrumbJsonLd(breadcrumbs), faqJsonLd(FAQS)]} />
+      <Breadcrumbs items={breadcrumbs} />
+      <JsonLd data={faqJsonLd(FAQS)} />
 
       <section className="pt-32 pb-12">
         <div className="site-gutter">
-          <Breadcrumbs items={breadcrumbs} className="mb-8" />
+          <Breadcrumbs items={breadcrumbs} />
           <SectionLabel num="01">INCOTERMS 2020</SectionLabel>
           <h1 className="f-display mt-6 text-[56px] leading-[0.88] tracking-tighter md:text-[88px]">
             Eleven words,

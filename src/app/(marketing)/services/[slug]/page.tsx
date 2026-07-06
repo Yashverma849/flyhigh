@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ArrowUpRight, ChevronLeft } from "lucide-react";
-import { SectionLabel } from "@/components/shared/section-label";
-import { Pill } from "@/components/shared/pill";
+import { ArrowRight } from "lucide-react";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { JsonLd } from "@/components/shared/json-ld";
-import { RelatedLinks } from "@/components/shared/related-links";
+import { CaseStudyHeroSection } from "@/components/marketing/case-study-hero-section";
+import { OtherDisciplinesSection } from "@/components/marketing/other-disciplines-section";
+import { ServiceHeroMetrics } from "@/components/marketing/service-hero-metrics";
+import { ServiceDeskSection } from "@/components/marketing/service-desk-section";
+import { IndustryOverviewSlider } from "@/components/marketing/industry-overview-slider";
 import { getServiceBySlug, SERVICES } from "@/server/db/seed/services";
 import { INDUSTRIES } from "@/server/db/seed/industries";
 import { CASE_STUDIES } from "@/server/db/seed/case-studies";
@@ -68,20 +69,27 @@ const PROCESS = [
   },
 ];
 
+function ServiceHeroTitle({ name }: { name: string }) {
+  const space = name.lastIndexOf(" ");
+  if (space === -1) return name;
+
+  return (
+    <>
+      {name.slice(0, space)}
+      <br />
+      <span className="f-display-it" style={{ color: "var(--cargo)" }}>
+        {name.slice(space + 1)}
+      </span>
+    </>
+  );
+}
+
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const s = getServiceBySlug(slug);
   if (!s) notFound();
 
-  const Icon = s.icon;
   const others = SERVICES.filter((x) => x.slug !== slug);
-
-  const metrics = [
-    { l: "TYPICAL ETA", v: s.eta },
-    { l: "COVERAGE", v: s.coverage },
-    { l: "DESK STAFF", v: "12+" },
-    { l: "AVAILABILITY", v: "24/7" },
-  ];
 
   const relatedIndustries = INDUSTRIES.filter((ind) => ind.relatedServices.includes(s.id)).slice(
     0,
@@ -99,234 +107,122 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           category: s.tag,
         })}
       />
+      <Breadcrumbs
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: s.name, href: `/services/${s.slug}` },
+        ]}
+      />
 
-      <section className="relative pt-32 pb-12">
-        <div className="site-gutter">
-          <Breadcrumbs
-            items={[
-              { name: "Home", href: "/" },
-              { name: "Services", href: "/services" },
-              { name: s.name, href: `/services/${s.slug}` },
-            ]}
-            className="mb-6"
+      <section className="hero-section relative min-h-[100svh]">
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
+            src={s.image}
+            alt=""
+            className="h-full w-full max-w-none object-cover object-[62%_center] sm:object-[58%_center] lg:object-[55%_center]"
           />
-          <Link href="/services" className="caption u-link mb-8 flex items-center gap-2">
-            <ChevronLeft size={12} /> ALL SERVICES
-          </Link>
-          <div className="grid gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <div className="mb-6 flex items-center gap-3">
-                <div
-                  className="rounded-2xl p-4"
-                  style={{
-                    background: "var(--cargo-tint-10)",
-                    border: "1px solid var(--cargo)",
-                  }}
-                >
-                  <Icon size={28} style={{ color: "var(--cargo)" }} />
-                </div>
-                <Pill kind="cargo">{s.tag}</Pill>
-              </div>
-              <h1 className="f-display mb-6 text-[64px] leading-[0.88] tracking-tighter md:text-[110px]">
-                {s.name}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.72) 32%, rgba(0,0,0,0.35) 58%, rgba(0,0,0,0.2) 100%), linear-gradient(to top, var(--ink) 0%, transparent 38%)",
+            }}
+          />
+        </div>
+        <div className="site-gutter relative z-10 mx-auto flex min-h-[100svh] w-full min-w-0 max-w-full flex-col pt-28 sm:pt-32 lg:pt-40">
+          <div className="flex flex-1 flex-col justify-center">
+            <div className="w-full max-w-2xl lg:max-w-3xl">
+              <h1 className="f-display mb-6 text-[clamp(2.75rem,8.5vw,6.875rem)] leading-[0.88] tracking-tighter">
+                <ServiceHeroTitle name={s.name} />
               </h1>
-              <p className="text-xl leading-relaxed" style={{ color: "var(--bone)" }}>
+              <p className="text-[clamp(1rem,2vw,1.5rem)] leading-relaxed" style={{ color: "var(--bone)" }}>
                 {s.desc}
               </p>
             </div>
-            <div className="lg:col-span-5">
-              <div className="cine-frame relative aspect-[4/5] overflow-hidden rounded-2xl">
-                <Image
-                  src={s.image}
-                  alt={s.name}
-                  fill
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
+          </div>
+          <div className="w-full max-w-full">
+            <ServiceHeroMetrics eta={s.eta} coverage={s.coverage} />
           </div>
         </div>
       </section>
 
-      <section className="py-20" style={{ background: "var(--ink-2)" }}>
-        <div className="site-gutter">
-          <div
-            className="grid grid-cols-2 gap-px lg:grid-cols-4"
-            style={{ background: "var(--line)" }}
-          >
-            {metrics.map((m) => (
-              <div key={m.l} className="p-8" style={{ background: "var(--ink-2)" }}>
-                <div className="caption" style={{ color: "var(--brass)" }}>
-                  {m.l}
-                </div>
-                <div className="f-display mt-2 text-3xl">{m.v}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24">
-        <div className="site-gutter">
-          <div className="grid gap-16 lg:grid-cols-2">
-            <div>
-              <SectionLabel num="02">CAPABILITIES</SectionLabel>
-              <h2 className="f-display mt-4 mb-8 text-5xl leading-tight">
-                What this desk handles.
-              </h2>
-              <ul className="space-y-3">
-                {s.features.map((f, i) => (
-                  <li
-                    key={f}
-                    className="lift flex items-start gap-4 rounded-xl p-4"
-                    style={{
-                      border: "1px solid var(--line)",
-                      background: "var(--surface-tint-2)",
-                    }}
-                  >
-                    <div
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
-                      style={{ background: "var(--cargo-tint-10)" }}
-                    >
-                      <span className="f-mono text-xs" style={{ color: "var(--cargo)" }}>
-                        {(i + 1).toString().padStart(2, "0")}
-                      </span>
-                    </div>
-                    <span className="pt-1">{f}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <SectionLabel num="03">PROCESS</SectionLabel>
-              <h2 className="f-display mt-4 mb-8 text-5xl leading-tight">
-                From brief to delivery.
-              </h2>
-              <div className="space-y-px" style={{ background: "var(--line)" }}>
-                {PROCESS.map((p) => (
-                  <div key={p.n} className="flex gap-6 p-6" style={{ background: "var(--ink)" }}>
-                    <div className="f-mono text-xs" style={{ color: "var(--cargo)" }}>
-                      {p.n}
-                    </div>
-                    <div className="flex-1">
-                      <div className="mb-1 font-semibold">{p.t}</div>
-                      <div className="text-sm" style={{ color: "var(--ash)" }}>
-                        {p.b}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24" style={{ background: "var(--ink-2)" }}>
-        <div className="site-gutter">
-          <div
-            className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
-            style={{ border: "1px solid var(--line)" }}
-          >
-            <div className="relative z-10 grid items-center gap-12 lg:grid-cols-2">
-              <div>
-                <h2 className="f-display mb-6 text-[44px] leading-[0.95] tracking-tight md:text-[64px]">
-                  Ready to move?
-                </h2>
-                <p className="text-lg" style={{ color: "var(--ash)" }}>
-                  Speak to the {s.name} desk. Average response time: 27 minutes.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <Link href="/quote" className="btn-primary">
-                  Get a quote <ArrowRight size={14} />
-                </Link>
-                <Link href="/contact" className="btn-ghost">
-                  Speak with desk
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ServiceDeskSection serviceName={s.name} features={s.features} process={PROCESS} />
 
       {relatedIndustries.length > 0 && (
-        <section className="py-20" style={{ background: "var(--ink-2)" }}>
-          <div className="site-gutter">
-            <SectionLabel num="—">USED BY</SectionLabel>
-            <h2 className="f-display mt-4 mb-10 text-4xl">Industries that lean on this desk.</h2>
-            <div
-              className="grid gap-px md:grid-cols-2 lg:grid-cols-4"
-              style={{ background: "var(--line)" }}
-            >
-              {relatedIndustries.map((ind) => {
-                const IIcon = ind.icon;
-                return (
-                  <Link
-                    key={ind.id}
-                    href={`/industries/${ind.slug}`}
-                    className="group lift block p-8 text-left"
-                    style={{ background: "var(--ink-2)" }}
-                  >
-                    <IIcon size={22} style={{ color: "var(--cargo)" }} className="mb-4" />
-                    <div className="font-semibold">{ind.name}</div>
-                    <div className="mt-1 text-xs" style={{ color: "var(--ash)" }}>
-                      {ind.short}
-                    </div>
-                  </Link>
-                );
-              })}
+        <section className="w-full min-w-0 max-w-full overflow-x-hidden py-10 md:py-12" style={{ background: "var(--ink-2)" }}>
+      <div className="site-gutter relative min-w-0 overflow-x-hidden">
+            <div className="relative mb-6 min-w-0">
+              <h2 className="f-display text-[clamp(1.75rem,4vw,2.5rem)]">Industries that lean on this desk.</h2>
             </div>
+            <IndustryOverviewSlider industrySlugs={relatedIndustries.map((ind) => ind.slug)} />
           </div>
         </section>
       )}
 
       {relatedCases.length > 0 && (
-        <RelatedLinks
-          num="—"
-          label="CASE STUDIES"
-          heading={`${s.name} in the wild`}
+        <CaseStudyHeroSection
           items={relatedCases.map((c) => ({
             href: `/case-studies/${c.slug}`,
             title: c.title,
             blurb: c.excerpt,
             tag: c.industry.toUpperCase(),
+            image: c.image,
           }))}
         />
       )}
 
-      <section className="py-24">
-        <div className="site-gutter">
-          <SectionLabel num="04">RELATED</SectionLabel>
-          <h3 className="f-display mt-4 mb-8 text-4xl">Other disciplines</h3>
+      <OtherDisciplinesSection
+        items={others.map((o) => ({
+          slug: o.slug,
+          name: o.name,
+          tag: o.tag,
+          short: o.short,
+          desc: o.desc,
+          image: o.image,
+          eta: o.eta,
+          coverage: o.coverage,
+          highlights: o.features.slice(0, 3),
+        }))}
+      />
+
+      <section className="relative w-full min-w-0 max-w-full overflow-x-hidden py-16 text-center md:py-20">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/cta%201.png"
+            alt=""
+            className="h-full w-full object-cover"
+          />
           <div
-            className="grid gap-px md:grid-cols-3 lg:grid-cols-5"
-            style={{ background: "var(--line)" }}
-          >
-            {others.map((o) => {
-              const OIcon = o.icon;
-              return (
-                <Link
-                  key={o.id}
-                  href={`/services/${o.slug}`}
-                  className="group lift block p-6 text-left"
-                  style={{ background: "var(--ink)" }}
-                  data-cursor="OPEN"
-                >
-                  <OIcon size={20} style={{ color: "var(--cargo)" }} className="mb-4" />
-                  <div className="mb-1 font-semibold">{o.name}</div>
-                  <div className="text-xs" style={{ color: "var(--ash)" }}>
-                    {o.short}
-                  </div>
-                  <ArrowUpRight
-                    size={16}
-                    className="mt-4 opacity-0 transition-opacity group-hover:opacity-100"
-                    style={{ color: "var(--cargo)" }}
-                  />
-                </Link>
-              );
-            })}
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, var(--ink) 0%, rgba(0,0,0,0.55) 50%, var(--ink) 100%)",
+            }}
+          />
+        </div>
+        <div className="site-gutter relative z-10">
+          <h2 className="f-display mx-auto max-w-full px-4 text-[clamp(2.5rem,8vw,6.25rem)] leading-[0.9] tracking-tighter text-white">
+            Ready to{" "}
+            <span className="f-display-it" style={{ color: "var(--cargo)" }}>
+              move
+            </span>
+            ?
+          </h2>
+          <p className="mx-auto mt-8 max-w-2xl text-lg text-white md:text-xl">
+            Speak to the {s.name} desk. Average response time: 27 minutes.
+          </p>
+          <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
+            <Link href="/quote" className="btn-primary px-8 py-4 text-base" data-cursor="QUOTE">
+              Get a quote <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/contact"
+              className="btn-ghost px-8 py-4 text-base"
+              style={{ color: "white", borderColor: "rgba(255,255,255,0.2)" }}
+            >
+              Speak with desk
+            </Link>
           </div>
         </div>
       </section>

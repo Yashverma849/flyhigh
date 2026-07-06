@@ -34,7 +34,7 @@ export default function ServicesPage() {
               { name: "Home", href: "/" },
               { name: "Services", href: "/services" },
             ]}
-            className="mb-8"
+           
           />
           <div className="grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">

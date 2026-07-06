@@ -70,9 +70,10 @@ export default async function IndustryDetailPage({
         })}
       />
 
+      <Breadcrumbs items={breadcrumbs} />
+
       <section className="relative pt-32 pb-12">
         <div className="site-gutter">
-          <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <div className="mb-6 flex items-center gap-3">

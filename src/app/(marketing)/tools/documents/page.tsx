@@ -191,11 +191,10 @@ const REGIONS = [
 export default function DocumentsPage() {
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-12">
         <div className="site-gutter">
-          <Breadcrumbs items={breadcrumbs} className="mb-8" />
+          <Breadcrumbs items={breadcrumbs} />
           <SectionLabel num="01">DOCUMENTS</SectionLabel>
           <h1 className="f-display mt-6 text-[56px] leading-[0.88] tracking-tighter md:text-[88px]">
             What moves

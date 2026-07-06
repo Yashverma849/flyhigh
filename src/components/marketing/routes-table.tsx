@@ -67,14 +67,13 @@ export function RoutesTable() {
           borderColor: "var(--line)",
           opacity: headerVisible ? 1 : 0,
           transform: headerVisible ? "translateY(0)" : "translateY(-8px)",
-          color: "var(--ash)",
+          color: "var(--bone)",
         }}
       >
-        <div className="f-display col-span-4 text-[13px] tracking-widest uppercase">Origin → Destination</div>
-        <div className="f-display col-span-2 text-[13px] tracking-widest uppercase">Mode</div>
-        <div className="f-display col-span-2 text-[13px] tracking-widest uppercase">Transit</div>
-        <div className="f-display col-span-3 text-right text-[13px] tracking-widest uppercase">From</div>
-        <div className="col-span-1" />
+        <div className="f-body font-extrabold col-span-3 text-center text-sm tracking-wider uppercase">Origin → Destination</div>
+        <div className="f-body font-extrabold col-span-3 text-center text-sm tracking-wider uppercase">Mode</div>
+        <div className="f-body font-extrabold col-span-3 text-center text-sm tracking-wider uppercase">Transit</div>
+        <div className="f-body font-extrabold col-span-3 text-center text-sm tracking-wider uppercase">From</div>
       </div>
 
       {/* Rows — odd slide from left, even slide from right */}
@@ -88,7 +87,7 @@ export function RoutesTable() {
             ref={(el) => { rowRefs.current[i] = el; }}
             href={`/routes/${r.slug}`}
             aria-label={`${r.from} to ${r.to} freight details`}
-            className="group grid grid-cols-12 items-center gap-4 border-b p-5 transition-colors last:border-b-0 hover:bg-[var(--surface-tint-2)]"
+            className="group relative grid grid-cols-12 items-center gap-4 border-b p-5 transition-colors last:border-b-0 hover:bg-[var(--surface-tint-2)]"
             style={{
               borderColor: "var(--line-2)",
               opacity: visible ? 1 : 0,
@@ -101,24 +100,24 @@ export function RoutesTable() {
                 "opacity 500ms cubic-bezier(0.22,1,0.36,1), transform 500ms cubic-bezier(0.22,1,0.36,1)",
             }}
           >
-            <div className="col-span-4 flex items-center gap-2 text-sm">
+            <div className="col-span-3 flex items-center justify-center gap-2 text-sm text-center">
               <span className="font-medium">{r.from}</span>
-              <ArrowRight size={12} style={{ color: "var(--cargo)" }} />
+              <ArrowRight size={12} style={{ color: "var(--cargo)" }} className="flex-shrink-0" />
               <span className="font-medium">{r.to}</span>
             </div>
-            <div className="col-span-2">
+            <div className="col-span-3 text-center">
               <span className="f-mono text-xs tracking-wide" style={{ color: "var(--bone)" }}>
                 {r.mode.toUpperCase()}
               </span>
             </div>
-            <div className="f-mono col-span-2 text-sm">{r.days} days</div>
+            <div className="f-mono col-span-3 text-center text-sm">{r.days} days</div>
             <div
-              className="f-display tabular col-span-3 text-right text-[24px]"
+              className="f-display tabular col-span-3 text-center text-[24px]"
               style={{ color: "var(--cargo)" }}
             >
               {formatINR(r.rate)}
             </div>
-            <div className="col-span-1 text-right">
+            <div className="absolute right-5 flex items-center justify-center">
               <ArrowUpRight
                 size={16}
                 className="opacity-0 transition-opacity group-hover:opacity-100"

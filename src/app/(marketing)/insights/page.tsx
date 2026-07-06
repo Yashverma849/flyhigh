@@ -37,7 +37,7 @@ export default function InsightsPage() {
               { name: "Home", href: "/" },
               { name: "Insights", href: "/insights" },
             ]}
-            className="mb-8"
+           
           />
           <SectionLabel num="01">INSIGHTS</SectionLabel>
           <h1 className="f-display mt-6 max-w-4xl text-[64px] leading-[0.88] tracking-tighter md:text-[110px]">

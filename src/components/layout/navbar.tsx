@@ -105,12 +105,14 @@ function NavLinkItem({
   megaKind,
   isActive,
   onMouseEnterMega,
+  overHero,
 }: {
   href: Route;
   label: string;
   megaKind?: "services" | "industries" | "routes" | "tools" | "insights";
   isActive: boolean;
   onMouseEnterMega: () => void;
+  overHero: boolean;
 }) {
   const [trigger, setTrigger] = useState(0);
 
@@ -124,7 +126,11 @@ function NavLinkItem({
     >
       <Link
         href={href}
-        className="relative inline-flex items-center gap-1 rounded-full border border-transparent px-2.5 py-1 text-[11px] font-semibold tracking-wider whitespace-nowrap uppercase opacity-75 transition-all duration-300 hover:border-black/[0.06] hover:bg-black/[0.04] hover:opacity-100 hover:shadow-md xl:px-3.5 xl:text-[12px] dark:hover:border-white/10 dark:hover:bg-white/5"
+        className={`relative inline-flex items-center gap-1 rounded-full border border-transparent px-2.5 py-1 text-[11px] font-semibold tracking-wider whitespace-nowrap uppercase opacity-75 transition-all duration-300 hover:opacity-100 hover:shadow-md xl:px-3.5 xl:text-[12px] ${
+          overHero
+            ? "hover:border-white/10 hover:bg-white/5"
+            : "hover:border-black/[0.06] hover:bg-black/[0.04]"
+        }`}
       >
         <ScrambleText text={label} trigger={trigger} />
         {megaKind && <ChevronDown size={10} className="shrink-0 opacity-60" />}
@@ -135,8 +141,8 @@ function NavLinkItem({
 
 export function Navbar() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
+  const [overHero, setOverHero] = useState(false);
   const [open, setOpen] = useState(false);
   const [mega, setMega] = useState<Mega>(null);
 
@@ -148,6 +154,10 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
+    setOverHero(!!document.querySelector(".hero-section"));
+  }, [pathname]);
+
+  useEffect(() => {
     setOpen(false);
     setMega(null);
   }, [pathname]);
@@ -155,41 +165,43 @@ export function Navbar() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
+  const lightNavText = !scrolled && overHero;
+
   return (
     <>
       {/* Top utility bar */}
       <div
-        className="fixed top-0 right-0 left-0 z-40 hidden border-b transition-all duration-500 md:block"
+        className="fixed top-0 right-0 left-0 z-40 hidden max-w-full overflow-x-hidden border-b transition-all duration-500 md:block"
         style={{
-          borderColor: (isHome && !scrolled) ? "rgba(255, 255, 255, 0.12)" : "var(--line-2)",
+          borderColor: lightNavText ? "rgba(255, 255, 255, 0.12)" : "var(--line-2)",
           background: "transparent",
           opacity: scrolled ? 0 : 1,
           transform: scrolled ? "translateY(-100%)" : "translateY(0)",
           pointerEvents: scrolled ? "none" : "auto",
-          color: (isHome && !scrolled) ? "#e2e8f0" : "var(--bone)",
-          "--ash": (isHome && !scrolled) ? "#e2e8f0" : "var(--ash)",
+          color: lightNavText ? "#e2e8f0" : "var(--bone)",
+          "--ash": lightNavText ? "#e2e8f0" : "var(--ash)",
         } as React.CSSProperties}
       >
-        <div className="caption flex w-full items-center justify-between px-4 py-2 md:px-6 lg:px-8 font-bold">
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-2">
+        <div className="caption flex w-full min-w-0 max-w-full items-center justify-between gap-4 px-6 py-2 font-bold md:px-10 lg:px-14 xl:px-[4.5rem]">
+          <div className="flex min-w-0 items-center gap-4 lg:gap-6">
+            <span className="flex shrink-0 items-center gap-2">
               <MapPin size={11} /> Mumbai · India HQ
             </span>
-            <span className="flex items-center gap-2">
+            <span className="hidden shrink-0 items-center gap-2 sm:flex">
               <Clock size={11} /> Operations 24/7
             </span>
-            <span className="hidden items-center gap-2 lg:flex">
+            <span className="hidden shrink-0 items-center gap-2 xl:flex">
               <Globe size={11} /> Worldwide network
             </span>
           </div>
-          <div className="flex items-center gap-6">
-            <Link href="/track" className="u-link flex items-center gap-1.5">
+          <div className="flex shrink-0 items-center gap-4 lg:gap-6">
+            <Link href="/track" className="u-link hidden items-center gap-1.5 lg:flex">
               <Search size={11} /> Track shipment
             </Link>
-            <Link href="/admin" className="u-link flex items-center gap-1.5">
+            <Link href="/admin" className="u-link hidden items-center gap-1.5 xl:flex">
               <Lock size={11} /> Client console
             </Link>
-            <span className="f-mono">+91 9322627766</span>
+            <span className="f-mono hidden text-[10px] sm:inline lg:text-[11px]">+91 9322627766</span>
           </div>
         </div>
       </div>
@@ -201,8 +213,8 @@ export function Navbar() {
           background: scrolled ? "var(--nav-bg)" : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           borderBottom: scrolled ? "1px solid var(--line)" : "1px solid transparent",
-          color: (scrolled || !isHome) ? "var(--bone)" : "#f8fafc",
-          ...(!scrolled && isHome ? {
+          color: lightNavText ? "#f8fafc" : "var(--bone)",
+          ...(lightNavText ? {
             "--line": "rgba(255, 255, 255, 0.15)",
             "--surface-tint-2": "rgba(255, 255, 255, 0.02)",
             "--cargo": "#BF5700",
@@ -210,18 +222,18 @@ export function Navbar() {
         } as React.CSSProperties}
         onMouseLeave={() => setMega(null)}
       >
-        <div className="flex w-full items-center justify-between px-4 md:px-6 lg:px-8">
-          <Link href="/" className="group flex items-center gap-3" data-cursor="HOME">
+        <div className="flex w-full min-w-0 max-w-full items-center justify-between gap-2 px-6 md:px-10 lg:gap-3 lg:px-14 xl:px-[4.5rem]">
+          <Link href="/" className="group flex min-w-0 shrink items-center gap-2 sm:gap-3" data-cursor="HOME">
             <Logo size={36} />
-            <div className="leading-tight">
-              <div className="f-display text-[22px] tracking-tight">FLYHIGH</div>
-              <div className="caption text-[9px]" style={{ color: (scrolled || !isHome) ? "var(--brass)" : "#c9a876" }}>
+            <div className="min-w-0 leading-tight">
+              <div className="f-display truncate text-[18px] tracking-tight sm:text-[22px]">FLYHIGH</div>
+              <div className="caption text-[9px]" style={{ color: lightNavText ? "#c9a876" : "var(--brass)" }}>
                 EST. 2017 · MUMBAI
               </div>
             </div>
           </Link>
 
-          <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1.5">
+          <nav className="hidden min-w-0 items-center gap-0.5 lg:flex xl:gap-1.5">
             {navLinks.map(({ href, label, mega: megaKind }) => (
               <NavLinkItem
                 key={href}
@@ -230,12 +242,13 @@ export function Navbar() {
                 megaKind={megaKind}
                 isActive={isActive(href)}
                 onMouseEnterMega={() => megaKind && setMega({ kind: megaKind })}
+                overHero={lightNavText}
               />
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
-            <Link href="/quote" className="btn-primary text-sm" data-cursor="QUOTE">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <Link href="/quote" className="btn-primary whitespace-nowrap px-3 py-2 text-xs sm:px-4 sm:text-sm" data-cursor="QUOTE">
               Get a quote <ArrowRight size={14} />
             </Link>
             <button
@@ -253,11 +266,12 @@ export function Navbar() {
         {mega && (
           <div
             key={mega.kind}
-            className="fade-in absolute top-full right-0 left-0 z-50 hidden lg:block"
+            className="fade-in absolute top-full right-0 left-0 z-50 hidden pt-1 lg:block"
+            onMouseEnter={() => setMega(mega)}
           >
             <div className="site-gutter w-full">
               <div
-                className="animate-slide-down mt-1 rounded-2xl p-6 shadow-2xl"
+                className="animate-slide-down rounded-2xl p-6 shadow-2xl"
                 style={{
                   background: "var(--nav-panel-bg)",
                   backdropFilter: "blur(16px)",

@@ -27,7 +27,7 @@ export default function QuotePage() {
             { name: "Home", href: "/" },
             { name: "Quote", href: "/quote" },
           ]}
-          className="mb-8"
+         
         />
         <SectionLabel num="00">QUOTE</SectionLabel>
         <h1 className="f-display mt-4 mb-6 text-[64px] leading-[0.95] tracking-tight md:text-[88px]">

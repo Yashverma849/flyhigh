@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ChevronLeft } from "lucide-react";
 import { Pill } from "@/components/shared/pill";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { JsonLd } from "@/components/shared/json-ld";
@@ -61,18 +60,16 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
         })}
       />
 
+      <Breadcrumbs
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Insights", href: "/insights" },
+          { name: post.title, href: `/insights/${post.slug}` },
+        ]}
+      />
+
       <article className="pt-32 pb-20">
         <div className="site-gutter">
-          <Breadcrumbs
-            items={[
-              { name: "Insights", href: "/insights" },
-              { name: post.title, href: `/insights/${post.slug}` },
-            ]}
-            className="mb-6"
-          />
-          <Link href="/insights" className="caption u-link mb-8 flex items-center gap-1">
-            <ChevronLeft size={12} /> ALL INSIGHTS
-          </Link>
           <Pill kind="cargo">{post.category}</Pill>
           <h1 className="f-display mt-6 mb-8 text-[42px] leading-[0.95] tracking-tight md:text-[68px]">
             {post.title}

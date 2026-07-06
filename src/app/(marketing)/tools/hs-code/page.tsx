@@ -122,11 +122,10 @@ const HS_GROUPS: {
 export default function HsCodePage() {
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-12">
         <div className="site-gutter">
-          <Breadcrumbs items={breadcrumbs} className="mb-8" />
+          <Breadcrumbs items={breadcrumbs} />
           <SectionLabel num="01">HS CODE LOOKUP</SectionLabel>
           <h1 className="f-display mt-6 text-[56px] leading-[0.88] tracking-tighter md:text-[88px]">
             Eight digits,

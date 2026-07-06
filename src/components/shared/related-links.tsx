@@ -15,6 +15,7 @@ type Props = {
   label?: string;
   heading?: string;
   items: RelatedItem[];
+  showLabel?: boolean;
 };
 
 export function RelatedLinks({
@@ -22,13 +23,14 @@ export function RelatedLinks({
   label = "RELATED",
   heading = "Keep reading",
   items,
+  showLabel = true,
 }: Props) {
   if (items.length === 0) return null;
   return (
     <section className="py-24">
       <div className="site-gutter">
-        <SectionLabel num={num}>{label}</SectionLabel>
-        <h2 className="f-display mt-4 mb-10 text-4xl tracking-tight md:text-5xl">{heading}</h2>
+        {showLabel && <SectionLabel num={num}>{label}</SectionLabel>}
+        <h2 className={`f-display mb-10 text-4xl tracking-tight md:text-5xl${showLabel ? " mt-4" : ""}`}>{heading}</h2>
         <div
           className="grid gap-px md:grid-cols-2 lg:grid-cols-3"
           style={{ background: "var(--line)" }}

@@ -21,7 +21,7 @@ export default function TrackPage() {
             { name: "Home", href: "/" },
             { name: "Track", href: "/track" },
           ]}
-          className="mb-8"
+         
         />
         <SectionLabel num="00">TRACK</SectionLabel>
         <h1 className="f-display mt-4 mb-6 text-[56px] leading-[0.95] tracking-tight md:text-[80px]">

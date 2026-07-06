@@ -22,7 +22,7 @@ export default function ContactPage() {
             { name: "Home", href: "/" },
             { name: "Contact", href: "/contact" },
           ]}
-          className="mb-8"
+         
         />
         <SectionLabel num="00">CONCIERGE</SectionLabel>
         <h1 className="f-display mt-4 mb-12 text-[64px] leading-[0.95] tracking-tight md:text-[96px]">

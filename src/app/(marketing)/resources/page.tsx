@@ -44,11 +44,10 @@ const RESOURCES = [
 export default function ResourcesIndexPage() {
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-16">
         <div className="site-gutter">
-          <Breadcrumbs items={breadcrumbs} className="mb-8" />
+          <Breadcrumbs items={breadcrumbs} />
           <SectionLabel num="01">RESOURCES</SectionLabel>
           <h1 className="f-display mt-6 max-w-4xl text-[64px] leading-[0.88] tracking-tighter md:text-[110px]">
             The working
@@ -78,7 +77,7 @@ export default function ResourcesIndexPage() {
                   style={{ background: "var(--ink)" }}
                   data-cursor="OPEN"
                 >
-                  <Icon size={32} style={{ color: "var(--cargo)" }} className="mb-6" />
+                  <Icon size={32} style={{ color: "var(--cargo)" }} />
                   <div className="f-display mb-3 text-3xl tracking-tight">{r.title}</div>
                   <p className="text-base" style={{ color: "var(--ash)" }}>
                     {r.blurb}

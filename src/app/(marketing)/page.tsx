@@ -253,8 +253,8 @@ export default function HomePage() {
       {/* INDUSTRIES SURFACE */}
       <section className="py-16" style={{ background: "var(--ink-2)" }}>
         <div className="site-gutter">
-          <div className="mb-12 grid gap-8 lg:grid-cols-12">
-            <div className="lg:col-span-7">
+          <div className="mb-12 grid gap-8 lg:grid-cols-2 lg:gap-20">
+            <div>
               <h2 className="f-display text-[44px] leading-[0.95] tracking-tight md:text-[72px]">
                 Eight desks,
                 <br />
@@ -264,7 +264,7 @@ export default function HomePage() {
                 house.
               </h2>
             </div>
-            <div className="lg:col-span-5 lg:pt-12">
+            <div className="lg:pt-12">
               <p className="text-lg leading-relaxed" style={{ color: "var(--ash)" }}>
                 Pharma cool-chain and lithium-battery air corridors are not the same craft. We run
                 dedicated desks for each.
@@ -278,38 +278,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TICKER */}
-      <section
-        className="w-full min-w-0 overflow-x-clip border-y py-10"
-        style={{ borderColor: "var(--line)", background: "var(--ink-2)" }}
-      >
-        <Marquee speed={50}>
-          {tickerRoutes.map(([from, to, days], i) => (
-            <span key={i} className="flex items-center gap-12">
-              <span className="f-display text-3xl md:text-4xl">{from}</span>
-              <ArrowRight size={20} style={{ color: "var(--cargo)" }} />
-              <span className="f-display text-3xl md:text-4xl">{to}</span>
-              <span className="f-mono text-sm" style={{ color: "var(--brass)" }}>
-                {days}
-              </span>
-              <span style={{ color: "var(--cargo)" }}>✦</span>
-            </span>
-          ))}
-        </Marquee>
-      </section>
-
       {/* TESTIMONIALS */}
       <section className="py-16">
         <div className="site-gutter">
           <div className="grid gap-px lg:grid-cols-3" style={{ background: "var(--line)" }}>
             {TESTIMONIALS.map((t, i) => (
-              <div key={i} className="p-8 lg:p-10" style={{ background: "var(--ink)" }}>
-                <QuoteIcon size={28} style={{ color: "var(--cargo)" }} className="mb-6" />
-                <blockquote className="f-display mb-8 text-2xl leading-tight">
+              <div key={i} className="flex flex-col p-8 lg:p-10" style={{ background: "var(--ink)" }}>
+                <QuoteIcon size={28} style={{ color: "var(--cargo)" }} className="mb-6 flex-shrink-0" />
+                <blockquote className="f-display mb-8 text-2xl leading-tight text-left flex-1">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
                 <div
-                  className="flex items-center justify-between border-t pt-6"
+                  className="mt-auto flex items-center justify-between border-t pt-6"
                   style={{ borderColor: "var(--line)" }}
                 >
                   <div>
@@ -331,6 +311,26 @@ export default function HomePage() {
       </section>
 
       <CoverageSection />
+
+      {/* TICKER */}
+      <section
+        className="w-full min-w-0 overflow-x-clip border-y py-10"
+        style={{ borderColor: "var(--line)", background: "var(--ink-2)" }}
+      >
+        <Marquee speed={50}>
+          {tickerRoutes.map(([from, to, days], i) => (
+            <span key={i} className="flex items-center gap-12">
+              <span className="f-display text-3xl md:text-4xl">{from}</span>
+              <ArrowRight size={20} style={{ color: "var(--cargo)" }} />
+              <span className="f-display text-3xl md:text-4xl">{to}</span>
+              <span className="f-mono text-sm" style={{ color: "var(--brass)" }}>
+                {days}
+              </span>
+              <span style={{ color: "var(--cargo)" }}>✦</span>
+            </span>
+          ))}
+        </Marquee>
+      </section>
 
       {/* CTA */}
       <section className="relative overflow-hidden py-32 bg-black">

@@ -39,8 +39,7 @@ export const SERVICES: ReadonlyArray<Service> = [
       "Origin/Dest custom clearance",
       "Door-to-door coverage",
     ],
-    image:
-      "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=1600&q=80&auto=format&fit=crop",
+    image: "/services_ocean_1783068767313.png",
     eta: "12–35 days",
     coverage: "180+ ports",
   },
@@ -60,8 +59,7 @@ export const SERVICES: ReadonlyArray<Service> = [
       "Live animal",
       "Aircraft-on-Ground (AOG)",
     ],
-    image:
-      "https://images.unsplash.com/photo-1583500178690-f7fc39ee08e2?w=1600&q=80&auto=format&fit=crop",
+    image: "/services_air_1783068810326.png",
     eta: "1–7 days",
     coverage: "90+ countries",
   },
@@ -81,8 +79,7 @@ export const SERVICES: ReadonlyArray<Service> = [
       "Import & export brokerage",
       "Trade compliance",
     ],
-    image:
-      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80&auto=format&fit=crop",
+    image: "/services_borders_1783068829815.png",
     eta: "Same day",
     coverage: "All Indian ports",
   },
@@ -102,8 +99,7 @@ export const SERVICES: ReadonlyArray<Service> = [
       "Kitting & labeling",
       "Inventory dashboards",
     ],
-    image:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=80&auto=format&fit=crop",
+    image: "/services_storage_1783068868308.png",
     eta: "On demand",
     coverage: "12 facilities",
   },
@@ -123,8 +119,7 @@ export const SERVICES: ReadonlyArray<Service> = [
       "Multi-axle for ODC",
       "GPS tracked",
     ],
-    image:
-      "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&q=80&auto=format&fit=crop",
+    image: "/services_ground_1783068889262.png",
     eta: "1–3 days",
     coverage: "All India",
   },
@@ -144,8 +139,7 @@ export const SERVICES: ReadonlyArray<Service> = [
       "Re-export within validity",
       "FICCI panel paperwork",
     ],
-    image:
-      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80&auto=format&fit=crop",
+    image: "/services_cabinet_1783068927669.png",
     eta: "Same day",
     coverage: "All Indian ports",
   },

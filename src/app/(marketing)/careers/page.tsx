@@ -95,11 +95,10 @@ const VALUES = [
 export default function CareersPage() {
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <section className="pt-32 pb-12">
         <div className="site-gutter">
-          <Breadcrumbs items={breadcrumbs} className="mb-8" />
+          <Breadcrumbs items={breadcrumbs} />
           <div className="grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <SectionLabel num="01">CAREERS</SectionLabel>

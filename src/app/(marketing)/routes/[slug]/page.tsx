@@ -66,10 +66,10 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
         })}
       />
 
+      <Breadcrumbs items={breadcrumbs} />
+
       <section className="pt-32 pb-12">
         <div className="site-gutter">
-          <Breadcrumbs items={breadcrumbs} className="mb-8" />
-
           <div className="mb-6 flex flex-wrap items-center gap-3">
             <Pill kind={r.mode === "Air" ? "cargo" : "brass"}>{r.mode}</Pill>
             <Pill>{r.region}</Pill>

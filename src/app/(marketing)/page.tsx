@@ -198,11 +198,11 @@ export default function HomePage() {
               {STATS.map((s, i) => (
                 <div
                   key={i}
-                  className="fade-up p-8 lg:p-12"
+                  className="fade-up p-5 sm:p-8 lg:p-6 xl:p-10 2xl:p-12"
                   style={{ background: "var(--ink-2)", animationDelay: `${i * 0.1}s` }}
                 >
                   <div
-                    className="f-display tabular mb-3 text-[64px] leading-none md:text-[88px]"
+                    className="f-display tabular mb-3 text-[38px] sm:text-[56px] md:text-[72px] lg:text-[48px] xl:text-[64px] 2xl:text-[80px] leading-none"
                     style={{ color: "var(--cargo)" }}
                   >
                     <CountUp

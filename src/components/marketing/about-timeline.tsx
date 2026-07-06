@@ -6,44 +6,69 @@ import { TIMELINE } from "@/server/db/seed/timeline";
 
 export function AboutTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const truckColumnRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [maxReachedIndex, setMaxReachedIndex] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
   const [rotation, setRotation] = useState(0);
+  const [truckY, setTruckY] = useState(0);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const updateViewport = () => setIsDesktop(mq.matches);
+    updateViewport();
+    mq.addEventListener("change", updateViewport);
+    return () => mq.removeEventListener("change", updateViewport);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       const container = containerRef.current;
-      const logo = logoRef.current;
       if (!container) return;
 
       setRotation(window.scrollY * 0.8);
 
-      if (!logo || !window.matchMedia("(min-width: 1024px)").matches) {
-        setActiveIndex(null);
+      const viewportCenterY = window.innerHeight / 2;
+      const containerRect = container.getBoundingClientRect();
+
+      // Reset when timeline is scrolled completely out/below viewport
+      if (containerRect.top > viewportCenterY) {
+        setMaxReachedIndex(0);
+        setActiveIndex(0);
+        setTruckY(0);
         return;
       }
 
-      const truckCenterY = logo.getBoundingClientRect().top + logo.getBoundingClientRect().height / 2;
       const rows = container.querySelectorAll<HTMLElement>(".timeline-row");
+      
+      // Calculate truck Y position relative to container
+      const truckHeight = 176; // 11rem in pixels (approx height of truck wrapper)
+      const totalRange = Math.max(1, containerRect.height - truckHeight);
+      const currentOffset = viewportCenterY - containerRect.top;
+      const progress = Math.min(1, Math.max(0, currentOffset / totalRange));
+      setTruckY(progress * (containerRect.height - truckHeight));
 
-      let closestIndex = -1;
+      let closestIndex = 0;
       let closestDistance = Infinity;
+      let maxIdx = 0;
 
       rows.forEach((row, index) => {
         const rowRect = row.getBoundingClientRect();
         const rowCenterY = rowRect.top + rowRect.height / 2;
-        const distance = Math.abs(rowCenterY - truckCenterY);
+        
+        const distance = Math.abs(rowCenterY - viewportCenterY);
         if (distance < closestDistance) {
           closestDistance = distance;
           closestIndex = index;
         }
+
+        if (rowRect.top <= viewportCenterY) {
+          maxIdx = Math.max(maxIdx, index);
+        }
       });
 
-      const closestRow = rows[closestIndex];
-      const rowHeight = closestRow?.getBoundingClientRect().height ?? 0;
-      const aligned = closestIndex >= 0 && closestDistance < rowHeight * 0.4;
-
-      setActiveIndex(aligned ? closestIndex : null);
+      setActiveIndex(closestIndex);
+      setMaxReachedIndex((prev) => Math.max(prev, maxIdx));
     };
 
     handleScroll();
@@ -55,7 +80,7 @@ export function AboutTimeline() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, []);
+  }, [isDesktop]);
 
   return (
     <section className="py-32">
@@ -68,33 +93,51 @@ export function AboutTimeline() {
           </span>
         </h2>
         <div ref={containerRef} className="relative grid gap-0 lg:grid-cols-12">
-          {/* Sticky truck — vertically centered in viewport, aligned to row midlines */}
-          <div className="pointer-events-none hidden lg:col-span-2 lg:block">
-            <div className="sticky top-1/2 flex -translate-y-1/2 justify-center py-8">
-              <div ref={logoRef}>
-                <TruckSvg
-                  className="h-[5.5rem] w-[11rem] filter drop-shadow-md"
-                  wheelRotation={rotation}
-                />
-              </div>
+          {/* Truck column — fixed absolute track while timeline scrolls */}
+          <div
+            ref={truckColumnRef}
+            className="pointer-events-none hidden lg:col-span-2 lg:block relative"
+          >
+            {/* The vertical timeline track line */}
+            <div
+              className="absolute left-1/2 top-4 bottom-4 w-px -translate-x-1/2"
+              style={{
+                background: "linear-gradient(to bottom, var(--line) 0%, var(--brass) 15%, var(--brass) 85%, var(--line) 100%)",
+                opacity: 0.5
+              }}
+            />
+            <div
+              className="absolute left-1/2 top-0"
+              style={{
+                transform: `translate3d(-50%, ${truckY}px, 0)`,
+              }}
+            >
+              <TruckSvg
+                className="h-[11rem] w-[5.5rem] filter drop-shadow-md"
+                wheelRotation={rotation}
+              />
             </div>
           </div>
 
           {/* Timeline rows — each row tall enough to meet the truck at viewport center */}
           <div className="flex flex-col gap-5 lg:col-span-10">
             {TIMELINE.map((t, idx) => {
-              const isVisible = activeIndex === idx;
-              const isHighlighted = activeIndex === null || activeIndex === idx;
+              const isVisible = !isDesktop || idx <= maxReachedIndex;
+              const isHighlighted = !isDesktop || activeIndex === idx;
               return (
                 <div
                   key={t.year}
-                  className="timeline-row relative min-h-0 overflow-hidden rounded-2xl transition-all duration-700 ease-out max-lg:!translate-y-0 max-lg:!opacity-100 max-lg:!blur-none lg:min-h-[42vh]"
-                  style={{
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? "translateY(0)" : "translateY(16px)",
-                    filter: isVisible ? "blur(0)" : "blur(4px)",
-                    pointerEvents: isVisible ? "auto" : "none",
-                  }}
+                  className="timeline-row relative min-h-0 overflow-hidden rounded-2xl transition-all duration-700 ease-out lg:min-h-[42vh]"
+                  style={
+                    isDesktop
+                      ? {
+                          opacity: isVisible ? 1 : 0,
+                          transform: isVisible ? "translateY(0)" : "translateY(16px)",
+                          filter: isVisible ? "blur(0)" : "blur(4px)",
+                          pointerEvents: isVisible ? "auto" : "none",
+                        }
+                      : undefined
+                  }
                 >
                   <div
                     className="absolute inset-0 bg-cover bg-center"

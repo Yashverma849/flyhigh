@@ -6,7 +6,7 @@ type Props = {
 export function TruckSvg({ className, wheelRotation = 0 }: Props) {
   return (
     <svg
-      viewBox="0 0 80 40"
+      viewBox="0 0 50 100"
       className={className}
       fill="none"
       stroke="var(--cargo)"
@@ -15,39 +15,61 @@ export function TruckSvg({ className, wheelRotation = 0 }: Props) {
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      {/* Cargo container */}
-      <path d="M 4,10 L 50,10 L 50,24 L 4,24 Z" />
-      <path d="M 4,14 L 50,14" opacity="0.35" />
-      <path d="M 4,18 L 50,18" opacity="0.35" />
-      <path d="M 4,22 L 50,22" opacity="0.35" />
-      <path d="M 12,13 L 22,13 L 22,21 L 12,21 Z" strokeWidth="1" />
+      {/* Background shading/glow for wheels */}
+      <rect x="7" y="16" width="6" height="32" rx="1" fill="var(--ink-3)" stroke="none" opacity="0.3" />
+      <rect x="37" y="16" width="6" height="32" rx="1" fill="var(--ink-3)" stroke="none" opacity="0.3" />
 
-      {/* Cab */}
-      <path d="M 50,13 L 62,13 C 65,13 67,15 68,17 L 71,20 L 71,24 L 50,24 Z" />
-      <path d="M 50,13 L 62,13 L 66,17 L 66,20 L 50,20 Z" fill="var(--ink-2)" opacity="0.3" />
-      <path d="M 53,16 L 60,16 L 64,20 L 53,20 Z" />
-      <circle cx="69" cy="21" r="0.8" fill="var(--cargo)" />
-      <path d="M 68,24 L 72,24 L 72,26 L 67,26" />
+      {/* Rear wheels (Left) */}
+      <rect x="7" y="20" width="5" height="10" rx="1" fill="var(--ink-2)" />
+      <rect x="7" y="34" width="5" height="10" rx="1" fill="var(--ink-2)" />
 
-      {/* Wheel wells */}
-      <path d="M 9,24 A 5.5,5.5 0 0 1 19,24" />
-      <path d="M 22,24 A 5.5,5.5 0 0 1 32,24" />
-      <path d="M 57,24 A 5.5,5.5 0 0 1 67,24" />
-      <path d="M 4,24 L 9,24 M 19,24 L 22,24 M 32,24 L 57,24 M 67,24 L 68,24" />
+      {/* Rear wheels (Right) */}
+      <rect x="38" y="20" width="5" height="10" rx="1" fill="var(--ink-2)" />
+      <rect x="38" y="34" width="5" height="10" rx="1" fill="var(--ink-2)" />
 
-      {/* Wheels */}
-      <g transform={`translate(14, 26) rotate(${wheelRotation})`}>
-        <circle cx="0" cy="0" r="4" />
-        <path d="M -4,0 L 4,0 M 0,-4 L 0,4" strokeWidth="0.8" opacity="0.7" />
-      </g>
-      <g transform={`translate(27, 26) rotate(${wheelRotation})`}>
-        <circle cx="0" cy="0" r="4" />
-        <path d="M -4,0 L 4,0 M 0,-4 L 0,4" strokeWidth="0.8" opacity="0.7" />
-      </g>
-      <g transform={`translate(62, 26) rotate(${wheelRotation})`}>
-        <circle cx="0" cy="0" r="4" />
-        <path d="M -4,0 L 4,0 M 0,-4 L 0,4" strokeWidth="0.8" opacity="0.7" />
-      </g>
+      {/* Front wheels */}
+      <rect x="7" y="70" width="5" height="10" rx="1" fill="var(--ink-2)" />
+      <rect x="38" y="70" width="5" height="10" rx="1" fill="var(--ink-2)" />
+
+      {/* Side Mirrors */}
+      <path d="M 12,72 L 6,72 L 6,75 L 12,75" />
+      <path d="M 38,72 L 44,72 L 44,75 L 38,75" />
+
+      {/* Chassis connector (under container/cab) */}
+      <rect x="21" y="58" width="8" height="10" fill="var(--ink-3)" opacity="0.5" />
+
+      {/* Main Cargo Container */}
+      <rect x="12" y="10" width="26" height="50" rx="2" fill="var(--ink-2)" />
+      
+      {/* Container roof ridges (detailed look) */}
+      <line x1="16" y1="12" x2="16" y2="58" opacity="0.3" />
+      <line x1="20" y1="12" x2="20" y2="58" opacity="0.3" />
+      <line x1="25" y1="10" x2="25" y2="60" strokeWidth="1" /> {/* Door division line */}
+      <line x1="30" y1="12" x2="30" y2="58" opacity="0.3" />
+      <line x1="34" y1="12" x2="34" y2="58" opacity="0.3" />
+
+      {/* Container back door locking bars (Top view back bars) */}
+      <path d="M 19,10 L 19,13 M 31,10 L 31,13" strokeWidth="1.5" />
+      <path d="M 22,10 L 22,13 M 28,10 L 28,13" strokeWidth="1.5" />
+
+      {/* Cab (Cabin) */}
+      <path
+        d="M 12,60 L 12,78 C 12,82 15,85 19,85 L 31,85 C 35,85 38,82 38,78 L 38,60 Z"
+        fill="var(--ink-2)"
+      />
+      
+      {/* Cab Windshield */}
+      <path
+        d="M 15,74 C 15,74 20,77 25,77 C 30,77 35,74 35,74"
+        strokeWidth="1.5"
+      />
+      
+      {/* Hood grill */}
+      <line x1="20" y1="81" x2="30" y2="81" opacity="0.6" />
+      <line x1="22" y1="83" x2="28" y2="83" opacity="0.6" />
+
+      {/* Sunroof/Cab Details */}
+      <rect x="18" y="63" width="14" height="7" rx="1" opacity="0.3" />
     </svg>
   );
 }

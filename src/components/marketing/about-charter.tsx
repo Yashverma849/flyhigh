@@ -30,7 +30,7 @@ export function AboutCharter() {
           obs.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1, rootMargin: "0px 0px -10% 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -60,14 +60,17 @@ export function AboutCharter() {
           animation: plane-tow-in-mobile 9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
         .flag-banner-container {
-          opacity: 0;
-        }
-        .flag-active {
-          animation: flag-tow-in-mobile 9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, fly-float 6s ease-in-out infinite 4.2s;
+          opacity: 1;
         }
         .flag-banner {
           animation: flag-wave-shape-vertical 4s ease-in-out infinite;
           position: relative;
+        }
+        .flag-active .flag-banner {
+          animation: flag-tow-in-mobile 9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, flag-wave-shape-vertical 4s ease-in-out infinite;
+        }
+        .flag-active {
+          animation: fly-float 6s ease-in-out infinite 4.2s;
         }
         .flag-card-1 {
           animation: ripple-1 5s ease-in-out infinite 4.2s;
@@ -102,18 +105,12 @@ export function AboutCharter() {
         @keyframes flag-tow-in-mobile {
           0% {
             transform: translate(80vw, -40vh);
-            opacity: 0;
-          }
-          15% {
-            opacity: 1;
           }
           45% {
             transform: translate(0, 0);
-            opacity: 1;
           }
           100% {
             transform: translate(0, 0);
-            opacity: 1;
           }
         }
         @keyframes plane-tow-in-desktop {
@@ -140,18 +137,12 @@ export function AboutCharter() {
         @keyframes flag-tow-in-desktop {
           0% {
             transform: translateX(100vw);
-            opacity: 0;
-          }
-          15% {
-            opacity: 1;
           }
           45% {
             transform: translateX(0);
-            opacity: 1;
           }
           100% {
             transform: translateX(0);
-            opacity: 1;
           }
         }
         @keyframes fly-float {
@@ -235,11 +226,11 @@ export function AboutCharter() {
           .plane-active {
             animation: plane-tow-in-desktop 9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
           }
-          .flag-active {
-            animation: flag-tow-in-desktop 9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, fly-float 6s ease-in-out infinite 4.2s;
+          .flag-active .flag-banner {
+            animation: flag-tow-in-desktop 9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, flag-wave-shape 4s ease-in-out infinite;
           }
-          .flag-banner {
-            animation: flag-wave-shape 4s ease-in-out infinite;
+          .flag-active {
+            animation: fly-float 6s ease-in-out infinite 4.2s;
           }
           .grommet-top {
             left: 4px;

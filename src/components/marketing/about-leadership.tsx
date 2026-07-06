@@ -48,7 +48,6 @@ export function AboutLeadership({ team }: { team: ReadonlyArray<TeamMember> }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const windowRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef(0);
-  const isHoveredRef = useRef(false);
   const maxScrollRef = useRef(0);
   const [progress, setProgress] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
@@ -63,21 +62,6 @@ export function AboutLeadership({ team }: { team: ReadonlyArray<TeamMember> }) {
     setMaxScroll(nextMax);
   }, []);
 
-  const setProgressValue = useCallback((value: number) => {
-    const clamped = Math.min(1, Math.max(0, value));
-    progressRef.current = clamped;
-    setProgress(clamped);
-  }, []);
-
-  const syncPageScroll = useCallback((value: number) => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const scrollDistance = section.offsetHeight - window.innerHeight;
-    if (scrollDistance <= 0) return;
-    const targetY = section.offsetTop + value * scrollDistance;
-    window.scrollTo({ top: targetY, behavior: "auto" });
-  }, []);
-
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
     const update = () => setIsDesktop(mq.matches);
@@ -88,125 +72,98 @@ export function AboutLeadership({ team }: { team: ReadonlyArray<TeamMember> }) {
 
   useEffect(() => {
     measure();
+    const raf = requestAnimationFrame(measure);
     window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", measure);
+    };
   }, [measure, team, isDesktop]);
 
   useEffect(() => {
     if (!isDesktop) return;
 
-    const onScroll = () => {
-      if (isHoveredRef.current) return;
-
-      const section = sectionRef.current;
-      if (!section) return;
-
-      const scrollDistance = section.offsetHeight - window.innerHeight;
-      if (scrollDistance <= 0) return;
-
-      const nextProgress = (window.scrollY - section.offsetTop) / scrollDistance;
-      setProgressValue(nextProgress);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [isDesktop, setProgressValue, maxScroll]);
-
-  useEffect(() => {
-    if (!isDesktop) return;
-
     const onWheel = (e: WheelEvent) => {
-      if (!isHoveredRef.current) return;
-
-      const section = sectionRef.current;
-      if (!section) return;
-
-      const rect = section.getBoundingClientRect();
-      const pinned = rect.top <= 0 && rect.bottom >= window.innerHeight;
-      if (!pinned) return;
-
-      const scrollDistance = section.offsetHeight - window.innerHeight;
-      if (scrollDistance <= 0) return;
+      const maxScrollVal = maxScrollRef.current;
+      if (maxScrollVal <= 0) return;
 
       const current = progressRef.current;
-      const next = current + e.deltaY / scrollDistance;
+      const delta = e.deltaY;
+      const next = current + delta / maxScrollVal;
 
-      if ((current <= 0 && e.deltaY < 0) || (current >= 1 && e.deltaY > 0)) {
+      if ((current <= 0 && delta < 0) || (current >= 1 && delta > 0)) {
         return;
       }
 
       e.preventDefault();
       const clamped = Math.min(1, Math.max(0, next));
-      setProgressValue(clamped);
-      syncPageScroll(clamped);
+      progressRef.current = clamped;
+      setProgress(clamped);
     };
 
-    window.addEventListener("wheel", onWheel, { passive: false });
-    return () => window.removeEventListener("wheel", onWheel);
-  }, [isDesktop, setProgressValue, syncPageScroll, maxScroll]);
+    const element = windowRef.current;
+    if (element) {
+      element.addEventListener("wheel", onWheel, { passive: false });
+    }
+
+    return () => {
+      if (element) {
+        element.removeEventListener("wheel", onWheel);
+      }
+    };
+  }, [isDesktop]);
 
   const translateX = -progress * maxScroll;
-  const sectionHeight =
-    isDesktop && maxScroll > 0 ? `calc(100vh + ${maxScroll}px)` : undefined;
 
   return (
     <section
       ref={sectionRef}
-      className="relative border-t py-16 lg:py-0"
-      style={{ borderColor: "var(--line)", height: sectionHeight }}
+      className="relative border-t py-16 lg:py-24"
+      style={{ borderColor: "var(--line)" }}
     >
-      <div className="lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:justify-center lg:overflow-hidden lg:py-16">
-        <div className="site-gutter">
-          <h2 className="f-display mb-10 text-[56px] leading-[0.95] tracking-tight md:mb-12 md:text-[80px] lg:mb-14">
-            Eight seniors.
-            <br />
-            <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-              One desk each.
-            </span>
-          </h2>
+      <div className="site-gutter">
+        <h2 className="f-display mb-10 text-[56px] leading-[0.95] tracking-tight md:mb-12 md:text-[80px] lg:mb-14">
+          Eight seniors.
+          <br />
+          <span className="f-display-it" style={{ color: "var(--cargo)" }}>
+            One desk each.
+          </span>
+        </h2>
 
+        <div
+          ref={windowRef}
+          className="no-scrollbar overflow-x-auto pb-2 lg:cursor-grab lg:overflow-hidden lg:pb-0 lg:active:cursor-grabbing"
+        >
           <div
-            ref={windowRef}
-            className="no-scrollbar overflow-x-auto pb-2 lg:cursor-grab lg:overflow-hidden lg:pb-0 lg:active:cursor-grabbing"
-            onMouseEnter={() => {
-              isHoveredRef.current = true;
-            }}
-            onMouseLeave={() => {
-              isHoveredRef.current = false;
-            }}
+            ref={trackRef}
+            className="flex gap-6 will-change-transform max-lg:w-max"
+            style={
+              isDesktop
+                ? { transform: `translate3d(${translateX}px, 0, 0)` }
+                : undefined
+            }
+          >
+            {team.map((member) => (
+              <TeamCard key={member.name} member={member} />
+            ))}
+          </div>
+        </div>
+
+        {isDesktop && maxScroll > 0 && (
+          <div
+            className="mt-8 hidden h-px overflow-hidden rounded-full lg:block"
+            style={{ background: "var(--line)" }}
+            aria-hidden="true"
           >
             <div
-              ref={trackRef}
-              className="flex gap-6 will-change-transform max-lg:w-max"
-              style={
-                isDesktop
-                  ? { transform: `translate3d(${translateX}px, 0, 0)` }
-                  : undefined
-              }
-            >
-              {team.map((member) => (
-                <TeamCard key={member.name} member={member} />
-              ))}
-            </div>
+              className="h-full origin-left transition-none"
+              style={{
+                width: `${progress * 100}%`,
+                background: "var(--cargo)",
+              }}
+            />
           </div>
-
-          {isDesktop && maxScroll > 0 && (
-            <div
-              className="mt-8 hidden h-px overflow-hidden rounded-full lg:block"
-              style={{ background: "var(--line)" }}
-              aria-hidden="true"
-            >
-              <div
-                className="h-full origin-left transition-none"
-                style={{
-                  width: `${progress * 100}%`,
-                  background: "var(--cargo)",
-                }}
-              />
-            </div>
-          )}
-        </div>
+        )}
       </div>
     </section>
   );

@@ -19,11 +19,21 @@ export type DisciplineItem = {
 
 type Props = {
   items: DisciplineItem[];
+  heading?: string;
+  hrefPrefix?: `/services/` | `/industries/` | `/routes/`;
+  ctaLabel?: string;
+  tablistLabel?: string;
 };
 
 const PANEL_HEIGHT = "min-h-[14rem] sm:min-h-[17rem] md:min-h-[19rem]";
 
-export function OtherDisciplinesSection({ items }: Props) {
+export function OtherDisciplinesSection({
+  items,
+  heading = "Other disciplines",
+  hrefPrefix = "/services/",
+  ctaLabel = "Open desk",
+  tablistLabel = "Other disciplines",
+}: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const goTo = useCallback(
@@ -39,7 +49,7 @@ export function OtherDisciplinesSection({ items }: Props) {
   return (
     <section className="w-full min-w-0 max-w-full overflow-x-hidden py-10 md:py-12">
       <div className="site-gutter">
-        <h3 className="f-display mb-5 text-4xl">Other disciplines</h3>
+        <h3 className="f-display mb-5 text-4xl">{heading}</h3>
 
         <div
           className="w-full min-w-0 max-w-full overflow-hidden rounded-2xl"
@@ -49,7 +59,7 @@ export function OtherDisciplinesSection({ items }: Props) {
             className="flex items-stretch border-b"
             style={{ borderColor: "var(--line)" }}
             role="tablist"
-            aria-label="Other disciplines"
+            aria-label={tablistLabel}
           >
             <div className="no-scrollbar flex min-w-0 flex-1 overflow-x-auto">
               {items.map((item, index) => {
@@ -166,7 +176,7 @@ export function OtherDisciplinesSection({ items }: Props) {
                         className="caption flex items-center gap-1.5 transition-colors group-hover:text-[var(--cargo)]"
                         style={{ color: "var(--brass)" }}
                       >
-                        Open desk
+                        {ctaLabel}
                         <ArrowUpRight
                           size={13}
                           className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -179,7 +189,7 @@ export function OtherDisciplinesSection({ items }: Props) {
                 return (
                   <Link
                     key={item.slug}
-                    href={`/services/${item.slug}` as Route}
+                    href={`${hrefPrefix}${item.slug}` as Route}
                     role="tabpanel"
                     aria-hidden={index !== activeIndex}
                     className="group grid h-full min-w-0 shrink-0 grid-cols-1 sm:grid-cols-2"

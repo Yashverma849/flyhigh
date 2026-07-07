@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useMemo } from "react";
 import {
   VerticalSlidingWindow,
@@ -12,31 +13,45 @@ type ProcessStep = {
   b: string;
 };
 
+type DeskItem = string | { n: string; t?: string; b: string };
+
 type Props = {
-  serviceName: string;
-  features: string[];
-  process: ProcessStep[];
+  leftHeading: string;
+  rightHeading: string;
+  leftItems: string[];
+  rightItems: DeskItem[];
+  title: ReactNode;
+  description: string;
+  hint?: string;
 };
 
-export function ServiceDeskSection({ serviceName, features, process }: Props) {
-  const capabilityItems: SlidingWindowItem[] = useMemo(
-    () =>
-      features.map((feature, i) => ({
+function toSlidingItems(items: DeskItem[], numbered = false): SlidingWindowItem[] {
+  return items.map((item, i) => {
+    if (typeof item === "string") {
+      return {
         n: (i + 1).toString().padStart(2, "0"),
-        body: feature,
-      })),
-    [features],
-  );
+        body: item,
+      };
+    }
+    return {
+      n: item.n || (numbered ? (i + 1).toString().padStart(2, "0") : ""),
+      title: item.t,
+      body: item.b,
+    };
+  });
+}
 
-  const processItems: SlidingWindowItem[] = useMemo(
-    () =>
-      process.map((step) => ({
-        n: step.n,
-        title: step.t,
-        body: step.b,
-      })),
-    [process],
-  );
+export function DeskSection({
+  leftHeading,
+  rightHeading,
+  leftItems,
+  rightItems,
+  title,
+  description,
+  hint = "Hover either column to pause. Scroll to read at your pace.",
+}: Props) {
+  const leftSlidingItems = useMemo(() => toSlidingItems(leftItems), [leftItems]);
+  const rightSlidingItems = useMemo(() => toSlidingItems(rightItems, true), [rightItems]);
 
   return (
     <section className="w-full min-w-0 max-w-full overflow-x-hidden py-12 md:py-14">
@@ -45,38 +60,61 @@ export function ServiceDeskSection({ serviceName, features, process }: Props) {
           <div className="grid min-w-0 grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4">
             <div className="flex flex-col gap-3 sm:gap-4">
               <h3 className="f-display text-center text-[clamp(1.125rem,2vw,1.5rem)] leading-tight tracking-tight">
-                What this desk handles.
+                {leftHeading}
               </h3>
-              <VerticalSlidingWindow items={capabilityItems} direction="up" />
+              <VerticalSlidingWindow items={leftSlidingItems} direction="up" />
             </div>
 
             <div className="flex flex-col gap-3 sm:gap-4">
               <h3 className="f-display text-center text-[clamp(1.125rem,2vw,1.5rem)] leading-tight tracking-tight">
-                From brief to delivery.
+                {rightHeading}
               </h3>
-              <VerticalSlidingWindow items={processItems} direction="down" />
+              <VerticalSlidingWindow items={rightSlidingItems} direction="down" />
             </div>
           </div>
 
           <div className="flex h-full min-w-0 flex-col justify-center text-left lg:sticky lg:top-32">
             <h2 className="f-display text-[clamp(2rem,5vw,4rem)] leading-[0.92] tracking-tight">
-              What we take on.
-              <br />
-              <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-                How we move it.
-              </span>
+              {title}
             </h2>
             <p className="mt-8 text-base leading-relaxed md:text-lg" style={{ color: "var(--ash)" }}>
-              The {serviceName} desk runs on two ledgers — what we take on, and how we move it.
-              Capabilities define the cargo, routes, and clearance this team owns. Process is the
-              five-stage chain every file follows, from first survey to the photograph at delivery.
+              {description}
             </p>
-            <p className="mt-6 text-sm leading-relaxed" style={{ color: "var(--ash)" }}>
-              Hover either column to pause. Scroll to read at your pace.
-            </p>
+            {hint && (
+              <p className="mt-6 text-sm leading-relaxed" style={{ color: "var(--ash)" }}>
+                {hint}
+              </p>
+            )}
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+type ServiceDeskProps = {
+  serviceName: string;
+  features: string[];
+  process: ProcessStep[];
+};
+
+export function ServiceDeskSection({ serviceName, features, process }: ServiceDeskProps) {
+  return (
+    <DeskSection
+      leftHeading="What this desk handles."
+      rightHeading="From brief to delivery."
+      leftItems={features}
+      rightItems={process}
+      title={
+        <>
+          What we take on.
+          <br />
+          <span className="f-display-it" style={{ color: "var(--cargo)" }}>
+            How we move it.
+          </span>
+        </>
+      }
+      description={`The ${serviceName} desk runs on two ledgers — what we take on, and how we move it. Capabilities define the cargo, routes, and clearance this team owns. Process is the five-stage chain every file follows, from first survey to the photograph at delivery.`}
+    />
   );
 }

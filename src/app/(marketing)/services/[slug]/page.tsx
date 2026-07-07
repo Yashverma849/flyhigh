@@ -9,6 +9,7 @@ import { OtherDisciplinesSection } from "@/components/marketing/other-discipline
 import { ServiceHeroMetrics } from "@/components/marketing/service-hero-metrics";
 import { ServiceDeskSection } from "@/components/marketing/service-desk-section";
 import { IndustryOverviewSlider } from "@/components/marketing/industry-overview-slider";
+import { SplitHeroTitle } from "@/components/marketing/split-hero-title";
 import { getServiceBySlug, SERVICES } from "@/server/db/seed/services";
 import { INDUSTRIES } from "@/server/db/seed/industries";
 import { CASE_STUDIES } from "@/server/db/seed/case-studies";
@@ -70,18 +71,7 @@ const PROCESS = [
 ];
 
 function ServiceHeroTitle({ name }: { name: string }) {
-  const space = name.lastIndexOf(" ");
-  if (space === -1) return name;
-
-  return (
-    <>
-      {name.slice(0, space)}
-      <br />
-      <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-        {name.slice(space + 1)}
-      </span>
-    </>
-  );
+  return <SplitHeroTitle name={name} />;
 }
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {

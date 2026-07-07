@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check } from "lucide-react";
-import { SectionLabel } from "@/components/shared/section-label";
+import { ArrowRight } from "lucide-react";
 import { Pill } from "@/components/shared/pill";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { JsonLd } from "@/components/shared/json-ld";
-import { RelatedLinks } from "@/components/shared/related-links";
+import { OtherDisciplinesSection } from "@/components/marketing/other-disciplines-section";
+import { RouteHeroTitle } from "@/components/marketing/route-hero-title";
+import { RouteHeroMetrics } from "@/components/marketing/route-hero-metrics";
+import { DeskSection } from "@/components/marketing/service-desk-section";
+import { RouteOverviewSlider } from "@/components/marketing/route-overview-slider";
 import { getRouteBySlug, ROUTES, getRoutesByRegion } from "@/server/db/seed/routes";
+import { getRouteHeroImage } from "@/lib/route-hero-image";
 import { pageMetadata, serviceJsonLd } from "@/lib/seo";
 import { formatINR } from "@/lib/utils";
 
@@ -48,11 +52,6 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
   const otherModes = ROUTES.filter(
     (x) => x.fromCity === r.fromCity && x.toCity === r.toCity && x.slug !== r.slug,
   );
-  const breadcrumbs = [
-    { name: "Home", href: "/" },
-    { name: "Routes", href: "/routes" },
-    { name: `${r.fromCity} → ${r.toCity}`, href: `/routes/${r.slug}` },
-  ];
 
   return (
     <>
@@ -65,202 +64,146 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
           areaServed: `${r.fromCity}, IN to ${r.toCity}`,
         })}
       />
+      <Breadcrumbs
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Routes", href: "/routes" },
+          { name: `${r.fromCity} → ${r.toCity}`, href: `/routes/${r.slug}` },
+        ]}
+      />
 
-      <Breadcrumbs items={breadcrumbs} />
-
-      <section className="pt-32 pb-12">
-        <div className="site-gutter">
-          <div className="mb-6 flex flex-wrap items-center gap-3">
-            <Pill kind={r.mode === "Air" ? "cargo" : "brass"}>{r.mode}</Pill>
-            <Pill>{r.region}</Pill>
-            <span className="caption" style={{ color: "var(--ash)" }}>
-              {r.fromCode} → {r.toCode}
-            </span>
+      <section className="hero-section relative min-h-[100svh]">
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
+            src={getRouteHeroImage(r.mode)}
+            alt=""
+            className="h-full w-full max-w-none object-cover object-[62%_center] sm:object-[58%_center] lg:object-[55%_center]"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.72) 32%, rgba(0,0,0,0.35) 58%, rgba(0,0,0,0.2) 100%), linear-gradient(to top, var(--ink) 0%, transparent 38%)",
+            }}
+          />
+        </div>
+        <div className="site-gutter relative z-10 mx-auto flex min-h-[100svh] w-full min-w-0 max-w-full flex-col pt-28 sm:pt-32 lg:pt-40">
+          <div className="flex flex-1 flex-col justify-center">
+            <div className="w-full max-w-2xl lg:max-w-3xl">
+              <div className="mb-6 flex flex-wrap items-center gap-3">
+                <Pill kind={r.mode === "Air" ? "cargo" : "brass"}>{r.mode}</Pill>
+                <Pill>{r.region}</Pill>
+                <span className="caption text-white/75">
+                  {r.fromCode} → {r.toCode}
+                </span>
+              </div>
+              <h1 className="f-display mb-6 text-[clamp(2.75rem,8.5vw,6.875rem)] leading-[0.88] tracking-tighter">
+                <RouteHeroTitle fromCity={r.fromCity} toCity={r.toCity} />
+              </h1>
+              <p className="text-[clamp(1rem,2vw,1.5rem)] leading-relaxed" style={{ color: "var(--bone)" }}>
+                {r.desc}
+              </p>
+            </div>
           </div>
+          <div className="w-full max-w-full">
+            <RouteHeroMetrics
+              rate={r.rate}
+              days={r.days}
+              freqWeekly={r.freqWeekly}
+              mode={r.mode}
+            />
+          </div>
+        </div>
+      </section>
 
-          <h1 className="f-display mb-6 text-[52px] leading-[0.88] tracking-tighter md:text-[88px]">
-            {r.fromCity}{" "}
+      <DeskSection
+        leftHeading="Who we book on this lane."
+        rightHeading="Paperwork we handle for you."
+        leftItems={r.carriers ?? []}
+        rightItems={r.documents}
+        title={
+          <>
+            Carriers booked.
+            <br />
             <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-              →
-            </span>{" "}
-            {r.toCity}
-          </h1>
-          <p className="max-w-3xl text-xl leading-relaxed" style={{ color: "var(--bone)" }}>
-            {r.desc}
-          </p>
-        </div>
-      </section>
-
-      <section className="py-12" style={{ background: "var(--ink-2)" }}>
-        <div className="site-gutter">
-          <div
-            className="grid grid-cols-2 gap-px lg:grid-cols-4"
-            style={{ background: "var(--line)" }}
-          >
-            <div className="p-8" style={{ background: "var(--ink-2)" }}>
-              <div className="caption" style={{ color: "var(--brass)" }}>
-                INDICATIVE FROM
-              </div>
-              <div className="f-display mt-2 text-3xl" style={{ color: "var(--cargo)" }}>
-                {formatINR(r.rate)}
-              </div>
-            </div>
-            <div className="p-8" style={{ background: "var(--ink-2)" }}>
-              <div className="caption" style={{ color: "var(--brass)" }}>
-                TRANSIT TIME
-              </div>
-              <div className="f-display mt-2 text-3xl">{r.days} days</div>
-            </div>
-            <div className="p-8" style={{ background: "var(--ink-2)" }}>
-              <div className="caption" style={{ color: "var(--brass)" }}>
-                FREQUENCY
-              </div>
-              <div className="f-display mt-2 text-3xl">{r.freqWeekly}× / wk</div>
-            </div>
-            <div className="p-8" style={{ background: "var(--ink-2)" }}>
-              <div className="caption" style={{ color: "var(--brass)" }}>
-                MODE
-              </div>
-              <div className="f-display mt-2 text-3xl">{r.mode}</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24">
-        <div className="site-gutter">
-          <div className="grid gap-16 lg:grid-cols-2">
-            <div>
-              <SectionLabel num="02">CARRIERS</SectionLabel>
-              <h2 className="f-display mt-4 mb-8 text-4xl leading-tight">
-                Who we book on this lane.
-              </h2>
-              <ul className="space-y-2">
-                {(r.carriers ?? []).map((c) => (
-                  <li
-                    key={c}
-                    className="flex items-center gap-3 rounded-xl p-4 text-sm"
-                    style={{
-                      border: "1px solid var(--line)",
-                      background: "var(--surface-tint-2)",
-                    }}
-                  >
-                    <div
-                      className="flex h-6 w-6 items-center justify-center rounded-full"
-                      style={{
-                        background: "var(--cargo-tint-10)",
-                        border: "1px solid var(--cargo)",
-                      }}
-                    >
-                      <Check size={12} style={{ color: "var(--cargo)" }} />
-                    </div>
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <SectionLabel num="03">DOCUMENTATION</SectionLabel>
-              <h2 className="f-display mt-4 mb-8 text-4xl leading-tight">
-                Paperwork we handle for you.
-              </h2>
-              <ul className="space-y-2">
-                {r.documents.map((d, i) => (
-                  <li key={d} className="flex items-center gap-3 text-sm">
-                    <span className="f-mono text-xs" style={{ color: "var(--cargo)" }}>
-                      {(i + 1).toString().padStart(2, "0")}
-                    </span>
-                    {d}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div
-            className="mt-16 rounded-2xl p-8"
-            style={{ border: "1px solid var(--line)", background: "var(--surface-tint-2)" }}
-          >
-            <div className="caption mb-3" style={{ color: "var(--brass)" }}>
-              OPERATIONAL NOTES
-            </div>
-            <p className="text-base leading-relaxed" style={{ color: "var(--bone)" }}>
-              {r.notes}
-            </p>
-          </div>
-        </div>
-      </section>
+              Paperwork cleared.
+            </span>
+          </>
+        }
+        description={`The ${r.fromCity} → ${r.toCity} lane runs on two ledgers — who we book, and what we file. Carriers are the alliances and operators we hold space with on this corridor. Documentation is the paperwork chain every shipment clears before wheels-up or sail-away. ${r.notes}`}
+      />
 
       {otherModes.length > 0 && (
-        <section className="py-20" style={{ background: "var(--ink-2)" }}>
-          <div className="site-gutter">
-            <SectionLabel num="04">SAME LANE, DIFFERENT MODE</SectionLabel>
-            <h2 className="f-display mt-4 mb-8 text-3xl">
-              {r.fromCity} → {r.toCity} alternatives.
-            </h2>
-            <div
-              className="grid gap-px md:grid-cols-2 lg:grid-cols-3"
-              style={{ background: "var(--line)" }}
-            >
-              {otherModes.map((o) => (
-                <Link
-                  key={o.slug}
-                  href={`/routes/${o.slug}`}
-                  className="group block p-6"
-                  style={{ background: "var(--ink)" }}
-                >
-                  <Pill kind={o.mode === "Air" ? "cargo" : "brass"}>{o.mode}</Pill>
-                  <div className="f-display mt-3 text-2xl">{o.days} days</div>
-                  <div className="f-display mt-1 text-lg" style={{ color: "var(--cargo)" }}>
-                    From {formatINR(o.rate)}
-                  </div>
-                </Link>
-              ))}
+        <section
+          className="w-full min-w-0 max-w-full overflow-x-hidden py-10 md:py-12"
+          style={{ background: "var(--ink-2)" }}
+        >
+          <div className="site-gutter relative min-w-0 overflow-x-hidden">
+            <div className="relative mb-6 min-w-0">
+              <h2 className="f-display text-[clamp(1.75rem,4vw,2.5rem)]">
+                {r.fromCity} → {r.toCity} alternatives.
+              </h2>
             </div>
+            <RouteOverviewSlider routeSlugs={otherModes.map((o) => o.slug)} />
           </div>
         </section>
       )}
 
-      <section className="py-24">
-        <div className="site-gutter">
+      <OtherDisciplinesSection
+        heading={`More ${r.region} corridors`}
+        hrefPrefix="/routes/"
+        ctaLabel="Open lane"
+        tablistLabel="Other lanes"
+        items={sameRegion.map((o) => ({
+          slug: o.slug,
+          name: `${o.fromCity} → ${o.toCity}`,
+          tag: o.mode,
+          short: o.short,
+          desc: o.desc,
+          image: getRouteHeroImage(o.mode),
+          eta: `${o.days} days`,
+          coverage: formatINR(o.rate),
+          highlights: [o.region, `${o.freqWeekly}× / wk`],
+        }))}
+      />
+
+      <section className="relative w-full min-w-0 max-w-full overflow-x-hidden py-16 text-center md:py-20">
+        <div className="absolute inset-0 z-0">
+          <img src="/cta%201.png" alt="" className="h-full w-full object-cover" />
           <div
-            className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
-            style={{ border: "1px solid var(--line)" }}
-          >
-            <div className="relative z-10 grid items-center gap-12 lg:grid-cols-2">
-              <div>
-                <h2 className="f-display mb-6 text-[44px] leading-[0.95] tracking-tight md:text-[56px]">
-                  Quote this lane.
-                </h2>
-                <p className="text-lg" style={{ color: "var(--ash)" }}>
-                  Three quotes back — fastest, cheapest, and the one we recommend, with the math
-                  behind each.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <Link href="/quote" className="btn-primary">
-                  Get quote for {r.fromCode}–{r.toCode} <ArrowRight size={14} />
-                </Link>
-                <Link href="/contact" className="btn-ghost">
-                  Speak with the desk
-                </Link>
-              </div>
-            </div>
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, var(--ink) 0%, rgba(0,0,0,0.55) 50%, var(--ink) 100%)",
+            }}
+          />
+        </div>
+        <div className="site-gutter relative z-10">
+          <h2 className="f-display mx-auto max-w-full px-4 text-[clamp(2.5rem,8vw,6.25rem)] leading-[0.9] tracking-tighter text-white">
+            Quote this{" "}
+            <span className="f-display-it" style={{ color: "var(--cargo)" }}>
+              lane
+            </span>
+            ?
+          </h2>
+          <p className="mx-auto mt-8 max-w-2xl text-lg text-white md:text-xl">
+            Three quotes back — fastest, cheapest, and the one we recommend, with the math behind
+            each.
+          </p>
+          <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
+            <Link href="/quote" className="btn-primary px-8 py-4 text-base" data-cursor="QUOTE">
+              Get quote for {r.fromCode}–{r.toCode} <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/contact"
+              className="btn-ghost px-8 py-4 text-base"
+              style={{ color: "white", borderColor: "rgba(255,255,255,0.2)" }}
+            >
+              Speak with the desk
+            </Link>
           </div>
         </div>
       </section>
-
-      <RelatedLinks
-        num="05"
-        label="OTHER LANES"
-        heading={`More ${r.region} corridors`}
-        items={sameRegion.map((o) => ({
-          href: `/routes/${o.slug}`,
-          title: `${o.fromCity} → ${o.toCity}`,
-          blurb: o.short,
-          tag: `${o.mode} · ${o.days} days`,
-        }))}
-      />
     </>
   );
 }

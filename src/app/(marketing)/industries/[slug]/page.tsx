@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check } from "lucide-react";
-import { SectionLabel } from "@/components/shared/section-label";
-import { Pill } from "@/components/shared/pill";
+import { ArrowRight } from "lucide-react";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { JsonLd } from "@/components/shared/json-ld";
-import { RelatedLinks } from "@/components/shared/related-links";
+import { CaseStudyHeroSection } from "@/components/marketing/case-study-hero-section";
+import { OtherDisciplinesSection } from "@/components/marketing/other-disciplines-section";
+import { SplitHeroTitle } from "@/components/marketing/split-hero-title";
+import { IndustryHeroMetrics } from "@/components/marketing/industry-hero-metrics";
+import { DeskSection } from "@/components/marketing/service-desk-section";
+import { ServiceOverviewSlider } from "@/components/marketing/service-overview-slider";
 import { getIndustryBySlug, INDUSTRIES } from "@/server/db/seed/industries";
 import { SERVICES } from "@/server/db/seed/services";
 import { CASE_STUDIES } from "@/server/db/seed/case-studies";
@@ -49,15 +51,9 @@ export default async function IndustryDetailPage({
   const ind = getIndustryBySlug(slug);
   if (!ind) notFound();
 
-  const Icon = ind.icon;
-  const services = SERVICES.filter((s) => ind.relatedServices.includes(s.id));
+  const relatedServices = SERVICES.filter((s) => ind.relatedServices.includes(s.id));
   const cases = CASE_STUDIES.filter((c) => c.industrySlug === ind.slug);
   const others = INDUSTRIES.filter((x) => x.slug !== ind.slug).slice(0, 3);
-  const breadcrumbs = [
-    { name: "Home", href: "/" },
-    { name: "Industries", href: "/industries" },
-    { name: ind.name, href: `/industries/${ind.slug}` },
-  ];
 
   return (
     <>
@@ -69,222 +65,145 @@ export default async function IndustryDetailPage({
           category: ind.tag,
         })}
       />
+      <Breadcrumbs
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Industries", href: "/industries" },
+          { name: ind.name, href: `/industries/${ind.slug}` },
+        ]}
+      />
 
-      <Breadcrumbs items={breadcrumbs} />
-
-      <section className="relative pt-32 pb-12">
-        <div className="site-gutter">
-          <div className="grid gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <div className="mb-6 flex items-center gap-3">
-                <div
-                  className="rounded-2xl p-4"
-                  style={{
-                    background: "var(--cargo-tint-10)",
-                    border: "1px solid var(--cargo)",
-                  }}
-                >
-                  <Icon size={28} style={{ color: "var(--cargo)" }} />
-                </div>
-                <Pill kind="cargo">{ind.tag}</Pill>
-              </div>
-              <h1 className="f-display mb-6 text-[56px] leading-[0.88] tracking-tighter md:text-[96px]">
-                {ind.name}
+      <section className="hero-section relative min-h-[100svh]">
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
+            src={ind.image}
+            alt=""
+            className="h-full w-full max-w-none object-cover object-[62%_center] sm:object-[58%_center] lg:object-[55%_center]"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.72) 32%, rgba(0,0,0,0.35) 58%, rgba(0,0,0,0.2) 100%), linear-gradient(to top, var(--ink) 0%, transparent 38%)",
+            }}
+          />
+        </div>
+        <div className="site-gutter relative z-10 mx-auto flex min-h-[100svh] w-full min-w-0 max-w-full flex-col pt-28 sm:pt-32 lg:pt-40">
+          <div className="flex flex-1 flex-col justify-center">
+            <div className="w-full max-w-2xl lg:max-w-3xl">
+              <h1 className="f-display mb-6 text-[clamp(2.75rem,8.5vw,6.875rem)] leading-[0.88] tracking-tighter">
+                <SplitHeroTitle name={ind.name} />
               </h1>
-              <p className="text-xl leading-relaxed" style={{ color: "var(--bone)" }}>
+              <p className="text-[clamp(1rem,2vw,1.5rem)] leading-relaxed" style={{ color: "var(--bone)" }}>
                 {ind.desc}
               </p>
             </div>
-            <div className="lg:col-span-5">
-              <div className="cine-frame relative aspect-[4/5] overflow-hidden rounded-2xl">
-                <Image
-                  src={ind.image}
-                  alt={ind.name}
-                  fill
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            </div>
+          </div>
+          <div className="w-full max-w-full">
+            <IndustryHeroMetrics stats={ind.stats} />
           </div>
         </div>
       </section>
 
-      <section className="py-20" style={{ background: "var(--ink-2)" }}>
-        <div className="site-gutter">
-          <div
-            className="grid grid-cols-2 gap-px lg:grid-cols-4"
-            style={{ background: "var(--line)" }}
-          >
-            {ind.stats.map((m) => (
-              <div key={m.l} className="p-8" style={{ background: "var(--ink-2)" }}>
-                <div className="caption" style={{ color: "var(--brass)" }}>
-                  {m.l}
-                </div>
-                <div className="f-display mt-2 text-3xl">{m.v}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <DeskSection
+        leftHeading="How we deliver."
+        rightHeading="What this sector pays us to solve."
+        leftItems={ind.capabilities}
+        rightItems={ind.challenges}
+        title={
+          <>
+            Sector playbook.
+            <br />
+            <span className="f-display-it" style={{ color: "var(--cargo)" }}>
+              Real constraints.
+            </span>
+          </>
+        }
+        description={`The ${ind.name} desk runs on two ledgers — how we deliver, and what this sector pays us to solve. Capabilities are the lanes, paperwork, and handling this team owns. Challenges are the constraints every file is built around, from first survey to delivery.`}
+      />
 
-      <section className="py-24">
-        <div className="site-gutter">
-          <div className="grid gap-16 lg:grid-cols-2">
-            <div>
-              <SectionLabel num="02">CHALLENGES</SectionLabel>
-              <h2 className="f-display mt-4 mb-8 text-5xl leading-tight">
-                What this sector pays us to solve.
+      {relatedServices.length > 0 && (
+        <section
+          className="w-full min-w-0 max-w-full overflow-x-hidden py-10 md:py-12"
+          style={{ background: "var(--ink-2)" }}
+        >
+          <div className="site-gutter relative min-w-0 overflow-x-hidden">
+            <div className="relative mb-6 min-w-0">
+              <h2 className="f-display text-[clamp(1.75rem,4vw,2.5rem)]">
+                Disciplines that serve this desk.
               </h2>
-              <ul className="space-y-3">
-                {ind.challenges.map((c, i) => (
-                  <li
-                    key={c}
-                    className="flex items-start gap-4 rounded-xl p-4"
-                    style={{
-                      border: "1px solid var(--line)",
-                      background: "var(--surface-tint-2)",
-                    }}
-                  >
-                    <div
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
-                      style={{ background: "var(--cargo-tint-10)" }}
-                    >
-                      <span className="f-mono text-xs" style={{ color: "var(--cargo)" }}>
-                        {(i + 1).toString().padStart(2, "0")}
-                      </span>
-                    </div>
-                    <span className="pt-1 text-sm leading-relaxed">{c}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
-            <div>
-              <SectionLabel num="03">CAPABILITIES</SectionLabel>
-              <h2 className="f-display mt-4 mb-8 text-5xl leading-tight">How we deliver.</h2>
-              <ul className="space-y-2">
-                {ind.capabilities.map((f) => (
-                  <li key={f} className="flex items-center gap-3 text-sm">
-                    <div
-                      className="flex h-5 w-5 items-center justify-center rounded-full"
-                      style={{
-                        background: "var(--cargo-tint-10)",
-                        border: "1px solid var(--cargo)",
-                      }}
-                    >
-                      <Check size={11} style={{ color: "var(--cargo)" }} />
-                    </div>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {services.length > 0 && (
-        <section className="py-20" style={{ background: "var(--ink-2)" }}>
-          <div className="site-gutter">
-            <SectionLabel num="04">SERVICES INVOLVED</SectionLabel>
-            <h2 className="f-display mt-4 mb-10 text-4xl">
-              How {ind.name.toLowerCase()} ships through us.
-            </h2>
-            <div
-              className="grid gap-px md:grid-cols-2 lg:grid-cols-4"
-              style={{ background: "var(--line)" }}
-            >
-              {services.map((s) => {
-                const SIcon = s.icon;
-                return (
-                  <Link
-                    key={s.id}
-                    href={`/services/${s.slug}`}
-                    className="group lift block p-8 text-left"
-                    style={{ background: "var(--ink)" }}
-                  >
-                    <SIcon size={22} style={{ color: "var(--cargo)" }} className="mb-4" />
-                    <div className="font-semibold">{s.name}</div>
-                    <div className="mt-1 text-xs" style={{ color: "var(--ash)" }}>
-                      {s.short}
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
+            <ServiceOverviewSlider serviceSlugs={relatedServices.map((s) => s.slug)} />
           </div>
         </section>
       )}
 
       {cases.length > 0 && (
-        <section className="py-24">
-          <div className="site-gutter">
-            <SectionLabel num="05">CASE STUDIES</SectionLabel>
-            <h2 className="f-display mt-4 mb-10 text-4xl">From this desk.</h2>
-            <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
-              {cases.map((c) => (
-                <Link
-                  key={c.slug}
-                  href={`/case-studies/${c.slug}`}
-                  className="group block p-8"
-                  style={{ background: "var(--ink)" }}
-                >
-                  <div className="caption mb-3 text-[10px]" style={{ color: "var(--cargo)" }}>
-                    CASE STUDY
-                  </div>
-                  <div className="f-display text-2xl tracking-tight transition-colors group-hover:text-[var(--cargo)]">
-                    {c.title}
-                  </div>
-                  <div className="mt-3 text-sm" style={{ color: "var(--ash)" }}>
-                    {c.excerpt}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
+        <CaseStudyHeroSection
+          items={cases.map((c) => ({
+            href: `/case-studies/${c.slug}`,
+            title: c.title,
+            blurb: c.excerpt,
+            tag: c.industry.toUpperCase(),
+            image: c.image,
+          }))}
+        />
       )}
 
-      <section className="py-24" style={{ background: "var(--ink-2)" }}>
-        <div className="site-gutter">
+      <OtherDisciplinesSection
+        heading="Other industries"
+        hrefPrefix="/industries/"
+        ctaLabel="Open desk"
+        tablistLabel="Other industries"
+        items={others.map((o) => ({
+          slug: o.slug,
+          name: o.name,
+          tag: o.tag,
+          short: o.short,
+          desc: o.desc,
+          image: o.image,
+          eta: o.stats[0]?.v ?? "—",
+          coverage: o.stats[1]?.v ?? "—",
+          highlights: o.capabilities.slice(0, 3),
+        }))}
+      />
+
+      <section className="relative w-full min-w-0 max-w-full overflow-x-hidden py-16 text-center md:py-20">
+        <div className="absolute inset-0 z-0">
+          <img src="/cta%201.png" alt="" className="h-full w-full object-cover" />
           <div
-            className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
-            style={{ border: "1px solid var(--line)" }}
-          >
-            <div className="relative z-10 grid items-center gap-12 lg:grid-cols-2">
-              <div>
-                <h2 className="f-display mb-6 text-[44px] leading-[0.95] tracking-tight md:text-[64px]">
-                  Speak to the {ind.tag.toLowerCase()} desk.
-                </h2>
-                <p className="text-lg" style={{ color: "var(--ash)" }}>
-                  Average response time: 27 minutes during business hours.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <Link href="/quote" className="btn-primary">
-                  Get a quote <ArrowRight size={14} />
-                </Link>
-                <Link href="/contact" className="btn-ghost">
-                  Speak with desk
-                </Link>
-              </div>
-            </div>
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, var(--ink) 0%, rgba(0,0,0,0.55) 50%, var(--ink) 100%)",
+            }}
+          />
+        </div>
+        <div className="site-gutter relative z-10">
+          <h2 className="f-display mx-auto max-w-full px-4 text-[clamp(2.5rem,8vw,6.25rem)] leading-[0.9] tracking-tighter text-white">
+            Ready to{" "}
+            <span className="f-display-it" style={{ color: "var(--cargo)" }}>
+              move
+            </span>
+            ?
+          </h2>
+          <p className="mx-auto mt-8 max-w-2xl text-lg text-white md:text-xl">
+            Speak to the {ind.tag.toLowerCase()} desk. Average response time: 27 minutes.
+          </p>
+          <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
+            <Link href="/quote" className="btn-primary px-8 py-4 text-base" data-cursor="QUOTE">
+              Get a quote <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/contact"
+              className="btn-ghost px-8 py-4 text-base"
+              style={{ color: "white", borderColor: "rgba(255,255,255,0.2)" }}
+            >
+              Speak with desk
+            </Link>
           </div>
         </div>
       </section>
-
-      <RelatedLinks
-        num="06"
-        label="OTHER INDUSTRIES"
-        heading="Other desks under this roof"
-        items={others.map((o) => ({
-          href: `/industries/${o.slug}`,
-          title: o.name,
-          blurb: o.short,
-          tag: o.tag,
-        }))}
-      />
     </>
   );
 }

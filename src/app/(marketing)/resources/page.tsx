@@ -30,7 +30,7 @@ const RESOURCES = [
     icon: MessageSquareText,
     title: "Frequently asked questions",
     blurb:
-      "Eighteen questions we hear weekly — quoting, customs, cool chain, ATA Carnet, and pricing — answered candidly.",
+      "Twenty-one questions we hear weekly — quoting, customs, Incoterms, cool chain, ATA Carnet, and pricing — answered candidly.",
   },
   {
     href: "/resources/glossary",

@@ -62,7 +62,7 @@ export function RoutesTable() {
     >
       {/* Table header — fades in last */}
       <div
-        className="grid grid-cols-12 gap-4 border-b p-5 transition-all duration-700"
+        className="hidden grid-cols-4 items-center gap-4 border-b p-5 text-center transition-all duration-700 md:grid"
         style={{
           borderColor: "var(--line)",
           opacity: headerVisible ? 1 : 0,
@@ -70,10 +70,10 @@ export function RoutesTable() {
           color: "var(--bone)",
         }}
       >
-        <div className="f-body font-extrabold col-span-3 text-center text-sm tracking-wider uppercase">Origin → Destination</div>
-        <div className="f-body font-extrabold col-span-3 text-center text-sm tracking-wider uppercase">Mode</div>
-        <div className="f-body font-extrabold col-span-3 text-center text-sm tracking-wider uppercase">Transit</div>
-        <div className="f-body font-extrabold col-span-3 text-center text-sm tracking-wider uppercase">From</div>
+        <div className="f-body text-sm font-extrabold tracking-wider uppercase">Origin → Destination</div>
+        <div className="f-body text-sm font-extrabold tracking-wider uppercase">Mode</div>
+        <div className="f-body text-sm font-extrabold tracking-wider uppercase">Transit</div>
+        <div className="f-body text-sm font-extrabold tracking-wider uppercase">From</div>
       </div>
 
       {/* Rows — odd slide from left, even slide from right */}
@@ -87,7 +87,7 @@ export function RoutesTable() {
             ref={(el) => { rowRefs.current[i] = el; }}
             href={`/routes/${r.slug}`}
             aria-label={`${r.from} to ${r.to} freight details`}
-            className="group relative grid grid-cols-12 items-center gap-4 border-b p-5 transition-colors last:border-b-0 hover:bg-[var(--surface-tint-2)]"
+            className="group grid grid-cols-1 items-center gap-4 border-b p-5 text-center transition-colors last:border-b-0 hover:bg-[var(--surface-tint-2)] md:grid-cols-4"
             style={{
               borderColor: "var(--line-2)",
               opacity: visible ? 1 : 0,
@@ -100,24 +100,21 @@ export function RoutesTable() {
                 "opacity 500ms cubic-bezier(0.22,1,0.36,1), transform 500ms cubic-bezier(0.22,1,0.36,1)",
             }}
           >
-            <div className="col-span-3 flex items-center justify-center gap-2 text-sm text-center">
+            <div className="m-data-table-cell-inline text-sm">
               <span className="font-medium">{r.from}</span>
-              <ArrowRight size={12} style={{ color: "var(--cargo)" }} className="flex-shrink-0" />
+              <ArrowRight size={12} style={{ color: "var(--cargo)" }} className="shrink-0" />
               <span className="font-medium">{r.to}</span>
             </div>
-            <div className="col-span-3 text-center">
+            <div>
               <span className="f-mono text-xs tracking-wide" style={{ color: "var(--bone)" }}>
                 {r.mode.toUpperCase()}
               </span>
             </div>
-            <div className="f-mono col-span-3 text-center text-sm">{r.days} days</div>
-            <div
-              className="f-display tabular col-span-3 text-center text-[24px]"
-              style={{ color: "var(--cargo)" }}
-            >
-              {formatINR(r.rate)}
-            </div>
-            <div className="absolute right-5 flex items-center justify-center">
+            <div className="f-mono text-sm">{r.days} days</div>
+            <div className="m-data-table-cell-inline">
+              <span className="f-display tabular text-[24px]" style={{ color: "var(--cargo)" }}>
+                {formatINR(r.rate)}
+              </span>
               <ArrowUpRight
                 size={16}
                 className="opacity-0 transition-opacity group-hover:opacity-100"

@@ -1,0 +1,153 @@
+/* Hover sliding card — adapted from Uiverse.io by joe-watson-sbf */
+
+.cell {
+  position: relative;
+  height: 12rem;
+  z-index: 1;
+}
+
+.cell:hover {
+  z-index: 50;
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 12rem;
+  max-height: 12rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid var(--line);
+  background: var(--ink);
+  text-align: center;
+  transition:
+    max-height 0.5s ease,
+    box-shadow 0.5s ease,
+    background 0.5s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.cell:hover .card {
+  height: auto;
+  max-height: 44rem;
+  background: linear-gradient(360deg, var(--ink-2) 60%, var(--ink) 70%);
+  box-shadow:
+    15px 15px 30px rgba(25, 25, 25, 0.11),
+    -15px -15px 30px rgba(60, 60, 60, 0.082);
+}
+
+.header {
+  height: 12rem;
+  padding: 1.25rem 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: var(--ink-2);
+  transition: clip-path 0.5s ease;
+  box-sizing: border-box;
+}
+
+.cell:hover .header {
+  height: auto;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 96%);
+}
+
+.title {
+  display: -webkit-box;
+  min-height: 2.5rem;
+  max-height: 2.5rem;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  font-size: 0.85rem;
+  line-height: 1.25;
+  letter-spacing: 0.1em;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 0;
+  transition: padding 0.5s ease;
+  color: var(--bone);
+}
+
+.cell:hover .title {
+  min-height: 0;
+  max-height: none;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  display: block;
+}
+
+.content {
+  display: block;
+  text-align: left;
+  color: var(--bone);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0 1.125rem;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition:
+    opacity 0.45s ease 0.05s,
+    transform 0.45s ease 0.05s,
+    max-height 0.5s ease,
+    padding 0.5s ease,
+    margin 0.5s ease;
+}
+
+.cell:hover .content {
+  max-height: 32rem;
+  opacity: 1;
+  transform: translateY(0);
+  margin: 0 0 1.125rem;
+  padding: 0.25rem 1.125rem 0;
+  pointer-events: auto;
+}
+
+.content p {
+  font-size: 0.8em;
+  margin-bottom: 0.5rem;
+}
+
+.content a {
+  color: var(--cargo);
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.content a:hover {
+  border-bottom: 1px solid var(--cargo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .header,
+  .title,
+  .content {
+    transition: none;
+  }
+
+  .card {
+    position: relative;
+    max-height: none;
+  }
+
+  .content {
+    max-height: none;
+    opacity: 1;
+    transform: none;
+    margin: 0 1.125rem 1.125rem;
+    padding: 0.25rem 0 0;
+    pointer-events: auto;
+  }
+}

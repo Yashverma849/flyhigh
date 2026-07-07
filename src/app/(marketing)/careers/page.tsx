@@ -153,16 +153,16 @@ export default function CareersPage() {
               <a
                 key={r.slug}
                 href={`mailto:careers@flyhigh.in?subject=${encodeURIComponent("Application — " + r.title)}`}
-                className="group grid grid-cols-1 items-center gap-3 border-b p-6 transition-colors last:border-b-0 hover:bg-[var(--surface-tint-2)] md:grid-cols-12"
+                className="group grid grid-cols-1 items-center gap-4 border-b p-6 text-center transition-colors last:border-b-0 hover:bg-[var(--surface-tint-2)] md:grid-cols-4"
                 style={{ borderColor: "var(--line-2)" }}
               >
-                <div className="md:col-span-5">
+                <div className="m-data-table-cell">
                   <div className="font-semibold">{r.title}</div>
                   <div className="caption mt-1" style={{ color: "var(--ash)" }}>
                     {r.team} · Posted {r.posted}
                   </div>
                 </div>
-                <div className="md:col-span-3">
+                <div className="m-data-table-cell">
                   <span
                     className="caption flex items-center gap-1.5"
                     style={{ color: "var(--brass)" }}
@@ -170,10 +170,10 @@ export default function CareersPage() {
                     <MapPin size={11} /> {r.location}
                   </span>
                 </div>
-                <div className="md:col-span-2">
+                <div className="m-data-table-cell">
                   <Pill kind="brass">{r.type.toUpperCase()}</Pill>
                 </div>
-                <div className="text-right md:col-span-2">
+                <div className="m-data-table-cell">
                   <span className="btn-ghost text-xs">
                     Apply <ArrowUpRight size={12} />
                   </span>

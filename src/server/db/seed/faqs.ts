@@ -52,6 +52,21 @@ export const FAQS: ReadonlyArray<Faq> = [
     a: "Yes — FICCI panel members for ATA Carnet issuance and acceptance. We process around 180 carnets per year, mostly fashion, art, and trade-show cargo.",
   },
   {
+    category: "Customs",
+    q: "What changed in Incoterms 2020 vs 2010?",
+    a: "Three meaningful changes: DAT became DPU (delivered place unloaded). CIP insurance level was raised from minimum (ICC C) to maximum (ICC A). FCA gained an option requiring the carrier to issue an on-board bill of lading.",
+  },
+  {
+    category: "Customs",
+    q: "Which Incoterm is best for first-time exporters from India?",
+    a: "FOB or CIF for sea, CIP or DAP for air — they are well understood, balance the work, and keep the seller in control of paperwork at origin.",
+  },
+  {
+    category: "Customs",
+    q: "Why is EXW risky for sellers?",
+    a: "EXW puts export clearance on the buyer, who may not file it correctly — leaving the seller's GST / EOU benefits exposed and creating audit risk.",
+  },
+  {
     category: "Cool Chain",
     q: "What temperature ranges do you handle?",
     a: "CRT-15 (15-25°C), 2-8°C, frozen (-20°C), and ultra-low (-70°C / dry ice). We do not yet operate cryogenic (-150°C) corridors.",

@@ -3,9 +3,10 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { GlossaryList } from "@/components/marketing/glossary-list";
 import { JsonLd } from "@/components/shared/json-ld";
 import { GLOSSARY } from "@/server/db/seed/glossary";
-import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "Freight glossary",
@@ -29,12 +30,6 @@ const breadcrumbs = [
 
 export default function GlossaryPage() {
   const sorted = [...GLOSSARY].sort((a, b) => a.term.localeCompare(b.term));
-  const grouped: Record<string, typeof sorted> = {};
-  for (const e of sorted) {
-    const letter = (e.term.charAt(0) || "#").toUpperCase();
-    (grouped[letter] ??= []).push(e);
-  }
-  const letters = Object.keys(grouped).sort();
 
   return (
     <>
@@ -73,101 +68,52 @@ export default function GlossaryPage() {
             Freight forwarders use shorthand the way cooks use mise en place — quietly, all the
             time, and without explaining. This is the working dictionary, in plain English.
           </p>
-
-          <div className="mt-8 flex flex-wrap gap-2">
-            {letters.map((l) => (
-              <a
-                key={l}
-                href={`#letter-${l}`}
-                className="caption rounded-full px-3 py-1.5"
-                style={{
-                  border: "1px solid var(--line)",
-                  background: "var(--surface-tint-2)",
-                }}
-              >
-                {l}
-              </a>
-            ))}
-          </div>
         </div>
       </section>
 
       <section className="py-12">
         <div className="site-gutter">
-          {letters.map((l) => (
-            <div key={l} id={`letter-${l}`} className="mb-12">
-              <div className="caption mb-4" style={{ color: "var(--cargo)" }}>
-                {l}
-              </div>
-              <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
-                {(grouped[l] ?? []).map((e) => (
-                  <article
-                    key={e.term}
-                    id={e.term.toLowerCase().replace(/[^a-z0-9]/g, "-")}
-                    className="p-6"
-                    style={{ background: "var(--ink)" }}
-                  >
-                    <div className="flex items-baseline gap-3">
-                      <h2
-                        className="f-display text-2xl tracking-tight"
-                        style={{ color: "var(--cargo)" }}
-                      >
-                        {e.term}
-                      </h2>
-                      <span className="caption" style={{ color: "var(--ash)" }}>
-                        {e.short}
-                      </span>
-                    </div>
-                    <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--bone)" }}>
-                      {e.long}
-                    </p>
-                    {e.see && e.see.length > 0 && (
-                      <div className="caption mt-3" style={{ color: "var(--brass)" }}>
-                        SEE ALSO ·{" "}
-                        {e.see.map((s, i) => (
-                          <span key={s}>
-                            <a
-                              href={`#${s.toLowerCase().replace(/[^a-z0-9]/g, "-")}`}
-                              className="u-link"
-                            >
-                              {s}
-                            </a>
-                            {i < e.see!.length - 1 && ", "}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </article>
-                ))}
-              </div>
-            </div>
-          ))}
+          <GlossaryList />
         </div>
       </section>
 
-      <section className="py-24" style={{ background: "var(--ink-2)" }}>
-        <div className="site-gutter">
+      <section className="relative w-full min-w-0 max-w-full overflow-x-hidden py-24 md:py-28">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/cta-bg.png"
+            alt=""
+            className="h-full w-full object-cover"
+            style={{ filter: "grayscale(12%) contrast(96%)" }}
+          />
           <div
-            className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
-            style={{ border: "1px solid var(--line)" }}
-          >
-            <div className="relative z-10 grid items-center gap-12 lg:grid-cols-2">
-              <div>
-                <h2 className="f-display mb-6 text-[44px] leading-[0.95] tracking-tight md:text-[56px]">
-                  Term we missed?
-                </h2>
-                <p className="text-lg" style={{ color: "var(--ash)" }}>
-                  We add to this list as the trade vocabulary moves.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <Link href="/contact" className="btn-primary">
-                  Suggest a term <ArrowRight size={14} />
-                </Link>
-                <Link href="/resources/faq" className="btn-ghost">
-                  FAQ
-                </Link>
-              </div>
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.65) 55%, rgba(0,0,0,0.75) 100%)",
+            }}
+          />
+        </div>
+        <div className="site-gutter relative z-10">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div className="text-left">
+              <h2 className="f-display mb-6 text-[44px] leading-[0.95] tracking-tight text-white md:text-[56px]">
+                Term we missed?
+              </h2>
+              <p className="text-lg text-white/80">
+                We add to this list as the trade vocabulary moves.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+              <Link href="/contact" className="btn-primary">
+                Suggest a term <ArrowRight size={14} />
+              </Link>
+              <Link
+                href="/resources/faq"
+                className="btn-ghost"
+                style={{ color: "white", borderColor: "rgba(255,255,255,0.2)" }}
+              >
+                FAQ
+              </Link>
             </div>
           </div>
         </div>

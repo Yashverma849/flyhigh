@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
-import { Pill } from "@/components/shared/pill";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { DocumentsScrollStack } from "@/components/marketing/documents-scroll-stack";
+import { DestinationReferenceWindow } from "@/components/marketing/destination-reference-window";
 import { JsonLd } from "@/components/shared/json-ld";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
@@ -20,6 +21,45 @@ export const metadata: Metadata = pageMetadata({
     "certificate of origin",
   ],
 });
+
+function AlwaysRequiredBento({
+  docs,
+}: {
+  docs: { name: string; desc: string }[];
+}) {
+  const [featured, ...rest] = docs;
+
+  return (
+    <div className="grid gap-4 md:grid-cols-2 md:grid-rows-2">
+      <div
+        className="flex min-h-[320px] flex-col justify-end rounded-2xl border p-8 md:row-span-2"
+        style={{ borderColor: "var(--line)", background: "var(--ink)" }}
+      >
+        <div className="text-left">
+          <h3 className="f-display text-2xl tracking-tight md:text-3xl">{featured!.name}</h3>
+          <p className="mt-3 max-w-md text-sm leading-relaxed md:text-base" style={{ color: "var(--ash)" }}>
+            {featured!.desc}
+          </p>
+        </div>
+      </div>
+
+      {rest.map((d) => (
+        <div
+          key={d.name}
+          className="flex min-h-[180px] flex-col justify-between rounded-2xl border p-6"
+          style={{ borderColor: "var(--line)", background: "var(--ink)" }}
+        >
+          <div className="text-left">
+            <h3 className="font-semibold">{d.name}</h3>
+          </div>
+          <p className="text-left text-sm leading-relaxed" style={{ color: "var(--ash)" }}>
+            {d.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 const breadcrumbs = [
   { name: "Home", href: "/" },
@@ -47,6 +87,7 @@ const SECTIONS = [
   },
   {
     title: "Customs & origin",
+    image: "/services_borders_1783068829815.png",
     docs: [
       {
         name: "Certificate of Origin (Generic)",
@@ -72,6 +113,7 @@ const SECTIONS = [
   },
   {
     title: "Commodity-specific",
+    image: "/manifesto_pharma_cargo_1783063540396.png",
     docs: [
       {
         name: "Phytosanitary Certificate",
@@ -102,6 +144,7 @@ const SECTIONS = [
   },
   {
     title: "Region-specific (where applicable)",
+    image: "/manifesto_ocean_harbor_1783063499614.png",
     docs: [
       {
         name: "SONCAP / Form M / PAAR",
@@ -136,6 +179,7 @@ const SECTIONS = [
   },
   {
     title: "Insurance & finance",
+    image: "/services_cabinet_1783068927669.png",
     docs: [
       {
         name: "Marine Insurance Certificate",
@@ -155,34 +199,28 @@ const SECTIONS = [
 
 const REGIONS = [
   {
-    tag: "EU",
     region: "European Union",
     required: ["EUR.1 (where qualifying)", "ICS2 ENS", "ATLAS data"],
   },
   {
-    tag: "US",
     region: "United States",
     required: ["ACE filing", "ACAS data (air)", "FDA prior notice (food/pharma)", "ISF 10+2 (sea)"],
   },
   {
-    tag: "GB",
     region: "United Kingdom",
     required: ["CDS declaration data", "GMR (Goods Movement Reference) for transit"],
   },
-  { tag: "CA", region: "Canada", required: ["CBSA e-Manifest", "B3 Coding Form"] },
+  { region: "Canada", required: ["CBSA e-Manifest", "B3 Coding Form"] },
   {
-    tag: "AE",
     region: "UAE / GCC",
     required: ["GCC e-Mirsal", "Certificate of origin attestation (case-by-case)"],
   },
   {
-    tag: "AU",
     region: "Australia / NZ",
     required: ["AQIS biosecurity declaration", "ICS Cargo Report"],
   },
-  { tag: "NG", region: "Nigeria", required: ["Form M registration", "SONCAP certificate", "PAAR"] },
+  { region: "Nigeria", required: ["Form M registration", "SONCAP certificate", "PAAR"] },
   {
-    tag: "KE",
     region: "Kenya",
     required: ["ICUMS pre-clearance", "PVoC certificate (where applicable)"],
   },
@@ -213,88 +251,73 @@ export default function DocumentsPage() {
         </div>
       </section>
 
-      {SECTIONS.map((s, i) => (
-        <section
-          key={s.title}
-          className="py-16"
-          style={{ background: i % 2 === 1 ? "var(--ink-2)" : "transparent" }}
-        >
-          <div className="site-gutter">
-            <h2 className="f-display mb-8 text-3xl tracking-tight md:text-4xl">{s.title}</h2>
-            <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
-              {s.docs.map((d) => (
-                <div
-                  key={d.name}
-                  className="flex gap-4 p-6"
-                  style={{ background: i % 2 === 1 ? "var(--ink-2)" : "var(--ink)" }}
-                >
-                  <div
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
-                    style={{ background: "var(--cargo-tint-10)" }}
-                  >
-                    <Check size={14} style={{ color: "var(--cargo)" }} />
-                  </div>
-                  <div>
-                    <div className="font-semibold">{d.name}</div>
-                    <div className="mt-1 text-sm" style={{ color: "var(--ash)" }}>
-                      {d.desc}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
-
       <section className="py-16">
+        <div className="site-gutter">
+          <h2 className="f-display mb-8 text-3xl tracking-tight md:text-4xl">
+            {SECTIONS[0]!.title}
+          </h2>
+          <AlwaysRequiredBento docs={SECTIONS[0]!.docs} />
+        </div>
+      </section>
+
+      <DocumentsScrollStack
+        sections={SECTIONS.slice(1).map((s) => ({
+          title: s.title,
+          image: s.image!,
+          docs: s.docs,
+        }))}
+      />
+
+      <section className="relative py-16" style={{ background: "var(--ink)" }}>
         <div className="site-gutter">
           <h2 className="f-display mb-8 text-3xl tracking-tight md:text-4xl">
             Quick reference: by destination
           </h2>
-          <div
-            className="grid gap-px md:grid-cols-2 lg:grid-cols-4"
-            style={{ background: "var(--line)" }}
-          >
-            {REGIONS.map((r) => (
-              <div key={r.region} className="p-6" style={{ background: "var(--ink)" }}>
-                <Pill kind="brass">{r.tag}</Pill>
-                <div className="f-display mt-3 text-xl tracking-tight">{r.region}</div>
-                <ul className="mt-3 space-y-1 text-sm" style={{ color: "var(--ash)" }}>
-                  {r.required.map((x) => (
-                    <li key={x}>· {x}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <DestinationReferenceWindow regions={REGIONS} />
+          <p className="mt-4 text-sm" style={{ color: "var(--ash)" }}>
+            Hover to pause. Scroll horizontally to read at your pace.
+          </p>
         </div>
       </section>
 
-      <section className="py-24" style={{ background: "var(--ink-2)" }}>
-        <div className="site-gutter">
+      <section className="relative w-full min-w-0 max-w-full overflow-x-hidden py-24 md:py-28">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/services_borders_1783068829815.png"
+            alt=""
+            className="h-full w-full object-cover"
+            style={{ filter: "grayscale(12%) contrast(96%)" }}
+          />
           <div
-            className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
-            style={{ border: "1px solid var(--line)" }}
-          >
-            <div className="relative z-10 grid items-center gap-12 lg:grid-cols-2">
-              <div>
-                <h2 className="f-display mb-6 text-[44px] leading-[0.95] tracking-tight md:text-[56px]">
-                  We&apos;ll handle the paperwork.
-                </h2>
-                <p className="text-lg" style={{ color: "var(--ash)" }}>
-                  Send the brief; our documentation desk drafts everything you need, in the
-                  destination&apos;s preferred format.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <Link href="/services/customs" className="btn-primary">
-                  Customs & docs <ArrowRight size={14} />
-                </Link>
-                <Link href="/quote" className="btn-ghost">
-                  Get a quote
-                </Link>
-              </div>
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.65) 55%, rgba(0,0,0,0.75) 100%)",
+            }}
+          />
+        </div>
+        <div className="site-gutter relative z-10">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div className="text-left">
+              <h2 className="f-display mb-6 text-[44px] leading-[0.95] tracking-tight text-white md:text-[56px]">
+                We&apos;ll handle the paperwork.
+              </h2>
+              <p className="text-lg text-white/80">
+                Send the brief; our documentation desk drafts everything you need, in the
+                destination&apos;s preferred format.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+              <Link href="/services/customs" className="btn-primary">
+                Customs & docs <ArrowRight size={14} />
+              </Link>
+              <Link
+                href="/quote"
+                className="btn-ghost"
+                style={{ color: "white", borderColor: "rgba(255,255,255,0.2)" }}
+              >
+                Get a quote
+              </Link>
             </div>
           </div>
         </div>

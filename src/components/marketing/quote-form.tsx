@@ -94,7 +94,7 @@ export function QuoteForm() {
         />
       </div>
 
-      <button type="submit" disabled={pending} className="btn-primary" data-cursor="SEND">
+      <button type="submit" disabled={pending} className="btn-primary w-full justify-center" data-cursor="SEND">
         {pending ? "Sending…" : "Request quote"} <ArrowRight size={14} />
       </button>
     </form>

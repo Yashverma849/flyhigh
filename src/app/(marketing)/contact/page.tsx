@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { SectionLabel } from "@/components/shared/section-label";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { ContactForm } from "@/components/marketing/contact-form";
+import { SITE } from "@/lib/constants";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -22,38 +21,62 @@ export default function ContactPage() {
             { name: "Home", href: "/" },
             { name: "Contact", href: "/contact" },
           ]}
-         
         />
-        <SectionLabel num="00">CONCIERGE</SectionLabel>
-        <h1 className="f-display mt-4 mb-12 text-[64px] leading-[0.95] tracking-tight md:text-[96px]">
-          Speak with
-          <br />
-          <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-            a planner.
-          </span>
-        </h1>
 
-        <div className="grid gap-16 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <div className="caption mb-3" style={{ color: "var(--brass)" }}>
-              MUMBAI HQ
-            </div>
-            <div className="space-y-3 text-sm" style={{ color: "var(--ash)" }}>
-              <p className="flex items-start gap-2">
-                <MapPin size={14} className="mt-0.5 shrink-0" />
-                Arjun House, Sahar Cargo, Andheri East, Mumbai 400099, India
-              </p>
-              <p className="flex items-center gap-2">
-                <Phone size={14} /> +91 9322627766 · <span className="f-mono">24/7 ops</span>
-              </p>
-              <p className="flex items-center gap-2">
-                <Mail size={14} /> flyhighfreightservices@gmail.com
-              </p>
-            </div>
+        <div className="grid items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
+          {/* Left — contact form */}
+          <div
+            className="rounded-3xl p-8 md:p-10 lg:p-12"
+            style={{
+              background: "var(--paper)",
+              border: "1px solid var(--line)",
+              boxShadow: "0 24px 64px rgba(28, 24, 20, 0.06)",
+            }}
+          >
+            <h1
+              className="f-display mt-4 mb-8 text-[clamp(2rem,4vw,3rem)] leading-[0.95] tracking-tight"
+              style={{ color: "var(--bone)" }}
+            >
+              Let&apos;s start a{" "}
+              <span className="f-display-it" style={{ color: "var(--cargo)" }}>
+                conversation.
+              </span>
+            </h1>
+            <ContactForm />
           </div>
 
-          <div className="lg:col-span-7">
-            <ContactForm />
+          {/* Right — video panel */}
+          <div className="relative min-h-[420px] overflow-hidden rounded-3xl lg:min-h-0">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/truck%20video.mp4" type="video/mp4" />
+            </video>
+
+            <div
+              className="absolute inset-0 z-[2]"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(28, 24, 20, 0.92) 0%, rgba(28, 24, 20, 0.35) 45%, rgba(28, 24, 20, 0.15) 100%)",
+              }}
+            />
+
+            <div className="relative z-10 flex h-full min-h-[420px] flex-col justify-end p-8 text-white md:p-10">
+              <p className="caption mb-3" style={{ color: "var(--brass)" }}>
+                {SITE.name.toUpperCase()}
+              </p>
+              <h2 className="f-display mb-3 text-[clamp(1.75rem,3vw,2.5rem)] leading-[0.95] tracking-tight">
+                Trusted freight guidance.
+              </h2>
+              <p className="max-w-sm text-sm leading-relaxed text-white/85">
+                Mumbai HQ, 24/7 operations. Average 27-minute response from a planner who knows your
+                lane.
+              </p>
+            </div>
           </div>
         </div>
       </div>

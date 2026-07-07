@@ -117,39 +117,36 @@ export default function RoutesIndexPage() {
                 style={{ borderColor: "var(--line)", background: "var(--ink)" }}
               >
                 <div
-                  className="caption hidden grid-cols-12 items-center gap-4 border-b p-5 md:grid"
+                  className="caption hidden grid-cols-5 items-center gap-4 border-b p-5 text-center md:grid"
                   style={{ borderColor: "var(--line-2)", color: "var(--ash)" }}
                 >
-                  <div className="col-span-4">ORIGIN → DESTINATION</div>
-                  <div className="col-span-2">MODE</div>
-                  <div className="col-span-2">TRANSIT</div>
-                  <div className="col-span-3 text-right">FROM</div>
-                  <div className="col-span-1" />
+                  <div>ORIGIN → DESTINATION</div>
+                  <div>MODE</div>
+                  <div>TRANSIT</div>
+                  <div>FROM</div>
+                  <div />
                 </div>
                 {inRegion.map((r) => (
                   <Link
                     key={r.slug}
                     href={`/routes/${r.slug}`}
-                    className="group grid grid-cols-1 items-center gap-4 border-b p-5 transition-colors last:border-b-0 hover:bg-[var(--surface-tint-2)] md:grid-cols-12"
+                    className="group grid grid-cols-1 items-center gap-4 border-b p-5 text-center transition-colors last:border-b-0 hover:bg-[var(--surface-tint-2)] md:grid-cols-5"
                     style={{ borderColor: "var(--line-2)" }}
                     data-cursor="OPEN"
                   >
-                    <div className="flex items-center gap-2 text-sm md:col-span-4">
+                    <div className="m-data-table-cell-inline text-sm">
                       <span className="font-medium">{r.from}</span>
                       <ArrowRight size={12} style={{ color: "var(--cargo)" }} />
                       <span className="font-medium">{r.to}</span>
                     </div>
-                    <div className="md:col-span-2">
+                    <div className="m-data-table-cell">
                       <Pill kind={r.mode === "Air" ? "cargo" : "brass"}>{r.mode}</Pill>
                     </div>
-                    <div className="f-mono text-sm md:col-span-2">{r.days} days</div>
-                    <div
-                      className="f-display tabular text-[20px] md:col-span-3 md:text-right md:text-[24px]"
-                      style={{ color: "var(--cargo)" }}
-                    >
+                    <div className="f-mono text-sm">{r.days} days</div>
+                    <div className="f-display tabular text-[20px] md:text-[24px]" style={{ color: "var(--cargo)" }}>
                       {formatINR(r.rate)}
                     </div>
-                    <div className="text-right md:col-span-1">
+                    <div className="m-data-table-cell-inline">
                       <ArrowUpRight
                         size={16}
                         className="md:opacity-0 md:transition-opacity md:group-hover:opacity-100"

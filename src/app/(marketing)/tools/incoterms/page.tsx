@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { SectionLabel } from "@/components/shared/section-label";
-import { Pill } from "@/components/shared/pill";
+import { IncotermsSlider } from "@/components/marketing/incoterms-slider";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
-import { JsonLd } from "@/components/shared/json-ld";
-import { breadcrumbJsonLd, faqJsonLd, pageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "Incoterms 2020 reference",
@@ -143,31 +141,14 @@ const INCOTERMS: Incoterm[] = [
   },
 ];
 
-const FAQS = [
-  {
-    q: "What changed in Incoterms 2020 vs 2010?",
-    a: "Three meaningful changes: DAT became DPU (delivered place unloaded). CIP insurance level was raised from minimum (ICC C) to maximum (ICC A). FCA gained an option requiring the carrier to issue an on-board bill of lading.",
-  },
-  {
-    q: "Which Incoterm is best for first-time exporters from India?",
-    a: "FOB or CIF for sea, CIP or DAP for air — they are well understood, balance the work, and keep the seller in control of paperwork at origin.",
-  },
-  {
-    q: "Why is EXW risky for sellers?",
-    a: "EXW puts export clearance on the buyer, who may not file it correctly — leaving the seller's GST / EOU benefits exposed and creating audit risk.",
-  },
-];
-
 export default function IncotermsPage() {
   return (
     <>
       <Breadcrumbs items={breadcrumbs} />
-      <JsonLd data={faqJsonLd(FAQS)} />
 
       <section className="pt-32 pb-12">
         <div className="site-gutter">
           <Breadcrumbs items={breadcrumbs} />
-          <SectionLabel num="01">INCOTERMS 2020</SectionLabel>
           <h1 className="f-display mt-6 text-[56px] leading-[0.88] tracking-tighter md:text-[88px]">
             Eleven words,
             <br />
@@ -184,112 +165,44 @@ export default function IncotermsPage() {
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="site-gutter">
-          <div className="grid gap-px md:grid-cols-2" style={{ background: "var(--line)" }}>
-            {INCOTERMS.map((t) => (
-              <article
-                key={t.code}
-                id={t.code.toLowerCase()}
-                className="p-8"
-                style={{ background: "var(--ink)" }}
-              >
-                <div className="mb-3 flex items-center gap-3">
-                  <span className="f-display text-3xl" style={{ color: "var(--cargo)" }}>
-                    {t.code}
-                  </span>
-                  <Pill kind={t.modes.includes("Sea") ? "brass" : "cargo"}>
-                    {t.modes.includes("Sea") ? "SEA ONLY" : "ANY MODE"}
-                  </Pill>
-                </div>
-                <h2 className="f-display mb-4 text-2xl tracking-tight">{t.name}</h2>
-
-                <dl className="space-y-3 text-sm">
-                  <div>
-                    <dt className="caption" style={{ color: "var(--brass)" }}>
-                      RISK TRANSFER
-                    </dt>
-                    <dd className="mt-1" style={{ color: "var(--bone)" }}>
-                      {t.riskTransfer}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="caption" style={{ color: "var(--brass)" }}>
-                      SELLER PAYS
-                    </dt>
-                    <dd className="mt-1" style={{ color: "var(--bone)" }}>
-                      {t.sellerPays}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="caption" style={{ color: "var(--brass)" }}>
-                      BUYER PAYS
-                    </dt>
-                    <dd className="mt-1" style={{ color: "var(--bone)" }}>
-                      {t.buyerPays}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="caption" style={{ color: "var(--brass)" }}>
-                      WHEN TO USE
-                    </dt>
-                    <dd className="mt-1" style={{ color: "var(--ash)" }}>
-                      {t.whenToUse}
-                    </dd>
-                  </div>
-                </dl>
-              </article>
-            ))}
-          </div>
-        </div>
+      <section className="relative z-10 overflow-visible pt-8 pb-8">
+        <IncotermsSlider items={INCOTERMS} />
       </section>
 
-      <section className="py-24" style={{ background: "var(--ink-2)" }}>
-        <div className="site-gutter">
-          <SectionLabel num="02">FAQ</SectionLabel>
-          <h2 className="f-display mt-4 mb-10 text-4xl">Common Incoterms questions.</h2>
-          <div className="space-y-4">
-            {FAQS.map((f) => (
-              <details
-                key={f.q}
-                className="rounded-2xl p-6"
-                style={{ border: "1px solid var(--line)", background: "var(--ink)" }}
-              >
-                <summary className="cursor-pointer font-semibold">{f.q}</summary>
-                <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--ash)" }}>
-                  {f.a}
-                </p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24">
-        <div className="site-gutter">
+      <section className="relative overflow-hidden bg-black py-32">
+        <div className="absolute inset-0 z-0 opacity-40">
+          <img
+            src="/cta-bg.png"
+            alt=""
+            className="h-full w-full object-cover"
+          />
           <div
-            className="hero-glow relative overflow-hidden rounded-3xl p-12 md:p-16"
-            style={{ border: "1px solid var(--line)" }}
-          >
-            <div className="relative z-10 grid items-center gap-12 lg:grid-cols-2">
-              <div>
-                <h2 className="f-display mb-6 text-[44px] leading-[0.95] tracking-tight md:text-[56px]">
-                  Not sure which to use?
-                </h2>
-                <p className="text-lg" style={{ color: "var(--ash)" }}>
-                  Our customs desk advises on Incoterm selection at quote stage — it&apos;s usually
-                  worth a 10-minute conversation.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <Link href="/contact" className="btn-primary">
-                  Speak with the desk <ArrowRight size={14} />
-                </Link>
-                <Link href="/services/customs" className="btn-ghost">
-                  Customs service
-                </Link>
-              </div>
-            </div>
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, var(--ink) 0%, transparent 60%, var(--ink) 100%)",
+            }}
+          />
+        </div>
+        <div className="site-gutter relative z-10 text-center">
+          <h2 className="f-display text-[64px] leading-[0.9] tracking-tighter text-white md:text-[100px]">
+            Not sure which to use?
+          </h2>
+          <p className="mx-auto mt-8 max-w-2xl text-xl text-neutral-300">
+            Our customs desk advises on Incoterm selection at quote stage — it&apos;s usually worth
+            a 10-minute conversation.
+          </p>
+          <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
+            <Link href="/contact" className="btn-primary px-8 py-4 text-base">
+              Speak with the desk <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/services/customs"
+              className="btn-ghost px-8 py-4 text-base"
+              style={{ color: "white", borderColor: "rgba(255,255,255,0.2)" }}
+            >
+              Customs service
+            </Link>
           </div>
         </div>
       </section>

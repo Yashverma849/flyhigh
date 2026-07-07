@@ -76,12 +76,12 @@ export default function CookiesPage() {
               {COOKIES.map((c, i) => (
                 <div
                   key={c.name}
-                  className="grid gap-2 border-b p-6 last:border-b-0 md:grid-cols-12"
+                  className="grid grid-cols-1 items-center gap-4 border-b p-6 text-center last:border-b-0 md:grid-cols-3"
                   style={{
                     borderColor: i === COOKIES.length - 1 ? "transparent" : "var(--line-2)",
                   }}
                 >
-                  <div className="md:col-span-4">
+                  <div className="m-data-table-cell">
                     <div className="font-semibold">{c.name}</div>
                     <div
                       className="caption mt-1"
@@ -90,10 +90,10 @@ export default function CookiesPage() {
                       {c.optional ? "OPTIONAL" : "REQUIRED"}
                     </div>
                   </div>
-                  <div className="text-sm md:col-span-6" style={{ color: "var(--bone)" }}>
+                  <div className="m-data-table-cell text-sm" style={{ color: "var(--bone)" }}>
                     {c.purpose}
                   </div>
-                  <div className="caption md:col-span-2" style={{ color: "var(--ash)" }}>
+                  <div className="caption m-data-table-cell" style={{ color: "var(--ash)" }}>
                     {c.duration}
                   </div>
                 </div>

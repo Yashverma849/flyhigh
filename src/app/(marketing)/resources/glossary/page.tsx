@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { GlossaryList } from "@/components/marketing/glossary-list";
 import { JsonLd } from "@/components/shared/json-ld";
 import { GLOSSARY } from "@/server/db/seed/glossary";
+import { CtaBackground } from "@/components/marketing/cta-background";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -79,12 +80,7 @@ export default function GlossaryPage() {
 
       <section className="relative w-full min-w-0 max-w-full overflow-x-hidden py-24 md:py-28">
         <div className="absolute inset-0 z-0">
-          <img
-            src="/cta-bg.png"
-            alt=""
-            className="h-full w-full object-cover"
-            style={{ filter: "grayscale(12%) contrast(96%)" }}
-          />
+          <CtaBackground imageStyle={{ filter: "grayscale(12%) contrast(96%)" }} />
           <div
             className="absolute inset-0"
             style={{

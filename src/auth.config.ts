@@ -1,5 +1,12 @@
 import type { NextAuthConfig } from "next-auth";
 
+/** Shared secret for JWT sessions — must match `src/auth.ts` and work on Edge middleware. */
+export const authSecret =
+  process.env.AUTH_SECRET ||
+  process.env.SUPABASE_SERVICE_KEY ||
+  process.env.supabase_service_key ||
+  "placeholder_auth_secret_must_be_32_characters_long_minimum";
+
 /**
  * Edge-safe portion of the Auth.js config.
  * Used by `middleware.ts` (Edge runtime) — must NOT import the DB adapter,
@@ -8,6 +15,7 @@ import type { NextAuthConfig } from "next-auth";
  * The full config (with adapter + providers) lives in `src/auth.ts`.
  */
 export const authConfig = {
+  secret: authSecret,
   trustHost: true,
   pages: {
     signIn: "/login",

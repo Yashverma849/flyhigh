@@ -15,6 +15,7 @@ import { STATS } from "@/server/db/seed/stats";
 import { CountUp } from "@/components/shared/count-up";
 import { TESTIMONIALS } from "@/server/db/seed/testimonials";
 import { pageMetadata } from "@/lib/seo";
+import { CtaBackground } from "@/components/marketing/cta-background";
 
 export const metadata: Metadata = pageMetadata({
   title: "Flyhigh — Worldwide Freight, Refined.",
@@ -336,11 +337,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden py-32 bg-black">
         {/* Background Image Layer */}
         <div className="absolute inset-0 z-0 opacity-40">
-          <img
-            src="/cta-bg.png"
-            alt="CTA Background Cargo Plane"
-            className="h-full w-full object-cover"
-          />
+          <CtaBackground alt="CTA Background Cargo Plane" />
           <div
             className="absolute inset-0"
             style={{

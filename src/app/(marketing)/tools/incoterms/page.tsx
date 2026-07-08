@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { IncotermsSlider } from "@/components/marketing/incoterms-slider";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { CtaBackground } from "@/components/marketing/cta-background";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -171,11 +172,7 @@ export default function IncotermsPage() {
 
       <section className="relative overflow-hidden bg-black py-32">
         <div className="absolute inset-0 z-0 opacity-40">
-          <img
-            src="/cta-bg.png"
-            alt=""
-            className="h-full w-full object-cover"
-          />
+          <CtaBackground />
           <div
             className="absolute inset-0"
             style={{

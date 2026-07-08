@@ -5,7 +5,7 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db, isDbConfigured, supabase } from "@/server/db/client";
 import { accounts, sessions, users, verificationTokens } from "@/server/db/schema";
 import { env } from "@/env";
-import { authConfig } from "./auth.config";
+import { authConfig, authSecret } from "./auth.config";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
@@ -18,7 +18,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       })
     : undefined,
   session: { strategy: "jwt" },
-  secret: env.AUTH_SECRET || "placeholder_auth_secret_must_be_32_characters_long_minimum",
+  secret: env.AUTH_SECRET || authSecret,
   trustHost: true,
   providers: [
     Credentials({

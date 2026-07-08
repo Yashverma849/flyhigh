@@ -199,6 +199,32 @@ export const insights = pgTable(
   (t) => [uniqueIndex("insight_slug_idx").on(t.slug)],
 );
 
+export const caseStudies = pgTable(
+  "case_study",
+  {
+    id: text("id")
+      .primaryKey()
+      .default(sql`gen_random_uuid()`),
+    slug: text("slug").notNull().unique(),
+    title: text("title").notNull(),
+    client: text("client").notNull(),
+    industry: text("industry").notNull(),
+    industrySlug: text("industry_slug").notNull(),
+    serviceSlug: text("service_slug").notNull(),
+    region: text("region").notNull(),
+    challenge: text("challenge").notNull(),
+    approach: text("approach").notNull(),
+    outcome: text("outcome").notNull(),
+    metrics: jsonb("metrics").$type<{ l: string; v: string }[]>().notNull(),
+    date: text("date").notNull(),
+    read: text("read").notNull(),
+    image: text("image").notNull(),
+    excerpt: text("excerpt").notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (t) => [uniqueIndex("case_study_slug_idx").on(t.slug)],
+);
+
 export const auditLog = pgTable("audit_log", {
   id: text("id")
     .primaryKey()
@@ -255,3 +281,6 @@ export type ContactSubmission = typeof contactSubmissions.$inferSelect;
 export type InsightRow = typeof insights.$inferSelect;
 export type User = typeof users.$inferSelect;
 export type AuditLog = typeof auditLog.$inferSelect;
+export type DbCaseStudy = typeof caseStudies.$inferSelect;
+export type NewCaseStudy = typeof caseStudies.$inferInsert;
+

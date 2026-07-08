@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { InsightsIndex } from "@/components/marketing/insights-index";
 import { pageMetadata } from "@/lib/seo";
+import { listPublishedInsights } from "@/server/queries/insights";
 
 export const metadata: Metadata = pageMetadata({
   title: "Insights & journal",
@@ -18,7 +19,9 @@ export const metadata: Metadata = pageMetadata({
   ],
 });
 
-export default function InsightsPage() {
+export default async function InsightsPage() {
+  const posts = await listPublishedInsights();
+
   return (
     <>
       <section className="pt-32 pb-12">
@@ -46,7 +49,8 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      <InsightsIndex />
+      <InsightsIndex posts={posts} />
     </>
   );
 }
+

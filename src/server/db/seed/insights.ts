@@ -20,8 +20,7 @@ export const INSIGHTS: ReadonlyArray<Insight> = [
     category: "OCEAN",
     date: "2026-03-12",
     read: "8 min",
-    image:
-      "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=1200&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/red_sea_routing.png",
     tags: ["Red Sea", "Asia-Europe", "Routing"],
   },
   {
@@ -33,8 +32,7 @@ export const INSIGHTS: ReadonlyArray<Insight> = [
     category: "AIR",
     date: "2026-03-04",
     read: "6 min",
-    image:
-      "https://images.unsplash.com/photo-1583500178690-f7fc39ee08e2?w=1200&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/pharma_cabin.png",
     tags: ["Pharma", "Cool chain", "Air freight"],
   },
   {
@@ -45,8 +43,7 @@ export const INSIGHTS: ReadonlyArray<Insight> = [
     category: "CUSTOMS",
     date: "2026-02-24",
     read: "5 min",
-    image:
-      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/fashion_carnet.png",
     tags: ["ATA Carnet", "Fashion", "Customs"],
   },
   {
@@ -58,8 +55,7 @@ export const INSIGHTS: ReadonlyArray<Insight> = [
     category: "OPERATIONS",
     date: "2026-02-10",
     read: "11 min",
-    image:
-      "https://images.unsplash.com/photo-1577937927133-66ef06acdf18?w=1200&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/ontime_cost.png",
     tags: ["KPIs", "Reliability"],
   },
   {
@@ -71,8 +67,7 @@ export const INSIGHTS: ReadonlyArray<Insight> = [
     category: "POLICY",
     date: "2026-01-28",
     read: "7 min",
-    image:
-      "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/incoterms.png",
     tags: ["Incoterms", "Compliance"],
   },
   {
@@ -84,8 +79,7 @@ export const INSIGHTS: ReadonlyArray<Insight> = [
     category: "AIR",
     date: "2026-01-15",
     read: "9 min",
-    image:
-      "https://images.unsplash.com/photo-1591868726398-cb1b3b88c84a?w=1200&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/lithium_air.png",
     tags: ["Lithium", "DG", "EV"],
   },
   {
@@ -97,8 +91,7 @@ export const INSIGHTS: ReadonlyArray<Insight> = [
     category: "POLICY",
     date: "2026-01-05",
     read: "8 min",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/pli_scheme.png",
     tags: ["PLI", "India policy", "Bonded"],
   },
   {
@@ -110,8 +103,7 @@ export const INSIGHTS: ReadonlyArray<Insight> = [
     category: "CUSTOMS",
     date: "2025-12-18",
     read: "10 min",
-    image:
-      "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=1200&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/detained_container.png",
     tags: ["Customs", "Operations"],
   },
   {
@@ -123,8 +115,7 @@ export const INSIGHTS: ReadonlyArray<Insight> = [
     category: "INDUSTRY",
     date: "2025-12-02",
     read: "12 min",
-    image:
-      "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/ev_supply_chain.png",
     tags: ["EV", "Automotive", "India"],
   },
   {
@@ -136,8 +127,7 @@ export const INSIGHTS: ReadonlyArray<Insight> = [
     category: "OCEAN",
     date: "2025-11-14",
     read: "7 min",
-    image:
-      "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1200&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/india_africa_trade.png",
     tags: ["Africa", "India", "Sea freight"],
   },
 ];

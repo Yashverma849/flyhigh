@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
 import { SERVICES } from "@/server/db/seed/services";
-import { INSIGHTS } from "@/server/db/seed/insights";
 import { INDUSTRIES } from "@/server/db/seed/industries";
+import { listPublishedInsights } from "@/server/queries/insights";
 import { ROUTES } from "@/server/db/seed/routes";
-import { CASE_STUDIES } from "@/server/db/seed/case-studies";
 import { SITE_URL } from "@/lib/seo";
+import { listPublishedCaseStudies } from "@/server/queries/case-studies";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const base = SITE_URL.replace(/\/$/, "");
 
@@ -79,14 +79,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const caseStudies: MetadataRoute.Sitemap = CASE_STUDIES.map((c) => ({
+  const cases = await listPublishedCaseStudies();
+  const caseStudies: MetadataRoute.Sitemap = cases.map((c) => ({
     url: `${base}/case-studies/${c.slug}`,
     lastModified: new Date(c.date),
     changeFrequency: "monthly",
     priority: 0.7,
   }));
 
-  const insights: MetadataRoute.Sitemap = INSIGHTS.map((i) => ({
+  const publishedInsights = await listPublishedInsights();
+  const insights: MetadataRoute.Sitemap = publishedInsights.map((i) => ({
     url: `${base}/insights/${i.slug}`,
     lastModified: new Date(i.date),
     changeFrequency: "monthly",

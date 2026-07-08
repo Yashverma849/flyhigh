@@ -18,10 +18,16 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "plus.unsplash.com" },
+      { protocol: "https", hostname: "evaibprnnexdluamvnsb.supabase.co" },
     ],
     formats: ["image/avif", "image/webp"],
   },
   typedRoutes: true,
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "10mb",
+    },
+  },
   async headers() {
     return [
       {

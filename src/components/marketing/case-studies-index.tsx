@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Pill } from "@/components/shared/pill";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
-import { CASE_STUDIES, type CaseStudy } from "@/server/db/seed/case-studies";
+import type { CaseStudy } from "@/server/db/seed/case-studies";
 import { formatDate } from "@/lib/utils";
 
 function FeaturedCaseStudy({ study }: { study: CaseStudy }) {
@@ -102,8 +102,8 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
   );
 }
 
-export function CaseStudiesIndex() {
-  const [featured, ...rest] = CASE_STUDIES;
+export function CaseStudiesIndex({ caseStudies }: { caseStudies: readonly CaseStudy[] }) {
+  const [featured, ...rest] = caseStudies;
 
   return (
     <>

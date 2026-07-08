@@ -41,8 +41,7 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     ],
     date: "2025-08-12",
     read: "9 min",
-    image:
-      "https://images.unsplash.com/photo-1553279768-865429fa0078?w=1600&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/case%20study/mango_airlift.png",
   },
   {
     slug: "ev-battery-pack-frankfurt-jit",
@@ -68,8 +67,7 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     ],
     date: "2025-06-30",
     read: "7 min",
-    image:
-      "https://images.unsplash.com/photo-1591868726398-cb1b3b88c84a?w=1600&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/case%20study/ev_battery_pack.png",
   },
   {
     slug: "ata-carnet-paris-fashion-week",
@@ -95,8 +93,7 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     ],
     date: "2025-09-22",
     read: "6 min",
-    image:
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1600&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/case%20study/fashion_week.png",
   },
   {
     slug: "lithography-tool-aog-bangalore",
@@ -122,8 +119,7 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     ],
     date: "2025-04-08",
     read: "8 min",
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/case%20study/metrology_tool.png",
   },
   {
     slug: "wind-turbine-blade-mundra-vietnam",
@@ -149,8 +145,7 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     ],
     date: "2024-11-04",
     read: "10 min",
-    image:
-      "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1600&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/case%20study/turbine_blade.png",
   },
   {
     slug: "vaccine-cool-chain-east-africa",
@@ -176,8 +171,7 @@ export const CASE_STUDIES: ReadonlyArray<CaseStudy> = [
     ],
     date: "2025-02-19",
     read: "11 min",
-    image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80&auto=format&fit=crop",
+    image: "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/case%20study/vaccine_coolchain.png",
   },
 ];
 

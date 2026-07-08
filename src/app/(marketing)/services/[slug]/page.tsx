@@ -12,7 +12,7 @@ import { IndustryOverviewSlider } from "@/components/marketing/industry-overview
 import { SplitHeroTitle } from "@/components/marketing/split-hero-title";
 import { getServiceBySlug, SERVICES } from "@/server/db/seed/services";
 import { INDUSTRIES } from "@/server/db/seed/industries";
-import { CASE_STUDIES } from "@/server/db/seed/case-studies";
+import { listPublishedCaseStudies } from "@/server/queries/case-studies";
 import { pageMetadata, serviceJsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -85,7 +85,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     0,
     4,
   );
-  const relatedCases = CASE_STUDIES.filter((c) => c.serviceSlug === s.slug).slice(0, 3);
+  const allCases = await listPublishedCaseStudies();
+  const relatedCases = allCases.filter((c) => c.serviceSlug === s.slug).slice(0, 3);
 
   return (
     <>

@@ -1,6 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { Field, SelectField, toDateInputValue } from "@/components/admin/shipment-form-fields";
+import { ImageUploader } from "@/components/admin/image-uploader";
+
 
 const CATEGORIES = [
   "OCEAN",
@@ -27,6 +30,8 @@ export function InsightFormFields({
     publishedAt?: Date | null;
   };
 }) {
+  const [heroImage, setHeroImage] = useState(defaults?.heroImage ?? "");
+
   return (
     <div className="grid gap-5 md:grid-cols-2">
       <div className="md:col-span-2">
@@ -80,13 +85,16 @@ export function InsightFormFields({
           </p>
         )}
       </div>
-      <Field
-        label="Hero image URL"
-        name="heroImage"
-        placeholder="https://images.unsplash.com/..."
-        defaultValue={defaults?.heroImage ?? ""}
-        error={fieldErrors?.heroImage?.[0]}
-      />
+      <div className="md:col-span-2">
+        <ImageUploader
+          label="Hero image"
+          name="heroImage"
+          bucket="Insights"
+          value={heroImage}
+          onChange={setHeroImage}
+          error={fieldErrors?.heroImage?.[0]}
+        />
+      </div>
       <Field
         label="Read time (minutes)"
         name="readMinutes"

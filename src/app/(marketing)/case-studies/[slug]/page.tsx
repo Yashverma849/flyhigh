@@ -7,14 +7,15 @@ import { Pill } from "@/components/shared/pill";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { JsonLd } from "@/components/shared/json-ld";
 import { RelatedLinks } from "@/components/shared/related-links";
-import { getCaseStudyBySlug, CASE_STUDIES } from "@/server/db/seed/case-studies";
+import { getCaseStudyBySlug, listPublishedCaseStudies } from "@/server/queries/case-studies";
 import { getServiceBySlug } from "@/server/db/seed/services";
 import { getIndustryBySlug } from "@/server/db/seed/industries";
 import { pageMetadata, articleJsonLd } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
 
-export function generateStaticParams() {
-  return CASE_STUDIES.map((c) => ({ slug: c.slug }));
+export async function generateStaticParams() {
+  const cases = await listPublishedCaseStudies();
+  return cases.map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
@@ -23,7 +24,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const c = getCaseStudyBySlug(slug);
+  const c = await getCaseStudyBySlug(slug);
   if (!c) return {};
   return pageMetadata({
     title: c.title,
@@ -38,12 +39,13 @@ export async function generateMetadata({
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const c = getCaseStudyBySlug(slug);
+  const c = await getCaseStudyBySlug(slug);
   if (!c) notFound();
 
   const service = getServiceBySlug(c.serviceSlug);
   const industry = getIndustryBySlug(c.industrySlug);
-  const others = CASE_STUDIES.filter((x) => x.slug !== c.slug).slice(0, 3);
+  const allCases = await listPublishedCaseStudies();
+  const others = allCases.filter((x) => x.slug !== c.slug).slice(0, 3);
   const breadcrumbs = [
     { name: "Home", href: "/" },
     { name: "Case studies", href: "/case-studies" },

@@ -1,0 +1,22 @@
+{
+  "caseStudies": {
+    "ev_battery_pack.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/case%20study/ev_battery_pack.png",
+    "fashion_week.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/case%20study/fashion_week.png",
+    "mango_airlift.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/case%20study/mango_airlift.png",
+    "metrology_tool.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/case%20study/metrology_tool.png",
+    "turbine_blade.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/case%20study/turbine_blade.png",
+    "vaccine_coolchain.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/case%20study/vaccine_coolchain.png"
+  },
+  "insights": {
+    "detained_container.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/detained_container.png",
+    "ev_supply_chain.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/ev_supply_chain.png",
+    "fashion_carnet.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/fashion_carnet.png",
+    "incoterms.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/incoterms.png",
+    "india_africa_trade.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/india_africa_trade.png",
+    "lithium_air.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/lithium_air.png",
+    "ontime_cost.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/ontime_cost.png",
+    "pharma_cabin.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/pharma_cabin.png",
+    "pli_scheme.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/pli_scheme.png",
+    "red_sea_routing.png": "https://evaibprnnexdluamvnsb.supabase.co/storage/v1/object/public/Insights/red_sea_routing.png"
+  }
+}

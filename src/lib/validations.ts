@@ -106,6 +106,39 @@ export const UpdateInsightSchema = CreateInsightSchema.extend({
 export type CreateInsightInput = z.infer<typeof CreateInsightSchema>;
 export type UpdateInsightInput = z.infer<typeof UpdateInsightSchema>;
 
+export const CreateCaseStudySchema = z.object({
+  title: z.string().min(4, "Title is required"),
+  slug: z.string().max(120).optional().or(z.literal("")),
+  client: z.string().min(2, "Client is required"),
+  industry: z.string().min(2, "Industry is required"),
+  industrySlug: z.string().min(2, "Industry slug is required"),
+  serviceSlug: z.string().min(2, "Service slug is required"),
+  region: z.string().min(2, "Region is required"),
+  challenge: z.string().min(10, "Challenge is required"),
+  approach: z.string().min(10, "Approach is required"),
+  outcome: z.string().min(10, "Outcome is required"),
+  metricsJson: z.string().refine((val) => {
+    try {
+      const parsed = JSON.parse(val);
+      return Array.isArray(parsed) && parsed.every((m: any) => typeof m.l === "string" && typeof m.v === "string");
+    } catch {
+      return false;
+    }
+  }, "Metrics must be a valid JSON array of label/value objects"),
+  date: z.string().min(10, "Date is required"),
+  read: z.string().min(2, "Read time is required"),
+  image: z.union([z.literal(""), z.string().url("Enter a valid image URL")]).optional(),
+  excerpt: z.string().min(10, "Excerpt is required"),
+});
+
+export const UpdateCaseStudySchema = CreateCaseStudySchema.extend({
+  id: z.string().min(1, "Case study id is required"),
+});
+
+export type CreateCaseStudyInput = z.infer<typeof CreateCaseStudySchema>;
+export type UpdateCaseStudyInput = z.infer<typeof UpdateCaseStudySchema>;
+
+
 export const UpdateProfileSchema = z.object({
   name: z.string().min(2, "Name is required"),
   phone: z.string().max(32).optional().or(z.literal("")),

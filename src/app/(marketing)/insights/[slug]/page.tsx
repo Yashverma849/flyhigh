@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Pill } from "@/components/shared/pill";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { Pill } from "@/components/shared/pill";
 import { JsonLd } from "@/components/shared/json-ld";
 import { RelatedLinks } from "@/components/shared/related-links";
-import { getInsightBySlug, getRelatedInsights, INSIGHTS } from "@/server/db/seed/insights";
+import { getInsightBySlug, getRelatedInsights, listPublishedInsights } from "@/server/queries/insights";
 import { formatDate } from "@/lib/utils";
 import { articleJsonLd, pageMetadata } from "@/lib/seo";
 
-export function generateStaticParams() {
-  return INSIGHTS.map((i) => ({ slug: i.slug }));
+export async function generateStaticParams() {
+  const posts = await listPublishedInsights();
+  return posts.map((i) => ({ slug: i.slug }));
 }
 
 export async function generateMetadata({
@@ -20,7 +20,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const insight = getInsightBySlug(slug);
+  const insight = await getInsightBySlug(slug);
   if (!insight) return {};
   return pageMetadata({
     title: insight.title,
@@ -29,7 +29,7 @@ export async function generateMetadata({
     image: insight.image,
     type: "article",
     publishedTime: insight.date,
-    keywords: insight.tags,
+    keywords: [insight.category, "insights", "freight forwarding"],
   });
 }
 
@@ -42,10 +42,15 @@ const PLACEHOLDER_BODY = [
 
 export default async function InsightDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getInsightBySlug(slug);
+  const post = await getInsightBySlug(slug);
   if (!post) notFound();
 
-  const others = getRelatedInsights(slug, 3);
+  const others = await getRelatedInsights(slug, post.category, 3);
+
+  // Parse paragraphs from bodyMd or fall back to placeholders
+  const paragraphs = post.bodyMd
+    ? post.bodyMd.split("\n\n").filter(Boolean)
+    : PLACEHOLDER_BODY;
 
   return (
     <>
@@ -103,11 +108,16 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
           >
             {post.excerpt}
           </p>
-          {PLACEHOLDER_BODY.slice(0, 4).map((p, i) => (
-            <p key={i} className="mb-6 text-lg leading-relaxed" style={{ color: "var(--bone)" }}>
-              {p}
-            </p>
-          ))}
+          
+          {paragraphs.map((p, i) => {
+            const clean = p.replace(/^#+\s+/, ""); // Strip markdown heading syntax if present
+            return (
+              <p key={i} className="mb-6 text-lg leading-relaxed" style={{ color: "var(--bone)" }}>
+                {clean}
+              </p>
+            );
+          })}
+
           <blockquote
             className="f-display my-12 border-l-2 pl-8 text-3xl leading-tight italic"
             style={{ borderColor: "var(--cargo)", color: "var(--brass)" }}
@@ -125,16 +135,6 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
             lane in the event of disruption, you are not paying for freight forwarding. You are
             paying for hope.
           </p>
-
-          {post.tags && post.tags.length > 0 && (
-            <div className="mt-12 flex flex-wrap gap-2">
-              {post.tags.map((t) => (
-                <span key={t} className="chip f-mono text-[10px]">
-                  #{t}
-                </span>
-              ))}
-            </div>
-          )}
         </div>
       </article>
 

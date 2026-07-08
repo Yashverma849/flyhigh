@@ -13,8 +13,10 @@ import {
 } from "@/lib/admin-content-data";
 import { NewInsightModal } from "@/components/admin/new-insight-modal";
 import { EditInsightModal } from "@/components/admin/edit-insight-modal";
+import { NewCaseStudyModal } from "@/components/admin/new-case-study-modal";
+import { EditCaseStudyModal } from "@/components/admin/edit-case-study-modal";
 import { ContentDetailModal } from "@/components/admin/content-detail-modal";
-import type { InsightRow } from "@/server/db/schema";
+import type { InsightRow, DbCaseStudy } from "@/server/db/schema";
 
 const TABS = [
   { id: "posts", label: "Insights posts" },
@@ -28,13 +30,15 @@ type TabId = (typeof TABS)[number]["id"];
 type Props = {
   posts: InsightRow[];
   marketingPages: MarketingPageRow[];
-  caseStudies: CaseStudyRow[];
+  caseStudies: DbCaseStudy[];
 };
 
 export function ContentPageClient({ posts, marketingPages, caseStudies }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>("posts");
   const [createOpen, setCreateOpen] = useState(false);
   const [editingPost, setEditingPost] = useState<InsightRow | null>(null);
+  const [createCaseStudyOpen, setCreateCaseStudyOpen] = useState(false);
+  const [editingCaseStudy, setEditingCaseStudy] = useState<DbCaseStudy | null>(null);
   const [detail, setDetail] = useState<{
     title: string;
     eyebrow: string;
@@ -108,6 +112,15 @@ export function ContentPageClient({ posts, marketingPages, caseStudies }: Props)
             onClick={() => setCreateOpen(true)}
           >
             New post <Plus size={14} />
+          </button>
+        )}
+        {activeTab === "cases" && (
+          <button
+            type="button"
+            className="btn-primary flex items-center gap-2 text-sm"
+            onClick={() => setCreateCaseStudyOpen(true)}
+          >
+            New case study <Plus size={14} />
           </button>
         )}
       </div>
@@ -228,7 +241,7 @@ export function ContentPageClient({ posts, marketingPages, caseStudies }: Props)
               <td className="px-6 py-4">
                 <RowActions
                   previewHref={`/case-studies/${study.slug}`}
-                  onEdit={() => openCaseDetail(study)}
+                  onEdit={() => setEditingCaseStudy(study)}
                 />
               </td>
             </tr>
@@ -290,6 +303,8 @@ export function ContentPageClient({ posts, marketingPages, caseStudies }: Props)
 
       <NewInsightModal open={createOpen} onClose={() => setCreateOpen(false)} />
       <EditInsightModal post={editingPost} onClose={() => setEditingPost(null)} />
+      <NewCaseStudyModal open={createCaseStudyOpen} onClose={() => setCreateCaseStudyOpen(false)} />
+      <EditCaseStudyModal study={editingCaseStudy} onClose={() => setEditingCaseStudy(null)} />
       <ContentDetailModal detail={detail} onClose={() => setDetail(null)} />
     </>
   );

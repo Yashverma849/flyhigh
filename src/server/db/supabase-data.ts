@@ -1,6 +1,6 @@
 import "server-only";
 import { supabase } from "@/server/db/client";
-import type { Customer, Shipment, ShipmentEvent, InsightRow, User } from "@/server/db/schema";
+import type { Customer, Shipment, ShipmentEvent, InsightRow, User, DbCaseStudy } from "@/server/db/schema";
 import type { UserPreferences } from "@/lib/user-preferences";
 
 type ShipmentRow = {
@@ -71,6 +71,27 @@ type UserDbRow = {
   created_at: string;
 };
 
+type CaseStudyDbRow = {
+  id: string;
+  slug: string;
+  title: string;
+  client: string;
+  industry: string;
+  industry_slug: string;
+  service_slug: string;
+  region: string;
+  challenge: string;
+  approach: string;
+  outcome: string;
+  metrics: DbCaseStudy["metrics"];
+  date: string;
+  read: string;
+  image: string;
+  excerpt: string;
+  created_at: string;
+};
+
+
 function mapShipment(row: ShipmentRow): Shipment {
   return {
     id: row.id,
@@ -128,6 +149,29 @@ function mapInsight(row: InsightDbRow): InsightRow {
     createdAt: new Date(row.created_at),
   };
 }
+
+function mapCaseStudy(row: CaseStudyDbRow): DbCaseStudy {
+  return {
+    id: row.id,
+    slug: row.slug,
+    title: row.title,
+    client: row.client,
+    industry: row.industry,
+    industrySlug: row.industry_slug,
+    serviceSlug: row.service_slug,
+    region: row.region,
+    challenge: row.challenge,
+    approach: row.approach,
+    outcome: row.outcome,
+    metrics: row.metrics,
+    date: row.date,
+    read: row.read,
+    image: row.image,
+    excerpt: row.excerpt,
+    createdAt: new Date(row.created_at),
+  };
+}
+
 
 function mapUser(row: UserDbRow): User {
   return {
@@ -242,3 +286,18 @@ export async function supabaseListUsers() {
   );
   return (data as UserDbRow[] | null)?.map(mapUser) ?? [];
 }
+
+export async function supabaseListAllCaseStudies() {
+  const data = await query(() =>
+    supabase!.from("case_study").select("*").order("date", { ascending: false }),
+  );
+  return (data as CaseStudyDbRow[] | null)?.map(mapCaseStudy) ?? [];
+}
+
+export async function supabaseGetCaseStudyBySlug(slug: string) {
+  const data = await query(() =>
+    supabase!.from("case_study").select("*").eq("slug", slug).maybeSingle(),
+  );
+  return data ? mapCaseStudy(data as CaseStudyDbRow) : null;
+}
+

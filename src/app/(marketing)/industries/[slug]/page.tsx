@@ -12,7 +12,7 @@ import { DeskSection } from "@/components/marketing/service-desk-section";
 import { ServiceOverviewSlider } from "@/components/marketing/service-overview-slider";
 import { getIndustryBySlug, INDUSTRIES } from "@/server/db/seed/industries";
 import { SERVICES } from "@/server/db/seed/services";
-import { CASE_STUDIES } from "@/server/db/seed/case-studies";
+import { listPublishedCaseStudies } from "@/server/queries/case-studies";
 import { pageMetadata, serviceJsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -52,7 +52,8 @@ export default async function IndustryDetailPage({
   if (!ind) notFound();
 
   const relatedServices = SERVICES.filter((s) => ind.relatedServices.includes(s.id));
-  const cases = CASE_STUDIES.filter((c) => c.industrySlug === ind.slug);
+  const allCases = await listPublishedCaseStudies();
+  const cases = allCases.filter((c) => c.industrySlug === ind.slug);
   const others = INDUSTRIES.filter((x) => x.slug !== ind.slug).slice(0, 3);
 
   return (

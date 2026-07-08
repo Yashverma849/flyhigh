@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Pill } from "@/components/shared/pill";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
-import { INSIGHTS, type Insight } from "@/server/db/seed/insights";
+import type { MappedInsight as Insight } from "@/server/queries/insights";
 import { formatDate } from "@/lib/utils";
 
 const FILTER_TAGS = ["ALL", "OCEAN", "AIR", "CUSTOMS", "OPERATIONS"] as const;
@@ -96,8 +96,8 @@ function InsightCard({ post, index }: { post: Insight; index: number }) {
   );
 }
 
-export function InsightsIndex() {
-  const [featured, ...rest] = INSIGHTS;
+export function InsightsIndex({ posts }: { posts: readonly Insight[] }) {
+  const [featured, ...rest] = posts;
   if (!featured) return null;
 
   return (

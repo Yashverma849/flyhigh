@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { CaseStudiesIndex } from "@/components/marketing/case-studies-index";
 import { pageMetadata } from "@/lib/seo";
+import { listPublishedCaseStudies } from "@/server/queries/case-studies";
 
 export const metadata: Metadata = pageMetadata({
   title: "Case studies",
@@ -23,7 +24,9 @@ const breadcrumbs = [
   { name: "Case studies", href: "/case-studies" },
 ];
 
-export default function CaseStudiesIndexPage() {
+export default async function CaseStudiesIndexPage() {
+  const caseStudies = await listPublishedCaseStudies();
+
   return (
     <>
       <section className="pt-32 pb-12">
@@ -44,7 +47,7 @@ export default function CaseStudiesIndexPage() {
         </div>
       </section>
 
-      <CaseStudiesIndex />
+      <CaseStudiesIndex caseStudies={caseStudies} />
     </>
   );
 }

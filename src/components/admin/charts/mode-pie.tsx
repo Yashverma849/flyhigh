@@ -2,19 +2,38 @@
 
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import { useThemePalette } from "@/lib/use-theme-palette";
+import type { ModeDatum } from "@/server/queries/dashboard";
 
-export function ModePie() {
+const MODE_COLORS: Record<string, string> = {
+  Sea: "brass",
+  Air: "cargo",
+  Road: "sage",
+};
+
+export function ModePie({ data }: { data: ModeDatum[] }) {
   const p = useThemePalette();
-  const data = [
-    { name: "Sea", value: 502, color: p.brass },
-    { name: "Air", value: 268, color: p.cargo },
-    { name: "Road", value: 124, color: p.sage },
-  ];
+
+  if (data.length === 0) {
+    return (
+      <div
+        className="caption flex h-[260px] items-center justify-center"
+        style={{ color: "var(--ash)" }}
+      >
+        No mode data yet.
+      </div>
+    );
+  }
+
+  const chartData = data.map((d) => ({
+    ...d,
+    color: p[MODE_COLORS[d.name] as keyof typeof p] ?? p.brass,
+  }));
+
   return (
     <ResponsiveContainer width="100%" height={260}>
       <PieChart>
         <Pie
-          data={data}
+          data={chartData}
           dataKey="value"
           nameKey="name"
           cx="50%"
@@ -25,7 +44,7 @@ export function ModePie() {
           stroke={p.ink}
           strokeWidth={3}
         >
-          {data.map((d) => (
+          {chartData.map((d) => (
             <Cell key={d.name} fill={d.color} />
           ))}
         </Pie>

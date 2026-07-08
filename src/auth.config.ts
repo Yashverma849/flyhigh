@@ -8,6 +8,7 @@ import type { NextAuthConfig } from "next-auth";
  * The full config (with adapter + providers) lives in `src/auth.ts`.
  */
 export const authConfig = {
+  trustHost: true,
   pages: {
     signIn: "/login",
     verifyRequest: "/login?status=check-email",

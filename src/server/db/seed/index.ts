@@ -4,12 +4,13 @@
  * lives in code, not DB) and inserts demo shipments/customers if missing.
  */
 import "dotenv/config";
-import { db } from "../client";
+import { requireDb } from "../client";
 import { customers, insights, shipmentEvents, shipments } from "../schema";
 import { INSIGHTS } from "./insights";
 import { SHIPMENTS_SEED } from "./shipments";
 
 async function main() {
+  const db = requireDb();
   console.log("Seeding insights…");
   for (const i of INSIGHTS) {
     await db

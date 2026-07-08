@@ -12,10 +12,21 @@ const labels: Record<string, string> = {
   settings: "settings",
 };
 
+const settingsLabels: Record<string, string> = {
+  profile: "profile",
+  team: "team",
+  notifications: "notifications",
+  security: "security",
+  general: "general",
+};
+
 export function AdminTopbar() {
   const pathname = usePathname();
-  const segment = pathname.replace(/^\/admin\/?/, "").split("/")[0] ?? "";
+  const segments = pathname.replace(/^\/admin\/?/, "").split("/").filter(Boolean);
+  const segment = segments[0] ?? "";
+  const settingsSegment = segments[1];
   const active = labels[segment] ?? "dashboard";
+  const settingsActive = settingsSegment ? settingsLabels[settingsSegment] : null;
 
   return (
     <div
@@ -33,6 +44,14 @@ export function AdminTopbar() {
           <span style={{ color: "var(--bone)" }} className="capitalize">
             {active}
           </span>
+          {settingsActive && (
+            <>
+              <ChevronRight size={12} />
+              <span style={{ color: "var(--bone)" }} className="capitalize">
+                {settingsActive}
+              </span>
+            </>
+          )}
         </div>
         <div className="flex items-center gap-4">
           <div className="relative">

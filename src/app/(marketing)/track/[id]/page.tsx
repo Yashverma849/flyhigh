@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { ArrowRight, MapPin, Package } from "lucide-react";
 import { SectionLabel } from "@/components/shared/section-label";
 import { Pill } from "@/components/shared/pill";
@@ -35,11 +34,8 @@ export default async function TrackDetailPage({ params }: { params: Promise<{ id
             : "default";
 
   return (
-    <section className="py-24">
+    <section className="pt-32 pb-24">
       <div className="site-gutter">
-        <Link href="/track" className="caption u-link mb-6 inline-flex items-center gap-2">
-          ← All tracking
-        </Link>
         <SectionLabel num="">SHIPMENT</SectionLabel>
 
         <div className="mt-4 mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">

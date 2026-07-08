@@ -2,21 +2,25 @@
 
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useThemePalette } from "@/lib/use-theme-palette";
+import type { RevenueDatum } from "@/server/queries/dashboard";
 
-const DATA = [
-  { month: "Oct", revenue: 720 },
-  { month: "Nov", revenue: 805 },
-  { month: "Dec", revenue: 880 },
-  { month: "Jan", revenue: 940 },
-  { month: "Feb", revenue: 1010 },
-  { month: "Mar", revenue: 1144 },
-];
-
-export function RevenueBar() {
+export function RevenueBar({ data }: { data: RevenueDatum[] }) {
   const p = useThemePalette();
+
+  if (data.length === 0) {
+    return (
+      <div
+        className="caption flex h-[260px] items-center justify-center"
+        style={{ color: "var(--ash)" }}
+      >
+        No revenue data yet.
+      </div>
+    );
+  }
+
   return (
     <ResponsiveContainer width="100%" height={260}>
-      <BarChart data={DATA} margin={{ top: 10, right: 12, left: -16, bottom: 0 }}>
+      <BarChart data={data} margin={{ top: 10, right: 12, left: -16, bottom: 0 }}>
         <CartesianGrid strokeDasharray="2 4" stroke={p.gridStroke} />
         <XAxis dataKey="month" stroke={p.axisStroke} fontSize={11} tickLine={false} />
         <YAxis stroke={p.axisStroke} fontSize={11} tickLine={false} />

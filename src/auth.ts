@@ -1,24 +1,105 @@
-// Auth temporarily disabled. To re-enable, restore the NextAuth wiring
-// (see git history) and set AUTH_SECRET / AUTH_RESEND_KEY / AUTH_RESEND_FROM.
+import NextAuth from "next-auth";
+import Resend from "next-auth/providers/resend";
+import Credentials from "next-auth/providers/credentials";
+import { DrizzleAdapter } from "@auth/drizzle-adapter";
+import { db, isDbConfigured, supabase } from "@/server/db/client";
+import { accounts, sessions, users, verificationTokens } from "@/server/db/schema";
+import { env } from "@/env";
+import { authConfig } from "./auth.config";
 
-type Handler = (req: Request) => Response;
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  ...authConfig,
+  adapter: env.DATABASE_URL && db
+    ? DrizzleAdapter(db, {
+        usersTable: users,
+        accountsTable: accounts,
+        sessionsTable: sessions,
+        verificationTokensTable: verificationTokens,
+      })
+    : undefined,
+  session: { strategy: "jwt" },
+  secret: env.AUTH_SECRET || "placeholder_auth_secret_must_be_32_characters_long_minimum",
+  trustHost: true,
+  providers: [
+    Credentials({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) return null;
 
-const disabled: Handler = () => new Response("Auth disabled", { status: 404 });
+        const email = (credentials.email as string).toLowerCase().trim();
+        const password = credentials.password as string;
 
-export const handlers = { GET: disabled, POST: disabled };
+        // Default credentials for client console/admin cockpit
+        if (email === "admin@flyhigh.in" && password === "flyhigh2026") {
+          return { id: "admin-user-id", name: "Admin User", email: "admin@flyhigh.in", role: "admin" };
+        }
+        if (email === "staff@flyhigh.in" && password === "flyhigh2026") {
+          return { id: "staff-user-id", name: "Staff User", email: "staff@flyhigh.in", role: "staff" };
+        }
 
-type StubSession = {
-  user: { name?: string | null; email?: string | null; role?: string } | null;
-} | null;
+        // If the database is configured, lookup the user dynamically
+        if (isDbConfigured) {
+          try {
+            if (env.DATABASE_URL && db) {
+              const user = await db.query.users.findFirst({
+                where: (users, { eq }) => eq(users.email, email),
+              });
+              if (user && password === "flyhigh2026") {
+                return {
+                  id: user.id,
+                  name: user.name || email.split("@")[0],
+                  email: user.email,
+                  role: user.role,
+                  image: user.image,
+                };
+              }
+            } else if (supabase) {
+              // Authenticate directly against Supabase Auth using the user's password
+              const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+              });
 
-export async function auth(): Promise<StubSession> {
-  return null;
-}
+              if (authError || !authData?.user) {
+                console.error("Supabase Auth signin failed:", authError?.message);
+                return null;
+              }
 
-export async function signIn(): Promise<never> {
-  throw new Error("Auth is disabled");
-}
+              // Load profile metadata from public.user table
+              const { data: profile } = await supabase
+                .from("user")
+                .select("*")
+                .eq("id", authData.user.id)
+                .maybeSingle();
 
-export async function signOut(): Promise<never> {
-  throw new Error("Auth is disabled");
-}
+              return {
+                id: authData.user.id,
+                name: profile?.name || authData.user.email?.split("@")[0] || email.split("@")[0],
+                email: authData.user.email || email,
+                role: profile?.role || "staff",
+                image: profile?.image,
+              };
+            }
+          } catch (err) {
+            console.error("DB lookup in authorize failed:", err);
+          }
+        }
+
+        return null;
+      },
+    }),
+    ...(env.AUTH_RESEND_KEY && env.AUTH_RESEND_FROM
+      ? [
+          Resend({
+            apiKey: env.AUTH_RESEND_KEY,
+            from: env.AUTH_RESEND_FROM,
+          }),
+        ]
+      : []),
+  ],
+});
+

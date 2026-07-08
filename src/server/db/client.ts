@@ -1,23 +1,40 @@
-import { neon } from "@neondatabase/serverless";
-import { drizzle, type NeonHttpDatabase } from "drizzle-orm/neon-http";
+import postgres from "postgres";
+import { drizzle, type PostgresJsDatabase } from "drizzle-orm/postgres-js";
+import { createClient } from "@supabase/supabase-js";
 import * as schema from "./schema";
 import { env } from "@/env";
 
-// Database temporarily disabled. When DATABASE_URL is unset, the placeholder
-// keeps module-load working and `isDbConfigured` lets queries/actions
-// short-circuit instead of hitting a fake host. Reconnect by setting
-// DATABASE_URL — no further code changes required.
-export const isDbConfigured = Boolean(env.DATABASE_URL);
+export const hasDatabaseUrl = Boolean(env.DATABASE_URL);
 
-const url =
-  env.DATABASE_URL ||
-  "postgres://build-placeholder:build-placeholder@localhost:5432/build-placeholder";
+export const supabase =
+  env.SUPABASE_URL && env.SUPABASE_SERVICE_KEY
+    ? createClient(env.SUPABASE_URL, env.SUPABASE_SERVICE_KEY, {
+        auth: { persistSession: false },
+      })
+    : null;
 
-const sql = neon(url);
+/** True when Drizzle (DATABASE_URL) or Supabase service client is available. */
+export const isDbConfigured = hasDatabaseUrl || Boolean(supabase);
 
-export const db: NeonHttpDatabase<typeof schema> = drizzle(sql, {
-  schema,
-  casing: "snake_case",
-});
+function createDrizzleClient(): PostgresJsDatabase<typeof schema> | null {
+  if (!env.DATABASE_URL) return null;
 
-export type Db = typeof db;
+  const client = postgres(env.DATABASE_URL, {
+    prepare: false,
+    ssl: env.DATABASE_URL.includes("supabase") ? "require" : undefined,
+  });
+
+  return drizzle(client, { schema, casing: "snake_case" });
+}
+
+export const db = createDrizzleClient();
+
+/** Drizzle client — throws if DATABASE_URL is not configured. */
+export function requireDb(): Db {
+  if (!db) {
+    throw new Error("DATABASE_URL is required. Add your Supabase Postgres URI to .env.local.");
+  }
+  return db;
+}
+
+export type Db = NonNullable<typeof db>;

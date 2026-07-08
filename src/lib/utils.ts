@@ -24,6 +24,12 @@ export function formatCompact(value: number) {
   return compactFormatter.format(value);
 }
 
+export function formatINRLarge(value: number) {
+  if (value >= 10_000_000) return `₹${(value / 10_000_000).toFixed(1)} Cr`;
+  if (value >= 100_000) return `₹${(value / 100_000).toFixed(1)} L`;
+  return formatINR(value);
+}
+
 export function formatDate(value: Date | string, opts: Intl.DateTimeFormatOptions = {}) {
   const date = typeof value === "string" ? new Date(value) : value;
   return new Intl.DateTimeFormat("en-IN", {

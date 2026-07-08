@@ -11,6 +11,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { relations, sql } from "drizzle-orm";
 import type { AdapterAccountType } from "next-auth/adapters";
+import type { UserPreferences } from "@/lib/user-preferences";
 
 // ────────────────────────────────────────────────────────────────────────
 // Enums
@@ -34,6 +35,7 @@ export const insightCategory = pgEnum("insight_category", [
   "POLICY",
   "INDUSTRY",
 ]);
+export const customerTier = pgEnum("customer_tier", ["platinum", "gold", "silver"]);
 
 // ────────────────────────────────────────────────────────────────────────
 // Auth.js standard tables
@@ -49,6 +51,14 @@ export const users = pgTable("user", {
   emailVerified: timestamp("email_verified", { mode: "date" }),
   image: text("image"),
   role: userRole("role").default("staff").notNull(),
+  phone: text("phone"),
+  dob: text("dob"),
+  gender: text("gender"),
+  timezone: text("timezone"),
+  language: text("language"),
+  country: text("country"),
+  city: text("city"),
+  preferences: jsonb("preferences").$type<UserPreferences>().default({}),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -100,7 +110,10 @@ export const customers = pgTable("customer", {
     .default(sql`gen_random_uuid()`),
   name: text("name").notNull(),
   contactEmail: text("contact_email"),
+  primaryContact: text("primary_contact"),
   location: text("location"),
+  tier: customerTier("tier").default("silver").notNull(),
+  healthScore: integer("health_score").default(80),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -115,6 +128,8 @@ export const shipments = pgTable(
     mode: shipmentMode("mode").notNull(),
     status: shipmentStatus("status").default("Booked").notNull(),
     eta: text("eta"),
+    promisedAt: timestamp("promised_at", { mode: "date" }),
+    deliveredAt: timestamp("delivered_at", { mode: "date" }),
     valueInr: integer("value_inr"),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),

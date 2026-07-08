@@ -10,20 +10,22 @@ import {
   YAxis,
 } from "recharts";
 import { useThemePalette } from "@/lib/use-theme-palette";
+import type { ThroughputDatum } from "@/server/queries/dashboard";
 
-type Datum = { month: string; sea: number; air: number };
-
-const DEFAULT_DATA: Datum[] = [
-  { month: "Oct", sea: 280, air: 120 },
-  { month: "Nov", sea: 320, air: 145 },
-  { month: "Dec", sea: 380, air: 198 },
-  { month: "Jan", sea: 410, air: 220 },
-  { month: "Feb", sea: 445, air: 240 },
-  { month: "Mar", sea: 502, air: 268 },
-];
-
-export function ThroughputArea({ data = DEFAULT_DATA }: { data?: Datum[] }) {
+export function ThroughputArea({ data }: { data: ThroughputDatum[] }) {
   const p = useThemePalette();
+
+  if (data.length === 0) {
+    return (
+      <div
+        className="caption flex h-[280px] items-center justify-center"
+        style={{ color: "var(--ash)" }}
+      >
+        No shipment data yet.
+      </div>
+    );
+  }
+
   return (
     <ResponsiveContainer width="100%" height={280}>
       <AreaChart data={data} margin={{ top: 10, right: 12, left: -16, bottom: 0 }}>

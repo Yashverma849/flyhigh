@@ -1,7 +1,7 @@
 "use server";
 
 import { headers } from "next/headers";
-import { db, isDbConfigured } from "@/server/db/client";
+import { db, hasDatabaseUrl, isDbConfigured, supabase } from "@/server/db/client";
 import { contactSubmissions } from "@/server/db/schema";
 import { ContactSchema } from "@/lib/validations";
 import { consumePublicLimit } from "@/server/ratelimit";
@@ -37,6 +37,22 @@ export async function submitContact(_prev: ActionState, formData: FormData): Pro
   }
 
   try {
+    if (!hasDatabaseUrl || !db) {
+      if (!supabase) throw new Error("Database unavailable");
+      const { data, error } = await supabase
+        .from("contact_submission")
+        .insert({
+          name: parsed.data.name,
+          email: parsed.data.email,
+          message: parsed.data.message,
+        })
+        .select("id")
+        .single();
+      if (error) throw error;
+      if (!data) throw new Error("Insert returned no row");
+      return { status: "success", id: data.id };
+    }
+
     const [row] = await db
       .insert(contactSubmissions)
       .values({

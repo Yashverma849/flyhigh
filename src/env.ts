@@ -5,7 +5,7 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
 
-    // Database temporarily disabled — optional until DB is reconnected.
+    // Postgres connection string (Supabase: Project Settings → Database → URI)
     DATABASE_URL: z.url().optional(),
 
     // Auth temporarily disabled — these are optional until auth is re-enabled.
@@ -26,14 +26,20 @@ export const env = createEnv({
     SENTRY_ORG: z.string().optional(),
     SENTRY_PROJECT: z.string().optional(),
     SENTRY_AUTH_TOKEN: z.string().optional(),
+
+    SUPABASE_URL: z.string().url().optional(),
+    SUPABASE_SERVICE_KEY: z.string().optional(),
   },
   client: {
     NEXT_PUBLIC_SENTRY_DSN: z.url().optional(),
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    DATABASE_URL: process.env.DATABASE_URL,
-    AUTH_SECRET: process.env.AUTH_SECRET,
+    DATABASE_URL:
+      process.env.DATABASE_URL ||
+      process.env.SUPABASE_DB_URL ||
+      process.env.supabase_db_url,
+    AUTH_SECRET: process.env.AUTH_SECRET || process.env.SUPABASE_SERVICE_KEY || process.env.supabase_service_key,
     AUTH_URL: process.env.AUTH_URL,
     AUTH_TRUST_HOST: process.env.AUTH_TRUST_HOST,
     AUTH_RESEND_KEY: process.env.AUTH_RESEND_KEY,
@@ -45,6 +51,8 @@ export const env = createEnv({
     SENTRY_PROJECT: process.env.SENTRY_PROJECT,
     SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
     NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
+    SUPABASE_URL: process.env.SUPABASE_URL || process.env.supabase_url,
+    SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY || process.env.supabase_service_key,
   },
   emptyStringAsUndefined: true,
   skipValidation: process.env.SKIP_ENV_VALIDATION === "true",

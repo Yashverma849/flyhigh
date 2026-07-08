@@ -8,6 +8,8 @@ export function CustomCursor() {
   const [label, setLabel] = useState("");
 
   useEffect(() => {
+    document.body.classList.add("custom-cursor-active");
+
     const move = (e: MouseEvent) => {
       if (ref.current) {
         ref.current.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
@@ -25,6 +27,7 @@ export function CustomCursor() {
     document.addEventListener("mouseover", handleEnter);
     document.addEventListener("mouseout", handleLeave);
     return () => {
+      document.body.classList.remove("custom-cursor-active");
       window.removeEventListener("mousemove", move);
       document.removeEventListener("mouseover", handleEnter);
       document.removeEventListener("mouseout", handleLeave);

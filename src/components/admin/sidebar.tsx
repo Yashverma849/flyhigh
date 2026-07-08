@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { signOut } from "next-auth/react";
 import {
   BarChart3,
-  ChevronLeft,
   ChevronRight,
   FileText,
   LayoutDashboard,
@@ -26,18 +26,22 @@ const NAV = [
 ];
 
 type Props = {
-  user?: { name?: string | null; email?: string | null } | null;
+  user?: { name?: string | null; email?: string | null; image?: string | null } | null;
+  roleLabel?: string;
+  location?: string;
 };
 
-export function AdminSidebar({ user }: Props) {
+export function AdminSidebar({ user, roleLabel = "Staff", location = "Mumbai" }: Props) {
   const pathname = usePathname();
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   const isActive = (href: string) =>
     href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
 
   return (
     <aside
+      onMouseEnter={() => setCollapsed(false)}
+      onMouseLeave={() => setCollapsed(true)}
       className={`${collapsed ? "w-[72px]" : "w-[260px]"} sticky top-0 flex h-screen flex-shrink-0 flex-col border-r transition-all duration-300`}
       style={{ borderColor: "var(--line)", background: "var(--ink-2)" }}
     >
@@ -58,28 +62,7 @@ export function AdminSidebar({ user }: Props) {
             </div>
           )}
         </Link>
-        {!collapsed && (
-          <button
-            type="button"
-            onClick={() => setCollapsed(true)}
-            className="opacity-50 hover:opacity-100"
-            aria-label="Collapse sidebar"
-          >
-            <ChevronLeft size={16} />
-          </button>
-        )}
       </div>
-      {collapsed && (
-        <button
-          type="button"
-          onClick={() => setCollapsed(false)}
-          className="border-b p-3 opacity-50 hover:opacity-100"
-          style={{ borderColor: "var(--line)" }}
-          aria-label="Expand sidebar"
-        >
-          <ChevronRight size={16} />
-        </button>
-      )}
 
       <nav className="flex-1 space-y-1 p-3">
         {NAV.map((item) => {
@@ -109,23 +92,35 @@ export function AdminSidebar({ user }: Props) {
           className={`flex items-center gap-3 rounded-md p-3 ${collapsed ? "justify-center" : ""}`}
           style={{ background: "var(--surface-tint-2)" }}
         >
-          <div
-            className="f-mono flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-xs"
-            style={{ background: "var(--cargo)", color: "var(--ink)" }}
-          >
-            {(user?.name ?? user?.email ?? "U").slice(0, 2).toUpperCase()}
-          </div>
+          {user?.image ? (
+            <div className="h-8 w-8 flex-shrink-0 rounded-full overflow-hidden border" style={{ borderColor: "var(--line)" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={user.image} alt={user.name || "User"} className="h-full w-full object-cover" />
+            </div>
+          ) : (
+            <div
+              className="f-mono flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-xs"
+              style={{ background: "var(--cargo)", color: "var(--ink)" }}
+            >
+              {(user?.name ?? user?.email ?? "U").slice(0, 2).toUpperCase()}
+            </div>
+          )}
           {!collapsed && (
             <>
               <div className="min-w-0 flex-1">
                 <div className="truncate text-sm">{user?.name ?? user?.email ?? "User"}</div>
                 <div className="caption truncate" style={{ color: "var(--ash)" }}>
-                  Operations · Mumbai
+                  {roleLabel} · {location}
                 </div>
               </div>
-              <Link href="/api/auth/signout" aria-label="Sign out">
-                <LogOut size={14} className="cursor-pointer opacity-50 hover:opacity-100" />
-              </Link>
+              <button
+                type="button"
+                onClick={() => signOut({ callbackUrl: "/login" })}
+                aria-label="Sign out"
+                className="cursor-pointer opacity-50 hover:opacity-100 focus:outline-none"
+              >
+                <LogOut size={14} />
+              </button>
             </>
           )}
         </div>

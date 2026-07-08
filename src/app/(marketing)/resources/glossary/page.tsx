@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { GlossaryList } from "@/components/marketing/glossary-list";
 import { JsonLd } from "@/components/shared/json-ld";
 import { GLOSSARY } from "@/server/db/seed/glossary";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "Freight glossary",
@@ -44,7 +44,7 @@ export default function GlossaryPage() {
               "Working dictionary of freight forwarding and international logistics terminology.",
             hasDefinedTerm: sorted.map((e) => ({
               "@type": "DefinedTerm",
-              "@id": `${process.env.AUTH_URL ?? "https://flyhigh-website.vercel.app"}/resources/glossary#${e.term.toLowerCase().replace(/[^a-z0-9]/g, "-")}`,
+              "@id": `${SITE_URL}/resources/glossary#${e.term.toLowerCase().replace(/[^a-z0-9]/g, "-")}`,
               name: e.term,
               description: e.long,
             })),

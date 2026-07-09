@@ -22,6 +22,66 @@ export const metadata: Metadata = pageMetadata({
   ],
 });
 
+function BentoCard({
+  name,
+  desc,
+  image,
+  featured = false,
+}: {
+  name: string;
+  desc: string;
+  image: string;
+  featured?: boolean;
+}) {
+  return (
+    <article
+      className={`group relative overflow-hidden rounded-2xl border text-white ${
+        featured ? "min-h-[340px] md:min-h-full" : "min-h-[180px] flex-1"
+      }`}
+      style={{ borderColor: "rgba(255,255,255,0.1)" }}
+    >
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        style={{
+          backgroundImage: `url(${image})`,
+          filter: "grayscale(12%) contrast(96%)",
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(10,10,12,0.95) 0%, rgba(10,10,12,0.72) 40%, rgba(10,10,12,0.25) 100%)",
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className={`relative z-10 flex h-full flex-col justify-end ${
+          featured ? "p-5 md:p-6" : "p-4 md:p-5"
+        }`}
+      >
+        <h3
+          className={
+            featured
+              ? "f-display text-2xl tracking-tight md:text-3xl"
+              : "font-semibold"
+          }
+        >
+          {name}
+        </h3>
+        <p
+          className={`leading-relaxed text-white/80 ${
+            featured ? "mt-2 max-w-md text-sm md:text-base" : "mt-1.5 text-sm"
+          }`}
+        >
+          {desc}
+        </p>
+      </div>
+    </article>
+  );
+}
+
 function AlwaysRequiredBento({
   docs,
 }: {
@@ -30,51 +90,21 @@ function AlwaysRequiredBento({
   const [featured, ...rest] = docs;
 
   return (
-    <div className="grid gap-6 md:grid-cols-2">
-      {/* Featured: Commercial Invoice */}
-      <div
-        className="group flex min-h-[420px] flex-col justify-between rounded-2xl border p-8"
-        style={{ borderColor: "var(--line)", background: "var(--ink)" }}
-      >
-        <div className="relative mb-6 aspect-[16/10] w-full overflow-hidden rounded-xl border border-white/5 bg-white/[0.02]">
-          <img
-            src={featured!.image}
-            alt={featured!.name}
-            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-            loading="lazy"
-          />
-        </div>
-        <div className="text-left">
-          <h3 className="f-display text-2xl tracking-tight md:text-3xl">{featured!.name}</h3>
-          <p className="mt-3 max-w-md text-sm leading-relaxed md:text-base" style={{ color: "var(--ash)" }}>
-            {featured!.desc}
-          </p>
-        </div>
-      </div>
-
-      {/* Rest: Packing List & Transport Document */}
-      <div className="flex flex-col gap-6">
+    <div className="grid gap-3 md:grid-cols-2 md:gap-4">
+      <BentoCard
+        name={featured!.name}
+        desc={featured!.desc}
+        image={featured!.image!}
+        featured
+      />
+      <div className="flex flex-col gap-3 md:gap-4">
         {rest.map((d) => (
-          <div
+          <BentoCard
             key={d.name}
-            className="group flex flex-1 min-h-[200px] flex-col justify-between gap-6 rounded-2xl border p-6 sm:flex-row sm:items-center"
-            style={{ borderColor: "var(--line)", background: "var(--ink)" }}
-          >
-            <div className="flex-1 text-left">
-              <h3 className="font-semibold">{d.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--ash)" }}>
-                {d.desc}
-              </p>
-            </div>
-            <div className="relative aspect-[4/3] max-h-[140px] w-full shrink-0 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] sm:max-h-none sm:w-[160px]">
-              <img
-                src={d.image}
-                alt={d.name}
-                className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-                loading="lazy"
-              />
-            </div>
-          </div>
+            name={d.name}
+            desc={d.desc}
+            image={d.image!}
+          />
         ))}
       </div>
     </div>
@@ -94,7 +124,7 @@ const SECTIONS = [
       {
         name: "Commercial Invoice",
         desc: "Detailed invoice from seller to buyer with HS codes, values, Incoterm.",
-        image: "/commercial_invoice.png",
+        image: "/proc_brief.png",
       },
       {
         name: "Packing List",
@@ -104,7 +134,7 @@ const SECTIONS = [
       {
         name: "Transport document",
         desc: "Bill of Lading (sea), Air Waybill (air), or CMR / consignment note (road).",
-        image: "/transport_document.png",
+        image: "/proc_doc.png",
       },
     ],
   },

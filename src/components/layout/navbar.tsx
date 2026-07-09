@@ -172,13 +172,14 @@ export function Navbar() {
     window.addEventListener("resize", syncNavTheme, { passive: true });
 
     const main = document.querySelector("main");
-    const observer =
-      main &&
-      new MutationObserver(() => {
+    let observer: MutationObserver | undefined;
+
+    if (main) {
+      observer = new MutationObserver(() => {
         syncNavTheme();
       });
-
-    observer?.observe(main, { childList: true, subtree: true });
+      observer.observe(main, { childList: true, subtree: true });
+    }
 
     return () => {
       window.removeEventListener("scroll", syncNavTheme);

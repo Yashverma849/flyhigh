@@ -94,7 +94,7 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
           <div className="flex flex-1 flex-col justify-center">
             <div className="w-full max-w-2xl lg:max-w-3xl">
               <h1 className="f-display mb-6 text-[clamp(2.75rem,8vw,6rem)] leading-[0.88] tracking-tighter">
-                <RouteHeroTitle from={r.fromCity} to={r.toCity} />
+                <RouteHeroTitle fromCity={r.fromCity} toCity={r.toCity} />
               </h1>
               <p className="text-[clamp(1rem,2vw,1.5rem)] leading-relaxed" style={{ color: "var(--bone)" }}>
                 {r.desc}

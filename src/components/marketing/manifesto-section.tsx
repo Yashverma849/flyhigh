@@ -21,13 +21,13 @@ const POINTERS = [
     text: "We made our peace with two facts: cargo is human, and time is unforgiving.",
     highlightText: "cargo is human, and time is unforgiving.",
     prefixText: "We made our peace with two facts: ",
-    img: "/manifesto_pharma_cargo_1783063540396.png",
+    img: "/hero_pointer3.png",
     isMuted: false,
   },
   {
     num: "04",
     text: "The rest is craft.",
-    img: "/manifesto_air_runway_1783063573767.png",
+    img: "/proc_doc.png",
     isMuted: false,
   },
 ];
@@ -66,7 +66,7 @@ export function ManifestoSection() {
             key={idx}
             className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out"
             style={{
-              backgroundImage: `url(${item.img})`,
+              backgroundImage: `url("${item.img}")`,
               opacity: hoveredIndex === idx ? 0.55 : 0,
               transform: hoveredIndex === idx ? "scale(1.03)" : "scale(1.0)",
               filter: "grayscale(10%) contrast(95%)",

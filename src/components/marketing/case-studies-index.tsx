@@ -109,18 +109,20 @@ export function CaseStudiesIndex({ caseStudies }: { caseStudies: readonly CaseSt
     <>
       {featured && <FeaturedCaseStudy study={featured} />}
 
-      <section className="py-12">
-        <div className="site-gutter">
-          <div
-            className="grid gap-px md:grid-cols-2 lg:grid-cols-3"
-            style={{ background: "var(--line)" }}
-          >
-            {rest.map((study, index) => (
-              <CaseStudyCard key={study.slug} study={study} index={index} />
-            ))}
+      {rest.length > 0 && (
+        <section className="py-12">
+          <div className="site-gutter">
+            <div
+              className="grid grid-cols-1 gap-6 md:grid-cols-[repeat(auto-fit,minmax(max(280px,calc(100%/3)),1fr))] md:gap-8"
+              style={{ background: "var(--ink)" }}
+            >
+              {rest.map((study, index) => (
+                <CaseStudyCard key={study.slug} study={study} index={index} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 }

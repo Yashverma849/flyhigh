@@ -178,3 +178,37 @@ export async function updateInsight(
     };
   }
 }
+
+export async function deleteInsight(id: string): Promise<InsightActionState> {
+  const auth = await requireAuth();
+  if (!auth.ok) return { status: "error", message: auth.error };
+  if (!id.trim()) return { status: "error", message: "Post id is required." };
+
+  try {
+    if (!hasDatabaseUrl || !db) {
+      if (!supabase) throw new Error("Database unavailable");
+      const { data, error } = await supabase
+        .from("insight")
+        .delete()
+        .eq("id", id)
+        .select("slug")
+        .maybeSingle();
+      if (error) throw error;
+      if (!data) return { status: "error", message: "Post not found." };
+      revalidateContentPaths(data.slug);
+      return { status: "success", id };
+    }
+
+    const [deleted] = await db
+      .delete(insights)
+      .where(eq(insights.id, id))
+      .returning({ id: insights.id, slug: insights.slug });
+    if (!deleted) return { status: "error", message: "Post not found." };
+
+    revalidateContentPaths(deleted.slug);
+    return { status: "success", id };
+  } catch (err) {
+    console.error("deleteInsight failed", err);
+    return { status: "error", message: "Could not delete post. Please try again." };
+  }
+}

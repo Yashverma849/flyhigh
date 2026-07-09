@@ -3,7 +3,7 @@
 import type { Route } from "next";
 import Link from "next/link";
 import { useState } from "react";
-import { Edit3, Eye, Plus } from "lucide-react";
+import { Edit3, Eye, Plus, Trash2 } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 import {
   buildMediaLibrary,
@@ -15,6 +15,8 @@ import { NewInsightModal } from "@/components/admin/new-insight-modal";
 import { EditInsightModal } from "@/components/admin/edit-insight-modal";
 import { NewCaseStudyModal } from "@/components/admin/new-case-study-modal";
 import { EditCaseStudyModal } from "@/components/admin/edit-case-study-modal";
+import { DeleteInsightModal } from "@/components/admin/delete-insight-modal";
+import { DeleteCaseStudyModal } from "@/components/admin/delete-case-study-modal";
 import { ContentDetailModal } from "@/components/admin/content-detail-modal";
 import type { InsightRow, DbCaseStudy } from "@/server/db/schema";
 
@@ -37,8 +39,10 @@ export function ContentPageClient({ posts, marketingPages, caseStudies }: Props)
   const [activeTab, setActiveTab] = useState<TabId>("posts");
   const [createOpen, setCreateOpen] = useState(false);
   const [editingPost, setEditingPost] = useState<InsightRow | null>(null);
+  const [deletingPost, setDeletingPost] = useState<InsightRow | null>(null);
   const [createCaseStudyOpen, setCreateCaseStudyOpen] = useState(false);
   const [editingCaseStudy, setEditingCaseStudy] = useState<DbCaseStudy | null>(null);
+  const [deletingCaseStudy, setDeletingCaseStudy] = useState<DbCaseStudy | null>(null);
   const [detail, setDetail] = useState<{
     title: string;
     eyebrow: string;
@@ -180,6 +184,7 @@ export function ContentPageClient({ posts, marketingPages, caseStudies }: Props)
                 <RowActions
                   previewHref={p.publishedAt ? `/insights/${p.slug}` : undefined}
                   onEdit={() => setEditingPost(p)}
+                  onDelete={() => setDeletingPost(p)}
                 />
               </td>
             </tr>
@@ -242,6 +247,7 @@ export function ContentPageClient({ posts, marketingPages, caseStudies }: Props)
                 <RowActions
                   previewHref={`/case-studies/${study.slug}`}
                   onEdit={() => setEditingCaseStudy(study)}
+                  onDelete={() => setDeletingCaseStudy(study)}
                 />
               </td>
             </tr>
@@ -303,8 +309,10 @@ export function ContentPageClient({ posts, marketingPages, caseStudies }: Props)
 
       <NewInsightModal open={createOpen} onClose={() => setCreateOpen(false)} />
       <EditInsightModal post={editingPost} onClose={() => setEditingPost(null)} />
+      <DeleteInsightModal post={deletingPost} onClose={() => setDeletingPost(null)} />
       <NewCaseStudyModal open={createCaseStudyOpen} onClose={() => setCreateCaseStudyOpen(false)} />
       <EditCaseStudyModal study={editingCaseStudy} onClose={() => setEditingCaseStudy(null)} />
+      <DeleteCaseStudyModal study={deletingCaseStudy} onClose={() => setDeletingCaseStudy(null)} />
       <ContentDetailModal detail={detail} onClose={() => setDetail(null)} />
     </>
   );
@@ -366,9 +374,11 @@ function ContentTable({
 function RowActions({
   previewHref,
   onEdit,
+  onDelete,
 }: {
   previewHref?: string;
   onEdit: () => void;
+  onDelete?: () => void;
 }) {
   return (
     <div className="flex items-center gap-2">
@@ -398,6 +408,17 @@ function RowActions({
       >
         <Edit3 size={13} />
       </button>
+      {onDelete && (
+        <button
+          type="button"
+          className="rounded p-1.5 hover:bg-[var(--surface-tint-6)]"
+          aria-label="Delete"
+          onClick={onDelete}
+          style={{ color: "var(--rust)" }}
+        >
+          <Trash2 size={13} />
+        </button>
+      )}
     </div>
   );
 }

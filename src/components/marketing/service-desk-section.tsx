@@ -13,12 +13,12 @@ type ProcessStep = {
   b: string;
 };
 
-type DeskItem = string | { n: string; t?: string; b: string };
+type DeskItem = string | { n?: string; t?: string; b: string; image?: string };
 
 type Props = {
   leftHeading: string;
   rightHeading: string;
-  leftItems: string[];
+  leftItems: DeskItem[];
   rightItems: DeskItem[];
   title: ReactNode;
   description: string;
@@ -37,6 +37,7 @@ function toSlidingItems(items: DeskItem[], numbered = false): SlidingWindowItem[
       n: item.n || (numbered ? (i + 1).toString().padStart(2, "0") : ""),
       title: item.t,
       body: item.b,
+      image: item.image,
     };
   });
 }
@@ -48,7 +49,7 @@ export function DeskSection({
   rightItems,
   title,
   description,
-  hint = "Hover either column to pause. Scroll to read at your pace.",
+  hint,
 }: Props) {
   const leftSlidingItems = useMemo(() => toSlidingItems(leftItems), [leftItems]);
   const rightSlidingItems = useMemo(() => toSlidingItems(rightItems, true), [rightItems]);
@@ -94,7 +95,7 @@ export function DeskSection({
 
 type ServiceDeskProps = {
   serviceName: string;
-  features: string[];
+  features: DeskItem[];
   process: ProcessStep[];
 };
 

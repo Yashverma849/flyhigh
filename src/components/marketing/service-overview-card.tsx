@@ -44,7 +44,7 @@ export function ServiceOverviewCard({ overview }: Props) {
         <h3 className="f-display mb-2 text-2xl leading-tight tracking-tight text-white sm:text-3xl">
           {overview.name}
         </h3>
-        <p className="mb-3 text-xs leading-relaxed text-white/75 sm:text-sm">{overview.short}</p>
+        <p className="mb-3 text-xs font-bold leading-relaxed text-white/75 sm:text-sm">{overview.short}</p>
         <p className="mb-6 text-sm leading-relaxed text-white/90">{overview.desc}</p>
 
         <div

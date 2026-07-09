@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Field } from "@/components/admin/shipment-form-fields";
 import { ImageUploader } from "@/components/admin/image-uploader";
+import { DEFAULT_CASE_STUDY_METRICS_JSON } from "@/lib/validations";
 
 export function CaseStudyFormFields({
   fieldErrors,
@@ -28,15 +29,8 @@ export function CaseStudyFormFields({
   };
 }) {
   const [image, setImage] = useState(defaults?.image ?? "");
-
-  // Prefill metrics json if empty
-  const defaultMetricsJson = defaults?.metricsJson || JSON.stringify(
-    [
-      { "l": "METRIC LABEL 1", "v": "100%" },
-      { "l": "METRIC LABEL 2", "v": "0" }
-    ],
-    null,
-    2
+  const [metricsJson, setMetricsJson] = useState(
+    defaults?.metricsJson?.trim() || DEFAULT_CASE_STUDY_METRICS_JSON,
   );
 
   return (
@@ -131,6 +125,8 @@ export function CaseStudyFormFields({
         <textarea
           name="challenge"
           rows={3}
+          required
+          minLength={10}
           defaultValue={defaults?.challenge ?? ""}
           placeholder="Describe the logistics challenge..."
           className="input min-h-[80px] resize-y w-full"
@@ -148,6 +144,8 @@ export function CaseStudyFormFields({
         <textarea
           name="approach"
           rows={3}
+          required
+          minLength={10}
           defaultValue={defaults?.approach ?? ""}
           placeholder="Describe our logistics approach..."
           className="input min-h-[80px] resize-y w-full"
@@ -165,6 +163,8 @@ export function CaseStudyFormFields({
         <textarea
           name="outcome"
           rows={3}
+          required
+          minLength={10}
           defaultValue={defaults?.outcome ?? ""}
           placeholder="Describe the final outcome..."
           className="input min-h-[80px] resize-y w-full"
@@ -182,10 +182,16 @@ export function CaseStudyFormFields({
         <textarea
           name="metricsJson"
           rows={4}
-          defaultValue={defaultMetricsJson}
-          placeholder="[ { &quot;l&quot;: &quot;LABEL&quot;, &quot;v&quot;: &quot;VALUE&quot; } ]"
+          required
+          value={metricsJson}
+          onChange={(e) => setMetricsJson(e.target.value)}
+          placeholder='[ { "l": "LABEL", "v": "VALUE" } ]'
           className="input min-h-[100px] resize-y w-full f-mono text-xs"
         />
+        <p className="caption mt-1.5" style={{ color: "var(--ash)" }}>
+          Use <span className="f-mono">l</span> for label and <span className="f-mono">v</span> for
+          value. Numbers are allowed for values.
+        </p>
         {fieldErrors?.metricsJson?.[0] && (
           <p className="caption mt-1.5" style={{ color: "var(--rust)" }}>
             {fieldErrors.metricsJson[0]}

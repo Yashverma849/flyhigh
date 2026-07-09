@@ -42,20 +42,20 @@ export function CaseStudyHeroSection({ items }: Props) {
               />
             </div>
 
-            <div className="site-gutter relative z-10 flex min-h-[min(75svh,640px)] flex-col justify-end py-16 text-white md:py-20">
+            <div className="site-gutter relative z-10 flex min-h-[min(75svh,640px)] flex-col justify-center items-center text-center py-16 text-white md:py-20">
               {item.tag && (
                 <div className="caption mb-4 text-[10px] tracking-widest" style={{ color: "var(--cargo)" }}>
                   {item.tag}
                 </div>
               )}
-              <h3 className="f-display max-w-4xl text-[clamp(1.75rem,4vw,3.5rem)] leading-[1.05] tracking-tight">
+              <h3 className="f-display max-w-4xl mx-auto text-[clamp(1.75rem,4vw,3.5rem)] leading-[1.05] tracking-tight">
                 {item.title}
               </h3>
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">
+              <p className="mt-5 max-w-2xl mx-auto text-base leading-relaxed text-white/85 md:text-lg">
                 {item.blurb}
               </p>
               <div
-                className="caption mt-8 flex items-center gap-2 transition-colors group-hover:text-[var(--cargo)]"
+                className="caption mt-8 flex items-center justify-center gap-2 transition-colors group-hover:text-[var(--cargo)]"
                 style={{ color: "var(--brass)" }}
               >
                 Read case study

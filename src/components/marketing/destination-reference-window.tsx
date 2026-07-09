@@ -115,40 +115,56 @@ export function DestinationReferenceWindow({ regions, className = "" }: Props) {
   const duplicated = [...regions, ...regions];
 
   return (
-    <div
-      ref={wrapperRef}
-      onPointerEnter={handlePointerEnter}
-      onPointerLeave={handlePointerLeave}
-      className={`relative overflow-x-clip rounded-2xl ${className}`}
-      style={{
-        border: "1px solid var(--line)",
-        background: "var(--ink)",
-      }}
-      aria-label="Destination document requirements"
-    >
+    <>
+      <style>{`
+        .dest-card {
+          background: var(--paper);
+          border: 1px solid var(--line);
+          border-radius: 1.25rem;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dest-card:hover {
+          transform: translateY(-6px);
+          border-color: var(--cargo-border-40);
+          box-shadow: 0 16px 40px -16px var(--cargo-shadow-32);
+          background: var(--ink-2);
+        }
+      `}</style>
+
       <div
-        ref={trackRef}
-        className="flex w-max gap-px will-change-transform"
-        style={{ background: "var(--line)" }}
+        ref={wrapperRef}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
+        className={`relative overflow-x-clip py-6 ${className}`}
+        aria-label="Destination document requirements"
       >
-        {duplicated.map((region, i) => (
-          <article
-            key={`${region.region}-${i}`}
-            className="flex w-[min(85vw,320px)] shrink-0 flex-col p-6 md:w-[360px] md:p-8"
-            style={{ background: "var(--ink)" }}
-          >
-            <h3 className="f-display text-xl tracking-tight md:text-2xl">{region.region}</h3>
-            <ul
-              className="mt-4 space-y-1.5 text-sm leading-relaxed md:text-base"
-              style={{ color: "var(--ash)" }}
+        <div
+          ref={trackRef}
+          className="flex w-max gap-6 will-change-transform"
+        >
+          {duplicated.map((region, i) => (
+            <article
+              key={`${region.region}-${i}`}
+              className="dest-card flex w-[min(85vw,320px)] shrink-0 flex-col p-6 md:w-[340px] md:p-8"
             >
-              {region.required.map((item) => (
-                <li key={item}>· {item}</li>
-              ))}
-            </ul>
-          </article>
-        ))}
+              <h3 className="f-display text-xl tracking-tight md:text-2xl" style={{ color: "var(--bone)" }}>
+                {region.region}
+              </h3>
+              <ul
+                className="mt-4 space-y-2.5 text-sm leading-relaxed md:text-base"
+                style={{ color: "var(--ash)" }}
+              >
+                {region.required.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span style={{ color: "var(--cargo)" }} className="shrink-0 mt-1">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

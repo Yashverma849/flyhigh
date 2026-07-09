@@ -66,7 +66,7 @@ export default function QuotePage() {
               playsInline
               className="absolute inset-0 h-full w-full object-cover"
             >
-              <source src="/truck%20video.mp4" type="video/mp4" />
+              <source src="/import_export_vid.mp4" type="video/mp4" />
             </video>
 
             <div

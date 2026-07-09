@@ -25,16 +25,25 @@ export const metadata: Metadata = pageMetadata({
 function AlwaysRequiredBento({
   docs,
 }: {
-  docs: { name: string; desc: string }[];
+  docs: { name: string; desc: string; image?: string }[];
 }) {
   const [featured, ...rest] = docs;
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 md:grid-rows-2">
+    <div className="grid gap-6 md:grid-cols-2">
+      {/* Featured: Commercial Invoice */}
       <div
-        className="flex min-h-[320px] flex-col justify-end rounded-2xl border p-8 md:row-span-2"
+        className="group flex min-h-[420px] flex-col justify-between rounded-2xl border p-8"
         style={{ borderColor: "var(--line)", background: "var(--ink)" }}
       >
+        <div className="relative mb-6 aspect-[16/10] w-full overflow-hidden rounded-xl border border-white/5 bg-white/[0.02]">
+          <img
+            src={featured!.image}
+            alt={featured!.name}
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+            loading="lazy"
+          />
+        </div>
         <div className="text-left">
           <h3 className="f-display text-2xl tracking-tight md:text-3xl">{featured!.name}</h3>
           <p className="mt-3 max-w-md text-sm leading-relaxed md:text-base" style={{ color: "var(--ash)" }}>
@@ -43,20 +52,31 @@ function AlwaysRequiredBento({
         </div>
       </div>
 
-      {rest.map((d) => (
-        <div
-          key={d.name}
-          className="flex min-h-[180px] flex-col justify-between rounded-2xl border p-6"
-          style={{ borderColor: "var(--line)", background: "var(--ink)" }}
-        >
-          <div className="text-left">
-            <h3 className="font-semibold">{d.name}</h3>
+      {/* Rest: Packing List & Transport Document */}
+      <div className="flex flex-col gap-6">
+        {rest.map((d) => (
+          <div
+            key={d.name}
+            className="group flex flex-1 min-h-[200px] flex-col justify-between gap-6 rounded-2xl border p-6 sm:flex-row sm:items-center"
+            style={{ borderColor: "var(--line)", background: "var(--ink)" }}
+          >
+            <div className="flex-1 text-left">
+              <h3 className="font-semibold">{d.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--ash)" }}>
+                {d.desc}
+              </p>
+            </div>
+            <div className="relative aspect-[4/3] max-h-[140px] w-full shrink-0 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] sm:max-h-none sm:w-[160px]">
+              <img
+                src={d.image}
+                alt={d.name}
+                className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                loading="lazy"
+              />
+            </div>
           </div>
-          <p className="text-left text-sm leading-relaxed" style={{ color: "var(--ash)" }}>
-            {d.desc}
-          </p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
@@ -74,14 +94,17 @@ const SECTIONS = [
       {
         name: "Commercial Invoice",
         desc: "Detailed invoice from seller to buyer with HS codes, values, Incoterm.",
+        image: "/commercial_invoice.png",
       },
       {
         name: "Packing List",
         desc: "Box-level breakdown — weights, dimensions, contents, marks, numbers.",
+        image: "/packing_list.png",
       },
       {
         name: "Transport document",
         desc: "Bill of Lading (sea), Air Waybill (air), or CMR / consignment note (road).",
+        image: "/transport_document.png",
       },
     ],
   },
@@ -113,7 +136,7 @@ const SECTIONS = [
   },
   {
     title: "Commodity-specific",
-    image: "/manifesto_pharma_cargo_1783063540396.png",
+    image: "/pharma_cargo.png",
     docs: [
       {
         name: "Phytosanitary Certificate",
@@ -230,24 +253,42 @@ export default function DocumentsPage() {
   return (
     <>
 
-      <section className="pt-32 pb-12">
-        <div className="site-gutter">
+      <section className="hero-section relative min-h-[60svh] flex flex-col justify-center">
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
+            src="/images/documents-hero.png"
+            alt=""
+            className="h-full w-full max-w-none object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.2) 100%), linear-gradient(to top, var(--ink) 0%, transparent 40%)",
+            }}
+          />
+        </div>
+        <div className="site-gutter relative z-10 mx-auto flex w-full min-w-0 max-w-full flex-col pt-32 pb-16">
           <Breadcrumbs items={breadcrumbs} />
-          <SectionLabel num="01">DOCUMENTS</SectionLabel>
-          <h1 className="f-display mt-6 text-[56px] leading-[0.88] tracking-tighter md:text-[88px]">
-            What moves
-            <br />
-            with the{" "}
-            <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-              cargo
-            </span>
-            .
-          </h1>
-          <p className="mt-8 max-w-3xl text-lg" style={{ color: "var(--ash)" }}>
-            Paperwork is half the freight. This is the reference our documentation desk works
-            against — what&apos;s always needed, what depends on commodity, what depends on
-            destination, and what you should never ship without.
-          </p>
+          <div className="mt-6 w-full max-w-3xl">
+            <SectionLabel num="01" onDark>
+              DOCUMENTS
+            </SectionLabel>
+            <h1 className="f-display mt-6 text-[64px] leading-[0.88] tracking-tighter text-white md:text-[110px]">
+              What moves
+              <br />
+              with the{" "}
+              <span className="f-display-it" style={{ color: "var(--cargo)" }}>
+                cargo
+              </span>
+              .
+            </h1>
+            <p className="mt-8 text-lg leading-relaxed text-white/90">
+              Paperwork is half the freight. This is the reference our documentation desk works
+              against — what&apos;s always needed, what depends on commodity, what depends on
+              destination, and what you should never ship without.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -274,9 +315,6 @@ export default function DocumentsPage() {
             Quick reference: by destination
           </h2>
           <DestinationReferenceWindow regions={REGIONS} />
-          <p className="mt-4 text-sm" style={{ color: "var(--ash)" }}>
-            Hover to pause. Scroll horizontally to read at your pace.
-          </p>
         </div>
       </section>
 

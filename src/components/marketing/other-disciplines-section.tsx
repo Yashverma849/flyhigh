@@ -143,7 +143,7 @@ export function OtherDisciplinesSection({
                       <h4 className="f-display text-lg leading-tight tracking-tight sm:text-xl">
                         {item.name}
                       </h4>
-                      <p className="mt-1.5 text-xs leading-snug sm:text-sm" style={{ color: "var(--ash)" }}>
+                      <p className="mt-1.5 text-xs font-bold leading-snug sm:text-sm" style={{ color: "var(--ash)" }}>
                         {item.short}
                       </p>
                       <p className="mt-2 line-clamp-2 text-xs leading-relaxed sm:text-sm" style={{ color: "var(--ash)" }}>

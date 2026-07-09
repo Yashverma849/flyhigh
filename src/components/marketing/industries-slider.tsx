@@ -202,7 +202,7 @@ function SlideCard({ industry: ind }: { industry: (typeof SLIDES)[number] }) {
           >
             {ind.name}
           </h3>
-          <p className="mb-6 text-sm leading-relaxed md:text-base" style={{ color: "var(--ash)" }}>
+          <p className="mb-6 text-sm font-bold leading-relaxed md:text-base" style={{ color: "var(--ash)" }}>
             {ind.short}
           </p>
           <p className="text-sm leading-relaxed" style={{ color: "var(--ash)" }}>

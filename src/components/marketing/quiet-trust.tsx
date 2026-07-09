@@ -39,7 +39,7 @@ export function QuietTrust() {
               >
                 {c}{" "}
                 <span style={{ color: "var(--cargo)" }} className="mx-8">
-                  ✦
+                  •
                 </span>
               </span>
             ))}

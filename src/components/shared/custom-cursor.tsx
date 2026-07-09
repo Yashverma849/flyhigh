@@ -43,11 +43,11 @@ export function CustomCursor() {
     >
       <div
         className={`relative transition-all duration-300 ${label ? "scale-100" : "scale-0"}`}
-        style={{ width: 80, height: 80, marginLeft: -20, marginTop: -20 }}
+        style={{ width: 52, height: 52, marginLeft: -6, marginTop: -6 }}
       >
         <div
-          className="f-mono absolute inset-0 flex items-center justify-center rounded-full text-[10px] font-semibold"
-          style={{ background: "var(--cargo)", color: "var(--bone)" }}
+          className="f-mono absolute inset-0 flex items-center justify-center rounded-full text-[9px] font-semibold p-1 text-center leading-none"
+          style={{ background: "var(--cargo)", color: "var(--bone)", opacity: 0.95 }}
         >
           {label}
         </div>

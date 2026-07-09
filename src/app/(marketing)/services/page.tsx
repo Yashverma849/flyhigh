@@ -109,7 +109,7 @@ export default function ServicesPage() {
                 </p>
                 <ul className="mb-10 space-y-2">
                   {s.features.map((f) => (
-                    <li key={f} className="flex items-center gap-3 text-sm">
+                    <li key={f.name} className="flex items-center gap-3 text-sm">
                       <div
                         className="flex h-5 w-5 items-center justify-center rounded-full"
                         style={{
@@ -119,7 +119,7 @@ export default function ServicesPage() {
                       >
                         <Check size={11} style={{ color: "var(--cargo)" }} />
                       </div>
-                      {f}
+                      {f.name}
                     </li>
                   ))}
                 </ul>

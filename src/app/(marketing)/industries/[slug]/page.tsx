@@ -14,6 +14,7 @@ import { getIndustryBySlug, INDUSTRIES } from "@/server/db/seed/industries";
 import { SERVICES } from "@/server/db/seed/services";
 import { listPublishedCaseStudies } from "@/server/queries/case-studies";
 import { pageMetadata, serviceJsonLd } from "@/lib/seo";
+import { SLIDER_IMAGES } from "@/lib/slider-images";
 
 export function generateStaticParams() {
   return INDUSTRIES.map((i) => ({ slug: i.slug }));
@@ -55,6 +56,9 @@ export default async function IndustryDetailPage({
   const allCases = await listPublishedCaseStudies();
   const cases = allCases.filter((c) => c.industrySlug === ind.slug);
   const others = INDUSTRIES.filter((x) => x.slug !== ind.slug).slice(0, 3);
+
+  const indIndex = INDUSTRIES.findIndex((x) => x.slug === slug);
+  const startIndex = (indIndex * 15) % SLIDER_IMAGES.length;
 
   return (
     <>
@@ -109,8 +113,8 @@ export default async function IndustryDetailPage({
       <DeskSection
         leftHeading="How we deliver."
         rightHeading="What this sector pays us to solve."
-        leftItems={ind.capabilities}
-        rightItems={ind.challenges}
+        leftItems={ind.capabilities.map((b, i) => ({ b, image: SLIDER_IMAGES[(startIndex + i) % SLIDER_IMAGES.length] }))}
+        rightItems={ind.challenges.map((b, i) => ({ b, image: SLIDER_IMAGES[(startIndex + ind.capabilities.length + i) % SLIDER_IMAGES.length] }))}
         title={
           <>
             Sector playbook.

@@ -11,7 +11,7 @@ export const TIMELINE: ReadonlyArray<Milestone> = [
     year: "2019",
     title: "Africa & Gulf desks",
     body: "Specialty desks for niche inland Africa and Gulf — corridors most forwarders ignore. We chose them deliberately.",
-    image: "/road.png",
+    image: "/2019.png",
   },
   {
     year: "2021",
@@ -23,12 +23,12 @@ export const TIMELINE: ReadonlyArray<Milestone> = [
     year: "2023",
     title: "Cleanroom warehousing",
     body: "First climate-controlled, ISO 14644-1 Class 8 facility commissioned in Bhiwandi for pharma and electronics.",
-    image: "/services_ground_1783068889262.png",
+    image: "/2023.png",
   },
   {
     year: "2025",
     title: "Digital concierge",
     body: "Live tracking, instant quoting, and a dedicated client console — without losing the human voice on the line.",
-    image: "/air.png",
+    image: "/2025.png",
   },
 ];

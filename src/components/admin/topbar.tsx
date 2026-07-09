@@ -7,6 +7,7 @@ const labels: Record<string, string> = {
   "": "dashboard",
   shipments: "shipments",
   customers: "customers",
+  inquiries: "inquiries",
   content: "content",
   analytics: "analytics",
   settings: "settings",
@@ -20,13 +21,20 @@ const settingsLabels: Record<string, string> = {
   general: "general",
 };
 
+const inquiriesLabels: Record<string, string> = {
+  "quotation-requests": "quotation requests",
+  "contact-requests": "contact requests",
+};
+
 export function AdminTopbar() {
   const pathname = usePathname();
   const segments = pathname.replace(/^\/admin\/?/, "").split("/").filter(Boolean);
   const segment = segments[0] ?? "";
-  const settingsSegment = segments[1];
+  const subSegment = segments[1];
   const active = labels[segment] ?? "dashboard";
-  const settingsActive = settingsSegment ? settingsLabels[settingsSegment] : null;
+  const settingsActive = segment === "settings" && subSegment ? settingsLabels[subSegment] : null;
+  const inquiriesActive =
+    segment === "inquiries" && subSegment ? inquiriesLabels[subSegment] : null;
 
   return (
     <div
@@ -49,6 +57,14 @@ export function AdminTopbar() {
               <ChevronRight size={12} />
               <span style={{ color: "var(--bone)" }} className="capitalize">
                 {settingsActive}
+              </span>
+            </>
+          )}
+          {inquiriesActive && (
+            <>
+              <ChevronRight size={12} />
+              <span style={{ color: "var(--bone)" }} className="capitalize">
+                {inquiriesActive}
               </span>
             </>
           )}

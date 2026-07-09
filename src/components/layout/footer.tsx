@@ -167,7 +167,7 @@ export function Footer() {
           className="mb-16 grid gap-12 border-t pt-12 lg:grid-cols-12"
           style={{ borderColor: "var(--line-2)" }}
         >
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <div className="caption mb-4" style={{ color: "var(--brass)" }}>
               TOOLS
             </div>
@@ -176,9 +176,19 @@ export function Footer() {
                 {label}
               </Link>
             ))}
+            <div className="caption mt-6" style={{ color: "var(--brass)" }}>
+              CERTIFICATIONS
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {certifications.map((c) => (
+                <Link key={c} href="/compliance" className="chip f-mono text-[10px]">
+                  {c}
+                </Link>
+              ))}
+            </div>
           </div>
 
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-4">
             <div className="caption mb-4" style={{ color: "var(--brass)" }}>
               POPULAR ROUTES
             </div>
@@ -213,16 +223,6 @@ export function Footer() {
                 <Send size={14} />
               </button>
             </form>
-            <div className="caption mt-6" style={{ color: "var(--brass)" }}>
-              CERTIFICATIONS
-            </div>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {certifications.map((c) => (
-                <Link key={c} href="/compliance" className="chip f-mono text-[10px]">
-                  {c}
-                </Link>
-              ))}
-            </div>
           </div>
         </div>
 

@@ -315,7 +315,7 @@ export function GlossaryList() {
         <div>
           <SectionLabel>{activeLabel}</SectionLabel>
           <p className="caption mt-3" style={{ color: "var(--ash)" }}>
-            {visibleEntries.length} {visibleEntries.length === 1 ? "term" : "terms"} · hover to pause
+            {visibleEntries.length} {visibleEntries.length === 1 ? "term" : "terms"}
           </p>
         </div>
         <GlossaryCategoryFilter value={activeFilter} onChange={setActiveFilter} />

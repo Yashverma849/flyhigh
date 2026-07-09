@@ -127,11 +127,16 @@ export function InsightsIndex({ posts }: { posts: readonly Insight[] }) {
 
         <FeaturedInsight post={featured} />
 
-        <div className="grid gap-px md:grid-cols-3" style={{ background: "var(--line)" }}>
-          {rest.map((post, index) => (
-            <InsightCard key={post.id} post={post} index={index} />
-          ))}
-        </div>
+        {rest.length > 0 && (
+          <div
+            className="grid grid-cols-1 gap-6 md:grid-cols-[repeat(auto-fit,minmax(max(280px,calc(100%/3)),1fr))] md:gap-8"
+            style={{ background: "var(--ink)" }}
+          >
+            {rest.map((post, index) => (
+              <InsightCard key={post.id} post={post} index={index} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

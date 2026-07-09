@@ -3,7 +3,7 @@
 import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -126,10 +126,10 @@ function NavLinkItem({
     >
       <Link
         href={href}
-        className={`relative inline-flex items-center gap-1 rounded-full border border-transparent px-2.5 py-1 text-[11px] font-semibold tracking-wider whitespace-nowrap uppercase opacity-75 transition-all duration-300 hover:opacity-100 hover:shadow-md xl:px-3.5 xl:text-[12px] ${
+        className={`relative inline-flex items-center gap-1 rounded-full border border-transparent px-2.5 py-1 text-[11px] font-semibold tracking-wider whitespace-nowrap uppercase transition-all duration-300 xl:px-3.5 xl:text-[12px] ${
           overHero
-            ? "hover:border-white/10 hover:bg-white/5"
-            : "hover:border-black/[0.06] hover:bg-black/[0.04]"
+            ? "text-white/90 opacity-90 hover:border-white/10 hover:bg-white/5 hover:opacity-100 hover:shadow-md"
+            : "opacity-75 hover:border-black/[0.06] hover:bg-black/[0.04] hover:opacity-100 hover:shadow-md"
         }`}
       >
         <ScrambleText text={label} trigger={trigger} />
@@ -142,20 +142,50 @@ function NavLinkItem({
 export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [overHero, setOverHero] = useState(false);
+  const [heroUnderNav, setHeroUnderNav] = useState(false);
   const [open, setOpen] = useState(false);
   const [mega, setMega] = useState<Mega>(null);
 
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 24);
-    fn();
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
+  const syncNavTheme = useCallback(() => {
+    const hero = document.querySelector(".hero-section");
+    const isScrolled = window.scrollY > 24;
+    const underHero = hero ? hero.getBoundingClientRect().bottom > 80 : false;
+
+    setScrolled(isScrolled);
+    setHeroUnderNav(underHero);
   }, []);
 
+  useLayoutEffect(() => {
+    syncNavTheme();
+    const raf = requestAnimationFrame(syncNavTheme);
+    const timer = window.setTimeout(syncNavTheme, 50);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearTimeout(timer);
+    };
+  }, [pathname, syncNavTheme]);
+
   useEffect(() => {
-    setOverHero(!!document.querySelector(".hero-section"));
-  }, [pathname]);
+    syncNavTheme();
+    window.addEventListener("scroll", syncNavTheme, { passive: true });
+    window.addEventListener("resize", syncNavTheme, { passive: true });
+
+    const main = document.querySelector("main");
+    const observer =
+      main &&
+      new MutationObserver(() => {
+        syncNavTheme();
+      });
+
+    observer?.observe(main, { childList: true, subtree: true });
+
+    return () => {
+      window.removeEventListener("scroll", syncNavTheme);
+      window.removeEventListener("resize", syncNavTheme);
+      observer?.disconnect();
+    };
+  }, [pathname, syncNavTheme]);
 
   useEffect(() => {
     setOpen(false);
@@ -165,7 +195,7 @@ export function Navbar() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
-  const lightNavText = !scrolled && overHero;
+  const lightNavText = heroUnderNav && !scrolled;
 
   return (
     <>
@@ -224,9 +254,13 @@ export function Navbar() {
       >
         <div className="flex w-full min-w-0 max-w-full items-center justify-between gap-2 px-6 md:px-10 lg:gap-3 lg:px-14 xl:px-[4.5rem]">
           <Link href="/" className="group flex min-w-0 shrink items-center gap-2 sm:gap-3" data-cursor="HOME">
-            <Logo size={36} />
+            <Logo size={36} className={lightNavText ? "text-white" : undefined} />
             <div className="min-w-0 leading-tight">
-              <div className="f-display truncate text-[18px] tracking-tight sm:text-[22px]">FLYHIGH</div>
+              <div
+                className={`f-display truncate text-[18px] tracking-tight sm:text-[22px] ${lightNavText ? "text-white" : ""}`}
+              >
+                FLYHIGH
+              </div>
               <div className="caption text-[9px]" style={{ color: lightNavText ? "#c9a876" : "var(--brass)" }}>
                 EST. 2017 · MUMBAI
               </div>
@@ -254,7 +288,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setOpen(!open)}
-              className="p-2 lg:hidden"
+              className={`p-2 lg:hidden ${lightNavText ? "text-white" : ""}`}
               aria-label="Menu"
             >
               {open ? <X size={20} /> : <Menu size={20} />}

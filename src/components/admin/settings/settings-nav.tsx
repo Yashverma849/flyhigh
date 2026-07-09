@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Bell,
-  Lock,
+  // Lock,
   Settings as SettingsIcon,
   User,
   Users,
@@ -20,7 +20,7 @@ export const SETTINGS_SECTIONS = [
     icon: Bell,
     href: "/admin/settings/notifications" as Route,
   },
-  { id: "security", label: "Security", icon: Lock, href: "/admin/settings/security" as Route },
+  // { id: "security", label: "Security", icon: Lock, href: "/admin/settings/security" as Route },
   { id: "general", label: "General", icon: SettingsIcon, href: "/admin/settings/general" as Route },
 ] as const;
 

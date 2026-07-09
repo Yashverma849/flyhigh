@@ -138,7 +138,26 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
       </section>
 
-      <ServiceDeskSection serviceName={s.name} features={s.features} process={PROCESS} />
+      <ServiceDeskSection
+        serviceName={s.name}
+        features={s.features.map((f) => ({
+          b: f.name,
+          image: f.image,
+        }))}
+        process={PROCESS.map((step) => {
+          let imgName = "";
+          if (step.n === "01") imgName = "brief.png";
+          else if (step.n === "02") imgName = "plan.png";
+          else if (step.n === "03") imgName = "docs.png";
+          else if (step.n === "04") imgName = "execution.png";
+          else if (step.n === "05") imgName = "delivery.png";
+
+          return {
+            ...step,
+            image: `/services/${s.slug}/${imgName}`,
+          };
+        })}
+      />
 
       {relatedIndustries.length > 0 && (
         <section className="w-full min-w-0 max-w-full overflow-x-hidden py-10 md:py-12" style={{ background: "var(--ink-2)" }}>
@@ -173,7 +192,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           image: o.image,
           eta: o.eta,
           coverage: o.coverage,
-          highlights: o.features.slice(0, 3),
+          highlights: o.features.slice(0, 3).map((f) => f.name),
         }))}
       />
 

@@ -197,7 +197,7 @@ export function TransitTimeTable() {
                 </div>
                 <div className="f-mono text-sm">{r.days} days</div>
                 <div className="f-mono text-sm" style={{ color: "var(--ash)" }}>
-                  {r.freqWeekly}× / wk
+                  {r.freqWeekly}× / week
                 </div>
                 <div className="f-display tabular text-base md:text-lg" style={{ color: "var(--cargo)" }}>
                   {formatINR(r.rate)}

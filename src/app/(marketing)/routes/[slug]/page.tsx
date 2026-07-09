@@ -14,6 +14,7 @@ import { getRouteBySlug, ROUTES, getRoutesByRegion } from "@/server/db/seed/rout
 import { getRouteHeroImage } from "@/lib/route-hero-image";
 import { pageMetadata, serviceJsonLd } from "@/lib/seo";
 import { formatINR } from "@/lib/utils";
+import { SLIDER_IMAGES } from "@/lib/slider-images";
 
 export function generateStaticParams() {
   return ROUTES.map((r) => ({ slug: r.slug }));
@@ -53,22 +54,24 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
     (x) => x.fromCity === r.fromCity && x.toCity === r.toCity && x.slug !== r.slug,
   );
 
+  const routeIndex = ROUTES.findIndex((x) => x.slug === slug);
+  const startIndex = (routeIndex * 15 + 40) % SLIDER_IMAGES.length;
+
   return (
     <>
       <JsonLd
         data={serviceJsonLd({
-          name: `${r.fromCity} to ${r.toCity} freight forwarding`,
-          description: r.desc,
+          name: `${r.fromCity} to ${r.toCity} freight (${r.mode})`,
+          description: `${r.short}. Transit ${r.days} days.`,
           slug: `/routes/${r.slug}`,
-          category: r.mode,
-          areaServed: `${r.fromCity}, IN to ${r.toCity}`,
+          category: r.mode.toUpperCase(),
         })}
       />
       <Breadcrumbs
         items={[
           { name: "Home", href: "/" },
           { name: "Routes", href: "/routes" },
-          { name: `${r.fromCity} → ${r.toCity}`, href: `/routes/${r.slug}` },
+          { name: `${r.fromCity} to ${r.toCity}`, href: `/routes/${r.slug}` },
         ]}
       />
 
@@ -77,28 +80,21 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
           <img
             src={getRouteHeroImage(r.mode)}
             alt=""
-            className="h-full w-full max-w-none object-cover object-[62%_center] sm:object-[58%_center] lg:object-[55%_center]"
+            className="h-full w-full max-w-none object-cover"
           />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.72) 32%, rgba(0,0,0,0.35) 58%, rgba(0,0,0,0.2) 100%), linear-gradient(to top, var(--ink) 0%, transparent 38%)",
+                "linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.72) 32%, rgba(0,0,0,0.35) 58%, rgba(0,0,0,0.2) 100%), linear-gradient(to top, var(--ink) 0%, transparent 38%)",
             }}
           />
         </div>
         <div className="site-gutter relative z-10 mx-auto flex min-h-[100svh] w-full min-w-0 max-w-full flex-col pt-28 sm:pt-32 lg:pt-40">
           <div className="flex flex-1 flex-col justify-center">
             <div className="w-full max-w-2xl lg:max-w-3xl">
-              <div className="mb-6 flex flex-wrap items-center gap-3">
-                <Pill kind={r.mode === "Air" ? "cargo" : "brass"}>{r.mode}</Pill>
-                <Pill>{r.region}</Pill>
-                <span className="caption text-white/75">
-                  {r.fromCode} → {r.toCode}
-                </span>
-              </div>
-              <h1 className="f-display mb-6 text-[clamp(2.75rem,8.5vw,6.875rem)] leading-[0.88] tracking-tighter">
-                <RouteHeroTitle fromCity={r.fromCity} toCity={r.toCity} />
+              <h1 className="f-display mb-6 text-[clamp(2.75rem,8vw,6rem)] leading-[0.88] tracking-tighter">
+                <RouteHeroTitle from={r.fromCity} to={r.toCity} />
               </h1>
               <p className="text-[clamp(1rem,2vw,1.5rem)] leading-relaxed" style={{ color: "var(--bone)" }}>
                 {r.desc}
@@ -119,8 +115,8 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
       <DeskSection
         leftHeading="Who we book on this lane."
         rightHeading="Paperwork we handle for you."
-        leftItems={r.carriers ?? []}
-        rightItems={r.documents}
+        leftItems={(r.carriers ?? []).map((b, i) => ({ b, image: SLIDER_IMAGES[(startIndex + i) % SLIDER_IMAGES.length] }))}
+        rightItems={r.documents.map((b, i) => ({ b, image: SLIDER_IMAGES[(startIndex + (r.carriers ?? []).length + i) % SLIDER_IMAGES.length] }))}
         title={
           <>
             Carriers booked.
@@ -163,7 +159,7 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
           image: getRouteHeroImage(o.mode),
           eta: `${o.days} days`,
           coverage: formatINR(o.rate),
-          highlights: [o.region, `${o.freqWeekly}× / wk`],
+          highlights: [o.region, `${o.freqWeekly}× / week`],
         }))}
       />
 

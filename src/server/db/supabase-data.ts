@@ -1,6 +1,6 @@
 import "server-only";
 import { supabase } from "@/server/db/client";
-import type { Customer, Shipment, ShipmentEvent, InsightRow, User, DbCaseStudy } from "@/server/db/schema";
+import type { Customer, Shipment, ShipmentEvent, InsightRow, User, DbCaseStudy, Quote, ContactSubmission } from "@/server/db/schema";
 import type { UserPreferences } from "@/lib/user-preferences";
 
 type ShipmentRow = {
@@ -91,6 +91,31 @@ type CaseStudyDbRow = {
   created_at: string;
 };
 
+type QuoteRow = {
+  id: string;
+  contact_name: string;
+  email: string;
+  phone: string | null;
+  company: string | null;
+  mode: Quote["mode"];
+  origin: string;
+  destination: string;
+  weight_kg: number | null;
+  volume_cbm: number | null;
+  incoterm: string | null;
+  notes: string | null;
+  status: Quote["status"];
+  created_at: string;
+};
+
+type ContactSubmissionRow = {
+  id: string;
+  name: string;
+  email: string;
+  message: string;
+  created_at: string;
+};
+
 
 function mapShipment(row: ShipmentRow): Shipment {
   return {
@@ -172,6 +197,34 @@ function mapCaseStudy(row: CaseStudyDbRow): DbCaseStudy {
   };
 }
 
+function mapQuote(row: QuoteRow): Quote {
+  return {
+    id: row.id,
+    contactName: row.contact_name,
+    email: row.email,
+    phone: row.phone,
+    company: row.company,
+    mode: row.mode,
+    origin: row.origin,
+    destination: row.destination,
+    weightKg: row.weight_kg,
+    volumeCbm: row.volume_cbm,
+    incoterm: row.incoterm,
+    notes: row.notes,
+    status: row.status,
+    createdAt: new Date(row.created_at),
+  };
+}
+
+function mapContactSubmission(row: ContactSubmissionRow): ContactSubmission {
+  return {
+    id: row.id,
+    name: row.name,
+    email: row.email,
+    message: row.message,
+    createdAt: new Date(row.created_at),
+  };
+}
 
 function mapUser(row: UserDbRow): User {
   return {
@@ -301,3 +354,34 @@ export async function supabaseGetCaseStudyBySlug(slug: string) {
   return data ? mapCaseStudy(data as CaseStudyDbRow) : null;
 }
 
+export async function supabaseGetRecentQuotes(limit: number) {
+  const data = await query(() =>
+    supabase!.from("quote").select("*").order("created_at", { ascending: false }).limit(limit),
+  );
+  return (data as QuoteRow[] | null)?.map(mapQuote) ?? [];
+}
+
+export async function supabaseGetAllQuotes() {
+  const data = await query(() =>
+    supabase!.from("quote").select("*").order("created_at", { ascending: false }),
+  );
+  return (data as QuoteRow[] | null)?.map(mapQuote) ?? [];
+}
+
+export async function supabaseGetRecentContactSubmissions(limit: number) {
+  const data = await query(() =>
+    supabase!
+      .from("contact_submission")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(limit),
+  );
+  return (data as ContactSubmissionRow[] | null)?.map(mapContactSubmission) ?? [];
+}
+
+export async function supabaseGetAllContactSubmissions() {
+  const data = await query(() =>
+    supabase!.from("contact_submission").select("*").order("created_at", { ascending: false }),
+  );
+  return (data as ContactSubmissionRow[] | null)?.map(mapContactSubmission) ?? [];
+}

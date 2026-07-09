@@ -30,6 +30,6 @@ export function toServiceOverview(service: Service): ServiceOverview {
     desc: firstSentence(service.desc),
     eta: service.eta,
     coverage: service.coverage,
-    features: service.features.slice(0, 4),
+    features: service.features.slice(0, 4).map((f) => f.name),
   };
 }

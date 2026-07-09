@@ -106,6 +106,63 @@ export const UpdateInsightSchema = CreateInsightSchema.extend({
 export type CreateInsightInput = z.infer<typeof CreateInsightSchema>;
 export type UpdateInsightInput = z.infer<typeof UpdateInsightSchema>;
 
+export const DEFAULT_CASE_STUDY_METRICS_JSON = JSON.stringify(
+  [
+    { l: "METRIC LABEL 1", v: "100%" },
+    { l: "METRIC LABEL 2", v: "0" },
+  ],
+  null,
+  2,
+);
+
+export type CaseStudyMetric = { l: string; v: string };
+
+export function parseCaseStudyMetrics(raw: string | undefined) {
+  const value = raw?.trim() ? raw.trim() : DEFAULT_CASE_STUDY_METRICS_JSON;
+
+  try {
+    const parsed = JSON.parse(value);
+    if (!Array.isArray(parsed)) {
+      return { ok: false as const, message: "Metrics must be a JSON array." };
+    }
+
+    const metrics: CaseStudyMetric[] = [];
+    for (const item of parsed) {
+      if (item == null || typeof item !== "object") {
+        return {
+          ok: false as const,
+          message: "Each metric must be an object with l/v (or label/value).",
+        };
+      }
+
+      const record = item as Record<string, unknown>;
+      const l = record.l ?? record.label;
+      const v = record.v ?? record.value;
+      if (l == null || v == null || String(l).trim() === "" || String(v).trim() === "") {
+        return {
+          ok: false as const,
+          message: "Each metric needs a label (l) and value (v).",
+        };
+      }
+
+      metrics.push({ l: String(l).trim(), v: String(v).trim() });
+    }
+
+    return { ok: true as const, metrics };
+  } catch {
+    return { ok: false as const, message: "Metrics must be valid JSON." };
+  }
+}
+
+const caseStudyImageSchema = z.preprocess(
+  (val) => (val == null ? "" : String(val)),
+  z.union([
+    z.literal(""),
+    z.string().url("Enter a valid image URL"),
+    z.string().regex(/^\/.+/, "Enter a valid image URL or upload a file"),
+  ]),
+);
+
 export const CreateCaseStudySchema = z.object({
   title: z.string().min(4, "Title is required"),
   slug: z.string().max(120).optional().or(z.literal("")),
@@ -114,20 +171,19 @@ export const CreateCaseStudySchema = z.object({
   industrySlug: z.string().min(2, "Industry slug is required"),
   serviceSlug: z.string().min(2, "Service slug is required"),
   region: z.string().min(2, "Region is required"),
-  challenge: z.string().min(10, "Challenge is required"),
-  approach: z.string().min(10, "Approach is required"),
-  outcome: z.string().min(10, "Outcome is required"),
-  metricsJson: z.string().refine((val) => {
-    try {
-      const parsed = JSON.parse(val);
-      return Array.isArray(parsed) && parsed.every((m: any) => typeof m.l === "string" && typeof m.v === "string");
-    } catch {
-      return false;
-    }
-  }, "Metrics must be a valid JSON array of label/value objects"),
+  challenge: z.string().min(10, "Challenge is required (at least 10 characters)"),
+  approach: z.string().min(10, "Approach is required (at least 10 characters)"),
+  outcome: z.string().min(10, "Outcome is required (at least 10 characters)"),
+  metricsJson: z.preprocess(
+    (val) =>
+      val === undefined || val === null || val === ""
+        ? DEFAULT_CASE_STUDY_METRICS_JSON
+        : String(val),
+    z.string(),
+  ),
   date: z.string().min(10, "Date is required"),
   read: z.string().min(2, "Read time is required"),
-  image: z.union([z.literal(""), z.string().url("Enter a valid image URL")]).optional(),
+  image: caseStudyImageSchema,
   excerpt: z.string().min(10, "Excerpt is required"),
 });
 

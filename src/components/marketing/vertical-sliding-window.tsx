@@ -210,6 +210,9 @@ export function VerticalSlidingWindow({ items, direction, className = "" }: Prop
                   className="h-full w-full object-cover"
                   style={{ filter: "grayscale(12%) contrast(96%)" }}
                   draggable={false}
+                  onError={(e) => {
+                    (e.currentTarget as HTMLElement).style.display = "none";
+                  }}
                 />
               ) : null}
             </div>

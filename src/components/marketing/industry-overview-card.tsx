@@ -32,20 +32,22 @@ export function IndustryOverviewCard({ overview }: Props) {
       />
 
       <div className="relative z-10 flex flex-1 flex-col p-6 sm:p-8">
-        <div className="mb-4">
-          <span className="f-mono text-[10px] tracking-widest" style={{ color: "var(--cargo)" }}>
-            {overview.tag}
-          </span>
+        <div className="min-h-[230px]">
+          <div className="mb-4">
+            <span className="f-mono text-[10px] tracking-widest" style={{ color: "var(--cargo)" }}>
+              {overview.tag}
+            </span>
+          </div>
+
+          <h3 className="f-display mb-2 text-2xl leading-tight tracking-tight text-white sm:text-3xl">
+            {overview.name}
+          </h3>
+          <p className="mb-3 text-xs font-bold leading-relaxed text-white/75 sm:text-sm">{overview.short}</p>
+          <p className="mb-6 text-sm leading-relaxed text-white/90">{overview.desc}</p>
         </div>
 
-        <h3 className="f-display mb-2 text-2xl leading-tight tracking-tight text-white sm:text-3xl">
-          {overview.name}
-        </h3>
-        <p className="mb-3 text-xs leading-relaxed text-white/75 sm:text-sm">{overview.short}</p>
-        <p className="mb-6 text-sm leading-relaxed text-white/90">{overview.desc}</p>
-
         <div
-          className="mb-6 grid grid-cols-2 gap-px"
+          className="mb-6 grid grid-cols-2 gap-px min-h-[140px]"
           style={{ background: "rgba(255,255,255,0.1)" }}
         >
           {overview.stats.map((stat) => (
@@ -62,7 +64,7 @@ export function IndustryOverviewCard({ overview }: Props) {
           ))}
         </div>
 
-        <div className="mb-6">
+        <div className="mb-6 min-h-[145px]">
           <div className="caption mb-3" style={{ color: "var(--brass)" }}>
             CHALLENGES
           </div>
@@ -78,7 +80,7 @@ export function IndustryOverviewCard({ overview }: Props) {
           </ul>
         </div>
 
-        <div className="mb-6">
+        <div className="mb-6 min-h-[145px]">
           <div className="caption mb-3" style={{ color: "var(--brass)" }}>
             CAPABILITIES
           </div>

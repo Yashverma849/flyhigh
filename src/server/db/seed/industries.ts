@@ -52,7 +52,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
     ],
     relatedServices: ["air", "warehouse", "customs"],
     image:
-      "https://images.unsplash.com/photo-1583912267550-90c8c08bba2b?w=1600&q=80&auto=format&fit=crop",
+      "/pharma_cargo.png",
     stats: [
       { l: "TEMP. EXCURSIONS / 1000", v: "0.4" },
       { l: "GDP LANES", v: "23" },
@@ -83,8 +83,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
       "Spare-parts kitting and labelling",
     ],
     relatedServices: ["sea", "road", "warehouse"],
-    image:
-      "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1600&q=80&auto=format&fit=crop",
+    image: "/case-studies/ev_battery_pack.png",
     stats: [
       { l: "OEM ACCOUNTS", v: "14" },
       { l: "JIT ON-TIME", v: "99.7%" },
@@ -115,8 +114,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
       "EXW to DDP terms worldwide",
     ],
     relatedServices: ["air", "sea", "customs"],
-    image:
-      "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1600&q=80&auto=format&fit=crop",
+    image: "/case-studies/fashion_week.png",
     stats: [
       { l: "GOH CONTAINERS / YR", v: "2.4k" },
       { l: "CARNETS / YR", v: "180+" },
@@ -147,8 +145,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
       "Component-level kitting for fab consumables",
     ],
     relatedServices: ["air", "road", "warehouse"],
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80&auto=format&fit=crop",
+    image: "/case-studies/metrology_tool.png",
     stats: [
       { l: "AOG SHIPMENTS / MO", v: "47" },
       { l: "WHEELS-UP SLA", v: "4h" },
@@ -179,8 +176,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
       "Live shipment temperature dashboard",
     ],
     relatedServices: ["sea", "air", "road", "warehouse"],
-    image:
-      "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1600&q=80&auto=format&fit=crop",
+    image: "/case-studies/mango_airlift.png",
     stats: [
       { l: "REEFER LANES", v: "31" },
       { l: "TEMP COMPLIANCE", v: "99.8%" },
@@ -211,8 +207,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
       "MSDS-driven lane selection",
     ],
     relatedServices: ["sea", "air", "warehouse", "road"],
-    image:
-      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1600&q=80&auto=format&fit=crop",
+    image: "/services/air/dangerous_goods.png",
     stats: [
       { l: "DG MOVES / MO", v: "640" },
       { l: "IATA-CERT STAFF", v: "21" },
@@ -243,8 +238,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
       "Discreet handling and named couriers",
     ],
     relatedServices: ["air", "carnet", "customs"],
-    image:
-      "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1600&q=80&auto=format&fit=crop",
+    image: "/services/air/charter.png",
     stats: [
       { l: "CHARTERS / YR", v: "12" },
       { l: "AOG MEAN-TIME-TO-WHEELS-UP", v: "3h 40m" },
@@ -275,8 +269,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
       "Customs valuation defence on rare lots",
     ],
     relatedServices: ["sea", "warehouse", "road"],
-    image:
-      "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1600&q=80&auto=format&fit=crop",
+    image: "/services/warehouse/bonded.png",
     stats: [
       { l: "BREAKAGE RATE", v: "0.06%" },
       { l: "BONDED PALLETS", v: "1,800" },
@@ -307,8 +300,7 @@ export const INDUSTRIES: ReadonlyArray<Industry> = [
       "Discreet handling for talent travel cargo",
     ],
     relatedServices: ["air", "carnet", "road"],
-    image:
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1600&q=80&auto=format&fit=crop",
+    image: "/services/carnet/equipment.png",
     stats: [
       { l: "PRODUCTIONS / YR", v: "—" },
       { l: "CARNET SHOOTS", v: "—" },

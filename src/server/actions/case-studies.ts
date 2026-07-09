@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { eq } from "drizzle-orm";
 import { db, hasDatabaseUrl, isDbConfigured, supabase } from "@/server/db/client";
 import { caseStudies } from "@/server/db/schema";
-import { CreateCaseStudySchema, UpdateCaseStudySchema } from "@/lib/validations";
+import { CreateCaseStudySchema, UpdateCaseStudySchema, parseCaseStudyMetrics } from "@/lib/validations";
 import { requireSession } from "@/server/auth/session";
 import { slugify } from "@/lib/utils";
 
@@ -52,12 +52,15 @@ export async function createCaseStudy(
     return { status: "error", message: "Could not generate a valid slug from the title." };
   }
 
-  let metrics = [];
-  try {
-    metrics = JSON.parse(parsed.data.metricsJson);
-  } catch (err) {
-    return { status: "error", message: "Invalid JSON format for metrics" };
+  const metricsResult = parseCaseStudyMetrics(parsed.data.metricsJson);
+  if (!metricsResult.ok) {
+    return {
+      status: "error",
+      message: metricsResult.message,
+      fieldErrors: { metricsJson: [metricsResult.message] },
+    };
   }
+  const metrics = metricsResult.metrics;
 
   const row = {
     slug,
@@ -142,12 +145,15 @@ export async function updateCaseStudy(
     return { status: "error", message: "Could not generate a valid slug from the title." };
   }
 
-  let metrics = [];
-  try {
-    metrics = JSON.parse(fields.metricsJson);
-  } catch (err) {
-    return { status: "error", message: "Invalid JSON format for metrics" };
+  const metricsResult = parseCaseStudyMetrics(fields.metricsJson);
+  if (!metricsResult.ok) {
+    return {
+      status: "error",
+      message: metricsResult.message,
+      fieldErrors: { metricsJson: [metricsResult.message] },
+    };
   }
+  const metrics = metricsResult.metrics;
 
   try {
     if (!hasDatabaseUrl || !db) {
@@ -209,5 +215,39 @@ export async function updateCaseStudy(
       status: "error",
       message: "Could not update case study. Check that the slug is unique and try again.",
     };
+  }
+}
+
+export async function deleteCaseStudy(id: string): Promise<CaseStudyActionState> {
+  const auth = await requireAuth();
+  if (!auth.ok) return { status: "error", message: auth.error };
+  if (!id.trim()) return { status: "error", message: "Case study id is required." };
+
+  try {
+    if (!hasDatabaseUrl || !db) {
+      if (!supabase) throw new Error("Database unavailable");
+      const { data, error } = await supabase
+        .from("case_study")
+        .delete()
+        .eq("id", id)
+        .select("slug")
+        .maybeSingle();
+      if (error) throw error;
+      if (!data) return { status: "error", message: "Case study not found." };
+      revalidateContentPaths(data.slug);
+      return { status: "success", id };
+    }
+
+    const [deleted] = await db
+      .delete(caseStudies)
+      .where(eq(caseStudies.id, id))
+      .returning({ id: caseStudies.id, slug: caseStudies.slug });
+    if (!deleted) return { status: "error", message: "Case study not found." };
+
+    revalidateContentPaths(deleted.slug);
+    return { status: "success", id };
+  } catch (err) {
+    console.error("deleteCaseStudy failed", err);
+    return { status: "error", message: "Could not delete case study. Please try again." };
   }
 }

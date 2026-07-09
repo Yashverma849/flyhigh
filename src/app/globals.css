@@ -1192,3 +1192,20 @@ body {
     cursor: none !important;
   }
 }
+
+/* Global table row hover styling */
+tbody tr,
+[class*="hover:bg-[var(--surface-tint-2)]"] {
+  transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+tbody tr:hover,
+[class*="hover:bg-[var(--surface-tint-2)]"]:hover {
+  transform: scale(1.008) !important;
+  box-shadow: 0 4px 12px rgba(28, 24, 20, 0.05) !important;
+  z-index: 10;
+  position: relative;
+}
+tbody tr:hover td,
+[class*="hover:bg-[var(--surface-tint-2)]"]:hover {
+  background-color: rgba(200, 90, 23, 0.12) !important;
+}

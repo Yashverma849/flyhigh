@@ -327,7 +327,7 @@ export default function HomePage() {
               <span className="f-mono text-sm" style={{ color: "var(--brass)" }}>
                 {days}
               </span>
-              <span style={{ color: "var(--cargo)" }}>✦</span>
+              <span style={{ color: "var(--cargo)" }}>•</span>
             </span>
           ))}
         </Marquee>

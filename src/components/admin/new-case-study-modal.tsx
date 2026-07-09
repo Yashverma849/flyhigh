@@ -27,6 +27,11 @@ export function NewCaseStudyModal({ open, onClose }: Props) {
   }, [state.status, onClose, router]);
 
   const fieldErrors = state.status === "error" ? state.fieldErrors : undefined;
+  const fieldErrorList =
+    fieldErrors &&
+    Object.entries(fieldErrors).flatMap(([field, messages]) =>
+      (messages ?? []).map((message) => ({ field, message })),
+    );
 
   return (
     <ShipmentModalShell
@@ -48,6 +53,19 @@ export function NewCaseStudyModal({ open, onClose }: Props) {
           >
             {state.message}
           </p>
+        )}
+
+        {fieldErrorList && fieldErrorList.length > 0 && (
+          <ul
+            className="caption mb-6 list-disc space-y-1 rounded-md border px-4 py-3 pl-8"
+            style={{ borderColor: "var(--rust)", color: "var(--rust)" }}
+          >
+            {fieldErrorList.map(({ field, message }) => (
+              <li key={`${field}-${message}`}>
+                <span className="f-mono">{field}</span>: {message}
+              </li>
+            ))}
+          </ul>
         )}
 
         <CaseStudyFormFields fieldErrors={fieldErrors} />

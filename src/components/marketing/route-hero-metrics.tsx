@@ -11,7 +11,7 @@ export function RouteHeroMetrics({ rate, days, freqWeekly, mode }: Props) {
   const stats = [
     { l: "INDICATIVE FROM", v: formatINR(rate) },
     { l: "TRANSIT TIME", v: `${days} days` },
-    { l: "FREQUENCY", v: `${freqWeekly}× / wk` },
+    { l: "FREQUENCY", v: `${freqWeekly}× / week` },
     { l: "MODE", v: mode },
   ];
 

@@ -1,0 +1,343 @@
+# Image Generation Prompts: Service Pages Sliding Windows
+
+All images generated from these prompts should be realistic, brand-free, text-free, logo-free, and exclude human faces. For images containing human bodies, represent Indian demographics.
+
+---
+
+## 1. Sea Freight Page (/services/sea)
+
+### fcl.png (20' & 40' FCL)
+A realistic, high-quality photograph of stacked 20ft and 40ft steel shipping containers in a seaport terminal in India. Shot on 35mm lens, natural daylight, metallic industrial texture, no brand names, no logos, no text, no faces.
+
+### lcl.png (LCL consolidation)
+A realistic, high-quality photograph inside an Indian warehouse showing consolidation of mixed palletized cargo boxes wrapped in clear shrink wrap. Shot on 50mm lens, natural industrial lighting, professional cargo layout, no brand names, no logos, no text, no faces.
+
+### breakbulk.png (Break bulk & special equipment)
+A realistic, high-quality photograph of a heavy industrial generator cargo being loaded onto a flat rack container on an ocean vessel deck. Heavy rigging cables and crane hooks, seaport crane visible. Shot on 35mm lens, realistic details, no brand names, no logos, no text, no faces.
+
+### reefer_dg.png (Reefer & DG handling)
+A realistic, high-quality photograph of a white refrigerated container (reefer) with its temperature display glowing in an Indian port terminal at dusk. Orange warning hazmat placards attached to the side. Shot on 35mm lens, industrial lighting, no brand names, no logos, no text, no faces.
+
+### custom_clearance.png (Origin/Dest custom clearance)
+A realistic, high-quality photograph of a seaport custom officer desk in India, showing documents with stamps, shipping bills, and clipboard. Port yard visible through the window. Shot on 50mm lens, soft natural lighting, no brand names, no logos, no text, no faces.
+
+### door_to_door.png (Door-to-door coverage)
+A realistic, high-quality photograph of an Indian delivery truck driving on a clean national highway, carrying cargo containers. Shot on 35mm lens, dynamic shot, natural bright daylight, no brand names, no logos, no text, no faces.
+
+---
+
+## 2. Air Freight Page (/services/air)
+
+### express.png (Express & deferred)
+A realistic, high-quality photograph of cargo packages being quickly sorted on a conveyor belt in an air cargo terminal in India. Motion blur on packages, clean industrial facility. Shot on 35mm lens, bright clean lighting, no brand names, no logos, no text, no faces.
+
+### charter.png (Charter & co-load)
+A realistic, high-quality photograph of a massive cargo airplane nose door open at an Indian airport tarmac, loading large wrapped crates. High loader vehicle standing by. Shot on 28mm wide-angle lens, realistic details, no brand names, no logos, no text, no faces.
+
+### pharma.png (Pharma cool-chain)
+A realistic, high-quality photograph of a specialized insulated active temperature-controlled container (Envirotainer style) for vaccine transport on an airport tarmac. Digital temp readout showing cool-chain status. Shot on 35mm lens, pristine clean look, no brand names, no logos, no text, no faces.
+
+### dangerous_goods.png (Dangerous goods (IATA))
+A realistic, high-quality photograph of drum containers for chemical cargo packed inside a wooden crate, marked with orange hazard diamond labels (Class 9 / Class 3). Shot on 50mm lens, strict compliance look, no brand names, no logos, no text, no faces.
+
+### live_animal.png (Live animal)
+A realistic, high-quality photograph of a heavy-duty professional animal transport crate inside an airport cargo hold, securely latched. Shot on 35mm lens, clean well-ventilated airport cargo area, no brand names, no logos, no text, no faces.
+
+### aog.png (Aircraft-on-Ground (AOG))
+A realistic, high-quality photograph of a large aircraft jet engine component wrapped in protective material, sitting on a shipping pallet on a tarmac ready for urgent dispatch. Airport hanger in background. Shot on 35mm lens, emergency cargo style, no brand names, no logos, no text, no faces.
+
+---
+
+## 3. Customs Clearance Page (/services/customs)
+
+### documentation.png (Custom documentation)
+A realistic, high-quality photograph of a neat stack of customs clearance document forms, shipping invoices, and bills of entry with official stamps on a wooden desk. Professional workspace environment. Shot on 50mm lens, sharp focus, no brand names, no logos, no text, no faces.
+
+### carting.png (Carting & receiving)
+A realistic, high-quality photograph of pallets of cargo being unloaded by an Indian worker using a hand pallet jack inside a custom bonded warehouse yard. Indian logistics worker showing body only (no face). Shot on 35mm lens, realistic warehouse activity, no brand names, no logos, no text.
+
+### examination.png (Examination handling)
+A realistic, high-quality photograph of open wooden crates during customs inspection, showing industrial machinery components inside. Clipboard with inspection sheet resting on the box. Shot on 35mm lens, realistic details, no brand names, no logos, no text, no faces.
+
+### stuffing.png (Stuffing/destuffing)
+A realistic, high-quality photograph inside a dry shipping container, showing cargo cartons being stacked to the ceiling by a loader. Focus on the carton layers and inside of the steel container. Shot on 28mm wide-angle lens, no brand names, no logos, no text, no faces.
+
+### brokerage.png (Import & export brokerage)
+A realistic, high-quality photograph of a customs broker desk in India. Two computer screens displaying logistics dashboards, shipping document folders, and a cup of coffee. Shot on 50mm lens, busy office desk, no brand names, no logos, no text, no faces.
+
+### compliance.png (Trade compliance)
+A realistic, high-quality photograph of a thick compliance catalog, binder folders, and certificates of origin on a neat boardroom table. Shot on 50mm lens, professional corporate setting, no brand names, no logos, no text, no faces.
+
+---
+
+## 4. Warehousing Page (/services/warehouse)
+
+### bonded.png (Bonded warehousing)
+A realistic, high-quality photograph of high-bay warehouse storage racks filled with neatly organized palletized goods under soft security lighting. Yellow floor markings, clean warehouse aisle. Shot on 35mm lens, professional logistics center, no brand names, no logos, no text, no faces.
+
+### cleanroom.png (Cleanroom storage)
+A realistic, high-quality photograph of a highly controlled, dust-free pharmaceutical cleanroom storage facility. White walls, sealed containers on stainless steel racks, sterile environment. Shot on 35mm lens, pristine look, no brand names, no logos, no text, no faces.
+
+### temperature.png (Temperature controlled)
+A realistic, high-quality photograph of a temperature-controlled cold storage room inside an Indian warehouse. Frost on pipes, digital thermostat reading 4°C, sealed vaccine boxes on plastic pallets. Shot on 35mm lens, clean, no brand names, no logos, no text, no faces.
+
+### pick_pack.png (Pick & pack)
+A realistic, high-quality photograph of a packing station inside a fulfillment center. A cardboard box being sealed with tape, bubble wrap, packing slips, and shipping labels visible. Shot on 50mm lens, natural daylight, no brand names, no logos, no text, no faces.
+
+### kitting.png (Kitting & labeling)
+A realistic, high-quality photograph of individual components laid out on a clean workbench being assembled into custom kits with barcode labels attached. Shot on 50mm lens, close-up, sharp details, no brand names, no logos, no text, no faces.
+
+### inventory.png (Inventory dashboards)
+A realistic, high-quality photograph of a tablet screen displaying inventory levels, stock charts, and warehouse map in a modern interface. Warehouse aisle visible blurred in background. Shot on 50mm lens, professional UX, no brand names, no logos, no text, no faces.
+
+---
+
+## 5. Road Transport Page (/services/road)
+
+### pickup.png (24/7 pickup)
+A realistic, high-quality photograph of a cargo truck loading at a warehouse dock gate under bright floodlights at night. Warm terminal atmosphere, cargo container being pushed in. Shot on 35mm lens, dynamic night lighting, no brand names, no logos, no text, no faces.
+
+### trucks.png (Close body trucks)
+A realistic, high-quality photograph of a fleet of modern, clean close-body container trucks parked in a neat row in an Indian transport depot. Shot on 35mm lens, daylight, realistic metallic truck bodies, no brand names, no logos, no text, no faces.
+
+### hinterland.png (Hinterland transport)
+ A realistic, high-quality photograph of a container truck traveling through a scenic mountain road in the Western Ghats of India. High-altitude highway container transport. Shot on 35mm lens, natural landscape, no brand names, no logos, no text, no faces.
+
+### reefer_trailers.png (Reefer trailers)
+A realistic, high-quality photograph of a refrigerated truck trailer parked at a distribution center, with cold air vapor venting from the reefer unit exhaust. Shot on 35mm lens, realistic details, no brand names, no logos, no text, no faces.
+
+### odc.png (Multi-axle for ODC)
+A realistic, high-quality photograph of an oversized cargo (ODC) — a massive wind turbine rotor or pressure vessel — loaded onto a heavy-duty multi-axle trailer in India. Escort vehicles visible in background. Shot on 28mm wide-angle lens, highway, no brand names, no logos, no text, no faces.
+
+### gps.png (GPS tracked)
+A realistic, high-quality photograph of a truck cabin dashboard showing a GPS navigation map screen with route tracking and telemetry data. Road ahead visible through the windshield. Shot on 50mm lens, first-person driver perspective, no brand names, no logos, no text, no faces.
+
+---
+
+## 6. ATA Carnet Page (/services/carnet)
+
+### issuance.png (Carnet issuance assistance)
+A realistic, high-quality photograph of an office desk in India with official customs document booklets, official stamp pads, and a pen. Shot on 35mm lens, warm natural lighting, professional documentation workspace, no logos, no brand names, no faces.
+
+### exhibition.png (Trade show & exhibition cargo)
+A realistic, high-quality photograph of exhibition crates and wrapped equipment boxes stacked near a trade show booth inside an Indian convention center. Busy setup crew visible in background (bodies only, no faces). Shot on 35mm lens, professional setup environment, no brand names, no logos.
+
+### equipment.png (Professional equipment movement)
+A realistic, high-quality photograph of professional high-end video cameras, cinema lenses, and stabilizer equipment packed securely in a black hard flight case with foam insert. Shot on 50mm lens, gear ready for transit, no brand names, no logos, no text, no faces.
+
+### runway.png (Runway and sample shipments)
+A realistic, high-quality photograph of high-end fashion design garments hanging on a stainless steel rack inside a logistics warehouse. Colorful Indian textiles, fabrics, dresses, ready for a runway show. Shot on 35mm lens, soft professional studio lighting, realistic details, no faces, no logos.
+
+### reexport.png (Re-export within validity)
+A realistic, high-quality photograph of cargo container doors being locked and sealed with a heavy-duty metallic bolt seal in an Indian seaport. Focus on the metal seal and locking mechanism. Shot on 35mm lens, realistic details, warm sunny day, no faces, no logos.
+
+### ficci.png (FICCI panel paperwork)
+A realistic, high-quality photograph of trade panel folders, documents with official Indian federation stamps, and trade compliance papers on a conference table. Shot on 50mm lens, professional corporate setting, no brand names, no logos, no text, no faces.
+
+========================================================================
+PROCESS SLIDING WINDOW PROMPTS ("From brief to delivery")
+========================================================================
+
+## 1. Sea Freight Process (/services/sea)
+
+### brief.png (Brief & survey)
+A realistic, high-quality photograph showing an engineer or surveyor inspecting cargo dimensions and route details on a clipboard at an Indian seaport container terminal. Port cranes visible in background. Shot on 35mm lens, natural daylight, no brand names, no logos, no text, no faces.
+
+### plan.png (Plan & quote)
+A realistic, high-quality photograph of a laptop displaying logistics software comparing multiple shipping routes and cost charts side by side. Professional workspace environment in India. Shot on 50mm lens, soft office lighting, no brand names, no logos, no text, no faces.
+
+### docs.png (Documentation)
+A realistic, high-quality photograph of a neat stack of Bill of Lading sheets, customs declarations, and certificates of origin with official stamps on an office table. Shot on 50mm lens, sharp focus, no brand names, no logos, no text, no faces.
+
+### execution.png (Execution)
+A realistic, high-quality photograph of a large crane hoisting a shipping container onto an ocean freighter at an Indian port. Rigging gear and steel locks in sharp focus. Shot on 35mm lens, industrial lighting, no brand names, no logos, no text, no faces.
+
+### delivery.png (Delivery & report)
+A realistic, high-quality photograph of a container truck arriving at a delivery warehouse gate in India. Security gate and digital logbook clipboard in foreground. Shot on 35mm lens, sunny daylight, no brand names, no logos, no text, no faces.
+
+---
+
+## 2. Air Freight Process (/services/air)
+
+### brief.png (Brief & survey)
+A realistic, high-quality photograph of a cargo survey report and airport route maps on an Indian office table. Compass and pen next to the papers. Shot on 35mm lens, clean workspace lighting, no brand names, no logos, no text, no faces.
+
+### plan.png (Plan & quote)
+A realistic, high-quality photograph of a computer screen displaying multiple flight transit times, route connections, and quote options. Airport office setting. Shot on 50mm lens, clean details, no brand names, no logos, no text, no faces.
+
+### docs.png (Documentation)
+A realistic, high-quality photograph of Air Waybill (AWB) documents, customs forms, and air cargo compliance checklists with official stamps on a desk. Shot on 50mm lens, warm natural lighting, no brand names, no logos, no text, no faces.
+
+### execution.png (Execution)
+A realistic, high-quality photograph of airport ground crew loading a cargo pallet onto an airplane's main deck at night under tarmac floodlights. Safety vests showing (bodies only, no faces). Shot on 35mm lens, dramatic night lighting, no brand names, no logos, no text.
+
+### delivery.png (Delivery & report)
+A realistic, high-quality photograph of a clean logistics warehouse receiving dock where airport cargo is being unloaded. Digital inventory tablet showing successful receipt report. Shot on 35mm lens, bright clean lighting, no brand names, no logos, no text, no faces.
+
+---
+
+## 3. Customs Clearance Process (/services/customs)
+
+### brief.png (Brief & survey)
+A realistic, high-quality photograph of a customs declaration questionnaire and a catalog of HS codes on a desk, with a magnifying glass and a pen. Shot on 50mm lens, warm daylight, no brand names, no logos, no text, no faces.
+
+### plan.png (Plan & quote)
+A realistic, high-quality photograph of a dual-monitor computer display in a logistics office showing import duty calculation tables, tariff schedules, and cost estimates. Shot on 50mm lens, office lighting, no brand names, no logos, no text, no faces.
+
+### docs.png (Documentation)
+A realistic, high-quality photograph of a folder containing custom bonds, bills of entry, and import licenses with official customs stamps and signatures on a clipboard. Shot on 50mm lens, close-up details, no brand names, no logos, no text, no faces.
+
+### execution.png (Execution)
+A realistic, high-quality photograph of an Indian customs examiner checking a cargo seal on a container door in a customs bonded area. Hands only holding seal scanner (no faces). Shot on 35mm lens, natural seaport lighting, no brand names, no logos, no text.
+
+### delivery.png (Delivery & report)
+A realistic, high-quality photograph of a stamped custom out-of-charge order sheet resting on top of a delivered crate inside a warehouse bay. Shot on 50mm lens, sharp focus, no brand names, no logos, no text, no faces.
+
+---
+
+## 4. Warehousing Process (/services/warehouse)
+
+### brief.png (Brief & survey)
+A realistic, high-quality photograph of a warehouse layout blueprint and dimensions layout sheet being studied on a storage workbench. Measuring tape next to it. Shot on 35mm lens, industrial lighting, no brand names, no logos, no text, no faces.
+
+### plan.png (Plan & quote)
+A realistic, high-quality photograph of a computer screen displaying a warehouse slotting plan, capacity charts, and storage quotation options. Shot on 50mm lens, modern office space, no brand names, no logos, no text, no faces.
+
+### docs.png (Documentation)
+A realistic, high-quality photograph of warehouse receipts, inventory logs, and dangerous goods storage declarations on a metal clipboard inside a warehouse office. Shot on 50mm lens, clear details, no brand names, no logos, no text, no faces.
+
+### execution.png (Execution)
+A realistic, high-quality photograph of a modern forklift raising a pallet of goods into high-bay racks inside a clean warehouse facility. Warehouse worker visible (body only, no face). Shot on 35mm lens, professional industrial look, no brand names, no logos, no text.
+
+### delivery.png (Delivery & report)
+A realistic, high-quality photograph of a delivery truck backing up to a warehouse loading dock door. Roller doors open, revealing a clean interior bay. Shot on 35mm lens, daylight, no brand names, no logos, no text, no faces.
+
+---
+
+## 5. Road Transport Process (/services/road)
+
+### brief.png (Brief & survey)
+A realistic, high-quality photograph of a route survey checklist, highway maps, and toll pricing guides on a clipboard on a truck dashboard. Highway ahead through the window. Shot on 35mm lens, daylight, no brand names, no logos, no text, no faces.
+
+### plan.png (Plan & quote)
+A realistic, high-quality photograph of a fleet management screen showing truck routing plans, ETA timelines, and fuel/rate quotes. Shot on 50mm lens, corporate office setting, no brand names, no logos, no text, no faces.
+
+### docs.png (Documentation)
+A realistic, high-quality photograph of road consignment notes (consignment note/CMR), truck tax receipts, and national permits on a clipboard on a desk. Shot on 50mm lens, sharp focus, no brand names, no logos, no text, no faces.
+
+### execution.png (Execution)
+A realistic, high-quality photograph of a driver's hands on a truck steering wheel, with the road ahead visible at dawn. Dashboard displays route navigation. Shot on 35mm lens, realistic details, no brand names, no logos, no text, no faces.
+
+### delivery.png (Delivery & report)
+A realistic, high-quality photograph of a truck container doors being opened at a client's gate. Cargo unloading ramp visible in foreground. Shot on 35mm lens, sunny day, no brand names, no logos, no text, no faces.
+
+---
+
+## 6. ATA Carnet Process (/services/carnet)
+
+### brief.png (Brief & survey)
+A realistic, high-quality photograph of a Carnet eligibility checklist, checklist forms, and product catalog booklets on a desk. Pen and stamp pad nearby. Shot on 35mm lens, natural daylight, no brand names, no logos, no text, no faces.
+
+### plan.png (Plan & quote)
+A realistic, high-quality photograph of a computer screen showing ATA Carnet guarantee fee calculations, transit country lists, and security bond quotes. Shot on 50mm lens, office lighting, no brand names, no logos, no text, no faces.
+
+### docs.png (Documentation)
+A realistic, high-quality photograph of an official ATA Carnet green booklet, showing the counterfoils and vouchers stamped by customs, lying on a workspace table. Shot on 50mm lens, clear details, no brand names, no logos, no text, no faces.
+
+### execution.png (Execution)
+A realistic, high-quality photograph of a customs inspector stamping an ATA Carnet voucher booklet at an airport customs desk in India. Hands only showing (no faces). Shot on 50mm lens, natural lighting, no brand names, no logos, no text.
+
+### delivery.png (Delivery & report)
+A realistic, high-quality photograph of equipment cases arriving at an exhibition hall, with the green ATA Carnet booklet resting on top of a flight case. Show floor in background. Shot on 35mm lens, professional workspace look, no brand names, no logos, no text, no faces.
+
+========================================================================
+HERO BACKGROUND PROMPTS (Tools & Resources pages)
+========================================================================
+
+## System prompt (prepend to every hero image below)
+
+You are generating a full-bleed website hero background for a premium freight-forwarding brand based in India. Output a single realistic photograph — not illustration, not 3D render, not stock-photo cliché.
+
+Hard constraints (never violate):
+- No readable text, letters, numbers, barcodes, QR codes, watermarks, or UI screenshots anywhere in frame
+- No brand names, logos, airline livery, shipping line markings, or company signage
+- No human faces; if people appear, show body/hands only from behind or cropped
+- Indian context where location matters (ports, offices, highways, customs yards in India)
+- Photorealistic editorial style — muted industrial palette, natural light, subtle grain acceptable
+- Composition must leave clear negative space on the left third for white headline overlay (subject weighted right or center-right; avoid busy detail behind where text will sit)
+- Dark-friendly: image should hold up under a 60–85% black gradient scrim without losing subject definition
+- Aspect ratio 16:9 landscape, minimum 2400×1350 px equivalent; wide cinematic framing
+- Slight desaturation acceptable; avoid neon, oversaturated HDR, or Instagram filters
+
+Lens & quality defaults unless a page prompt overrides:
+- 35mm equivalent, f/2.8–f/5.6, shallow-to-medium depth of field
+- Sharp subject, soft background bokeh where appropriate
+- No fisheye distortion
+
+Negative prompt (always append):
+text, watermark, logo, brand name, readable document text, license plate numbers, faces, cartoon, illustration, CGI, oversaturated, neon, lens flare, clutter in left third, centered symmetrical composition, generic office stock photo
+
+---
+
+## 1. Documents required (/tools/documents)
+
+**File:** `public/images/documents-hero.jpg`
+
+**Page headline:** "What moves with the cargo." — paperwork, shipping documents, documentation desk reference.
+
+**Prompt:**
+A realistic, high-quality wide photograph of a freight documentation desk at an Indian logistics office. Neat stacks of blank shipping forms, stamped customs papers (stamps visible but no readable words), a clipboard, rubber stamp pad, and a ballpoint pen arranged on dark wood. Soft window light from the right; shallow depth of field. Port container yard softly blurred through the window in the background. Left third of frame is darker, uncluttered desk surface for text overlay. Muted warm tones, editorial freight-industry mood. Shot on 35mm lens, no brand names, no logos, no readable text, no faces.
+
+---
+
+## 2. Incoterms reference (/tools/incoterms)
+
+**File:** `public/images/incoterms-hero.jpg`
+
+**Page headline:** "Eleven words, eleven contracts." — ICC Incoterms 2020, international trade terms.
+
+**Prompt:**
+A realistic, high-quality wide photograph symbolizing international trade contracts and handover of responsibility. Two hands (no faces) exchanging a sealed manila folder across a conference table; one side shows a blurred shipping container through a window, the other a blurred airport tarmac. Neutral corporate boardroom in India, warm late-afternoon light from the right. Left third of frame is dark table surface with soft shadow — clean space for headline overlay. Subtle brass/copper accent from pen or paper clip acceptable. Shot on 50mm lens, cinematic, no brand names, no logos, no readable text, no faces.
+
+---
+
+## 3. HS code lookup (/tools/hs-code)
+
+**File:** `public/images/hs-code-hero.jpg`
+
+**Page headline:** "Eight digits, real money." — ITC-HS tariff classification, Indian customs duty.
+
+**Prompt:**
+A realistic, high-quality wide photograph of a customs classification workspace in India. Open tariff reference binders with tabbed dividers (pages blank or too blurred to read), a magnifying glass, HS-code-style index cards fanned out (numbers illegible), and a single commodity sample — a small sealed carton — on a grey desk. Cool neutral office lighting; left third darker and empty for text overlay. Conveys precision, regulation, and financial consequence without showing readable tariff tables. Shot on 50mm lens, sharp foreground, soft background, no brand names, no logos, no readable text, no faces.
+
+---
+
+## 4. Freight glossary (/resources/glossary)
+
+**File:** `public/images/glossary-hero.jpg`
+
+**Page headline:** "Without jargon." — plain-English freight dictionary.
+
+**Prompt:**
+A realistic, high-quality wide photograph of a well-used reference library corner in a freight forwarder's office in India. Row of thick logistics reference books and binders on a shelf (spines blank or spine text illegible), a dictionary-style hardback lying open on a side table (pages blurred), reading lamp casting warm pool of light on the right. Left third of frame is darker bookshelf shadow — clean negative space for headline. Quiet, scholarly, professional — not a public library. Shot on 35mm lens, shallow depth of field, no brand names, no logos, no readable text, no faces.
+
+---
+
+## 5. FAQ (/resources/faq)
+
+**File:** `public/images/faq-hero.jpg`
+
+**Page headline:** "Asked candidly." — weekly questions answered without sales spin.
+
+**Prompt:**
+A realistic, high-quality wide photograph of an open-plan freight operations desk in India during a calm moment. Single desk phone, notepad with illegible scribbles, sticky notes without readable words, and a half-empty chai cup. Through a glass partition behind, blurred silhouettes of colleagues at workstations (bodies only, no faces). Honest, approachable, desk-side conversation mood — not a call-center wall of headsets. Warm practical lighting; left third darker and uncluttered for text overlay. Shot on 35mm lens, documentary editorial style, no brand names, no logos, no readable text, no faces.
+
+---
+
+## Post-generation checklist (all hero images)
+
+1. Crop to 16:9; export as JPG at ~85% quality
+2. Place file at path listed above
+3. Verify left third reads clearly under dark gradient: `linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.2) 100%)`
+4. Confirm no accidental readable text at 100% zoom
+5. Wire into page hero using same pattern as `/insights` and `/case-studies`

@@ -28,24 +28,39 @@ const breadcrumbs = [
 export default function FaqPage() {
   return (
     <>
-      <Breadcrumbs items={breadcrumbs} />
       <JsonLd data={faqJsonLd(FAQS.map((f) => ({ q: f.q, a: f.a })))} />
 
-      <section className="pt-32 pb-12">
-        <div className="site-gutter">
+      <section className="hero-section relative min-h-[60svh] flex flex-col justify-center">
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
+            src="/images/faq-hero.png"
+            alt=""
+            className="h-full w-full max-w-none object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.2) 100%), linear-gradient(to top, var(--ink) 0%, transparent 40%)",
+            }}
+          />
+        </div>
+        <div className="site-gutter relative z-10 mx-auto flex w-full min-w-0 max-w-full flex-col pt-32 pb-16">
           <Breadcrumbs items={breadcrumbs} />
-          <h1 className="f-display mt-6 text-[56px] leading-[0.88] tracking-tighter md:text-[88px]">
-            Asked
-            <br />
-            <span className="f-display-it" style={{ color: "var(--cargo)" }}>
-              candidly
-            </span>
-            .
-          </h1>
-          <p className="mt-8 max-w-2xl text-lg" style={{ color: "var(--ash)" }}>
-            The questions we hear weekly — answered without sales spin. If yours isn&apos;t here,
-            send it: we&apos;ll add it (and reply to you).
-          </p>
+          <div className="mt-6 w-full max-w-3xl">
+            <h1 className="f-display text-[64px] leading-[0.88] tracking-tighter text-white md:text-[110px]">
+              Asked
+              <br />
+              <span className="f-display-it" style={{ color: "var(--cargo)" }}>
+                candidly
+              </span>
+              .
+            </h1>
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-white/90">
+              The questions we hear weekly — answered without sales spin. If yours isn&apos;t here,
+              send it: we&apos;ll add it (and reply to you).
+            </p>
+          </div>
         </div>
       </section>
 
